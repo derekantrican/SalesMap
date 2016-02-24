@@ -33,7 +33,6 @@
             this.labelOR = new System.Windows.Forms.Label();
             this.labelRepresentative = new System.Windows.Forms.Label();
             this.pictureBackground = new System.Windows.Forms.PictureBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonMap = new System.Windows.Forms.Button();
             this.comboBoxState = new System.Windows.Forms.ComboBox();
             this.comboBoxRepresentative = new System.Windows.Forms.ComboBox();
@@ -93,15 +92,6 @@
             this.pictureBackground.TabIndex = 8;
             this.pictureBackground.TabStop = false;
             // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(295, 104);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
-            this.buttonSearch.TabIndex = 9;
-            this.buttonSearch.Text = "Search";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            // 
             // buttonMap
             // 
             this.buttonMap.Location = new System.Drawing.Point(295, 75);
@@ -110,6 +100,7 @@
             this.buttonMap.TabIndex = 10;
             this.buttonMap.Text = "Open Map";
             this.buttonMap.UseVisualStyleBackColor = true;
+            this.buttonMap.Click += new System.EventHandler(this.buttonMap_Click);
             // 
             // comboBoxState
             // 
@@ -138,6 +129,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 13;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // labelRepResult
             // 
@@ -181,7 +173,6 @@
             this.Controls.Add(this.comboBoxRepresentative);
             this.Controls.Add(this.comboBoxState);
             this.Controls.Add(this.buttonMap);
-            this.Controls.Add(this.buttonSearch);
             this.Controls.Add(this.labelRepresentative);
             this.Controls.Add(this.labelOR);
             this.Controls.Add(this.labelState);
@@ -189,6 +180,7 @@
             this.Controls.Add(this.pictureBackground);
             this.Name = "SalesMapSearch";
             this.Text = "Sales Map Search";
+            this.Load += new System.EventHandler(this.SalesMapSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -204,7 +196,6 @@
         private System.Windows.Forms.Label labelOR;
         private System.Windows.Forms.Label labelRepresentative;
         private System.Windows.Forms.PictureBox pictureBackground;
-        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonMap;
         private System.Windows.Forms.ComboBox comboBoxState;
         private System.Windows.Forms.ComboBox comboBoxRepresentative;
