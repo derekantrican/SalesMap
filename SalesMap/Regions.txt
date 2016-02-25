@@ -5,7 +5,7 @@
 (AZ) Arizona,0
 (AR) Arkansas,0
 (BC) British Columbia,0
-(CA) California,0
+(CA) California,1
 (CO) Colorado,0
 (CT) Conneticut,0
 (DE) Delaware,0
@@ -52,7 +52,7 @@
 (SD) South Dakota,0
 (SK) Saskatchewan,0
 (TN) Tennessee,0
-(TX) Texas,0
+(TX) Texas,1
 (UT) Utah,0
 (VT) Vermont,0
 (VA) Virginia,0

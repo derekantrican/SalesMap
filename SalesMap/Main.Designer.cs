@@ -169,7 +169,7 @@
             // 
             this.labelContactResult2.AutoSize = true;
             this.labelContactResult2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelContactResult2.Location = new System.Drawing.Point(21, 178);
+            this.labelContactResult2.Location = new System.Drawing.Point(21, 194);
             this.labelContactResult2.Name = "labelContactResult2";
             this.labelContactResult2.Size = new System.Drawing.Size(56, 16);
             this.labelContactResult2.TabIndex = 20;
@@ -179,7 +179,7 @@
             // 
             this.labelRepResult2.AutoSize = true;
             this.labelRepResult2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRepResult2.Location = new System.Drawing.Point(12, 162);
+            this.labelRepResult2.Location = new System.Drawing.Point(12, 178);
             this.labelRepResult2.Name = "labelRepResult2";
             this.labelRepResult2.Size = new System.Drawing.Size(100, 16);
             this.labelRepResult2.TabIndex = 18;
