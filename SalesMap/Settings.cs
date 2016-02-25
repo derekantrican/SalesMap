@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,14 +33,48 @@ namespace SalesMap
 
         private void buttonRegions_Click(object sender, EventArgs e)
         {
-            buttonSalesReps.Enabled = false;
-            //textBoxEdit.Text = READ FROM REGIONS FILE
+            buttonRegions.Enabled = false;
+            buttonSalesReps.Enabled = true;
+
+            var resourceRegions = "SalesMap.Regions.txt";
+            var assembly = Assembly.GetExecutingAssembly();
+
+            using (Stream fileStream = assembly.GetManifestResourceStream(resourceRegions))
+            using (StreamReader reader = new StreamReader(fileStream))
+            {
+                string Regions = "";
+
+                while (!reader.EndOfStream)
+                {
+                    Regions += reader.ReadLine();
+                    Regions += Environment.NewLine;
+                }
+                Console.WriteLine(Regions);
+                textBoxEdit.Text = Regions;
+            }
         }
 
         private void buttonSalesReps_Click(object sender, EventArgs e)
         {
-            buttonRegions.Enabled = false;
-            //textBoxEdit.Text = READ FROM SALES REP FILE
+            buttonSalesReps.Enabled = false;
+            buttonRegions.Enabled = true;
+
+            var resourceRegions = "SalesMap.SalesReps.txt";
+            var assembly = Assembly.GetExecutingAssembly();
+
+            using (Stream fileStream = assembly.GetManifestResourceStream(resourceRegions))
+            using (StreamReader reader = new StreamReader(fileStream))
+            {
+                string SalesReps = "";
+
+                while (!reader.EndOfStream)
+                {
+                    SalesReps += reader.ReadLine();
+                    SalesReps += Environment.NewLine;
+                }
+                Console.WriteLine(SalesReps);
+                textBoxEdit.Text = SalesReps;
+            }
         }
 
         private void buttonSave_Click(object sender, EventArgs e)

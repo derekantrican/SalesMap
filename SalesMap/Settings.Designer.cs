@@ -43,7 +43,7 @@
             this.textBoxEdit.Multiline = true;
             this.textBoxEdit.Name = "textBoxEdit";
             this.textBoxEdit.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxEdit.Size = new System.Drawing.Size(317, 64);
+            this.textBoxEdit.Size = new System.Drawing.Size(374, 64);
             this.textBoxEdit.TabIndex = 0;
             // 
             // labelMapLocation
@@ -59,7 +59,7 @@
             // 
             this.textBoxMapLocation.Location = new System.Drawing.Point(113, 10);
             this.textBoxMapLocation.Name = "textBoxMapLocation";
-            this.textBoxMapLocation.Size = new System.Drawing.Size(216, 20);
+            this.textBoxMapLocation.Size = new System.Drawing.Size(273, 20);
             this.textBoxMapLocation.TabIndex = 2;
             // 
             // buttonRegions
@@ -84,7 +84,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(254, 133);
+            this.buttonSave.Location = new System.Drawing.Point(311, 133);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 5;
@@ -107,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(341, 168);
+            this.ClientSize = new System.Drawing.Size(398, 168);
             this.Controls.Add(this.linkLabelGitHub);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonSalesReps);
