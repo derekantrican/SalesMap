@@ -33,23 +33,26 @@
             this.labelOR = new System.Windows.Forms.Label();
             this.labelRepresentative = new System.Windows.Forms.Label();
             this.pictureBackground = new System.Windows.Forms.PictureBox();
-            this.buttonMap = new System.Windows.Forms.Button();
             this.comboBoxState = new System.Windows.Forms.ComboBox();
             this.comboBoxRepresentative = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.labelRepResult = new System.Windows.Forms.Label();
             this.labelRegionResult = new System.Windows.Forms.Label();
             this.labelContactResult = new System.Windows.Forms.Label();
+            this.pictureBoxMap = new System.Windows.Forms.PictureBox();
+            this.labelContactResult2 = new System.Windows.Forms.Label();
+            this.labelRepResult2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(9, 184);
+            this.pictureBox1.Location = new System.Drawing.Point(9, 260);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(371, 323);
+            this.pictureBox1.Size = new System.Drawing.Size(324, 247);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -92,16 +95,6 @@
             this.pictureBackground.TabIndex = 8;
             this.pictureBackground.TabStop = false;
             // 
-            // buttonMap
-            // 
-            this.buttonMap.Location = new System.Drawing.Point(295, 75);
-            this.buttonMap.Name = "buttonMap";
-            this.buttonMap.Size = new System.Drawing.Size(75, 23);
-            this.buttonMap.TabIndex = 10;
-            this.buttonMap.Text = "Open Map";
-            this.buttonMap.UseVisualStyleBackColor = true;
-            this.buttonMap.Click += new System.EventHandler(this.buttonMap_Click);
-            // 
             // comboBoxState
             // 
             this.comboBoxState.FormattingEnabled = true;
@@ -123,7 +116,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::SalesMap.Properties.Resources.settings;
-            this.pictureBox2.Location = new System.Drawing.Point(369, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(320, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(25, 25);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -145,7 +138,7 @@
             // 
             this.labelRegionResult.AutoSize = true;
             this.labelRegionResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRegionResult.Location = new System.Drawing.Point(12, 162);
+            this.labelRegionResult.Location = new System.Drawing.Point(12, 236);
             this.labelRegionResult.Name = "labelRegionResult";
             this.labelRegionResult.Size = new System.Drawing.Size(55, 16);
             this.labelRegionResult.TabIndex = 15;
@@ -155,24 +148,57 @@
             // 
             this.labelContactResult.AutoSize = true;
             this.labelContactResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelContactResult.Location = new System.Drawing.Point(12, 141);
+            this.labelContactResult.Location = new System.Drawing.Point(21, 137);
             this.labelContactResult.Name = "labelContactResult";
             this.labelContactResult.Size = new System.Drawing.Size(56, 16);
             this.labelContactResult.TabIndex = 16;
             this.labelContactResult.Text = "Contact:";
             // 
+            // pictureBoxMap
+            // 
+            this.pictureBoxMap.Image = global::SalesMap.Properties.Resources.Map;
+            this.pictureBoxMap.Location = new System.Drawing.Point(286, 0);
+            this.pictureBoxMap.Name = "pictureBoxMap";
+            this.pictureBoxMap.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxMap.TabIndex = 17;
+            this.pictureBoxMap.TabStop = false;
+            this.pictureBoxMap.Click += new System.EventHandler(this.pictureBoxMap_Click);
+            // 
+            // labelContactResult2
+            // 
+            this.labelContactResult2.AutoSize = true;
+            this.labelContactResult2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelContactResult2.Location = new System.Drawing.Point(21, 178);
+            this.labelContactResult2.Name = "labelContactResult2";
+            this.labelContactResult2.Size = new System.Drawing.Size(56, 16);
+            this.labelContactResult2.TabIndex = 20;
+            this.labelContactResult2.Text = "Contact:";
+            // 
+            // labelRepResult2
+            // 
+            this.labelRepResult2.AutoSize = true;
+            this.labelRepResult2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRepResult2.Location = new System.Drawing.Point(12, 162);
+            this.labelRepResult2.Name = "labelRepResult2";
+            this.labelRepResult2.Size = new System.Drawing.Size(100, 16);
+            this.labelRepResult2.TabIndex = 18;
+            this.labelRepResult2.Text = "2nd Sales Rep:";
+            // 
             // SalesMapSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(395, 515);
+            this.ClientSize = new System.Drawing.Size(345, 515);
+            this.Controls.Add(this.labelContactResult2);
+            this.Controls.Add(this.labelRepResult2);
+            this.Controls.Add(this.pictureBoxMap);
             this.Controls.Add(this.labelContactResult);
             this.Controls.Add(this.labelRegionResult);
             this.Controls.Add(this.labelRepResult);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.comboBoxRepresentative);
             this.Controls.Add(this.comboBoxState);
-            this.Controls.Add(this.buttonMap);
             this.Controls.Add(this.labelRepresentative);
             this.Controls.Add(this.labelOR);
             this.Controls.Add(this.labelState);
@@ -184,6 +210,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,13 +223,15 @@
         private System.Windows.Forms.Label labelOR;
         private System.Windows.Forms.Label labelRepresentative;
         private System.Windows.Forms.PictureBox pictureBackground;
-        private System.Windows.Forms.Button buttonMap;
         private System.Windows.Forms.ComboBox comboBoxState;
         private System.Windows.Forms.ComboBox comboBoxRepresentative;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label labelRepResult;
         private System.Windows.Forms.Label labelRegionResult;
         private System.Windows.Forms.Label labelContactResult;
+        private System.Windows.Forms.PictureBox pictureBoxMap;
+        private System.Windows.Forms.Label labelContactResult2;
+        private System.Windows.Forms.Label labelRepResult2;
     }
 }
 

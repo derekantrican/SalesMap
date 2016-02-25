@@ -61,33 +61,47 @@ namespace SalesMap.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;&quot;,
-        ///&quot;(AB) Alberta&quot;,0,
-        ///&quot;(AL) Alabama&quot;,0,
-        ///&quot;(AK) Alaska&quot;,0,
-        ///&quot;(AZ) Arizona&quot;,0,
-        ///&quot;(AR) Arkansas&quot;,0,
-        ///&quot;(BC) British Columbia&quot;,0,
-        ///&quot;(CA) California&quot;,0,
-        ///&quot;(CO) Colorado&quot;,0,
-        ///&quot;(CT) Conneticut&quot;,0,
-        ///&quot;(DE) Delaware&quot;,0,
-        ///&quot;(FL) Florida&quot;,0,
-        ///&quot;(GA) Georgia&quot;,0,
-        ///&quot;(HI) Hawaii&quot;,0,
-        ///&quot;(ID) Idaho&quot;,0,
-        ///&quot;(IL) Illinois&quot;,0,
-        ///&quot;(IN) Indiana&quot;,0,
-        ///&quot;(IA) Iowa&quot;,0,
-        ///&quot;(KS) Kansas&quot;,0,
-        ///&quot;(KY) Kentucky&quot;,0,
-        ///&quot;(LA) Louisiana&quot;,0,
-        ///&quot;(ME) Maine&quot;,0,
-        ///&quot;(MA) Massachusetts&quot;,0,
-        ///&quot;(MB) Manitoba&quot;,0,
-        ///&quot;(MI) Michigan&quot;,0,
-        ///&quot;(MN) Minnesota&quot;,0,
-        ///&quot;(MS) Miss [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Map {
+            get {
+                object obj = ResourceManager.GetObject("Map", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ,,
+        ///(AB) Alberta,0
+        ///(AL) Alabama,0
+        ///(AK) Alaska,0
+        ///(AZ) Arizona,0
+        ///(AR) Arkansas,0
+        ///(BC) British Columbia,0
+        ///(CA) California,0
+        ///(CO) Colorado,0
+        ///(CT) Conneticut,0
+        ///(DE) Delaware,0
+        ///(FL) Florida,0
+        ///(GA) Georgia,0
+        ///(HI) Hawaii,0
+        ///(ID) Idaho,0
+        ///(IL) Illinois,0
+        ///(IN) Indiana,0
+        ///(IA) Iowa,0
+        ///(KS) Kansas,0
+        ///(KY) Kentucky,0
+        ///(LA) Louisiana,0
+        ///(ME) Maine,0
+        ///(MA) Massachusetts,0
+        ///(MB) Manitoba,0
+        ///(MI) Michigan,0
+        ///(MN) Minnesota,0
+        ///(MS) Mississippi,0
+        ///(MO) Missouri,0
+        ///(MT) Montana,0
+        ///(NB) New Brunswick,0
+        ///(NE) Nebras [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Regions {
             get {
@@ -96,7 +110,16 @@ namespace SalesMap.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to ,,,
+        ///Brian Blair,brianb@sigmanest.com,513-314-7422,WA:OR:AB:BC
+        ///Arie Brown,arieb@sigmanest.com,513-335-7432,Southeast RSM
+        ///Matt Brubaker,mattb@sigmanest.com,513-532-3544,Great Lakes RSM
+        ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,MO:KS
+        ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,
+        ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN
+        ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235,TX
+        ///Joaquin Gonzales,jaoquin.gonzales@sigmanest.com,513-507-7631,Southwest RAE
+        ///Andrew Hoo [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SalesReps {
             get {
