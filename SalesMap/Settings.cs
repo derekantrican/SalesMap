@@ -82,14 +82,35 @@ namespace SalesMap
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
             Properties.Settings.Default.Save();
 
-            if(buttonRegions.Enabled == true)
+            if(buttonRegions.Enabled == false) //We are editing Regions.txt
             {
                 //WRITE TO REGIONS FILE
+                // = textBoxEdit.Text;
+                var resourceRegions = "SalesMap.Regions.txt";
+                var assembly = Assembly.GetExecutingAssembly();
+
+                using (Stream fileStream = assembly.GetManifestResourceStream(resourceRegions))
+                using (StreamWriter writer = new StreamWriter(fileStream))
+                {
+                    try
+                    {
+                        writer.Write(textBoxEdit.Text.ToString());
+                        writer.Close();
+                        writer.Dispose();
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Problem...");
+                    }
+                }
             }
-            else if(buttonSalesReps.Enabled == true)
+            else if(buttonSalesReps.Enabled == false) //We are editing SalesReps.txt
             {
                 //WRITE TO SALES REP FILE
+                // = textBoxEdit.Text;
             }
+
+            this.Close();
         }
     }
 }

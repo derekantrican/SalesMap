@@ -1,5 +1,5 @@
 ﻿,,,
-Brian Blair,brianb@sigmanest.com,513-314-7422,WA:OR:AB:BC
+Brian Blair,brianb@sigmanest.com,513-314-7422,WA:OR:AB:BC:AB
 Arie Brown,arieb@sigmanest.com,513-335-7432,Southeast RSM
 Matt Brubaker,mattb@sigmanest.com,513-532-3544,Great Lakes RSM
 Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,MO:KS
@@ -14,7 +14,6 @@ Scott Lindley,scott.lindley@sigmanest.com,513-309-1394,ID:CO:WY:OR
 Ryan Lustig,ryan.lustig@sigmanest.com,513-508-4271,Northeast RSM
 Albert Otto,albert.otto@sigmanest.com,513-288-2262,MI
 Jonathan Padial,jonathan.padial@sigmanest.com,513-551-7212,KY:OH
-Rob Rao,email,phone,CA
 Dave Shifo,david.shifo@sigmanest.com,513-316-4791,IA
 Ethan Swanson,,,
 Scott Taylor,scott.taylor@sigmanest.com,513-218-9883,TN:NC:SC
