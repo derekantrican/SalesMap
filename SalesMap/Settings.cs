@@ -206,6 +206,10 @@ namespace SalesMap
                     System.Diagnostics.Process.Start(url);
                 }
             }
+            else
+            {
+                MessageBox.Show("Congrats! You have the most current version!\n\nVersion: " + thisVersion, "Current Version");
+            }
         }
     }
 }
