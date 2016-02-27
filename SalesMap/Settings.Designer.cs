@@ -35,6 +35,7 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.textBoxEdit = new System.Windows.Forms.RichTextBox();
+            this.linkLabelUpdate = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -86,7 +87,7 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(9, 167);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(9, 157);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(120, 13);
             this.linkLabelGitHub.TabIndex = 6;
@@ -103,11 +104,23 @@
             this.textBoxEdit.TabIndex = 7;
             this.textBoxEdit.Text = "";
             // 
+            // linkLabelUpdate
+            // 
+            this.linkLabelUpdate.AutoSize = true;
+            this.linkLabelUpdate.Location = new System.Drawing.Point(9, 173);
+            this.linkLabelUpdate.Name = "linkLabelUpdate";
+            this.linkLabelUpdate.Size = new System.Drawing.Size(91, 13);
+            this.linkLabelUpdate.TabIndex = 8;
+            this.linkLabelUpdate.TabStop = true;
+            this.linkLabelUpdate.Text = "Check for Update";
+            this.linkLabelUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelUpdate_LinkClicked);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 192);
+            this.Controls.Add(this.linkLabelUpdate);
             this.Controls.Add(this.textBoxEdit);
             this.Controls.Add(this.linkLabelGitHub);
             this.Controls.Add(this.buttonSave);
@@ -130,5 +143,6 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
         private System.Windows.Forms.RichTextBox textBoxEdit;
+        private System.Windows.Forms.LinkLabel linkLabelUpdate;
     }
 }

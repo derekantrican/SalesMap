@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace SalesMap
 {
     public partial class Settings : Form
     {
+        public event Action SettingsUpdated;
+
         public Settings()
         {
             InitializeComponent();
@@ -149,7 +152,28 @@ namespace SalesMap
                 File.WriteAllText(salesPath, textBoxEdit.Text);
             }
 
-            this.Close();
+            SettingsUpdated?.Invoke();
+            Console.WriteLine("UPDATED: " + SettingsUpdated);
+            //this.Close();
+        }
+
+        private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            WebClient client = new WebClient();
+            string url = "https://github.com/derekantrican/SalesMap/releases";
+            string html = client.DownloadString(url);
+            string GitVersion = html.Substring(html.IndexOf("<span class=\"css-truncate-target\">v") + 34).Split('<')[0];
+            string thisVersion = Properties.Settings.Default.Version;
+
+            if (GitVersion != thisVersion)
+            {
+                if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
+                                    "\n\nGo to " + url + " to download the new version?",
+                                    "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(url);
+                }
+            }
         }
     }
 }

@@ -5,5 +5,8 @@
     <Setting Name="MapFileLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\sigmatek.net\Documents\Support\SALESMAP.docx</Value>
     </Setting>
+    <Setting Name="Version" Type="System.String" Scope="User">
+      <Value Profile="(Default)">v0.1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

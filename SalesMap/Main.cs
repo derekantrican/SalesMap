@@ -88,16 +88,17 @@ namespace SalesMap
                     SalesRepEmails.Add(Line[1]);
                     SalesRepPhones.Add(Line[2]);
                     SalesRepRegions.Add(Line[3]);
-                    Console.WriteLine(Row);
                     Row++;
                 }
             }
 
             comboBoxState.DataSource = RegionNames;
+            comboBoxState.Refresh();
             comboBoxRepresentative.DataSource = SalesRepNames;
 
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";
+            Console.WriteLine("READFILES RAN!");
         }
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
@@ -183,6 +184,8 @@ namespace SalesMap
         {
             Settings config = new Settings();
             config.Show();
+
+            config.SettingsUpdated += readFiles;
         }
 
         private void pictureBoxMap_Click(object sender, EventArgs e)
