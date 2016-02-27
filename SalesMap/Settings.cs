@@ -36,10 +36,23 @@ namespace SalesMap
             buttonRegions.Enabled = false;
             buttonSalesReps.Enabled = true;
 
-            var resourceRegions = "SalesMap.Regions.txt";
-            var assembly = Assembly.GetExecutingAssembly();
+            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
+            Stream fileStream;
 
-            using (Stream fileStream = assembly.GetManifestResourceStream(resourceRegions))
+            if (File.Exists(regionPath))
+            {
+                Console.WriteLine("Regions file exists");
+                fileStream = File.Open(regionPath, FileMode.Open);
+            }
+            else
+            {
+                Console.WriteLine("Regions file does not exist");
+                var resourceRegions = "SalesMap.Regions.txt";
+                var assembly = Assembly.GetExecutingAssembly();
+
+                fileStream = assembly.GetManifestResourceStream(resourceRegions);
+            }
+
             using (StreamReader reader = new StreamReader(fileStream))
             {
                 string Regions = "";
@@ -59,10 +72,23 @@ namespace SalesMap
             buttonSalesReps.Enabled = false;
             buttonRegions.Enabled = true;
 
-            var resourceRegions = "SalesMap.SalesReps.txt";
-            var assembly = Assembly.GetExecutingAssembly();
+            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
+            Stream fileStream;
 
-            using (Stream fileStream = assembly.GetManifestResourceStream(resourceRegions))
+            if (File.Exists(salesPath))
+            {
+                Console.WriteLine("Sales file exists");
+                fileStream = File.Open(salesPath, FileMode.Open);
+            }
+            else
+            {
+                Console.WriteLine("Sales file does not exist");
+                var resourceSales = "SalesMap.SalesReps.txt";
+                var assembly = Assembly.GetExecutingAssembly();
+
+                fileStream = assembly.GetManifestResourceStream(resourceSales);
+            }
+
             using (StreamReader reader = new StreamReader(fileStream))
             {
                 string SalesReps = "";
@@ -82,32 +108,45 @@ namespace SalesMap
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
             Properties.Settings.Default.Save();
 
-            if(buttonRegions.Enabled == false) //We are editing Regions.txt
+            if (buttonRegions.Enabled == false) //We are editing Regions.txt
             {
                 //WRITE TO REGIONS FILE
-                // = textBoxEdit.Text;
-                var resourceRegions = "SalesMap.Regions.txt";
-                var assembly = Assembly.GetExecutingAssembly();
+                string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
 
-                using (Stream fileStream = assembly.GetManifestResourceStream(resourceRegions))
-                using (StreamWriter writer = new StreamWriter(fileStream))
+                if (File.Exists(regionPath))
                 {
-                    try
+                    Console.WriteLine("Regions file exists");
+                }
+                else
+                {
+                    Console.WriteLine("Regions file does not exist");
+                    using (var stream = File.Create(regionPath))
                     {
-                        writer.Write(textBoxEdit.Text.ToString());
-                        writer.Close();
-                        writer.Dispose();
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Problem...");
+                        //Doing this "using bracket" so that IDisposable is implemented afterwards
                     }
                 }
+
+                File.WriteAllText(regionPath, textBoxEdit.Text);
             }
             else if(buttonSalesReps.Enabled == false) //We are editing SalesReps.txt
             {
                 //WRITE TO SALES REP FILE
-                // = textBoxEdit.Text;
+                string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
+
+                if (File.Exists(salesPath))
+                {
+                    Console.WriteLine("Sales file exists");
+                }
+                else
+                {
+                    Console.WriteLine("Sales file does not exist");
+                    using (var stream = File.Create(salesPath))
+                    {
+                        //Doing this "using bracket" so that IDisposable is implemented afterwards
+                    }
+                }
+
+                File.WriteAllText(salesPath, textBoxEdit.Text);
             }
 
             this.Close();
