@@ -185,7 +185,7 @@ namespace SalesMap
             Settings config = new Settings();
             config.Show();
 
-            config.SettingsUpdated += readFiles;
+            //config.SettingsUpdated += readFiles;
         }
 
         private void pictureBoxMap_Click(object sender, EventArgs e)

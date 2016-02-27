@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -111,6 +112,22 @@ namespace SalesMap
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
             Properties.Settings.Default.Save();
 
+            bool restart = false;
+
+            if (buttonRegions.Enabled == false || buttonSalesReps.Enabled == false)
+            {
+                if (MessageBox.Show("In order for changes to the Regions or Sales Rep files to take effect, you must restart the program. \n\nRestart now?",
+                                    "Restart Required", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                {
+                    restart = true;
+                }
+                else
+                {
+                    MessageBox.Show("Your changes will not be saved");
+                    return;
+                }
+            }
+
             if (buttonRegions.Enabled == false) //We are editing Regions.txt
             {
                 //WRITE TO REGIONS FILE
@@ -150,11 +167,26 @@ namespace SalesMap
                 }
 
                 File.WriteAllText(salesPath, textBoxEdit.Text);
+
             }
 
-            SettingsUpdated?.Invoke();
+            //SettingsUpdated?.Invoke();
             Console.WriteLine("UPDATED: " + SettingsUpdated);
-            //this.Close();
+
+            if (restart)
+            {
+                ProcessStartInfo Info = new ProcessStartInfo();
+                Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
+                Info.WindowStyle = ProcessWindowStyle.Hidden;
+                Info.CreateNoWindow = true;
+                Info.FileName = "cmd.exe";
+                Process.Start(Info);
+                Application.Exit();
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
