@@ -35,26 +35,29 @@
             this.pictureBackground = new System.Windows.Forms.PictureBox();
             this.comboBoxState = new System.Windows.Forms.ComboBox();
             this.comboBoxRepresentative = new System.Windows.Forms.ComboBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
             this.labelRepResult = new System.Windows.Forms.Label();
             this.labelRegionResult = new System.Windows.Forms.Label();
             this.labelContactResult = new System.Windows.Forms.Label();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.labelContactResult2 = new System.Windows.Forms.Label();
             this.labelRepResult2 = new System.Windows.Forms.Label();
+            this.labelNoImage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(9, 260);
+            this.pictureBox1.Location = new System.Drawing.Point(36, 255);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(324, 247);
+            this.pictureBox1.Size = new System.Drawing.Size(275, 275);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // labelState
             // 
@@ -113,16 +116,16 @@
             this.comboBoxRepresentative.TabIndex = 12;
             this.comboBoxRepresentative.SelectedIndexChanged += new System.EventHandler(this.comboBoxRepresentative_SelectedIndexChanged);
             // 
-            // pictureBox2
+            // pictureBoxSettings
             // 
-            this.pictureBox2.Image = global::SalesMap.Properties.Resources.settings;
-            this.pictureBox2.Location = new System.Drawing.Point(320, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 13;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pictureBoxSettings.Image = global::SalesMap.Properties.Resources.settings;
+            this.pictureBoxSettings.Location = new System.Drawing.Point(320, 0);
+            this.pictureBoxSettings.Name = "pictureBoxSettings";
+            this.pictureBoxSettings.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxSettings.TabIndex = 13;
+            this.pictureBoxSettings.TabStop = false;
+            this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // labelRepResult
             // 
@@ -185,18 +188,28 @@
             this.labelRepResult2.TabIndex = 18;
             this.labelRepResult2.Text = "2nd Sales Rep:";
             // 
+            // labelNoImage
+            // 
+            this.labelNoImage.AutoSize = true;
+            this.labelNoImage.Location = new System.Drawing.Point(106, 384);
+            this.labelNoImage.Name = "labelNoImage";
+            this.labelNoImage.Size = new System.Drawing.Size(99, 13);
+            this.labelNoImage.TabIndex = 21;
+            this.labelNoImage.Text = "No Image Available";
+            // 
             // SalesMapSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(345, 515);
+            this.ClientSize = new System.Drawing.Size(345, 540);
+            this.Controls.Add(this.labelNoImage);
             this.Controls.Add(this.labelContactResult2);
             this.Controls.Add(this.labelRepResult2);
             this.Controls.Add(this.pictureBoxMap);
             this.Controls.Add(this.labelContactResult);
             this.Controls.Add(this.labelRegionResult);
             this.Controls.Add(this.labelRepResult);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBoxSettings);
             this.Controls.Add(this.comboBoxRepresentative);
             this.Controls.Add(this.comboBoxState);
             this.Controls.Add(this.labelRepresentative);
@@ -209,7 +222,7 @@
             this.Load += new System.EventHandler(this.SalesMapSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -225,13 +238,14 @@
         private System.Windows.Forms.PictureBox pictureBackground;
         private System.Windows.Forms.ComboBox comboBoxState;
         private System.Windows.Forms.ComboBox comboBoxRepresentative;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBoxSettings;
         private System.Windows.Forms.Label labelRepResult;
         private System.Windows.Forms.Label labelRegionResult;
         private System.Windows.Forms.Label labelContactResult;
         private System.Windows.Forms.PictureBox pictureBoxMap;
         private System.Windows.Forms.Label labelContactResult2;
         private System.Windows.Forms.Label labelRepResult2;
+        private System.Windows.Forms.Label labelNoImage;
     }
 }
 

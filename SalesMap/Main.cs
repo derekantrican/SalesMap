@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -116,6 +117,20 @@ namespace SalesMap
                 return;
             }
 
+            ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources", Assembly.GetExecutingAssembly());
+            pictureBox1.Image = rm.GetObject(comboBoxState.SelectedItem.ToString().Replace(' ', '_')) as Image;
+
+            if (pictureBox1.Image == null && comboBoxState.SelectedIndex != 0)
+            {
+                labelNoImage.Text = "No Image Available";
+            }
+            else
+            {
+                labelNoImage.Text = "";
+            }
+
+            rm.ReleaseAllResources();
+
             string[] SalesRegions = SalesRepRegions.ToArray();
             string[] SalesNames = SalesRepNames.ToArray();
             string[] SalesEmails = SalesRepEmails.ToArray();
@@ -166,6 +181,22 @@ namespace SalesMap
                 return;
             }
 
+            ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources",Assembly.GetExecutingAssembly());
+            pictureBox1.Image = rm.GetObject(comboBoxRepresentative.SelectedItem.ToString().Replace(' ', '_')) as Image;
+
+            if(pictureBox1.Image == null && comboBoxRepresentative.SelectedIndex != 0)
+            {
+                labelNoImage.Text = "No Image Available";
+            }
+            else
+            {
+                labelNoImage.Text = "";
+            }
+
+            rm.ReleaseAllResources();
+
+
+
             labelRepResult.Text = "Sales Rep: " + comboBoxRepresentative.SelectedItem.ToString();
             labelContactResult.Text = "Contact: " + SalesRepEmails[comboBoxRepresentative.SelectedIndex] +
                                       Environment.NewLine + "\t\t\t   " + SalesRepPhones[comboBoxRepresentative.SelectedIndex];
@@ -200,6 +231,11 @@ namespace SalesMap
             {
                 MessageBox.Show("The path " + path + " is invalid.");
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

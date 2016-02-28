@@ -99,6 +99,36 @@
   <ItemGroup>
     <None Include="Resources\Map.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Albert Otto.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Andrew Hood.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arie Brown.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Brian Blair.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Joaquin Gonzales.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Larsen Kjellman.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Matt Brubaker.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ryan Weymouth.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Scott Lindley.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Scott Taylor.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
