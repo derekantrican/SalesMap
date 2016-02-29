@@ -132,9 +132,6 @@
     <None Include="Resources\Scott Taylor.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\lustig, ryan.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Schalk van Niekerk.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +145,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Jonathan Padial.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Brian Warburton.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charlie Vanderzwaag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dan Jacobs.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dave Shifo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Faber Fields.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jim Elmore.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ryan Lustig.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
