@@ -24,4 +24,4 @@ Charlie Vanderzwaag,charlie.vanderzwaag@sigmanest.com,,
 Schalk van Niekerk,schalk.vanniekerk@sigmanest.com,513-317-7293,IL
 Ryan Weymouth,ryan.weymouth@sigmanest.com,513-673-6674,MN
 Brian Warburton,brian.warburton@sigmanest.com,513-903-7485,TX
-Ethan Wyckoff,ethan.wyckoff@sigmanest.com,,
+Ethan Wyckoff,ethan.wyckoff@sigmanest.com,513-418-1755,

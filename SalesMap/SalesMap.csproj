@@ -90,6 +90,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Donnie Dugger.jpg" />
+    <None Include="Resources\Jennifer Gallagher.jpg" />
     <None Include="Resources\settings.png" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +133,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\lustig, ryan.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Schalk van Niekerk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Steve Ties.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sylvain Robidoux.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jason DeGraeve.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jonathan Padial.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

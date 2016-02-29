@@ -103,9 +103,49 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Donnie_Dugger {
+            get {
+                object obj = ResourceManager.GetObject("Donnie_Dugger", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Jason_DeGraeve {
+            get {
+                object obj = ResourceManager.GetObject("Jason_DeGraeve", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Jennifer_Gallagher {
+            get {
+                object obj = ResourceManager.GetObject("Jennifer_Gallagher", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Joaquin_Gonzales {
             get {
                 object obj = ResourceManager.GetObject("Joaquin_Gonzales", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Jonathan_Padial {
+            get {
+                object obj = ResourceManager.GetObject("Jonathan_Padial", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -204,16 +244,26 @@ namespace SalesMap.Properties {
         ///Brian Blair,brianb@sigmanest.com,513-314-7422,WA:OR:AB:BC:AB
         ///Arie Brown,arieb@sigmanest.com,513-335-7432,Southeast RSM
         ///Matt Brubaker,mattb@sigmanest.com,513-532-3544,Great Lakes RSM
-        ///Jason DeGraeve,jason.degraeve@sigmanest.com,,
+        ///Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,
         ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,MO:KS
         ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA
         ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN
         ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235,TX	
-        ///Joaquin Gonzales,jaoquin.gonzales [rest of string was truncated]&quot;;.
+        ///Joaquin Gonzales,jaoq [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SalesReps {
             get {
                 return ResourceManager.GetString("SalesReps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Schalk_van_Niekerk {
+            get {
+                object obj = ResourceManager.GetObject("Schalk_van_Niekerk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -243,6 +293,26 @@ namespace SalesMap.Properties {
         internal static System.Drawing.Bitmap settings {
             get {
                 object obj = ResourceManager.GetObject("settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Steve_Ties {
+            get {
+                object obj = ResourceManager.GetObject("Steve_Ties", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sylvain_Robidoux {
+            get {
+                object obj = ResourceManager.GetObject("Sylvain_Robidoux", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
