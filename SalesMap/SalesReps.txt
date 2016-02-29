@@ -2,7 +2,7 @@
 Brian Blair,brianb@sigmanest.com,513-314-7422,WA:OR:AB:BC:AB
 Arie Brown,arieb@sigmanest.com,513-335-7432,Southeast RSM
 Matt Brubaker,mattb@sigmanest.com,513-532-3544,Great Lakes RSM
-Jason DeGraeve,jason.degraeve@sigmanest.com,,
+Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,
 Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,MO:KS
 Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA
 Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN
@@ -13,7 +13,7 @@ Dan Jacobs,dan.jacobs@sigmanest.com,513-674-2141,
 Larsen Kjellman,larsen.kjellman@sigmanest.com,513-218-3570,DE:MD:WV:VA
 Scott Lindley,scott.lindley@sigmanest.com,513-309-1394,ID:CO:WY:OR
 Ryan Lustig,ryan.lustig@sigmanest.com,513-508-4271,Northeast RSM
-Mike Mizak,mike.mizak@sigmanest.com,,
+Mike Mizak,mike.mizak@sigmanest.com,204-293-9418,
 Albert Otto,albert.otto@sigmanest.com,513-288-2262,MI
 Jonathan Padial,jonathan.padial@sigmanest.com,513-551-7212,KY:OH
 Sylvain Robidoux,sylvain.robidoux@sigmanest.com,438-401-8686,

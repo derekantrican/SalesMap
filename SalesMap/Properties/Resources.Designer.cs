@@ -182,6 +182,16 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Ryan_Lustig {
+            get {
+                object obj = ResourceManager.GetObject("Ryan_Lustig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ryan_Weymouth {
             get {
                 object obj = ResourceManager.GetObject("Ryan_Weymouth", resourceCulture);
@@ -194,12 +204,12 @@ namespace SalesMap.Properties {
         ///Brian Blair,brianb@sigmanest.com,513-314-7422,WA:OR:AB:BC:AB
         ///Arie Brown,arieb@sigmanest.com,513-335-7432,Southeast RSM
         ///Matt Brubaker,mattb@sigmanest.com,513-532-3544,Great Lakes RSM
+        ///Jason DeGraeve,jason.degraeve@sigmanest.com,,
         ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,MO:KS
         ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA
         ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN
-        ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235,TX
-        ///Joaquin Gonzales,jaoquin.gonzales@sigmanest.com,513-507-7631,Southwest RAE
-        ///Andre [rest of string was truncated]&quot;;.
+        ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235,TX	
+        ///Joaquin Gonzales,jaoquin.gonzales [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SalesReps {
             get {
