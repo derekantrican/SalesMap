@@ -7,7 +7,7 @@
 (BC) British Columbia,0
 (CA) California,1
 (CO) Colorado,0
-(CT) Conneticut,0
+(CT) Connecticut,0
 (DE) Delaware,0
 (FL) Florida,0
 (GA) Georgia,0
