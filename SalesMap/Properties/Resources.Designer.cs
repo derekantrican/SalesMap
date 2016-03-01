@@ -63,6 +63,576 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _AB__Alberta {
+            get {
+                object obj = ResourceManager.GetObject("_AB__Alberta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _AK__Alaska {
+            get {
+                object obj = ResourceManager.GetObject("_AK__Alaska", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _AL__Alabama {
+            get {
+                object obj = ResourceManager.GetObject("_AL__Alabama", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _AR__Arkansas {
+            get {
+                object obj = ResourceManager.GetObject("_AR__Arkansas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _AZ__Arizona {
+            get {
+                object obj = ResourceManager.GetObject("_AZ__Arizona", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _BC__British_Columbia {
+            get {
+                object obj = ResourceManager.GetObject("_BC__British_Columbia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _CO__Colorado {
+            get {
+                object obj = ResourceManager.GetObject("_CO__Colorado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _CT__Connecticut {
+            get {
+                object obj = ResourceManager.GetObject("_CT__Connecticut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _DE__Delaware {
+            get {
+                object obj = ResourceManager.GetObject("_DE__Delaware", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _FL__Florida {
+            get {
+                object obj = ResourceManager.GetObject("_FL__Florida", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _GA__Georgia {
+            get {
+                object obj = ResourceManager.GetObject("_GA__Georgia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _HI__Hawaii {
+            get {
+                object obj = ResourceManager.GetObject("_HI__Hawaii", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _IA__Iowa {
+            get {
+                object obj = ResourceManager.GetObject("_IA__Iowa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _ID__Idaho {
+            get {
+                object obj = ResourceManager.GetObject("_ID__Idaho", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _IL__Illinois {
+            get {
+                object obj = ResourceManager.GetObject("_IL__Illinois", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _KS__Kansas {
+            get {
+                object obj = ResourceManager.GetObject("_KS__Kansas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _KY__Kentucky {
+            get {
+                object obj = ResourceManager.GetObject("_KY__Kentucky", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _LA__Louisiana {
+            get {
+                object obj = ResourceManager.GetObject("_LA__Louisiana", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _MA__Massachusetts {
+            get {
+                object obj = ResourceManager.GetObject("_MA__Massachusetts", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _MB__Manitoba {
+            get {
+                object obj = ResourceManager.GetObject("_MB__Manitoba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _MD__Maryland {
+            get {
+                object obj = ResourceManager.GetObject("_MD__Maryland", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _ME__Maine {
+            get {
+                object obj = ResourceManager.GetObject("_ME__Maine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _MN__Minnesota {
+            get {
+                object obj = ResourceManager.GetObject("_MN__Minnesota", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _MO__Missouri {
+            get {
+                object obj = ResourceManager.GetObject("_MO__Missouri", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _MS__Mississippi {
+            get {
+                object obj = ResourceManager.GetObject("_MS__Mississippi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _MT__Montana {
+            get {
+                object obj = ResourceManager.GetObject("_MT__Montana", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NB__New_Brunswick {
+            get {
+                object obj = ResourceManager.GetObject("_NB__New_Brunswick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NC__North_Carolina {
+            get {
+                object obj = ResourceManager.GetObject("_NC__North_Carolina", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _ND__North_Dakota {
+            get {
+                object obj = ResourceManager.GetObject("_ND__North_Dakota", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NE__Nebraska {
+            get {
+                object obj = ResourceManager.GetObject("_NE__Nebraska", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NH__New_Hampshire {
+            get {
+                object obj = ResourceManager.GetObject("_NH__New_Hampshire", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NJ__New_Jersey {
+            get {
+                object obj = ResourceManager.GetObject("_NJ__New_Jersey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NL__Newfoundland_and_Labrador {
+            get {
+                object obj = ResourceManager.GetObject("_NL__Newfoundland_and_Labrador", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NM__New_Mexico {
+            get {
+                object obj = ResourceManager.GetObject("_NM__New_Mexico", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NS__Nova_Scotia {
+            get {
+                object obj = ResourceManager.GetObject("_NS__Nova_Scotia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NT__Northwest_Territories {
+            get {
+                object obj = ResourceManager.GetObject("_NT__Northwest_Territories", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NU__Nunavut {
+            get {
+                object obj = ResourceManager.GetObject("_NU__Nunavut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _NY__New_York {
+            get {
+                object obj = ResourceManager.GetObject("_NY__New_York", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _OK__Oklahoma {
+            get {
+                object obj = ResourceManager.GetObject("_OK__Oklahoma", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _ON__Ontario {
+            get {
+                object obj = ResourceManager.GetObject("_ON__Ontario", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _OR__Oregon {
+            get {
+                object obj = ResourceManager.GetObject("_OR__Oregon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _PA__Pennsylvania {
+            get {
+                object obj = ResourceManager.GetObject("_PA__Pennsylvania", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _PE__Prince_Edward_Island {
+            get {
+                object obj = ResourceManager.GetObject("_PE__Prince_Edward_Island", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _QC__Quebec {
+            get {
+                object obj = ResourceManager.GetObject("_QC__Quebec", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _RI__Rhode_Island {
+            get {
+                object obj = ResourceManager.GetObject("_RI__Rhode_Island", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _SC__South_Carolina {
+            get {
+                object obj = ResourceManager.GetObject("_SC__South_Carolina", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _SD__South_Dakota {
+            get {
+                object obj = ResourceManager.GetObject("_SD__South_Dakota", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _SK__Saskatchewan {
+            get {
+                object obj = ResourceManager.GetObject("_SK__Saskatchewan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _TN__Tennessee {
+            get {
+                object obj = ResourceManager.GetObject("_TN__Tennessee", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _UT__Utah {
+            get {
+                object obj = ResourceManager.GetObject("_UT__Utah", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _VA__Virginia {
+            get {
+                object obj = ResourceManager.GetObject("_VA__Virginia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _VT__Vermont {
+            get {
+                object obj = ResourceManager.GetObject("_VT__Vermont", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _WA__Washington {
+            get {
+                object obj = ResourceManager.GetObject("_WA__Washington", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _WI__Wisconsin {
+            get {
+                object obj = ResourceManager.GetObject("_WI__Wisconsin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _WV__West_Virginia {
+            get {
+                object obj = ResourceManager.GetObject("_WV__West_Virginia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _WY__Wyoming {
+            get {
+                object obj = ResourceManager.GetObject("_WY__Wyoming", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _YT__Yukon {
+            get {
+                object obj = ResourceManager.GetObject("_YT__Yukon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Albert_Otto {
             get {
                 object obj = ResourceManager.GetObject("Albert_Otto", resourceCulture);
@@ -257,7 +827,7 @@ namespace SalesMap.Properties {
         ///(HI) Hawaii,0
         ///(ID) Idaho,0
         ///(IL) Illinois,0
-        ///(IN) Indiana,0
+        ///(IN) Indiana,1
         ///(IA) Iowa,0
         ///(KS) Kansas,0
         ///(KY) Kentucky,0
@@ -265,13 +835,13 @@ namespace SalesMap.Properties {
         ///(ME) Maine,0
         ///(MA) Massachusetts,0
         ///(MB) Manitoba,0
-        ///(MI) Michigan,0
+        ///(MD) Maryland,0
+        ///(MI) Michigan,1
         ///(MN) Minnesota,0
         ///(MS) Mississippi,0
         ///(MO) Missouri,0
         ///(MT) Montana,0
-        ///(NB) New Brunswick,0
-        ///(NE) Nebrask [rest of string was truncated]&quot;;.
+        ///(NB) New Brunswic [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Regions {
             get {
@@ -301,15 +871,15 @@ namespace SalesMap.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to ,,,
-        ///Brian Blair,brianb@sigmanest.com,513-314-7422,WA:OR:AB:BC:AB
-        ///Arie Brown,arieb@sigmanest.com,513-335-7432,Southeast RSM
-        ///Matt Brubaker,mattb@sigmanest.com,513-532-3544,Great Lakes RSM
+        ///Brian Blair,brianb@sigmanest.com,513-314-7422,BC:AB:WA:MT
+        ///Arie Brown,arieb@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS
+        ///Matt Brubaker,mattb@sigmanest.com,513-532-3544,IN (N):OH (N)
         ///Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,
-        ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,MO:KS
-        ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA
-        ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN
-        ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235,TX	
-        ///Joaquin Gonzales,jaoq [rest of string was truncated]&quot;;.
+        ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO
+        ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,
+        ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN (S)
+        ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235,TX (S)
+        ///Joaquin Gonzales,jao [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SalesReps {
             get {

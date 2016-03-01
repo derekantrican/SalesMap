@@ -51,7 +51,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(36, 255);
+            this.pictureBox1.Location = new System.Drawing.Point(55, 255);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(275, 275);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -94,7 +94,7 @@
             this.pictureBackground.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.pictureBackground.Location = new System.Drawing.Point(12, 12);
             this.pictureBackground.Name = "pictureBackground";
-            this.pictureBackground.Size = new System.Drawing.Size(263, 95);
+            this.pictureBackground.Size = new System.Drawing.Size(299, 95);
             this.pictureBackground.TabIndex = 8;
             this.pictureBackground.TabStop = false;
             // 
@@ -103,7 +103,7 @@
             this.comboBoxState.FormattingEnabled = true;
             this.comboBoxState.Location = new System.Drawing.Point(109, 26);
             this.comboBoxState.Name = "comboBoxState";
-            this.comboBoxState.Size = new System.Drawing.Size(151, 21);
+            this.comboBoxState.Size = new System.Drawing.Size(192, 21);
             this.comboBoxState.TabIndex = 11;
             this.comboBoxState.SelectedIndexChanged += new System.EventHandler(this.comboBoxState_SelectedIndexChanged);
             // 
@@ -112,14 +112,14 @@
             this.comboBoxRepresentative.FormattingEnabled = true;
             this.comboBoxRepresentative.Location = new System.Drawing.Point(109, 68);
             this.comboBoxRepresentative.Name = "comboBoxRepresentative";
-            this.comboBoxRepresentative.Size = new System.Drawing.Size(151, 21);
+            this.comboBoxRepresentative.Size = new System.Drawing.Size(192, 21);
             this.comboBoxRepresentative.TabIndex = 12;
             this.comboBoxRepresentative.SelectedIndexChanged += new System.EventHandler(this.comboBoxRepresentative_SelectedIndexChanged);
             // 
             // pictureBoxSettings
             // 
             this.pictureBoxSettings.Image = global::SalesMap.Properties.Resources.settings;
-            this.pictureBoxSettings.Location = new System.Drawing.Point(320, 0);
+            this.pictureBoxSettings.Location = new System.Drawing.Point(353, 0);
             this.pictureBoxSettings.Name = "pictureBoxSettings";
             this.pictureBoxSettings.Size = new System.Drawing.Size(25, 25);
             this.pictureBoxSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -160,7 +160,7 @@
             // pictureBoxMap
             // 
             this.pictureBoxMap.Image = global::SalesMap.Properties.Resources.Map;
-            this.pictureBoxMap.Location = new System.Drawing.Point(286, 0);
+            this.pictureBoxMap.Location = new System.Drawing.Point(319, 0);
             this.pictureBoxMap.Name = "pictureBoxMap";
             this.pictureBoxMap.Size = new System.Drawing.Size(25, 25);
             this.pictureBoxMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -191,7 +191,7 @@
             // labelNoImage
             // 
             this.labelNoImage.AutoSize = true;
-            this.labelNoImage.Location = new System.Drawing.Point(106, 384);
+            this.labelNoImage.Location = new System.Drawing.Point(125, 386);
             this.labelNoImage.Name = "labelNoImage";
             this.labelNoImage.Size = new System.Drawing.Size(99, 13);
             this.labelNoImage.TabIndex = 21;
@@ -201,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(345, 540);
+            this.ClientSize = new System.Drawing.Size(378, 540);
             this.Controls.Add(this.labelNoImage);
             this.Controls.Add(this.labelContactResult2);
             this.Controls.Add(this.labelRepResult2);

@@ -167,6 +167,177 @@
   <ItemGroup>
     <None Include="Resources\Ryan Lustig.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28AB%29 Alberta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28AK%29 Alaska.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28AL%29 Alabama.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28AR%29 Arkansas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28AZ%29 Arizona.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28BC%29 British Columbia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28CO%29 Colorado.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28CT%29 Connecticut.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28DE%29 Delaware.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28FL%29 Florida.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28GA%29 Georgia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28HI%29 Hawaii.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28IA%29 Iowa.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28ID%29 Idaho.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28IL%29 Illinois.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28KS%29 Kansas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28KY%29 Kentucky.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28LA%29 Louisiana.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28MA%29 Massachusetts.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28MB%29 Manitoba.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28MD%29 Maryland.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28ME%29 Maine.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28MN%29 Minnesota.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28MO%29 Missouri.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28MS%29 Mississippi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28MT%29 Montana.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NB%29 New Brunswick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NC%29 North Carolina.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28ND%29 North Dakota.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NE%29 Nebraska.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NH%29 New Hampshire.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NJ%29 New Jersey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NL%29 Newfoundland and Labrador.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NM%29 New Mexico.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NS%29 Nova Scotia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NT%29 Northwest Territories.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NU%29 Nunavut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28NY%29 New York.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28OK%29 Oklahoma.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28ON%29 Ontario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28OR%29 Oregon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28PA%29 Pennsylvania.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28PE%29 Prince Edward Island.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28QC%29 Quebec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28RI%29 Rhode Island.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28SC%29 South Carolina.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28SD%29 South Dakota.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28SK%29 Saskatchewan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28TN%29 Tennessee.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28UT%29 Utah.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28VA%29 Virginia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28VT%29 Vermont.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28WA%29 Washington.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28WI%29 Wisconsin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28WV%29 West Virginia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28WY%29 Wyoming.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%28YT%29 Yukon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

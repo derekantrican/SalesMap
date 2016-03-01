@@ -118,7 +118,7 @@ namespace SalesMap
             }
 
             ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources", Assembly.GetExecutingAssembly());
-            pictureBox1.Image = rm.GetObject(comboBoxState.SelectedItem.ToString().Replace(' ', '_')) as Image;
+            pictureBox1.Image = rm.GetObject(comboBoxState.SelectedItem.ToString().Replace(')','_').Replace('(','_').Replace(' ', '_')) as Image;
 
             if (pictureBox1.Image == null && comboBoxState.SelectedIndex != 0)
             {

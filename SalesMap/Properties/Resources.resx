@@ -202,4 +202,175 @@
   <data name="Sylvain_Robidoux" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sylvain Robidoux.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_AB__Alberta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(AB) Alberta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_AK__Alaska" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(AK) Alaska.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_AL__Alabama" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(AL) Alabama.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_AR__Arkansas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(AR) Arkansas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_AZ__Arizona" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(AZ) Arizona.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_BC__British_Columbia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(BC) British Columbia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_CO__Colorado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(CO) Colorado.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_CT__Connecticut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(CT) Connecticut.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_DE__Delaware" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(DE) Delaware.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_FL__Florida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(FL) Florida.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_GA__Georgia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(GA) Georgia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_HI__Hawaii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(HI) Hawaii.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_IA__Iowa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(IA) Iowa.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_ID__Idaho" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(ID) Idaho.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_IL__Illinois" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(IL) Illinois.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_KS__Kansas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(KS) Kansas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_KY__Kentucky" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(KY) Kentucky.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_LA__Louisiana" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(LA) Louisiana.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_MA__Massachusetts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(MA) Massachusetts.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_MB__Manitoba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(MB) Manitoba.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_MD__Maryland" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(MD) Maryland.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_ME__Maine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(ME) Maine.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_MN__Minnesota" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(MN) Minnesota.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_MO__Missouri" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(MO) Missouri.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_MS__Mississippi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(MS) Mississippi.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_MT__Montana" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(MT) Montana.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NB__New_Brunswick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NB) New Brunswick.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NC__North_Carolina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NC) North Carolina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_ND__North_Dakota" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(ND) North Dakota.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NE__Nebraska" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NE) Nebraska.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NH__New_Hampshire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NH) New Hampshire.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NJ__New_Jersey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NJ) New Jersey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NL__Newfoundland_and_Labrador" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NL) Newfoundland and Labrador.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NM__New_Mexico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NM) New Mexico.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NS__Nova_Scotia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NS) Nova Scotia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NT__Northwest_Territories" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NT) Northwest Territories.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NU__Nunavut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NU) Nunavut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NY__New_York" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NY) New York.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_OK__Oklahoma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(OK) Oklahoma.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_ON__Ontario" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(ON) Ontario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_OR__Oregon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(OR) Oregon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_PA__Pennsylvania" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(PA) Pennsylvania.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_PE__Prince_Edward_Island" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(PE) Prince Edward Island.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_QC__Quebec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(QC) Quebec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_RI__Rhode_Island" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(RI) Rhode Island.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_SC__South_Carolina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(SC) South Carolina.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_SD__South_Dakota" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(SD) South Dakota.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_SK__Saskatchewan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(SK) Saskatchewan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_TN__Tennessee" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(TN) Tennessee.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_UT__Utah" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(UT) Utah.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_VA__Virginia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(VA) Virginia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_VT__Vermont" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(VT) Vermont.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_WA__Washington" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(WA) Washington.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_WI__Wisconsin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(WI) Wisconsin.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_WV__West_Virginia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(WV) West Virginia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_WY__Wyoming" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(WY) Wyoming.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_YT__Yukon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(YT) Yukon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

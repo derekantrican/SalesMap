@@ -14,7 +14,7 @@
 (HI) Hawaii,0
 (ID) Idaho,0
 (IL) Illinois,0
-(IN) Indiana,0
+(IN) Indiana,1
 (IA) Iowa,0
 (KS) Kansas,0
 (KY) Kentucky,0
@@ -22,25 +22,26 @@
 (ME) Maine,0
 (MA) Massachusetts,0
 (MB) Manitoba,0
-(MI) Michigan,0
+(MD) Maryland,0
+(MI) Michigan,1
 (MN) Minnesota,0
 (MS) Mississippi,0
 (MO) Missouri,0
 (MT) Montana,0
 (NB) New Brunswick,0
 (NE) Nebraska,0
-(NV) Nevada,0
+(NV) Nevada,1
 (NH) New Hampshire,0
 (NJ) New Jersey,0
 (NL) Newfoundland and Labrador,0
 (NM) New Mexico,0
 (NS) Nova Scotia,0
 (NT) Northwest Territories,0
-(NU) Nunavut,0
 (NY) New York,0
 (NC) North Carolina,0
 (ND) North Dakota,0
-(OH) Ohio,0
+(NU) Nunavut,0
+(OH) Ohio,1
 (OK) Oklahoma,0
 (ON) Ontario,0
 (OR) Oregon,0
@@ -56,7 +57,7 @@
 (UT) Utah,0
 (VT) Vermont,0
 (VA) Virginia,0
-(WA) Washington!,0
+(WA) Washington,0
 (WV) West Virginia,0
 (WI) Wisconsin,0
 (WY) Wyoming,0
