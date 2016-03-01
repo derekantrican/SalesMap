@@ -242,11 +242,11 @@ namespace SalesMap
         {
             if (comboBoxState.SelectedItem.ToString() == "")
             {
-                MessageBox.Show("\State/Province:\" must be defined");
+                MessageBox.Show("\"State/Province:\" must be defined");
             }
             else
             {
-                string state = comboBoxState.SelectedItem.ToString().Split(' ').Last();
+                string state = comboBoxState.SelectedItem.ToString().Split(')').Last().Replace(" ", "+");
                 System.Diagnostics.Process.Start("https://www.google.com/maps/place/" + state);
             }
         }
