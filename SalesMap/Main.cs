@@ -237,5 +237,18 @@ namespace SalesMap
         {
 
         }
+
+        private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
+        {
+            if (comboBoxState.SelectedItem.ToString() == "")
+            {
+                MessageBox.Show("\State/Province:\" must be defined");
+            }
+            else
+            {
+                string state = comboBoxState.SelectedItem.ToString().Split(' ').Last();
+                System.Diagnostics.Process.Start("https://www.google.com/maps/place/" + state);
+            }
+        }
     }
 }

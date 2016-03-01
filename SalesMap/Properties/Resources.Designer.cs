@@ -733,6 +733,16 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GoogleMaps {
+            get {
+                object obj = ResourceManager.GetObject("GoogleMaps", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Jason_DeGraeve {
             get {
                 object obj = ResourceManager.GetObject("Jason_DeGraeve", resourceCulture);

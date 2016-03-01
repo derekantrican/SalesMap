@@ -43,18 +43,20 @@
             this.labelContactResult2 = new System.Windows.Forms.Label();
             this.labelRepResult2 = new System.Windows.Forms.Label();
             this.labelNoImage = new System.Windows.Forms.Label();
+            this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(55, 255);
+            this.pictureBox1.Location = new System.Drawing.Point(36, 255);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(275, 275);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -119,7 +121,7 @@
             // pictureBoxSettings
             // 
             this.pictureBoxSettings.Image = global::SalesMap.Properties.Resources.settings;
-            this.pictureBoxSettings.Location = new System.Drawing.Point(353, 0);
+            this.pictureBoxSettings.Location = new System.Drawing.Point(317, -1);
             this.pictureBoxSettings.Name = "pictureBoxSettings";
             this.pictureBoxSettings.Size = new System.Drawing.Size(25, 25);
             this.pictureBoxSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -160,7 +162,7 @@
             // pictureBoxMap
             // 
             this.pictureBoxMap.Image = global::SalesMap.Properties.Resources.Map;
-            this.pictureBoxMap.Location = new System.Drawing.Point(319, 0);
+            this.pictureBoxMap.Location = new System.Drawing.Point(317, 30);
             this.pictureBoxMap.Name = "pictureBoxMap";
             this.pictureBoxMap.Size = new System.Drawing.Size(25, 25);
             this.pictureBoxMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -197,11 +199,23 @@
             this.labelNoImage.TabIndex = 21;
             this.labelNoImage.Text = "No Image Available";
             // 
+            // pictureBoxOnlineMaps
+            // 
+            this.pictureBoxOnlineMaps.Image = global::SalesMap.Properties.Resources.GoogleMaps;
+            this.pictureBoxOnlineMaps.Location = new System.Drawing.Point(317, 61);
+            this.pictureBoxOnlineMaps.Name = "pictureBoxOnlineMaps";
+            this.pictureBoxOnlineMaps.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxOnlineMaps.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxOnlineMaps.TabIndex = 22;
+            this.pictureBoxOnlineMaps.TabStop = false;
+            this.pictureBoxOnlineMaps.Click += new System.EventHandler(this.pictureBoxOnlineMaps_Click);
+            // 
             // SalesMapSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(378, 540);
+            this.ClientSize = new System.Drawing.Size(342, 540);
+            this.Controls.Add(this.pictureBoxOnlineMaps);
             this.Controls.Add(this.labelNoImage);
             this.Controls.Add(this.labelContactResult2);
             this.Controls.Add(this.labelRepResult2);
@@ -224,6 +238,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,6 +261,7 @@
         private System.Windows.Forms.Label labelContactResult2;
         private System.Windows.Forms.Label labelRepResult2;
         private System.Windows.Forms.Label labelNoImage;
+        private System.Windows.Forms.PictureBox pictureBoxOnlineMaps;
     }
 }
 
