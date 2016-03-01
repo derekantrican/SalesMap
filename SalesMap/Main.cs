@@ -144,17 +144,18 @@ namespace SalesMap
 
             for (int i = 0; i < SalesRegions.Length; i++)
             {
+                Console.WriteLine(SalesRegions[i]);
                 if (SalesRegions[i].IndexOf(search) >= 0)
                 {
                     found++;
-
+                    Console.WriteLine("found: " + found);
                     if (found == 1)
                     {
                         labelRepResult.Text = "Sales Rep: " + SalesNames[i];
                         labelContactResult.Text = "Contact: " + SalesEmails[i] + Environment.NewLine + "\t\t\t   " + SalesPhones[i];
                     }
 
-                    if (RegionPart[i] == "0" && found > 1)
+                    if (found > 1)
                     {
                         labelRepResult2.Text = "2nd Sales Rep: " + SalesNames[i];
                         labelContactResult2.Text = "Contact: " + SalesEmails[i] + Environment.NewLine + "\t\t\t   " + SalesPhones[i];
