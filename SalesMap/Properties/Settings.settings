@@ -6,7 +6,7 @@
       <Value Profile="(Default)">\\sigmatek.net\Documents\Support\SALESMAP.docx</Value>
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">v0.2</Value>
+      <Value Profile="(Default)">v0.3</Value>
     </Setting>
   </Settings>
 </SettingsFile>
