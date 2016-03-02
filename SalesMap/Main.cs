@@ -58,9 +58,17 @@ namespace SalesMap
                 while (!reader.EndOfStream)
                 {
                     string[] Line = reader.ReadLine().Split(',');
-                    RegionNames.Add(Line[0]);
-                    RegionParts.Add(Line[1]);
-                    Row++;
+                    try
+                    {
+                        RegionNames.Add(Line[0]);
+                        RegionParts.Add(Line[1]);
+                        Row++;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Cannot read from Regions.txt in C:\\Users\\" + Environment.UserName + "\\ \n\nCheck to make sure you have the right amount of commas");
+                        Environment.Exit(1);
+                    }
                 }
             }
 
@@ -85,11 +93,19 @@ namespace SalesMap
                 while (!reader1.EndOfStream)
                 {
                     string[] Line = reader1.ReadLine().Split(',');
-                    SalesRepNames.Add(Line[0]);
-                    SalesRepEmails.Add(Line[1]);
-                    SalesRepPhones.Add(Line[2]);
-                    SalesRepRegions.Add(Line[3]);
-                    Row++;
+                    try
+                    {
+                        SalesRepNames.Add(Line[0]);
+                        SalesRepEmails.Add(Line[1]);
+                        SalesRepPhones.Add(Line[2]);
+                        SalesRepRegions.Add(Line[3]);
+                        Row++;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Cannot read from SalesReps.txt in C:\\Users\\" + Environment.UserName + "\\ \n\nCheck to make sure you have the right amount of commas");
+                        Environment.Exit(2);
+                    }
                 }
             }
 

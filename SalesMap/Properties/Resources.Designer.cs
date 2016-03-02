@@ -881,6 +881,16 @@ namespace SalesMap.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Mike_Mizak {
+            get {
+                object obj = ResourceManager.GetObject("Mike_Mizak", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ,
         ///(AB) Alberta,0
         ///(AL) Alabama,0
@@ -941,15 +951,14 @@ namespace SalesMap.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to ,,,
-        ///Brian Blair,brianb@sigmanest.com,513-314-7422,BC:AB:WA:MT
+        ///Brian Blair,brianb@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK
         ///Arie Brown,arieb@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS
         ///Matt Brubaker,mattb@sigmanest.com,513-532-3544,IN (N):OH (N)
-        ///Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,
+        ///Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU
         ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO
         ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ
         ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN (S)
-        ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235,TX (S)
-        ///Joaqu [rest of string was truncated]&quot;;.
+        ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-4 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SalesReps {
             get {
