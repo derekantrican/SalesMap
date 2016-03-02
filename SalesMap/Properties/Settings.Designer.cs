@@ -25,7 +25,7 @@ namespace SalesMap.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\sigmatek.net\\Documents\\Support\\SALESMAP.docx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\sigmatek.net\\Documents\\Employees\\Derek_Antrican\\SalesMap.pdf")]
         public string MapFileLocation {
             get {
                 return ((string)(this["MapFileLocation"]));
