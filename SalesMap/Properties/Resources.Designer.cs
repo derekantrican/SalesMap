@@ -123,6 +123,16 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _CA__California {
+            get {
+                object obj = ResourceManager.GetObject("_CA__California", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _CO__Colorado {
             get {
                 object obj = ResourceManager.GetObject("_CO__Colorado", resourceCulture);
@@ -213,6 +223,16 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _IN__Indiana {
+            get {
+                object obj = ResourceManager.GetObject("_IN__Indiana", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _KS__Kansas {
             get {
                 object obj = ResourceManager.GetObject("_KS__Kansas", resourceCulture);
@@ -276,6 +296,16 @@ namespace SalesMap.Properties {
         internal static System.Drawing.Bitmap _ME__Maine {
             get {
                 object obj = ResourceManager.GetObject("_ME__Maine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _MI__Michigan {
+            get {
+                object obj = ResourceManager.GetObject("_MI__Michigan", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -433,9 +463,29 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _NV__Nevada {
+            get {
+                object obj = ResourceManager.GetObject("_NV__Nevada", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _NY__New_York {
             get {
                 object obj = ResourceManager.GetObject("_NY__New_York", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _OH__Ohio {
+            get {
+                object obj = ResourceManager.GetObject("_OH__Ohio", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -546,6 +596,16 @@ namespace SalesMap.Properties {
         internal static System.Drawing.Bitmap _TN__Tennessee {
             get {
                 object obj = ResourceManager.GetObject("_TN__Tennessee", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _TX__Texas {
+            get {
+                object obj = ResourceManager.GetObject("_TX__Texas", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -830,7 +890,7 @@ namespace SalesMap.Properties {
         ///(BC) British Columbia,0
         ///(CA) California,1
         ///(CO) Colorado,0
-        ///(CT) Conneticut,0
+        ///(CT) Connecticut,0
         ///(DE) Delaware,0
         ///(FL) Florida,0
         ///(GA) Georgia,0
@@ -851,7 +911,7 @@ namespace SalesMap.Properties {
         ///(MS) Mississippi,0
         ///(MO) Missouri,0
         ///(MT) Montana,0
-        ///(NB) New Brunswic [rest of string was truncated]&quot;;.
+        ///(NB) New Brunswi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Regions {
             get {
@@ -886,10 +946,10 @@ namespace SalesMap.Properties {
         ///Matt Brubaker,mattb@sigmanest.com,513-532-3544,IN (N):OH (N)
         ///Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,
         ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO
-        ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,
+        ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ
         ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN (S)
         ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235,TX (S)
-        ///Joaquin Gonzales,jao [rest of string was truncated]&quot;;.
+        ///Joaqu [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SalesReps {
             get {

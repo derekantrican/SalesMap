@@ -376,4 +376,22 @@
   <data name="GoogleMaps" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GoogleMaps.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_CA__California" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(CA) California.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_IN__Indiana" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(IN) Indiana.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_MI__Michigan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(MI) Michigan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_NV__Nevada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(NV) Nevada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_OH__Ohio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(OH) Ohio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_TX__Texas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(TX) Texas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
