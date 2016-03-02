@@ -32,7 +32,7 @@ namespace SalesMap
 
         private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/derekantrican/SalesMap/issues");
+            System.Diagnostics.Process.Start("https://github.com/derekantrican/SalesMap/wiki");
         }
 
         private void buttonRegions_Click(object sender, EventArgs e)

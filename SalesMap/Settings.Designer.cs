@@ -92,7 +92,7 @@
             this.linkLabelGitHub.Size = new System.Drawing.Size(146, 13);
             this.linkLabelGitHub.TabIndex = 6;
             this.linkLabelGitHub.TabStop = true;
-            this.linkLabelGitHub.Text = "Bugs/Feature Requests/Wiki";
+            this.linkLabelGitHub.Text = "Wiki/Bugs/Feature Requests";
             this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
             // 
             // textBoxEdit
