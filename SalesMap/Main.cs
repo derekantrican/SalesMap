@@ -142,6 +142,9 @@ namespace SalesMap
             string search = comboBoxState.SelectedItem.ToString().Split('(').Last().Split(')').First();
             Console.WriteLine("\"" + search + "\"");
 
+            if (search == "")
+                return;
+
             for (int i = 0; i < SalesRegions.Length; i++)
             {
                 Console.WriteLine(SalesRegions[i]);
