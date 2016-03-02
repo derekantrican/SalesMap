@@ -6,7 +6,7 @@
       <Value Profile="(Default)">\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap.pdf</Value>
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">v0.5</Value>
+      <Value Profile="(Default)">v0.6</Value>
     </Setting>
   </Settings>
 </SettingsFile>

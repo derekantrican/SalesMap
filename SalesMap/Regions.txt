@@ -43,7 +43,7 @@
 (NU) Nunavut,0
 (OH) Ohio,1
 (OK) Oklahoma,0
-(ON) Ontario,0
+(ON) Ontario,1
 (OR) Oregon,0
 (PA) Pennsylvania,0
 (PE) Prince Edward Island,0

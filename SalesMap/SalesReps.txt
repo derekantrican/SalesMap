@@ -1,26 +1,26 @@
 ﻿,,,
-Brian Blair,brianb@sigmanest.com,513-314-7422,BC:AB:WA:MT
+Brian Blair,brianb@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK
 Arie Brown,arieb@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS
 Matt Brubaker,mattb@sigmanest.com,513-532-3544,IN (N):OH (N)
-Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,
+Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU
 Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO
 Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ
 Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN (S)
 Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235,TX (S)
 Joaquin Gonzales,jaoquin.gonzales@sigmanest.com,513-507-7631,CA (N):NV (N)
 Andrew Hood,andrew.hood@sigmanest.com,513-415-9764,WI:MI (UP)
-Dan Jacobs,dan.jacobs@sigmanest.com,513-674-2141,
+Dan Jacobs,dan.jacobs@sigmanest.com,513-674-2141,HI
 Larsen Kjellman,larsen.kjellman@sigmanest.com,513-218-3570,DE:MD:WV:VA
 Scott Lindley,scott.lindley@sigmanest.com,513-309-1394,OR:ID:UT:CO:WY
 Ryan Lustig,ryan.lustig@sigmanest.com,513-508-4271,ME:VT:NH:MA:CT:RI:NY:PA
-Mike Mizak,mike.mizak@sigmanest.com,204-293-9418,
+Mike Mizak,mike.mizak@sigmanest.com,204-293-9418,MB
 Albert Otto,albert.otto@sigmanest.com,513-288-2262,MI
 Jonathan Padial,jonathan.padial@sigmanest.com,513-551-7212,KY:OH (S)
-Sylvain Robidoux,sylvain.robidoux@sigmanest.com,438-401-8686,
+Sylvain Robidoux,sylvain.robidoux@sigmanest.com,438-401-8686,QC:NB:NS:PE:NL
 Dave Shifo,david.shifo@sigmanest.com,513-316-4791,IA
 Scott Taylor,scott.taylor@sigmanest.com,513-218-9883,NC:SC
 Steve Ties,steve.ties@sigmanest.com,513-214-9831,ND:SD:NE:OK:AR:NM
-Charlie Vanderzwaag,charlie.vanderzwaag@sigmanest.com,226-971-1093,
+Charlie Vanderzwaag,charlie.vanderzwaag@sigmanest.com,226-971-1093,ON (S)
 Schalk van Niekerk,schalk.vanniekerk@sigmanest.com,513-317-7293,IL
 Ryan Weymouth,ryan.weymouth@sigmanest.com,513-673-6674,MN
 Brian Warburton,brian.warburton@sigmanest.com,513-903-7485,TX (N)
