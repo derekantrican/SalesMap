@@ -159,7 +159,13 @@ namespace SalesMap
             Console.WriteLine("\"" + search + "\"");
 
             if (search == "")
+            {
+                labelRepResult.Text = "Sales Rep: ";
+                labelContactResult.Text = "Contact: ";
+                labelRepResult2.Text = "";
+                labelContactResult2.Text = "";
                 return;
+            }
 
             for (int i = 0; i < SalesRegions.Length; i++)
             {
