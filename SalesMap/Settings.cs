@@ -193,7 +193,17 @@ namespace SalesMap
         {
             WebClient client = new WebClient();
             string url = "https://github.com/derekantrican/SalesMap/releases";
-            string html = client.DownloadString(url);
+            string html = "";
+            try
+            {
+                html = client.DownloadString(url);
+            }
+            catch
+            {
+                MessageBox.Show("Connection problem....\n\nAre you connected to the internet?");
+                return;
+            }
+
             string GitVersion = html.Substring(html.IndexOf("<span class=\"css-truncate-target\">v") + 34).Split('<')[0];
             string thisVersion = Properties.Settings.Default.Version;
 
