@@ -115,7 +115,6 @@ namespace SalesMap
 
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";
-            Console.WriteLine("READFILES RAN!");
         }
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
