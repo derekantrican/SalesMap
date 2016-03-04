@@ -12,7 +12,7 @@ Andrew Hood,andrew.hood@sigmanest.com,513-415-9764,WI:MI (UP)
 Dan Jacobs,dan.jacobs@sigmanest.com,513-674-2141,HI
 Larsen Kjellman,larsen.kjellman@sigmanest.com,513-218-3570,DE:MD:WV:VA
 Scott Lindley,scott.lindley@sigmanest.com,513-309-1394,OR:ID:UT:CO:WY
-Ryan Lustig,ryan.lustig@sigmanest.com,513-508-4271,ME:VT:NH:MA:CT:RI:NY:PA
+Ryan Lustig,ryan.lustig@sigmanest.com,513-508-4271,ME:VT:NH:MA:CT:RI:NY:PA:NJ
 Mike Mizak,mike.mizak@sigmanest.com,204-293-9418,MB
 Albert Otto,albert.otto@sigmanest.com,513-288-2262,MI
 Jonathan Padial,jonathan.padial@sigmanest.com,513-551-7212,KY:OH (S)
