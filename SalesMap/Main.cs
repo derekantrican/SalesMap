@@ -275,5 +275,19 @@ namespace SalesMap
                 System.Diagnostics.Process.Start("https://www.google.com/maps/place/" + state);
             }
         }
+
+        private void pictureBoxOffSMR_Click(object sender, EventArgs e)
+        {
+            string to = "";
+
+            if (labelRepResult.Text != "" && labelRepResult2.Text == "")
+            {
+                to = labelRepResult.Text;
+            }
+            else if (labelRepResult.Text != "" && labelRepResult2.Text != "")
+            {
+
+            }
+        }
     }
 }

@@ -44,11 +44,13 @@
             this.labelRepResult2 = new System.Windows.Forms.Label();
             this.labelNoImage = new System.Windows.Forms.Label();
             this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
+            this.pictureBoxOffSMR = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -210,11 +212,22 @@
             this.pictureBoxOnlineMaps.TabStop = false;
             this.pictureBoxOnlineMaps.Click += new System.EventHandler(this.pictureBoxOnlineMaps_Click);
             // 
+            // pictureBoxOffSMR
+            // 
+            this.pictureBoxOffSMR.Location = new System.Drawing.Point(317, 92);
+            this.pictureBoxOffSMR.Name = "pictureBoxOffSMR";
+            this.pictureBoxOffSMR.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxOffSMR.TabIndex = 23;
+            this.pictureBoxOffSMR.TabStop = false;
+            this.pictureBoxOffSMR.Tag = "";
+            this.pictureBoxOffSMR.Click += new System.EventHandler(this.pictureBoxOffSMR_Click);
+            // 
             // SalesMapSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(342, 540);
+            this.Controls.Add(this.pictureBoxOffSMR);
             this.Controls.Add(this.pictureBoxOnlineMaps);
             this.Controls.Add(this.labelNoImage);
             this.Controls.Add(this.labelContactResult2);
@@ -231,6 +244,7 @@
             this.Controls.Add(this.labelState);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBackground);
+            this.MaximizeBox = false;
             this.Name = "SalesMapSearch";
             this.Text = "Sales Map Search";
             this.Load += new System.EventHandler(this.SalesMapSearch_Load);
@@ -239,6 +253,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,6 +277,7 @@
         private System.Windows.Forms.Label labelRepResult2;
         private System.Windows.Forms.Label labelNoImage;
         private System.Windows.Forms.PictureBox pictureBoxOnlineMaps;
+        private System.Windows.Forms.PictureBox pictureBoxOffSMR;
     }
 }
 

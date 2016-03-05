@@ -128,6 +128,8 @@
             this.Controls.Add(this.buttonRegions);
             this.Controls.Add(this.textBoxMapLocation);
             this.Controls.Add(this.labelMapLocation);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Settings";
             this.Text = "Settings";
             this.ResumeLayout(false);
