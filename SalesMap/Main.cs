@@ -278,16 +278,22 @@ namespace SalesMap
 
         private void pictureBoxOffSMR_Click(object sender, EventArgs e)
         {
-            string to = "";
+            string cc = "";
+            string subject = "";
+            string body = "";
 
             if (labelRepResult.Text != "" && labelRepResult2.Text == "")
             {
-                to = labelRepResult.Text;
+                cc = labelContactResult.Text.Split(' ').ElementAt(1);
             }
             else if (labelRepResult.Text != "" && labelRepResult2.Text != "")
             {
-
+                //Choose a rep with the "North-South" dialog
             }
+
+            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject.Replace(" ","%20") + "&body=" + body.Replace(" ","%20");
+            proc.Start();
         }
     }
 }
