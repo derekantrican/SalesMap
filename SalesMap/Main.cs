@@ -278,6 +278,7 @@ namespace SalesMap
 
         private void pictureBoxOffSMR_Click(object sender, EventArgs e)
         {
+            string rep = "";
             string cc = "";
             string phone = "";
             string subject = "";
@@ -314,8 +315,15 @@ namespace SalesMap
                 body = offSMRBody;
             }
 
-            if (labelRepResult.Text != "" && labelRepResult2.Text == "")
+            if (labelRepResult.Text == "Sales Rep: ")
             {
+                MessageBox.Show("Please choose a Region or Sales Rep from the dropdowns");
+                return;
+            }
+            else if (labelRepResult.Text != "" && labelRepResult2.Text == "")
+            {
+                rep = labelRepResult.Text;
+                rep = rep.Substring(rep.IndexOf(": ") + 2);
                 cc = labelContactResult.Text.Split(' ').ElementAt(1);
                 phone = labelContactResult.Text.Split(' ').Last().Split(' ').Last();
             }
@@ -331,19 +339,39 @@ namespace SalesMap
 
                 if (res == DialogResult.Yes) //"Yes" means "North rep"
                 {
+                    rep = labelRepResult.Text;
+                    rep = rep.Substring(rep.IndexOf(": ") + 2);
                     cc = labelContactResult.Text.Split(' ').ElementAt(1);
                     phone = labelContactResult.Text.Split('\t').Last().Split(' ').Last();
                 }
                 else if (res == DialogResult.No) //"No" means "South rep"
                 {
+                    rep = labelRepResult2.Text;
+                    rep = rep.Substring(rep.IndexOf(": ") + 2);
                     cc = labelContactResult2.Text.Split(' ').ElementAt(1);
-                    phone = labelContactResult2.Text.Split(' ').Last().Split(' ').Last();
+                    phone = labelContactResult2.Text.Split('\t').Last().Split(' ').Last();
                 }
             }
 
+            subject = mailtoFormat(subject, rep, cc, phone);
+            body = mailtoFormat(body, rep, cc, phone);
+
+            Console.WriteLine(body);
+
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject.Replace(" ","%20") + "&body=" + body.Replace(" ","%20").Replace("\n","%0D%0A");
+            proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject + "&body=" + body;
             proc.Start();
+        }
+
+        private string mailtoFormat(string raw, string repName, string repEmail, string repPhone)
+        {
+            string rawReplaced = raw;
+            rawReplaced = rawReplaced.Replace(" ", "%20").Replace("\n", "%0D%0A");
+            rawReplaced = rawReplaced.Replace("{SALESREPNAME}", repName);
+            rawReplaced = rawReplaced.Replace("{SALESREPEMAIL}", repEmail);
+            rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
+
+            return rawReplaced;
         }
     }
 }
