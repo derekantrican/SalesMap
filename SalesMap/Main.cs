@@ -281,7 +281,7 @@ namespace SalesMap
             string rep = "";
             string cc = "";
             string phone = "";
-            string subject = "";
+            string subject = "SigmaNEST Maintenance Subscription Renewal";
             string body = "";
 
             string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";

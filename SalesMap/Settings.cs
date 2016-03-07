@@ -16,7 +16,7 @@ namespace SalesMap
 {
     public partial class Settings : Form
     {
-        public event Action SettingsUpdated;
+        //public event Action SettingsUpdated;
 
         public Settings()
         {
