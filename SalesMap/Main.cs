@@ -342,7 +342,7 @@ namespace SalesMap
             }
 
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject.Replace(" ","%20") + "&body=" + body.Replace(" ","%20");
+            proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject.Replace(" ","%20") + "&body=" + body.Replace(" ","%20").Replace("\n","%0D%0A");
             proc.Start();
         }
     }
