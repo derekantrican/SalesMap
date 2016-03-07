@@ -279,12 +279,45 @@ namespace SalesMap
         private void pictureBoxOffSMR_Click(object sender, EventArgs e)
         {
             string cc = "";
+            string phone = "";
             string subject = "";
             string body = "";
+
+            string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
+            Stream fileStream;
+
+            if (File.Exists(offSMRPath))
+            {
+                Console.WriteLine("Off SMR file exists");
+                fileStream = File.Open(offSMRPath, FileMode.Open);
+            }
+            else
+            {
+                Console.WriteLine("Off SMR file does not exist");
+                var resourceOffSMR = "SalesMap.OffSMR.txt";
+                var assembly = Assembly.GetExecutingAssembly();
+
+                fileStream = assembly.GetManifestResourceStream(resourceOffSMR);
+            }
+
+            using (StreamReader reader = new StreamReader(fileStream))
+            {
+                string offSMRBody = "";
+
+                while (!reader.EndOfStream)
+                {
+                    offSMRBody += reader.ReadLine();
+                    offSMRBody += Environment.NewLine;
+                }
+                Console.WriteLine(offSMRBody.Split('\n').Length);
+
+                body = offSMRBody;
+            }
 
             if (labelRepResult.Text != "" && labelRepResult2.Text == "")
             {
                 cc = labelContactResult.Text.Split(' ').ElementAt(1);
+                phone = labelContactResult.Text.Split(' ').Last().Split(' ').Last();
             }
             else if (labelRepResult.Text != "" && labelRepResult2.Text != "")
             {
@@ -293,16 +326,18 @@ namespace SalesMap
                 string firstRep = labelRepResult.Text.Split(':').Last();
                 string secondRep = labelRepResult2.Text.Split(':').Last();
 
-                North_South frm = new North_South("Please choose one of the representatives for this region", firstRep, secondRep);
+                North_South frm = new North_South(firstRep, secondRep);
                 res = frm.ShowDialog();
 
                 if (res == DialogResult.Yes) //"Yes" means "North rep"
                 {
                     cc = labelContactResult.Text.Split(' ').ElementAt(1);
+                    phone = labelContactResult.Text.Split('\t').Last().Split(' ').Last();
                 }
                 else if (res == DialogResult.No) //"No" means "South rep"
                 {
                     cc = labelContactResult2.Text.Split(' ').ElementAt(1);
+                    phone = labelContactResult2.Text.Split(' ').Last().Split(' ').Last();
                 }
             }
 

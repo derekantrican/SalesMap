@@ -12,11 +12,9 @@ namespace SalesMap
 {
     public partial class North_South : Form
     {
-        public North_South(string message, string buttonNorthText, string buttonSouthText)
+        public North_South(string buttonNorthText, string buttonSouthText)
         {
             InitializeComponent();
-
-            labelMessage.Text = message;
 
             buttonNorthRep.Text = buttonNorthText;
             buttonSouthRep.Text = buttonSouthText;

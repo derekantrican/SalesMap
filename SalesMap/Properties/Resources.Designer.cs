@@ -891,6 +891,17 @@ namespace SalesMap.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to While I was looking over your company overview, I noticed that your company’s maintenance subscription has expired.  We would like to continue working with you and your company, although we would need to get the maintenance subscription renewed.  I have copied your sales representative, {SALESREPNAME}, on this email so that he is aware of the pending renewal as well.  You may contact {SALESREPNAME} through his email address {SALEREPEMAIL} or by calling him directly at {SALEREPPHONE}.
+        ///
+        ///I would like to remi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string OffSMR {
+            get {
+                return ResourceManager.GetString("OffSMR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ,
         ///(AB) Alberta,0
         ///(AL) Alabama,0
