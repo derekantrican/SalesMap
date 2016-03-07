@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Resources;
 using System.Text;
@@ -28,6 +29,34 @@ namespace SalesMap
             InitializeComponent();
 
             readFiles();
+
+            if (Properties.Settings.Default.AutoCheckUpdate)
+            {
+                WebClient client = new WebClient();
+                string url = "https://github.com/derekantrican/SalesMap/releases";
+                string html = "";
+                try
+                {
+                    html = client.DownloadString(url);
+                }
+                catch
+                {
+                    return;
+                }
+
+                string GitVersion = html.Substring(html.IndexOf("<span class=\"css-truncate-target\">v") + 34).Split('<')[0];
+                string thisVersion = Properties.Settings.Default.Version;
+
+                if (GitVersion != thisVersion)
+                {
+                    if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
+                                        "\n\nGo to " + url + " to download the new version?",
+                                        "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(url);
+                    }
+                }
+            }
         }
 
         public void readFiles()

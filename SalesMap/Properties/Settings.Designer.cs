@@ -46,5 +46,17 @@ namespace SalesMap.Properties {
                 this["Version"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoCheckUpdate {
+            get {
+                return ((bool)(this["AutoCheckUpdate"]));
+            }
+            set {
+                this["AutoCheckUpdate"] = value;
+            }
+        }
     }
 }

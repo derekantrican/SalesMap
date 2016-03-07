@@ -8,5 +8,8 @@
     <Setting Name="Version" Type="System.String" Scope="User">
       <Value Profile="(Default)">v2.0</Value>
     </Setting>
+    <Setting Name="AutoCheckUpdate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

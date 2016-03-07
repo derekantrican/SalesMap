@@ -37,6 +37,7 @@
             this.textBoxEdit = new System.Windows.Forms.RichTextBox();
             this.linkLabelUpdate = new System.Windows.Forms.LinkLabel();
             this.buttonOffSMR = new System.Windows.Forms.Button();
+            this.checkBoxAutoUpdates = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -126,11 +127,22 @@
             this.buttonOffSMR.UseVisualStyleBackColor = true;
             this.buttonOffSMR.Click += new System.EventHandler(this.buttonOffSMR_Click);
             // 
+            // checkBoxAutoUpdates
+            // 
+            this.checkBoxAutoUpdates.AutoSize = true;
+            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(123, 173);
+            this.checkBoxAutoUpdates.Name = "checkBoxAutoUpdates";
+            this.checkBoxAutoUpdates.Size = new System.Drawing.Size(169, 17);
+            this.checkBoxAutoUpdates.TabIndex = 10;
+            this.checkBoxAutoUpdates.Text = "Check for updates on startup?";
+            this.checkBoxAutoUpdates.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 192);
+            this.Controls.Add(this.checkBoxAutoUpdates);
             this.Controls.Add(this.buttonOffSMR);
             this.Controls.Add(this.linkLabelUpdate);
             this.Controls.Add(this.textBoxEdit);
@@ -159,5 +171,6 @@
         private System.Windows.Forms.RichTextBox textBoxEdit;
         private System.Windows.Forms.LinkLabel linkLabelUpdate;
         private System.Windows.Forms.Button buttonOffSMR;
+        private System.Windows.Forms.CheckBox checkBoxAutoUpdates;
     }
 }

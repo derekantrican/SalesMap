@@ -23,6 +23,7 @@ namespace SalesMap
             InitializeComponent();
 
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
+            checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
         }
 
         private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -144,6 +145,7 @@ namespace SalesMap
         private void buttonSave_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
+            Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
             Properties.Settings.Default.Save();
 
             bool restart = false;
