@@ -289,6 +289,21 @@ namespace SalesMap
             else if (labelRepResult.Text != "" && labelRepResult2.Text != "")
             {
                 //Choose a rep with the "North-South" dialog
+                DialogResult res = new DialogResult();
+                string firstRep = labelRepResult.Text.Split(':').Last();
+                string secondRep = labelRepResult2.Text.Split(':').Last();
+
+                North_South frm = new North_South("Please choose one of the representatives for this region", firstRep, secondRep);
+                res = frm.ShowDialog();
+
+                if (res == DialogResult.Yes) //"Yes" means "North rep"
+                {
+                    cc = labelContactResult.Text.Split(' ').ElementAt(1);
+                }
+                else if (res == DialogResult.No) //"No" means "South rep"
+                {
+                    cc = labelContactResult2.Text.Split(' ').ElementAt(1);
+                }
             }
 
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
