@@ -380,6 +380,10 @@ namespace SalesMap
                     cc = labelContactResult2.Text.Split(' ').ElementAt(1);
                     phone = labelContactResult2.Text.Split('\t').Last().Split(' ').Last();
                 }
+                else //User closed out the dialog box
+                {
+                    return;
+                }
             }
 
             subject = mailtoFormat(subject, rep, cc, phone);
