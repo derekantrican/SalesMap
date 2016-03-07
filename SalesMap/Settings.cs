@@ -25,11 +25,6 @@ namespace SalesMap
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
         }
 
-        private void buttonEditRegions_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/derekantrican/SalesMap/wiki");
@@ -38,6 +33,7 @@ namespace SalesMap
         private void buttonRegions_Click(object sender, EventArgs e)
         {
             buttonRegions.Enabled = false;
+            buttonOffSMR.Enabled = true;
             buttonSalesReps.Enabled = true;
 
             string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
@@ -74,6 +70,7 @@ namespace SalesMap
         private void buttonSalesReps_Click(object sender, EventArgs e)
         {
             buttonSalesReps.Enabled = false;
+            buttonOffSMR.Enabled = true;
             buttonRegions.Enabled = true;
 
             string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
@@ -107,6 +104,43 @@ namespace SalesMap
             }
         }
 
+        private void buttonOffSMR_Click(object sender, EventArgs e)
+        {
+            buttonOffSMR.Enabled = false;
+            buttonSalesReps.Enabled = true;
+            buttonRegions.Enabled = true;
+
+            string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
+            Stream fileStream;
+
+            if (File.Exists(offSMRPath))
+            {
+                Console.WriteLine("Off SMR file exists");
+                fileStream = File.Open(offSMRPath, FileMode.Open);
+            }
+            else
+            {
+                Console.WriteLine("Off SMR file does not exist");
+                var resourceOffSMR = "SalesMap.OffSMR.txt";
+                var assembly = Assembly.GetExecutingAssembly();
+
+                fileStream = assembly.GetManifestResourceStream(resourceOffSMR);
+            }
+
+            using (StreamReader reader = new StreamReader(fileStream))
+            {
+                string OffSMR = "";
+
+                while (!reader.EndOfStream)
+                {
+                    OffSMR += reader.ReadLine();
+                    OffSMR += Environment.NewLine;
+                }
+                Console.WriteLine(OffSMR);
+                textBoxEdit.Text = OffSMR;
+            }
+        }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
@@ -114,7 +148,7 @@ namespace SalesMap
 
             bool restart = false;
 
-            if (buttonRegions.Enabled == false || buttonSalesReps.Enabled == false)
+            if (buttonRegions.Enabled == false || buttonSalesReps.Enabled == false || buttonOffSMR.Enabled == false)
             {
                 if (MessageBox.Show("In order for changes to the Regions or Sales Rep files to take effect, you must restart the program. \n\nRestart now?",
                                     "Restart Required", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
@@ -167,11 +201,29 @@ namespace SalesMap
                 }
 
                 File.WriteAllText(salesPath, textBoxEdit.Text);
+            }
+            else if(buttonOffSMR.Enabled == false) //We are editing OffSMR.txt
+            {
+                //WRITE TO OFF SMR FILE
+                string OffSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
 
+                if (File.Exists(OffSMRPath))
+                {
+                    Console.WriteLine("Off SMR file exists");
+                }
+                else
+                {
+                    Console.WriteLine("Off SMR file does not exist");
+                    using (var stream = File.Create(OffSMRPath))
+                    {
+                        //Doing this "using bracket" so that IDisposable is implemented afterwards
+                    }
+                }
+
+                File.WriteAllText(OffSMRPath, textBoxEdit.Text);
             }
 
             //SettingsUpdated?.Invoke();
-            Console.WriteLine("UPDATED: " + SettingsUpdated);
 
             if (restart)
             {

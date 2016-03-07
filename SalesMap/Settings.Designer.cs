@@ -36,6 +36,7 @@
             this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.textBoxEdit = new System.Windows.Forms.RichTextBox();
             this.linkLabelUpdate = new System.Windows.Forms.LinkLabel();
+            this.buttonOffSMR = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -115,11 +116,22 @@
             this.linkLabelUpdate.Text = "Check for Update";
             this.linkLabelUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelUpdate_LinkClicked);
             // 
+            // buttonOffSMR
+            // 
+            this.buttonOffSMR.Location = new System.Drawing.Point(179, 40);
+            this.buttonOffSMR.Name = "buttonOffSMR";
+            this.buttonOffSMR.Size = new System.Drawing.Size(107, 23);
+            this.buttonOffSMR.TabIndex = 9;
+            this.buttonOffSMR.Text = "Edit Off SMR Email";
+            this.buttonOffSMR.UseVisualStyleBackColor = true;
+            this.buttonOffSMR.Click += new System.EventHandler(this.buttonOffSMR_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 192);
+            this.Controls.Add(this.buttonOffSMR);
             this.Controls.Add(this.linkLabelUpdate);
             this.Controls.Add(this.textBoxEdit);
             this.Controls.Add(this.linkLabelGitHub);
@@ -146,5 +158,6 @@
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
         private System.Windows.Forms.RichTextBox textBoxEdit;
         private System.Windows.Forms.LinkLabel linkLabelUpdate;
+        private System.Windows.Forms.Button buttonOffSMR;
     }
 }

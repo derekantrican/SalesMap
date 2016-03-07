@@ -37,7 +37,7 @@ namespace SalesMap.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("v1.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("v2.0")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
