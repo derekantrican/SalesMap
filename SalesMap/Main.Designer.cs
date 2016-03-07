@@ -214,9 +214,11 @@
             // 
             // pictureBoxOffSMR
             // 
+            this.pictureBoxOffSMR.Image = global::SalesMap.Properties.Resources.offSMRPic;
             this.pictureBoxOffSMR.Location = new System.Drawing.Point(317, 92);
             this.pictureBoxOffSMR.Name = "pictureBoxOffSMR";
             this.pictureBoxOffSMR.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxOffSMR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxOffSMR.TabIndex = 23;
             this.pictureBoxOffSMR.TabStop = false;
             this.pictureBoxOffSMR.Tag = "";

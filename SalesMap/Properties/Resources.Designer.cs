@@ -891,13 +891,23 @@ namespace SalesMap.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to While I was looking over your company overview, I noticed that your company’s maintenance subscription has expired.  We would like to continue working with you and your company, although we would need to get the maintenance subscription renewed.  I have copied your sales representative, {SALESREPNAME}, on this email so that he is aware of the pending renewal as well.  You may contact {SALESREPNAME} through his email address {SALEREPEMAIL} or by calling him directly at {SALEREPPHONE}.
+        ///   Looks up a localized string similar to While I was looking over your company overview, I noticed that your company’s maintenance subscription has expired.  We would like to continue working with you and your company, although we would need to get the maintenance subscription renewed.  I have copied your sales representative, {SALESREPNAME}, on this email so that he is aware of the pending renewal as well.  You may contact {SALESREPNAME} through his email address {SALESREPEMAIL} or by calling him directly at {SALESREPPHONE}.
         ///
         ///I would like to remi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string OffSMR {
             get {
                 return ResourceManager.GetString("OffSMR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap offSMRPic {
+            get {
+                object obj = ResourceManager.GetObject("offSMRPic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -932,7 +942,9 @@ namespace SalesMap.Properties {
         ///(MS) Mississippi,0
         ///(MO) Missouri,0
         ///(MT) Montana,0
-        ///(NB) New Brunswi [rest of string was truncated]&quot;;.
+        ///(NB) New Brunswick,0
+        ///(NE) Nebraska,0
+        ///(NV) Neva [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Regions {
             get {
@@ -969,7 +981,7 @@ namespace SalesMap.Properties {
         ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO
         ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ
         ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN (S)
-        ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-4 [rest of string was truncated]&quot;;.
+        ///Jennifer Gallagher,jennifer.gallagher@sigmanest.com,847-420-7235, [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SalesReps {
             get {
