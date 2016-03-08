@@ -783,6 +783,16 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Ethan_Wyckoff {
+            get {
+                object obj = ResourceManager.GetObject("Ethan_Wyckoff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Faber_Fields {
             get {
                 object obj = ResourceManager.GetObject("Faber_Fields", resourceCulture);
