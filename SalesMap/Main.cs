@@ -9,6 +9,7 @@ using System.Net;
 using System.Reflection;
 using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -405,6 +406,34 @@ namespace SalesMap
             rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
 
             return rawReplaced;
+        }
+
+        private void labelContactResult_Click(object sender, EventArgs e)
+        {
+            string temp = labelContactResult.Text;
+            string copy = temp.Substring(temp.IndexOf(": ") + 2);
+            copy = copy.Substring(0, copy.IndexOf(Environment.NewLine));
+            copy += " " + labelContactResult.Text.Split('\t').Last().Split(' ').Last();
+            Clipboard.SetText(copy);
+
+            labelContactResult.Text = "Contact: COPIED!";
+            Application.DoEvents();
+            Thread.Sleep(500);            
+            labelContactResult.Text = temp;
+        }
+
+        private void labelContactResult2_Click(object sender, EventArgs e)
+        {
+            string temp = labelContactResult2.Text;
+            string copy = labelContactResult2.Text.Substring(labelContactResult2.Text.IndexOf(": ") + 2);
+            copy = copy.Substring(0, copy.IndexOf(Environment.NewLine));
+            copy += " " + labelContactResult.Text.Split('\t').Last().Split(' ').Last();
+            Clipboard.SetText(copy);
+
+            labelContactResult2.Text = "Contact: COPIED!";
+            Application.DoEvents();
+            Thread.Sleep(500);
+            labelContactResult2.Text = temp;
         }
     }
 }

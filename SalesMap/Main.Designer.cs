@@ -160,6 +160,7 @@
             this.labelContactResult.Size = new System.Drawing.Size(56, 16);
             this.labelContactResult.TabIndex = 16;
             this.labelContactResult.Text = "Contact:";
+            this.labelContactResult.Click += new System.EventHandler(this.labelContactResult_Click);
             // 
             // pictureBoxMap
             // 
@@ -181,6 +182,7 @@
             this.labelContactResult2.Size = new System.Drawing.Size(56, 16);
             this.labelContactResult2.TabIndex = 20;
             this.labelContactResult2.Text = "Contact:";
+            this.labelContactResult2.Click += new System.EventHandler(this.labelContactResult2_Click);
             // 
             // labelRepResult2
             // 
