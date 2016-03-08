@@ -416,9 +416,18 @@ namespace SalesMap
             copy += " " + labelContactResult.Text.Split('\t').Last().Split(' ').Last();
             Clipboard.SetText(copy);
 
-            labelContactResult.Text = "Contact: COPIED!";
+            try
+            {
+                Clipboard.SetText(copy);
+                labelContactResult.Text = "Contact: COPIED!";
+            }
+            catch
+            {
+                labelContactResult.Text = "Contact: FAILED TO COPY...TRY AGAIN";
+            }
+
             Application.DoEvents();
-            Thread.Sleep(500);            
+            Thread.Sleep(750);            
             labelContactResult.Text = temp;
         }
 
@@ -428,11 +437,19 @@ namespace SalesMap
             string copy = labelContactResult2.Text.Substring(labelContactResult2.Text.IndexOf(": ") + 2);
             copy = copy.Substring(0, copy.IndexOf(Environment.NewLine));
             copy += " " + labelContactResult.Text.Split('\t').Last().Split(' ').Last();
-            Clipboard.SetText(copy);
 
-            labelContactResult2.Text = "Contact: COPIED!";
+            try
+            {
+                Clipboard.SetText(copy);
+                labelContactResult2.Text = "Contact: COPIED!";
+            }
+            catch
+            {
+                labelContactResult2.Text = "Contact: FAILED TO COPY...TRY AGAIN";
+            }
+            
             Application.DoEvents();
-            Thread.Sleep(500);
+            Thread.Sleep(750);
             labelContactResult2.Text = temp;
         }
     }
