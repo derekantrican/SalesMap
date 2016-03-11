@@ -36,33 +36,19 @@ namespace SalesMap
         private void editOffSMR()
         {
             string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
-            Stream fileStream;
 
             if (File.Exists(offSMRPath))
             {
                 Console.WriteLine("Off SMR file exists");
-                fileStream = File.Open(offSMRPath, FileMode.Open);
+                textBoxEdit.Text = File.ReadAllText(offSMRPath);
             }
             else
             {
                 Console.WriteLine("Off SMR file does not exist");
-                var resourceOffSMR = "SalesMap.OffSMR.txt";
-                var assembly = Assembly.GetExecutingAssembly();
-
-                fileStream = assembly.GetManifestResourceStream(resourceOffSMR);
-            }
-
-            using (StreamReader reader = new StreamReader(fileStream))
-            {
-                string OffSMR = "";
-
-                while (!reader.EndOfStream)
+                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
                 {
-                    OffSMR += reader.ReadLine();
-                    OffSMR += Environment.NewLine;
+                    textBoxEdit.Text = reader.ReadToEnd();
                 }
-                Console.WriteLine(OffSMR);
-                textBoxEdit.Text = OffSMR;
             }
         }
 
@@ -78,17 +64,30 @@ namespace SalesMap
                 if (File.Exists(OffSMRPath))
                 {
                     Console.WriteLine("Off SMR file exists");
+                    File.WriteAllText(OffSMRPath, textBoxEdit.Text);
                 }
                 else
                 {
                     Console.WriteLine("Off SMR file does not exist");
-                    using (var stream = File.Create(OffSMRPath))
+
+                    string OffSMRText = "";
+                    using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
                     {
-                        //Doing this "using bracket" so that IDisposable is implemented afterwards
+                        OffSMRText = reader.ReadToEnd();
+                    }
+
+                    //If the file is unchanged, leave it alone
+                    if (OffSMRText != textBoxEdit.Text)
+                    {
+                        Console.WriteLine("Creating file...");
+                        using (var stream = File.Create(OffSMRPath))
+                        {
+                            //Doing this "using bracket" so that IDisposable is implemented afterwards
+                        }
+
+                        File.WriteAllText(OffSMRPath, textBoxEdit.Text);
                     }
                 }
-
-                File.WriteAllText(OffSMRPath, textBoxEdit.Text);
 
                 this.Close();
         }
