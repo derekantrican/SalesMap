@@ -30,14 +30,13 @@
         {
             this.labelMapLocation = new System.Windows.Forms.Label();
             this.textBoxMapLocation = new System.Windows.Forms.TextBox();
-            this.buttonRegions = new System.Windows.Forms.Button();
-            this.buttonSalesReps = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
             this.textBoxEdit = new System.Windows.Forms.RichTextBox();
             this.linkLabelUpdate = new System.Windows.Forms.LinkLabel();
-            this.buttonOffSMR = new System.Windows.Forms.Button();
             this.checkBoxAutoUpdates = new System.Windows.Forms.CheckBox();
+            this.labelOffSMR = new System.Windows.Forms.Label();
+            this.buttonVariables = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -55,26 +54,6 @@
             this.textBoxMapLocation.Name = "textBoxMapLocation";
             this.textBoxMapLocation.Size = new System.Drawing.Size(273, 20);
             this.textBoxMapLocation.TabIndex = 2;
-            // 
-            // buttonRegions
-            // 
-            this.buttonRegions.Location = new System.Drawing.Point(12, 40);
-            this.buttonRegions.Name = "buttonRegions";
-            this.buttonRegions.Size = new System.Drawing.Size(75, 23);
-            this.buttonRegions.TabIndex = 3;
-            this.buttonRegions.Text = "Edit Regions";
-            this.buttonRegions.UseVisualStyleBackColor = true;
-            this.buttonRegions.Click += new System.EventHandler(this.buttonRegions_Click);
-            // 
-            // buttonSalesReps
-            // 
-            this.buttonSalesReps.Location = new System.Drawing.Point(87, 40);
-            this.buttonSalesReps.Name = "buttonSalesReps";
-            this.buttonSalesReps.Size = new System.Drawing.Size(92, 23);
-            this.buttonSalesReps.TabIndex = 4;
-            this.buttonSalesReps.Text = "Edit Sales Reps";
-            this.buttonSalesReps.UseVisualStyleBackColor = true;
-            this.buttonSalesReps.Click += new System.EventHandler(this.buttonSalesReps_Click);
             // 
             // buttonSave
             // 
@@ -117,16 +96,6 @@
             this.linkLabelUpdate.Text = "Check for Update";
             this.linkLabelUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelUpdate_LinkClicked);
             // 
-            // buttonOffSMR
-            // 
-            this.buttonOffSMR.Location = new System.Drawing.Point(179, 40);
-            this.buttonOffSMR.Name = "buttonOffSMR";
-            this.buttonOffSMR.Size = new System.Drawing.Size(107, 23);
-            this.buttonOffSMR.TabIndex = 9;
-            this.buttonOffSMR.Text = "Edit Off SMR Email";
-            this.buttonOffSMR.UseVisualStyleBackColor = true;
-            this.buttonOffSMR.Click += new System.EventHandler(this.buttonOffSMR_Click);
-            // 
             // checkBoxAutoUpdates
             // 
             this.checkBoxAutoUpdates.AutoSize = true;
@@ -137,19 +106,37 @@
             this.checkBoxAutoUpdates.Text = "Check for updates on startup?";
             this.checkBoxAutoUpdates.UseVisualStyleBackColor = true;
             // 
+            // labelOffSMR
+            // 
+            this.labelOffSMR.AutoSize = true;
+            this.labelOffSMR.Location = new System.Drawing.Point(13, 47);
+            this.labelOffSMR.Name = "labelOffSMR";
+            this.labelOffSMR.Size = new System.Drawing.Size(100, 13);
+            this.labelOffSMR.TabIndex = 11;
+            this.labelOffSMR.Text = "Edit Off SMR Email:";
+            // 
+            // buttonVariables
+            // 
+            this.buttonVariables.Location = new System.Drawing.Point(356, 37);
+            this.buttonVariables.Name = "buttonVariables";
+            this.buttonVariables.Size = new System.Drawing.Size(30, 23);
+            this.buttonVariables.TabIndex = 12;
+            this.buttonVariables.Text = "{V}";
+            this.buttonVariables.UseVisualStyleBackColor = true;
+            this.buttonVariables.Click += new System.EventHandler(this.buttonVariables_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 192);
+            this.Controls.Add(this.buttonVariables);
+            this.Controls.Add(this.labelOffSMR);
             this.Controls.Add(this.checkBoxAutoUpdates);
-            this.Controls.Add(this.buttonOffSMR);
             this.Controls.Add(this.linkLabelUpdate);
             this.Controls.Add(this.textBoxEdit);
             this.Controls.Add(this.linkLabelGitHub);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.buttonSalesReps);
-            this.Controls.Add(this.buttonRegions);
             this.Controls.Add(this.textBoxMapLocation);
             this.Controls.Add(this.labelMapLocation);
             this.MaximizeBox = false;
@@ -164,13 +151,12 @@
         #endregion
         private System.Windows.Forms.Label labelMapLocation;
         private System.Windows.Forms.TextBox textBoxMapLocation;
-        private System.Windows.Forms.Button buttonRegions;
-        private System.Windows.Forms.Button buttonSalesReps;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.LinkLabel linkLabelGitHub;
         private System.Windows.Forms.RichTextBox textBoxEdit;
         private System.Windows.Forms.LinkLabel linkLabelUpdate;
-        private System.Windows.Forms.Button buttonOffSMR;
         private System.Windows.Forms.CheckBox checkBoxAutoUpdates;
+        private System.Windows.Forms.Label labelOffSMR;
+        private System.Windows.Forms.Button buttonVariables;
     }
 }

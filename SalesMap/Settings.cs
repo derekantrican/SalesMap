@@ -24,6 +24,8 @@ namespace SalesMap
 
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
             checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
+
+            editOffSMR();
         }
 
         private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -31,114 +33,22 @@ namespace SalesMap
             System.Diagnostics.Process.Start("https://github.com/derekantrican/SalesMap/wiki");
         }
 
-        private void buttonRegions_Click(object sender, EventArgs e)
+        private void editOffSMR()
         {
-            buttonRegions.Enabled = false;
-            buttonOffSMR.Enabled = true;
-            buttonSalesReps.Enabled = true;
-
-            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-            Stream fileStream;
-
-            if (File.Exists(regionPath))
-            {
-                Console.WriteLine("Regions file exists");
-                fileStream = File.Open(regionPath, FileMode.Open);
-            }
-            else
-            {
-                Console.WriteLine("Regions file does not exist");
-                var resourceRegions = "SalesMap.Regions.txt";
-                var assembly = Assembly.GetExecutingAssembly();
-
-                fileStream = assembly.GetManifestResourceStream(resourceRegions);
-            }
-
-            using (StreamReader reader = new StreamReader(fileStream))
-            {
-                string Regions = "";
-
-                while (!reader.EndOfStream)
-                {
-                    Regions += reader.ReadLine();
-                    Regions += Environment.NewLine;
-                }
-                Console.WriteLine(Regions);
-                textBoxEdit.Text = Regions;
-            }
-        }
-
-        private void buttonSalesReps_Click(object sender, EventArgs e)
-        {
-            buttonSalesReps.Enabled = false;
-            buttonOffSMR.Enabled = true;
-            buttonRegions.Enabled = true;
-
-            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
-            Stream fileStream;
-
-            if (File.Exists(salesPath))
-            {
-                Console.WriteLine("Sales file exists");
-                fileStream = File.Open(salesPath, FileMode.Open);
-            }
-            else
-            {
-                Console.WriteLine("Sales file does not exist");
-                var resourceSales = "SalesMap.SalesReps.txt";
-                var assembly = Assembly.GetExecutingAssembly();
-
-                fileStream = assembly.GetManifestResourceStream(resourceSales);
-            }
-
-            using (StreamReader reader = new StreamReader(fileStream))
-            {
-                string SalesReps = "";
-
-                while (!reader.EndOfStream)
-                {
-                    SalesReps += reader.ReadLine();
-                    SalesReps += Environment.NewLine;
-                }
-                Console.WriteLine(SalesReps);
-                textBoxEdit.Text = SalesReps;
-            }
-        }
-
-        private void buttonOffSMR_Click(object sender, EventArgs e)
-        {
-            buttonOffSMR.Enabled = false;
-            buttonSalesReps.Enabled = true;
-            buttonRegions.Enabled = true;
-
             string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
-            Stream fileStream;
 
             if (File.Exists(offSMRPath))
             {
                 Console.WriteLine("Off SMR file exists");
-                fileStream = File.Open(offSMRPath, FileMode.Open);
+                textBoxEdit.Text = File.ReadAllText(offSMRPath);
             }
             else
             {
                 Console.WriteLine("Off SMR file does not exist");
-                var resourceOffSMR = "SalesMap.OffSMR.txt";
-                var assembly = Assembly.GetExecutingAssembly();
-
-                fileStream = assembly.GetManifestResourceStream(resourceOffSMR);
-            }
-
-            using (StreamReader reader = new StreamReader(fileStream))
-            {
-                string OffSMR = "";
-
-                while (!reader.EndOfStream)
+                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
                 {
-                    OffSMR += reader.ReadLine();
-                    OffSMR += Environment.NewLine;
+                    textBoxEdit.Text = reader.ReadToEnd();
                 }
-                Console.WriteLine(OffSMR);
-                textBoxEdit.Text = OffSMR;
             }
         }
 
@@ -148,99 +58,38 @@ namespace SalesMap
             Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
             Properties.Settings.Default.Save();
 
-            bool restart = false;
-
-            if (buttonRegions.Enabled == false || buttonSalesReps.Enabled == false || buttonOffSMR.Enabled == false)
-            {
-                if (MessageBox.Show("In order for changes to the Regions or Sales Rep files to take effect, you must restart the program. \n\nRestart now?",
-                                    "Restart Required", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-                {
-                    restart = true;
-                }
-                else
-                {
-                    MessageBox.Show("Your changes will not be saved");
-                    return;
-                }
-            }
-
-            if (buttonRegions.Enabled == false) //We are editing Regions.txt
-            {
-                //WRITE TO REGIONS FILE
-                string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-
-                if (File.Exists(regionPath))
-                {
-                    Console.WriteLine("Regions file exists");
-                }
-                else
-                {
-                    Console.WriteLine("Regions file does not exist");
-                    using (var stream = File.Create(regionPath))
-                    {
-                        //Doing this "using bracket" so that IDisposable is implemented afterwards
-                    }
-                }
-
-                File.WriteAllText(regionPath, textBoxEdit.Text);
-            }
-            else if(buttonSalesReps.Enabled == false) //We are editing SalesReps.txt
-            {
-                //WRITE TO SALES REP FILE
-                string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
-
-                if (File.Exists(salesPath))
-                {
-                    Console.WriteLine("Sales file exists");
-                }
-                else
-                {
-                    Console.WriteLine("Sales file does not exist");
-                    using (var stream = File.Create(salesPath))
-                    {
-                        //Doing this "using bracket" so that IDisposable is implemented afterwards
-                    }
-                }
-
-                File.WriteAllText(salesPath, textBoxEdit.Text);
-            }
-            else if(buttonOffSMR.Enabled == false) //We are editing OffSMR.txt
-            {
                 //WRITE TO OFF SMR FILE
                 string OffSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
 
                 if (File.Exists(OffSMRPath))
                 {
                     Console.WriteLine("Off SMR file exists");
+                    File.WriteAllText(OffSMRPath, textBoxEdit.Text);
                 }
                 else
                 {
                     Console.WriteLine("Off SMR file does not exist");
-                    using (var stream = File.Create(OffSMRPath))
+
+                    string OffSMRText = "";
+                    using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
                     {
-                        //Doing this "using bracket" so that IDisposable is implemented afterwards
+                        OffSMRText = reader.ReadToEnd();
+                    }
+
+                    //If the file is unchanged, leave it alone
+                    if (OffSMRText != textBoxEdit.Text)
+                    {
+                        Console.WriteLine("Creating file...");
+                        using (var stream = File.Create(OffSMRPath))
+                        {
+                            //Doing this "using bracket" so that IDisposable is implemented afterwards
+                        }
+
+                        File.WriteAllText(OffSMRPath, textBoxEdit.Text);
                     }
                 }
 
-                File.WriteAllText(OffSMRPath, textBoxEdit.Text);
-            }
-
-            //SettingsUpdated?.Invoke();
-
-            if (restart)
-            {
-                ProcessStartInfo Info = new ProcessStartInfo();
-                Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
-                Info.WindowStyle = ProcessWindowStyle.Hidden;
-                Info.CreateNoWindow = true;
-                Info.FileName = "cmd.exe";
-                Process.Start(Info);
-                Application.Exit();
-            }
-            else
-            {
                 this.Close();
-            }
         }
 
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -274,6 +123,15 @@ namespace SalesMap
             {
                 MessageBox.Show("Congrats! You have the most current version!\n\nVersion: " + thisVersion, "Current Version");
             }
+        }
+
+        private void buttonVariables_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("You can use the following variables when defining the Off SMR Email (which will get replaced with the appropriate information" +
+                            " when the email is composed):\n\n" +
+                            "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
+                            "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
+                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
         }
     }
 }
