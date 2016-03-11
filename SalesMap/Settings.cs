@@ -125,5 +125,13 @@ namespace SalesMap
                 MessageBox.Show("Congrats! You have the most current version!\n\nVersion: " + thisVersion, "Current Version");
             }
         }
+
+        private void buttonVariables_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("The available variables for the off SMR email are as follows:\n\n" +
+                            "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
+                            "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
+                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
+        }
     }
 }

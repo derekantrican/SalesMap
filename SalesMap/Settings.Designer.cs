@@ -36,6 +36,7 @@
             this.linkLabelUpdate = new System.Windows.Forms.LinkLabel();
             this.checkBoxAutoUpdates = new System.Windows.Forms.CheckBox();
             this.labelOffSMR = new System.Windows.Forms.Label();
+            this.buttonVariables = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -114,11 +115,22 @@
             this.labelOffSMR.TabIndex = 11;
             this.labelOffSMR.Text = "Edit Off SMR Email:";
             // 
+            // buttonVariables
+            // 
+            this.buttonVariables.Location = new System.Drawing.Point(356, 37);
+            this.buttonVariables.Name = "buttonVariables";
+            this.buttonVariables.Size = new System.Drawing.Size(30, 23);
+            this.buttonVariables.TabIndex = 12;
+            this.buttonVariables.Text = "{V}";
+            this.buttonVariables.UseVisualStyleBackColor = true;
+            this.buttonVariables.Click += new System.EventHandler(this.buttonVariables_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(398, 192);
+            this.Controls.Add(this.buttonVariables);
             this.Controls.Add(this.labelOffSMR);
             this.Controls.Add(this.checkBoxAutoUpdates);
             this.Controls.Add(this.linkLabelUpdate);
@@ -145,5 +157,6 @@
         private System.Windows.Forms.LinkLabel linkLabelUpdate;
         private System.Windows.Forms.CheckBox checkBoxAutoUpdates;
         private System.Windows.Forms.Label labelOffSMR;
+        private System.Windows.Forms.Button buttonVariables;
     }
 }
