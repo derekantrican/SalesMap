@@ -17,7 +17,7 @@ In SigmaTEK, the problem with the current Sales Map (defining what sales represe
 2. Select the state/region from the dropdown
 3. Give the information to the customer
 
-This program allows you to search for a sales representative by name or by region (each from their own drop-down menu). Each of these will provide the contact information for that/those sales representative(s). This app also allows for easy self-updating (meaning that the user can update the "databases" of their program without ever having to download another version of the program from this repository). If this database information is released, simply copy it from https://github.com/derekantrican/SalesMap/wiki/Most-current-%22databases%22-and-install-instructions and follow the updating instructions. *[This database information will be as up-to-date as possible. If there is ever a discrepency, please let me (Derek Antrican) know so that I might hunt down the correct information]*
+This program allows you to search for a sales representative by name or by region (each from their own drop-down menu). Each of these will provide the contact information for that/those sales representative(s). This app will also automatically update it's own databases according to this page: http://deltamu.site44.com/shortcut.html (provided that "Check for updates on startup" is checked- which it is by default) *[This database information will be as up-to-date as possible. If there is ever a discrepency, please let me (Derek Antrican) know so that I might hunt down the correct information]*
 
 For a tutorial on how to use SalesMap, read the article here: https://github.com/derekantrican/SalesMap/wiki/Navigating-the-interface
 
