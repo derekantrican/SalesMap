@@ -127,7 +127,8 @@ namespace SalesMap
 
         private void buttonVariables_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("The available variables for the off SMR email are as follows:\n\n" +
+            MessageBox.Show("You can use the following variables when defining the Off SMR Email (which will get replaced with the appropriate information" +
+                            " when the email is composed):\n\n" +
                             "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
                             "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
                             "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
