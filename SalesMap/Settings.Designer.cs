@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.labelMapLocation = new System.Windows.Forms.Label();
             this.textBoxMapLocation = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
@@ -139,6 +140,7 @@
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxMapLocation);
             this.Controls.Add(this.labelMapLocation);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Settings";

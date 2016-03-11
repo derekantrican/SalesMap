@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesMapSearch));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelState = new System.Windows.Forms.Label();
             this.labelOR = new System.Windows.Forms.Label();
@@ -248,6 +249,7 @@
             this.Controls.Add(this.labelState);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBackground);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SalesMapSearch";
             this.Text = "Sales Map Search";
