@@ -29,10 +29,10 @@ namespace SalesMap
         {
             InitializeComponent();
 
-            readFiles();
-
             if (Properties.Settings.Default.AutoCheckUpdate)
             {
+                compareFiles();
+
                 WebClient client = new WebClient();
                 string url = "https://github.com/derekantrican/SalesMap/releases";
                 string html = "";
@@ -57,6 +57,74 @@ namespace SalesMap
                         System.Diagnostics.Process.Start(url);
                     }
                 }
+            }
+
+            readFiles();
+        }
+
+        public void compareFiles()
+        {
+            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
+            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
+
+            string regionText = "";
+            string salesText = "";
+
+            WebClient client = new WebClient();
+            string url = "https://github.com/derekantrican/SalesMap/wiki/Most-current-%22databases%22-and-install-instructions";
+            string html = "";
+
+            string regionTextOnline = "";
+            string salesTextOnline = "";
+
+            try
+            {
+                html = client.DownloadString(url);
+
+                regionTextOnline = html.Substring(html.IndexOf("<pre><code>") + 11).Split('<')[0];
+                salesTextOnline = html.Substring(html.LastIndexOf("<pre><code>") + 11).Split('<')[0];
+            }
+            catch
+            {
+                return;
+            }
+
+            if (File.Exists(regionPath))
+            {
+                regionText = File.ReadAllText(regionPath);
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.Regions.txt")))
+                {
+                    regionText = reader.ReadToEnd();
+                }
+            }
+
+            if (File.Exists(salesPath))
+            {
+                salesText = File.ReadAllText(salesPath);
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.SalesReps.txt")))
+                {
+                    salesText = reader.ReadToEnd();
+                }
+            }
+
+            //Remove the extra character that comes at the end of these strings
+            regionTextOnline = regionTextOnline.TrimEnd(regionTextOnline[regionTextOnline.Length - 1]);
+            salesTextOnline = salesTextOnline.TrimEnd(salesTextOnline[salesTextOnline.Length - 1]);
+
+            if (regionText != regionTextOnline)
+            {
+                File.WriteAllText(regionPath, regionTextOnline);
+            }
+
+            if (salesText != salesTextOnline)
+            {
+                File.WriteAllText(salesPath, salesTextOnline);
             }
         }
 
