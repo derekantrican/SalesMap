@@ -71,7 +71,7 @@ namespace SalesMap
             string salesText = "";
 
             WebClient client = new WebClient();
-            string url = "https://github.com/derekantrican/SalesMap/wiki/Most-current-%22databases%22-and-install-instructions";
+            string url = "https://github.com/derekantrican/SalesMap/wiki/Most-current-%22databases%22";
             string html = "";
 
             string regionTextOnline = "";
