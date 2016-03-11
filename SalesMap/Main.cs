@@ -458,8 +458,6 @@ namespace SalesMap
             subject = mailtoFormat(subject, rep, cc, phone);
             body = mailtoFormat(body, rep, cc, phone);
 
-            Console.WriteLine(body);
-
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject + "&body=" + body;
             proc.Start();
