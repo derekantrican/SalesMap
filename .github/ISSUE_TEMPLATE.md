@@ -1,4 +1,5 @@
-###For bugs:
+For bugs:
+=========
 
 ######Expected Behavior:
 
@@ -6,7 +7,8 @@
 
 ######Repro Steps:
 
-###For feature requests:
+For feature requests:
+====================
 
 ######Requested Feature:
 
