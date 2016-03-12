@@ -16,11 +16,16 @@ namespace SalesMap
 {
     public partial class Settings : Form
     {
-        //public event Action SettingsUpdated;
-
         public Settings()
         {
             InitializeComponent();
+
+            ContextMenu contextMenu1 = new ContextMenu();
+            MenuItem menuItem1 = new MenuItem();
+            menuItem1.Text = "Run with Log?";
+            contextMenu1.MenuItems.Add(menuItem1);
+
+            this.ContextMenu = contextMenu1;
 
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
             checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
@@ -103,6 +108,7 @@ namespace SalesMap
             }
             catch
             {
+                Log("Attempted to check for new version and failed to get html");
                 MessageBox.Show("Connection problem....\n\nAre you connected to the internet?");
                 return;
             }
@@ -132,6 +138,15 @@ namespace SalesMap
                             "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
                             "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
                             "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
+        }
+
+        private void Log(string itemToLog)
+        {
+            //Add a check for a "on/off" for the log in settings?
+            DateTime date = DateTime.UtcNow;
+            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
+
+            File.AppendAllText(logPath, "[" + date + "] " + itemToLog);
         }
     }
 }

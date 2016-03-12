@@ -29,6 +29,8 @@ namespace SalesMap
         {
             InitializeComponent();
 
+            File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
+
             if (Properties.Settings.Default.AutoCheckUpdate)
             {
                 compareFiles();
@@ -42,6 +44,7 @@ namespace SalesMap
                 }
                 catch
                 {
+                    Log("Attempted to check for new version and failed to get html");
                     return;
                 }
 
@@ -86,6 +89,7 @@ namespace SalesMap
             }
             catch
             {
+                Log("Attempted to get the online databases and failed to get html");
                 return;
             }
 
@@ -164,6 +168,7 @@ namespace SalesMap
                     }
                     catch
                     {
+                        Log("Failed to read from Regions.txt");
                         MessageBox.Show("Cannot read from Regions.txt in C:\\Users\\" + Environment.UserName + "\\ \n\nCheck to make sure you have the right amount of commas");
                         Environment.Exit(1);
                     }
@@ -201,6 +206,7 @@ namespace SalesMap
                     }
                     catch
                     {
+                        Log("Failed to read from SalesReps.txt");
                         MessageBox.Show("Cannot read from SalesReps.txt in C:\\Users\\" + Environment.UserName + "\\ \n\nCheck to make sure you have the right amount of commas");
                         Environment.Exit(2);
                     }
@@ -338,8 +344,6 @@ namespace SalesMap
         {
             Settings config = new Settings();
             config.Show();
-
-            //config.SettingsUpdated += readFiles;
         }
 
         private void pictureBoxMap_Click(object sender, EventArgs e)
@@ -489,6 +493,7 @@ namespace SalesMap
             }
             catch
             {
+                Log("Attempted to set the clipboard text and failed");
                 labelContactResult.Text = "Contact: FAILED TO COPY...TRY AGAIN";
             }
 
@@ -511,12 +516,22 @@ namespace SalesMap
             }
             catch
             {
+                Log("Attempted to set the clipboard text and failed");
                 labelContactResult2.Text = "Contact: FAILED TO COPY...TRY AGAIN";
             }
             
             Application.DoEvents();
             Thread.Sleep(750);
             labelContactResult2.Text = temp;
+        }
+
+        private void Log(string itemToLog)
+        {
+            //Add a check for a "on/off" for the log in settings?
+            DateTime date = DateTime.UtcNow;
+            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
+
+            File.AppendAllText(logPath, "[" + date + "] " + itemToLog);
         }
     }
 }
