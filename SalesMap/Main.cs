@@ -474,6 +474,43 @@ namespace SalesMap
                 }
             }
 
+            string[] RegionNamesArray = RegionNames.ToArray();
+            string[] RegionAreaArray = RegionArea.ToArray();
+            string[] SalesRepEmailArray = SalesRepEmails.ToArray();
+            string[] SalesRepPositionArray = SalesRepPosition.ToArray();
+            string area = "";
+            string rsm = "";
+
+            //Find the RSM
+            if (comboBoxState.SelectedItem.ToString() != "")
+            {
+                for (var i = 0; i < RegionNamesArray.Length; i++)
+                {
+                    if (RegionNamesArray[i] == comboBoxState.SelectedItem.ToString())
+                    {
+                        area = RegionAreaArray[i];
+                        break;
+                    }
+                }
+
+                for (var i = 0; i < SalesRepPositionArray.Length; i++)
+                {
+                    if (SalesRepPositionArray[i].IndexOf(area) >= 0)
+                    {
+                        rsm = SalesRepEmailArray[i];
+                    }
+                }
+            }
+            else if (comboBoxRepresentative.SelectedItem.ToString() != "")
+            {
+
+            }
+
+            if (rsm != "")
+            {
+                cc += ";" + rsm;
+            }
+
             subject = mailtoFormat(subject, rep, cc, phone);
             body = mailtoFormat(body, rep, cc, phone);
 
