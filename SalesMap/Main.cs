@@ -1,6 +1,4 @@
 ﻿using System;
-using System.CodeDom;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,21 +68,6 @@ namespace SalesMap
             readFiles();
         }
 
-        //-----------------------------------------------------------
-
-        private static string ToLiteral(string input)
-        {
-            using (var writer = new StringWriter())
-            {
-                using (var provider = CodeDomProvider.CreateProvider("CSharp"))
-                {
-                    provider.GenerateCodeFromExpression(new CodePrimitiveExpression(input), writer, null);
-                    return writer.ToString();
-                }
-            }
-        }
-        //-----------------------------------------------------------
-
         public void compareFiles()
         {
             string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
@@ -150,7 +133,7 @@ namespace SalesMap
             if (regionText != regionTextOnline)
             {
                 Log("Regions.txt is not the same as online. Updating...");
-                File.WriteAllText(regionPath, ToLiteral(regionTextOnline));
+                File.WriteAllText(regionPath, regionTextOnline);
             }
 
             if (salesText != salesTextOnline)
