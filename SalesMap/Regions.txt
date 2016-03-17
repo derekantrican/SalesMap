@@ -1,4 +1,4 @@
-﻿,
+﻿,,
 (AB) Alberta,0,NW
 (AL) Alabama,0,SE
 (AK) Alaska,0,NW
@@ -11,7 +11,7 @@
 (DE) Delaware,0,NE
 (FL) Florida,0,SE
 (GA) Georgia,0,SE
-(HI) Hawaii,0
+(HI) Hawaii,0,
 (ID) Idaho,0,NW
 (IL) Illinois,0,N&ST
 (IN) Indiana,1,GL

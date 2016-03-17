@@ -19,11 +19,13 @@ namespace SalesMap
     {
         List<String> RegionNames = new List<String>();
         List<String> RegionParts = new List<String>();
+        List<String> RegionArea = new List<String>();
 
         List<String> SalesRepNames = new List<String>();
         List<String> SalesRepEmails = new List<String>();
         List<String> SalesRepPhones = new List<String>();
         List<String> SalesRepRegions = new List<String>();
+        List<String> SalesRepPosition = new List<String>();
 
         public SalesMapSearch()
         {
@@ -175,12 +177,13 @@ namespace SalesMap
                     {
                         RegionNames.Add(Line[0]);
                         RegionParts.Add(Line[1]);
+                        RegionArea.Add(Line[2]);
                         Row++;
                     }
                     catch
                     {
                         Log("Failed to read from Regions.txt");
-                        MessageBox.Show("Cannot read from Regions.txt in C:\\Users\\" + Environment.UserName + "\\ \n\nCheck to make sure you have the right amount of commas");
+                        MessageBox.Show("Cannot read from Regions.txt in C:\\Users\\" + Environment.UserName + "\\Regions.txt \n\nCheck to make sure you have the right amount of commas");
                         Environment.Exit(1);
                     }
                 }
@@ -213,12 +216,13 @@ namespace SalesMap
                         SalesRepEmails.Add(Line[1]);
                         SalesRepPhones.Add(Line[2]);
                         SalesRepRegions.Add(Line[3]);
+                        SalesRepPosition.Add(Line[4]);
                         Row++;
                     }
                     catch
                     {
                         Log("Failed to read from SalesReps.txt");
-                        MessageBox.Show("Cannot read from SalesReps.txt in C:\\Users\\" + Environment.UserName + "\\ \n\nCheck to make sure you have the right amount of commas");
+                        MessageBox.Show("Cannot read from SalesReps.txt in C:\\Users\\" + Environment.UserName + "\\SalesReps.txt \n\nCheck to make sure you have the right amount of commas");
                         Environment.Exit(2);
                     }
                 }
