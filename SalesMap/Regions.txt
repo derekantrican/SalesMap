@@ -1,64 +1,64 @@
 ﻿,
-(AB) Alberta,0
-(AL) Alabama,0
-(AK) Alaska,0
-(AZ) Arizona,0
-(AR) Arkansas,0
-(BC) British Columbia,0
-(CA) California,1
-(CO) Colorado,0
-(CT) Connecticut,0
-(DE) Delaware,0
-(FL) Florida,0
-(GA) Georgia,0
+(AB) Alberta,0,NW
+(AL) Alabama,0,SE
+(AK) Alaska,0,NW
+(AZ) Arizona,0,SW
+(AR) Arkansas,0,N&ST
+(BC) British Columbia,0,NW
+(CA) California,1,NW:SW
+(CO) Colorado,0,NW
+(CT) Connecticut,0,NE
+(DE) Delaware,0,NE
+(FL) Florida,0,SE
+(GA) Georgia,0,SE
 (HI) Hawaii,0
-(ID) Idaho,0
-(IL) Illinois,0
-(IN) Indiana,1
-(IA) Iowa,0
-(KS) Kansas,0
-(KY) Kentucky,0
-(LA) Louisiana,0
-(ME) Maine,0
-(MA) Massachusetts,0
-(MB) Manitoba,0
-(MD) Maryland,0
-(MI) Michigan,1
-(MN) Minnesota,0
-(MS) Mississippi,0
-(MO) Missouri,0
-(MT) Montana,0
-(NB) New Brunswick,0
-(NE) Nebraska,0
-(NV) Nevada,1
-(NH) New Hampshire,0
-(NJ) New Jersey,0
-(NL) Newfoundland and Labrador,0
-(NM) New Mexico,0
-(NS) Nova Scotia,0
-(NT) Northwest Territories,0
-(NY) New York,0
-(NC) North Carolina,0
-(ND) North Dakota,0
-(NU) Nunavut,0
-(OH) Ohio,1
-(OK) Oklahoma,0
-(ON) Ontario,1
-(OR) Oregon,0
-(PA) Pennsylvania,0
-(PE) Prince Edward Island,0
-(QC) Quebec,0
-(RI) Rhode Island,0
-(SC) South Carolina,0
-(SD) South Dakota,0
-(SK) Saskatchewan,0
-(TN) Tennessee,0
-(TX) Texas,1
-(UT) Utah,0
-(VT) Vermont,0
-(VA) Virginia,0
-(WA) Washington,0
-(WV) West Virginia,0
-(WI) Wisconsin,0
-(WY) Wyoming,0
-(YT) Yukon,0
+(ID) Idaho,0,NW
+(IL) Illinois,0,N&ST
+(IN) Indiana,1,GL
+(IA) Iowa,0,N&ST
+(KS) Kansas,0,N&ST
+(KY) Kentucky,0,GL
+(LA) Louisiana,0,SE
+(ME) Maine,0,NE
+(MA) Massachusetts,0,NE
+(MB) Manitoba,0,CND
+(MD) Maryland,0,NE
+(MI) Michigan,1,N&ST:GL
+(MN) Minnesota,0,N&ST
+(MS) Mississippi,0,SE
+(MO) Missouri,0,N&ST
+(MT) Montana,0,NW
+(NB) New Brunswick,0,CND
+(NE) Nebraska,0,N&ST
+(NV) Nevada,1,NW:SW
+(NH) New Hampshire,0,NE
+(NJ) New Jersey,0,NE
+(NL) Newfoundland and Labrador,0,CND
+(NM) New Mexico,0,N&ST
+(NS) Nova Scotia,0,CND
+(NT) Northwest Territories,0,CND
+(NY) New York,0,NE
+(NC) North Carolina,0,SE
+(ND) North Dakota,0,N&ST
+(NU) Nunavut,0,CND
+(OH) Ohio,1,GL
+(OK) Oklahoma,0,N&ST
+(ON) Ontario,1,CND
+(OR) Oregon,0,NW
+(PA) Pennsylvania,0,NE
+(PE) Prince Edward Island,0,CND
+(QC) Quebec,0,CND
+(RI) Rhode Island,0,NE
+(SC) South Carolina,0,SE
+(SD) South Dakota,0,N&ST
+(SK) Saskatchewan,0,CND
+(TN) Tennessee,0,SE
+(TX) Texas,1,N&ST
+(UT) Utah,0,NW
+(VT) Vermont,0,NE
+(VA) Virginia,0,NE
+(WA) Washington,0,NW
+(WV) West Virginia,0,NE
+(WI) Wisconsin,0,N&ST
+(WY) Wyoming,0,NW
+(YT) Yukon,0,CND

@@ -20,13 +20,6 @@ namespace SalesMap
         {
             InitializeComponent();
 
-            ContextMenu contextMenu1 = new ContextMenu();
-            MenuItem menuItem1 = new MenuItem();
-            menuItem1.Text = "Run with Log?";
-            contextMenu1.MenuItems.Add(menuItem1);
-
-            this.ContextMenu = contextMenu1;
-
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
             checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
 
