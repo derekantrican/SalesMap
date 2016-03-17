@@ -1,4 +1,6 @@
 ﻿using System;
+using System.CodeDom;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,8 +30,11 @@ namespace SalesMap
         public SalesMapSearch()
         {
             InitializeComponent();
+            Log("------------ STARTING SALESMAP ------------");
 
-            File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
+            CheckFirstRun();
+
+            //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
 
             if (Properties.Settings.Default.AutoCheckUpdate)
             {
@@ -64,6 +69,21 @@ namespace SalesMap
 
             readFiles();
         }
+
+        //-----------------------------------------------------------
+
+        private static string ToLiteral(string input)
+        {
+            using (var writer = new StringWriter())
+            {
+                using (var provider = CodeDomProvider.CreateProvider("CSharp"))
+                {
+                    provider.GenerateCodeFromExpression(new CodePrimitiveExpression(input), writer, null);
+                    return writer.ToString();
+                }
+            }
+        }
+        //-----------------------------------------------------------
 
         public void compareFiles()
         {
@@ -117,17 +137,25 @@ namespace SalesMap
                 }
             }
 
-            //Remove the extra character that comes at the end of these strings
+            //Remove the extra character that comes at the end of these strings and replace "&amp;" with "&"
             regionTextOnline = regionTextOnline.TrimEnd(regionTextOnline[regionTextOnline.Length - 1]);
+            regionTextOnline = regionTextOnline.Replace("&amp;", "&");
             salesTextOnline = salesTextOnline.TrimEnd(salesTextOnline[salesTextOnline.Length - 1]);
+            salesTextOnline = salesTextOnline.Replace("&amp;", "&");
+
+            //Remove the carriage returns from the internal files
+            regionText = regionText.Replace("\r", "");
+            salesText = salesText.Replace("\r", "");
 
             if (regionText != regionTextOnline)
             {
-                File.WriteAllText(regionPath, regionTextOnline);
+                Log("Regions.txt is not the same as online. Updating...");
+                File.WriteAllText(regionPath, ToLiteral(regionTextOnline));
             }
 
             if (salesText != salesTextOnline)
             {
+                Log("SalesReps.txt is not the same as online. Updating...");
                 File.WriteAllText(salesPath, salesTextOnline);
             }
         }
@@ -237,7 +265,7 @@ namespace SalesMap
             }
 
             ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources", Assembly.GetExecutingAssembly());
-            pictureBox1.Image = rm.GetObject(comboBoxState.SelectedItem.ToString().Replace(')','_').Replace('(','_').Replace(' ', '_')) as Image;
+            pictureBox1.Image = rm.GetObject(comboBoxState.SelectedItem.ToString().Replace(')', '_').Replace('(', '_').Replace(' ', '_')) as Image;
 
             if (pictureBox1.Image == null && comboBoxState.SelectedIndex != 0)
             {
@@ -310,10 +338,10 @@ namespace SalesMap
                 return;
             }
 
-            ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources",Assembly.GetExecutingAssembly());
+            ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources", Assembly.GetExecutingAssembly());
             pictureBox1.Image = rm.GetObject(comboBoxRepresentative.SelectedItem.ToString().Replace(' ', '_')) as Image;
 
-            if(pictureBox1.Image == null && comboBoxRepresentative.SelectedIndex != 0)
+            if (pictureBox1.Image == null && comboBoxRepresentative.SelectedIndex != 0)
             {
                 labelNoImage.Text = "No Image Available";
             }
@@ -498,7 +526,7 @@ namespace SalesMap
             }
 
             Application.DoEvents();
-            Thread.Sleep(750);            
+            Thread.Sleep(750);
             labelContactResult.Text = temp;
         }
 
@@ -519,7 +547,7 @@ namespace SalesMap
                 Log("Attempted to set the clipboard text and failed");
                 labelContactResult2.Text = "Contact: FAILED TO COPY...TRY AGAIN";
             }
-            
+
             Application.DoEvents();
             Thread.Sleep(750);
             labelContactResult2.Text = temp;
@@ -527,11 +555,37 @@ namespace SalesMap
 
         private void Log(string itemToLog)
         {
-            //Add a check for a "on/off" for the log in settings?
             DateTime date = DateTime.UtcNow;
             string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
 
-            File.AppendAllText(logPath, "[" + date + "] " + itemToLog);
+            File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
+        }
+
+        private void CheckFirstRun()
+        {
+            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
+            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
+
+            if (Properties.Settings.Default.FirstRun)
+            {
+                Log("First time running this program");
+
+                if (File.Exists(regionPath))
+                {
+                    File.Delete(regionPath);
+                    Log("Deleted the Regions.txt from the last version of this program");
+                }
+
+                if (File.Exists(salesPath))
+                {
+                    File.Delete(salesPath);
+                    Log("Deleted the SalesReps.txt from the last version of this program");
+                }
+
+                Properties.Settings.Default.FirstRun = false;
+                Properties.Settings.Default.Save();
+                Log("This was the last time this will run");
+            }
         }
     }
 }

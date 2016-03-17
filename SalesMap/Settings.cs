@@ -56,6 +56,26 @@ namespace SalesMap
             Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
             Properties.Settings.Default.Save();
 
+            if (Form.ModifierKeys == Keys.Control)
+            {
+                if (MessageBox.Show("This will factory reset this program! \n\nAre you sure?", "Factory Reset",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Log("Factory reset!");
+
+                    Properties.Settings.Default.FirstRun = true;
+                    Properties.Settings.Default.AutoCheckUpdate = true;
+                    Properties.Settings.Default.Save();
+
+                    ProcessStartInfo Info = new ProcessStartInfo();
+                    Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
+                    Info.WindowStyle = ProcessWindowStyle.Hidden;
+                    Info.CreateNoWindow = true;
+                    Info.FileName = "cmd.exe";
+                    Process.Start(Info);
+                    Application.Exit();
+                }
+            }
+
                 //WRITE TO OFF SMR FILE
                 string OffSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
 
@@ -139,7 +159,7 @@ namespace SalesMap
             DateTime date = DateTime.UtcNow;
             string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
 
-            File.AppendAllText(logPath, "[" + date + "] " + itemToLog);
+            File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
         }
     }
 }
