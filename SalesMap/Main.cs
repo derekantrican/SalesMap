@@ -476,6 +476,7 @@ namespace SalesMap
 
             string[] RegionNamesArray = RegionNames.ToArray();
             string[] RegionAreaArray = RegionArea.ToArray();
+            string[] SalesRepNamesArray = SalesRepNames.ToArray();
             string[] SalesRepEmailArray = SalesRepEmails.ToArray();
             string[] SalesRepPositionArray = SalesRepPosition.ToArray();
             string area = "";
@@ -488,7 +489,7 @@ namespace SalesMap
                 {
                     if (RegionNamesArray[i] == comboBoxState.SelectedItem.ToString())
                     {
-                        area = RegionAreaArray[i];
+                        area = "RSM:" + RegionAreaArray[i];
                         break;
                     }
                 }
@@ -503,7 +504,22 @@ namespace SalesMap
             }
             else if (comboBoxRepresentative.SelectedItem.ToString() != "")
             {
+                for (var i = 0; i < SalesRepNamesArray.Length; i++)
+                {
+                    if (SalesRepNamesArray[i].IndexOf(comboBoxRepresentative.SelectedItem.ToString()) >= 0)
+                    {
+                        area = "RSM:" + SalesRepPositionArray[i].Split(':')[1];
+                        break;
+                    }
+                }
 
+                for (var i = 0; i < SalesRepPositionArray.Length; i++)
+                {
+                    if (SalesRepPositionArray[i].IndexOf(area) >= 0)
+                    {
+                        rsm = SalesRepEmailArray[i];
+                    }
+                }
             }
 
             if (rsm != "")
