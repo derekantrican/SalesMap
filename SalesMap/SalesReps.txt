@@ -19,9 +19,8 @@ Jonathan Padial,jonathan.padial@sigmanest.com,513-551-7212,KY:OH (S),RSR:GL
 Sylvain Robidoux,sylvain.robidoux@sigmanest.com,438-401-8686,QC:NB:NS:PE:NL,RSR:CND
 Dave Shifo,david.shifo@sigmanest.com,513-316-4791,IA,RSR:N&ST
 Scott Taylor,scott.taylor@sigmanest.com,513-218-9883,NC:SC,RSR:SE
-Steve Ties,steve.ties@sigmanest.com,513-214-9831,ND:SD:NE:OK:AR:NM,RSM:N&ST
+Steve Ties,steve.ties@sigmanest.com,513-214-9831,ND:SD:NE:OK:AR:NM:MN,RSM:N&ST
 Charlie Vanderzwaag,charlie.vanderzwaag@sigmanest.com,226-971-1093,ON (S),RSR:CND
 Schalk van Niekerk,schalk.vanniekerk@sigmanest.com,513-317-7293,IL,RSR:N&ST
-Ryan Weymouth,ryan.weymouth@sigmanest.com,513-673-6674,MN,RSR:N&ST
 Brian Warburton,brian.warburton@sigmanest.com,513-903-7485,TX (N),RSR:N&ST
 Ethan Wyckoff,ethan.wyckoff@sigmanest.com,513-418-1755,FL,RSR:SE
