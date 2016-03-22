@@ -499,6 +499,7 @@ namespace SalesMap
                     if (SalesRepPositionArray[i].IndexOf(area) >= 0)
                     {
                         rsm = SalesRepEmailArray[i];
+                        break;
                     }
                 }
             }
@@ -518,6 +519,7 @@ namespace SalesMap
                     if (SalesRepPositionArray[i].IndexOf(area) >= 0)
                     {
                         rsm = SalesRepEmailArray[i];
+                        break;
                     }
                 }
             }
@@ -525,6 +527,17 @@ namespace SalesMap
             if (rsm != "")
             {
                 cc += ";" + rsm;
+            }
+            else if (rsm == "" && area != "")
+            {
+                if (comboBoxRepresentative.SelectedItem.ToString() != "")
+                {
+                    Log("Could not find an RSM for the selection: " + comboBoxRepresentative.SelectedItem.ToString());
+                }
+                else if(comboBoxState.SelectedItem.ToString() != "")
+                {
+                    Log("Could not find an RSM for the selection: " + comboBoxState.SelectedItem.ToString());
+                }
             }
 
             subject = mailtoFormat(subject, rep, cc, phone);

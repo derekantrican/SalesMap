@@ -231,7 +231,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 540);
+            this.ClientSize = new System.Drawing.Size(342, 538);
             this.Controls.Add(this.pictureBoxOffSMR);
             this.Controls.Add(this.pictureBoxOnlineMaps);
             this.Controls.Add(this.labelNoImage);
@@ -249,6 +249,7 @@
             this.Controls.Add(this.labelState);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBackground);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SalesMapSearch";
