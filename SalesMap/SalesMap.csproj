@@ -381,9 +381,6 @@
     <None Include="Resources\%28OH%29 Ohio.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\%28TX%29 Texas.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Mike Mizak.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +409,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="map.ico" />
+    <None Include="Resources\%28TX%29 Texas.png" />
     <Content Include="SalesMap.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

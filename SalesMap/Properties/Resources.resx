@@ -169,9 +169,6 @@
   <data name="_WY__Wyoming" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\(WY) Wyoming.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_TX__Texas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(TX) Texas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_HI__Hawaii" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\(HI) Hawaii.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -405,5 +402,8 @@
   </data>
   <data name="Ethan_Wyckoff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ethan Wyckoff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_TX__Texas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\(TX) Texas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
