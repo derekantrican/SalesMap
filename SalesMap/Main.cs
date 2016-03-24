@@ -128,9 +128,11 @@ namespace SalesMap
             salesTextOnline = salesTextOnline.TrimEnd(salesTextOnline[salesTextOnline.Length - 1]);
             salesTextOnline = salesTextOnline.Replace("&amp;", "&");
 
-            //Remove the carriage returns from the internal files
-            regionText = regionText.Replace("\r", "");
-            salesText = salesText.Replace("\r", "");
+            //Compare the raw text of files by checking files without special characters
+            regionText = removeSpecial(regionText);
+            salesText = removeSpecial(salesText);
+            regionTextOnline = removeSpecial(regionTextOnline);
+            salesTextOnline = removeSpecial(salesTextOnline);
 
             if (regionText != regionTextOnline)
             {
