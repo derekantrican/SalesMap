@@ -526,19 +526,15 @@ namespace SalesMap
                 }
             }
 
-            Console.WriteLine("cc: \"" + cc + "\"");
-            Console.WriteLine("rsm: \"" + rsm + "\"");
-
-            if (rsm == cc)
+            if (rsm == cc) //If the rsr IS the rsm
             {
-                Console.WriteLine("here");
                 cc = rsm;
             }
-            else if (rsm != "")
+            else if (rsm != "") //If the rsr IS NOT the rsm
             {
                 cc += ";" + rsm;
             }
-            else if (rsm == "" && area != "")
+            else if (rsm == "" && area != "") //If there is no rsm
             {
                 if (comboBoxRepresentative.SelectedItem.ToString() != "")
                 {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesMapSearch));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelState = new System.Windows.Forms.Label();
@@ -46,6 +47,7 @@
             this.labelNoImage = new System.Windows.Forms.Label();
             this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
             this.pictureBoxOffSMR = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
@@ -110,6 +112,7 @@
             this.comboBoxState.Name = "comboBoxState";
             this.comboBoxState.Size = new System.Drawing.Size(192, 21);
             this.comboBoxState.TabIndex = 11;
+            this.toolTip1.SetToolTip(this.comboBoxState, "Select a region");
             this.comboBoxState.SelectedIndexChanged += new System.EventHandler(this.comboBoxState_SelectedIndexChanged);
             // 
             // comboBoxRepresentative
@@ -119,6 +122,7 @@
             this.comboBoxRepresentative.Name = "comboBoxRepresentative";
             this.comboBoxRepresentative.Size = new System.Drawing.Size(192, 21);
             this.comboBoxRepresentative.TabIndex = 12;
+            this.toolTip1.SetToolTip(this.comboBoxRepresentative, "Select a representative");
             this.comboBoxRepresentative.SelectedIndexChanged += new System.EventHandler(this.comboBoxRepresentative_SelectedIndexChanged);
             // 
             // pictureBoxSettings
@@ -130,6 +134,7 @@
             this.pictureBoxSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxSettings.TabIndex = 13;
             this.pictureBoxSettings.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxSettings, "Settings");
             this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // labelRepResult
@@ -161,6 +166,7 @@
             this.labelContactResult.Size = new System.Drawing.Size(56, 16);
             this.labelContactResult.TabIndex = 16;
             this.labelContactResult.Text = "Contact:";
+            this.toolTip1.SetToolTip(this.labelContactResult, "Click to copy");
             this.labelContactResult.Click += new System.EventHandler(this.labelContactResult_Click);
             // 
             // pictureBoxMap
@@ -172,6 +178,7 @@
             this.pictureBoxMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxMap.TabIndex = 17;
             this.pictureBoxMap.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxMap, "Sales Map document");
             this.pictureBoxMap.Click += new System.EventHandler(this.pictureBoxMap_Click);
             // 
             // labelContactResult2
@@ -183,6 +190,7 @@
             this.labelContactResult2.Size = new System.Drawing.Size(56, 16);
             this.labelContactResult2.TabIndex = 20;
             this.labelContactResult2.Text = "Contact:";
+            this.toolTip1.SetToolTip(this.labelContactResult2, "Click to copy");
             this.labelContactResult2.Click += new System.EventHandler(this.labelContactResult2_Click);
             // 
             // labelRepResult2
@@ -213,6 +221,7 @@
             this.pictureBoxOnlineMaps.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxOnlineMaps.TabIndex = 22;
             this.pictureBoxOnlineMaps.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxOnlineMaps, "Google Maps of selected region");
             this.pictureBoxOnlineMaps.Click += new System.EventHandler(this.pictureBoxOnlineMaps_Click);
             // 
             // pictureBoxOffSMR
@@ -225,7 +234,14 @@
             this.pictureBoxOffSMR.TabIndex = 23;
             this.pictureBoxOffSMR.TabStop = false;
             this.pictureBoxOffSMR.Tag = "";
+            this.toolTip1.SetToolTip(this.pictureBoxOffSMR, "Compose an Off SMR email");
             this.pictureBoxOffSMR.Click += new System.EventHandler(this.pictureBoxOffSMR_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 30000;
+            this.toolTip1.InitialDelay = 1000;
+            this.toolTip1.ReshowDelay = 100;
             // 
             // SalesMapSearch
             // 
@@ -285,6 +301,7 @@
         private System.Windows.Forms.Label labelNoImage;
         private System.Windows.Forms.PictureBox pictureBoxOnlineMaps;
         private System.Windows.Forms.PictureBox pictureBoxOffSMR;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

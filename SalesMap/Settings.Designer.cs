@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.labelMapLocation = new System.Windows.Forms.Label();
             this.textBoxMapLocation = new System.Windows.Forms.TextBox();
@@ -38,6 +39,7 @@
             this.checkBoxAutoUpdates = new System.Windows.Forms.CheckBox();
             this.labelOffSMR = new System.Windows.Forms.Label();
             this.buttonVariables = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -55,6 +57,7 @@
             this.textBoxMapLocation.Name = "textBoxMapLocation";
             this.textBoxMapLocation.Size = new System.Drawing.Size(273, 20);
             this.textBoxMapLocation.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.textBoxMapLocation, "Sales Map document location");
             // 
             // buttonSave
             // 
@@ -63,6 +66,7 @@
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 5;
             this.buttonSave.Text = "Save";
+            this.toolTip1.SetToolTip(this.buttonSave, "Save changes\r\n\r\n(Ctrl + Click to \"factory reset\" program)");
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
@@ -123,8 +127,15 @@
             this.buttonVariables.Size = new System.Drawing.Size(30, 23);
             this.buttonVariables.TabIndex = 12;
             this.buttonVariables.Text = "{V}";
+            this.toolTip1.SetToolTip(this.buttonVariables, "Canned email variables");
             this.buttonVariables.UseVisualStyleBackColor = true;
             this.buttonVariables.Click += new System.EventHandler(this.buttonVariables_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 1000;
+            this.toolTip1.ReshowDelay = 100;
             // 
             // Settings
             // 
@@ -160,5 +171,6 @@
         private System.Windows.Forms.CheckBox checkBoxAutoUpdates;
         private System.Windows.Forms.Label labelOffSMR;
         private System.Windows.Forms.Button buttonVariables;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
