@@ -232,8 +232,11 @@ namespace SalesMap
             comboBoxState.Refresh();
             comboBoxRepresentative.DataSource = SalesRepNames;
 
+            //Clear the result labels on startup
+            labelPhoneResult.Text = "";
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";
+            labelPhoneResult2.Text = "";
         }
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
@@ -243,6 +246,7 @@ namespace SalesMap
                 comboBoxRepresentative.SelectedIndex = 0;
                 labelRepResult.Text = "Sales Rep: ";
                 labelContactResult.Text = "Contact: ";
+                labelPhoneResult.Text = "";
 
                 labelRegionResult.Text = "Region: " + comboBoxState.SelectedItem.ToString();
             }
@@ -280,8 +284,10 @@ namespace SalesMap
             {
                 labelRepResult.Text = "Sales Rep: ";
                 labelContactResult.Text = "Contact: ";
+                labelPhoneResult.Text = "";
                 labelRepResult2.Text = "";
                 labelContactResult2.Text = "";
+                labelPhoneResult2.Text = "";
                 return;
             }
 
@@ -295,13 +301,15 @@ namespace SalesMap
                     if (found == 1)
                     {
                         labelRepResult.Text = "Sales Rep: " + SalesNames[i];
-                        labelContactResult.Text = "Contact: " + SalesEmails[i] + Environment.NewLine + "\t\t\t   " + SalesPhones[i];
+                        labelContactResult.Text = "Contact: " + SalesEmails[i];
+                        labelPhoneResult.Text = SalesPhones[i];
                     }
 
                     if (found > 1)
                     {
                         labelRepResult2.Text = "2nd Sales Rep: " + SalesNames[i];
-                        labelContactResult2.Text = "Contact: " + SalesEmails[i] + Environment.NewLine + "\t\t\t   " + SalesPhones[i];
+                        labelContactResult2.Text = "Contact: " + SalesEmails[i];
+                        labelPhoneResult2.Text = SalesPhones[i];
                     }
                 }
             }
@@ -310,6 +318,7 @@ namespace SalesMap
             {
                 labelRepResult2.Text = "";
                 labelContactResult2.Text = "";
+                labelPhoneResult2.Text = "";
             }
         }
 
@@ -348,6 +357,7 @@ namespace SalesMap
 
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";
+            labelPhoneResult2.Text = "";
         }
 
         private void SalesMapSearch_Load(object sender, EventArgs e)
@@ -442,7 +452,7 @@ namespace SalesMap
                 rep = labelRepResult.Text;
                 rep = rep.Substring(rep.IndexOf(": ") + 2);
                 cc = labelContactResult.Text.Split(' ').ElementAt(1);
-                phone = labelContactResult.Text.Split(' ').Last().Split(' ').Last();
+                phone = labelPhoneResult.Text;
             }
             else if (labelRepResult.Text != "" && labelRepResult2.Text != "")
             {
@@ -459,14 +469,14 @@ namespace SalesMap
                     rep = labelRepResult.Text;
                     rep = rep.Substring(rep.IndexOf(": ") + 2);
                     cc = labelContactResult.Text.Split(' ').ElementAt(1);
-                    phone = labelContactResult.Text.Split('\t').Last().Split(' ').Last();
+                    phone = labelPhoneResult.Text;
                 }
                 else if (res == DialogResult.No) //"No" means "South rep"
                 {
                     rep = labelRepResult2.Text;
                     rep = rep.Substring(rep.IndexOf(": ") + 2);
                     cc = labelContactResult2.Text.Split(' ').ElementAt(1);
-                    phone = labelContactResult2.Text.Split('\t').Last().Split(' ').Last();
+                    phone = labelPhoneResult2.Text;
                 }
                 else //User closed out the dialog box
                 {
@@ -474,7 +484,7 @@ namespace SalesMap
                 }
             }
 
-            cc = cc.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", ""); //Remove any extraneous characters
+            cc = removeSpecial(cc); //Remove any extraneous characters
 
             string[] RegionNamesArray = RegionNames.ToArray();
             string[] RegionAreaArray = RegionArea.ToArray();
@@ -566,12 +576,9 @@ namespace SalesMap
         }
 
         private void labelContactResult_Click(object sender, EventArgs e)
-        {
+        {        
             string temp = labelContactResult.Text;
-            string copy = temp.Substring(temp.IndexOf(": ") + 2);
-            copy = copy.Substring(0, copy.IndexOf(Environment.NewLine));
-            copy += " " + labelContactResult.Text.Split('\t').Last().Split(' ').Last();
-            Clipboard.SetText(copy);
+            string copy = removeSpecial(temp.Substring(temp.IndexOf(": ") + 2));
 
             try
             {
@@ -589,12 +596,31 @@ namespace SalesMap
             labelContactResult.Text = temp;
         }
 
+        private void labelPhoneResult_Click(object sender, EventArgs e)
+        {
+            string temp = labelPhoneResult.Text;
+            string copy = removeSpecial(temp);
+
+            try
+            {
+                Clipboard.SetText(copy);
+                labelPhoneResult.Text = "COPIED!";
+            }
+            catch
+            {
+                Log("Attempted to set the clipboard text and failed");
+                labelPhoneResult.Text = "FAILED TO COPY...TRY AGAIN";
+            }
+
+            Application.DoEvents();
+            Thread.Sleep(750);
+            labelPhoneResult.Text = temp;
+        }
+
         private void labelContactResult2_Click(object sender, EventArgs e)
         {
             string temp = labelContactResult2.Text;
-            string copy = labelContactResult2.Text.Substring(labelContactResult2.Text.IndexOf(": ") + 2);
-            copy = copy.Substring(0, copy.IndexOf(Environment.NewLine));
-            copy += " " + labelContactResult.Text.Split('\t').Last().Split(' ').Last();
+            string copy = removeSpecial(temp.Substring(temp.IndexOf(": ") + 2));
 
             try
             {
@@ -610,6 +636,34 @@ namespace SalesMap
             Application.DoEvents();
             Thread.Sleep(750);
             labelContactResult2.Text = temp;
+        }
+
+        private void labelPhoneResult2_Click(object sender, EventArgs e)
+        {
+            string temp = labelPhoneResult2.Text;
+            string copy = removeSpecial(temp);
+
+            try
+            {
+                Clipboard.SetText(copy);
+                labelPhoneResult2.Text = "COPIED!";
+            }
+            catch
+            {
+                Log("Attempted to set the clipboard text and failed");
+                labelPhoneResult2.Text = "FAILED TO COPY...TRY AGAIN";
+            }
+
+            Application.DoEvents();
+            Thread.Sleep(750);
+            labelPhoneResult2.Text = temp;
+        }
+
+        private string removeSpecial(string input)
+        {
+            input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
+
+            return input;
         }
 
         private void Log(string itemToLog)

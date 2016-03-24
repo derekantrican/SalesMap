@@ -48,6 +48,8 @@
             this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
             this.pictureBoxOffSMR = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.labelPhoneResult = new System.Windows.Forms.Label();
+            this.labelPhoneResult2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
@@ -64,7 +66,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // labelState
             // 
@@ -243,11 +244,37 @@
             this.toolTip1.InitialDelay = 1000;
             this.toolTip1.ReshowDelay = 100;
             // 
+            // labelPhoneResult
+            // 
+            this.labelPhoneResult.AutoSize = true;
+            this.labelPhoneResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPhoneResult.Location = new System.Drawing.Point(73, 155);
+            this.labelPhoneResult.Name = "labelPhoneResult";
+            this.labelPhoneResult.Size = new System.Drawing.Size(47, 16);
+            this.labelPhoneResult.TabIndex = 24;
+            this.labelPhoneResult.Text = "Phone";
+            this.toolTip1.SetToolTip(this.labelPhoneResult, "Click to copy");
+            this.labelPhoneResult.Click += new System.EventHandler(this.labelPhoneResult_Click);
+            // 
+            // labelPhoneResult2
+            // 
+            this.labelPhoneResult2.AutoSize = true;
+            this.labelPhoneResult2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPhoneResult2.Location = new System.Drawing.Point(73, 210);
+            this.labelPhoneResult2.Name = "labelPhoneResult2";
+            this.labelPhoneResult2.Size = new System.Drawing.Size(47, 16);
+            this.labelPhoneResult2.TabIndex = 25;
+            this.labelPhoneResult2.Text = "Phone";
+            this.toolTip1.SetToolTip(this.labelPhoneResult2, "Click to copy");
+            this.labelPhoneResult2.Click += new System.EventHandler(this.labelPhoneResult2_Click);
+            // 
             // SalesMapSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(342, 538);
+            this.Controls.Add(this.labelPhoneResult2);
+            this.Controls.Add(this.labelPhoneResult);
             this.Controls.Add(this.pictureBoxOffSMR);
             this.Controls.Add(this.pictureBoxOnlineMaps);
             this.Controls.Add(this.labelNoImage);
@@ -302,6 +329,8 @@
         private System.Windows.Forms.PictureBox pictureBoxOnlineMaps;
         private System.Windows.Forms.PictureBox pictureBoxOffSMR;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label labelPhoneResult;
+        private System.Windows.Forms.Label labelPhoneResult2;
     }
 }
 
