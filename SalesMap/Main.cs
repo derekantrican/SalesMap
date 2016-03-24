@@ -474,6 +474,8 @@ namespace SalesMap
                 }
             }
 
+            cc = cc.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", ""); //Remove any extraneous characters
+
             string[] RegionNamesArray = RegionNames.ToArray();
             string[] RegionAreaArray = RegionArea.ToArray();
             string[] SalesRepNamesArray = SalesRepNames.ToArray();
@@ -524,7 +526,15 @@ namespace SalesMap
                 }
             }
 
-            if (rsm != "")
+            Console.WriteLine("cc: \"" + cc + "\"");
+            Console.WriteLine("rsm: \"" + rsm + "\"");
+
+            if (rsm == cc)
+            {
+                Console.WriteLine("here");
+                cc = rsm;
+            }
+            else if (rsm != "")
             {
                 cc += ";" + rsm;
             }
