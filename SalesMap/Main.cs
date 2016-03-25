@@ -396,7 +396,7 @@ namespace SalesMap
         {
             if (comboBoxState.SelectedItem.ToString() == "")
             {
-                MessageBox.Show("\"State/Province:\" must be defined");
+                System.Diagnostics.Process.Start("https://www.google.com/maps/@38.9165981,-96.6887,5z");
             }
             else
             {
