@@ -349,8 +349,8 @@ namespace SalesMap
 
 
             labelRepResult.Text = "Sales Rep: " + comboBoxRepresentative.SelectedItem.ToString();
-            labelContactResult.Text = "Contact: " + SalesRepEmails[comboBoxRepresentative.SelectedIndex] +
-                                      Environment.NewLine + "\t\t\t   " + SalesRepPhones[comboBoxRepresentative.SelectedIndex];
+            labelContactResult.Text = "Contact: " + SalesRepEmails[comboBoxRepresentative.SelectedIndex];
+            labelPhoneResult.Text = SalesRepPhones[comboBoxRepresentative.SelectedIndex];
             labelRegionResult.Text = "Region: " + SalesRepRegions[comboBoxRepresentative.SelectedIndex].Replace(":", ", ");
 
             labelRepResult2.Text = "";
@@ -376,11 +376,6 @@ namespace SalesMap
             {
                 MessageBox.Show("The path " + path + " is invalid.");
             }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
