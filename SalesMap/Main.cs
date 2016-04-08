@@ -558,8 +558,8 @@ namespace SalesMap
                 }
             }
 
-            subject = mailtoFormat(subject, rep, cc, phone);
-            body = mailtoFormat(body, rep, cc, phone);
+            subject = mailtoFormat(subject, rep, cc.Split(';')[0], phone);
+            body = mailtoFormat(body, rep, cc.Split(';')[0], phone);
 
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject + "&body=" + body;
