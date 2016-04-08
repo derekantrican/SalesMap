@@ -297,7 +297,6 @@
             this.MaximizeBox = false;
             this.Name = "SalesMapSearch";
             this.Text = "Sales Map Search";
-            this.Load += new System.EventHandler(this.SalesMapSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();

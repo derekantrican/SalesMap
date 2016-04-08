@@ -90,6 +90,7 @@ namespace SalesMap
                 html = client.DownloadString(url);
 
                 regionTextOnline = html.Substring(html.IndexOf("<pre><code>") + 11).Split('<')[0];
+                Console.WriteLine(regionTextOnline);
                 salesTextOnline = html.Substring(html.LastIndexOf("<pre><code>") + 11).Split('<')[0];
             }
             catch
@@ -129,18 +130,13 @@ namespace SalesMap
             salesTextOnline = salesTextOnline.Replace("&amp;", "&");
 
             //Compare the raw text of files by checking files without special characters
-            regionText = removeSpecial(regionText);
-            salesText = removeSpecial(salesText);
-            regionTextOnline = removeSpecial(regionTextOnline);
-            salesTextOnline = removeSpecial(salesTextOnline);
-
-            if (regionText != regionTextOnline)
+            if (removeSpecial(regionText) != removeSpecial(regionTextOnline))
             {
                 Log("Regions.txt is not the same as online. Updating...");
                 File.WriteAllText(regionPath, regionTextOnline);
             }
 
-            if (salesText != salesTextOnline)
+            if (removeSpecial(salesText) != removeSpecial(salesTextOnline))
             {
                 Log("SalesReps.txt is not the same as online. Updating...");
                 File.WriteAllText(salesPath, salesTextOnline);
@@ -360,11 +356,6 @@ namespace SalesMap
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";
             labelPhoneResult2.Text = "";
-        }
-
-        private void SalesMapSearch_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

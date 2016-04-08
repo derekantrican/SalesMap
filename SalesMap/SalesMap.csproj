@@ -410,6 +410,7 @@
   <ItemGroup>
     <Content Include="map.ico" />
     <None Include="Resources\%28TX%29 Texas.png" />
+    <None Include="Resources\%28TX%29 Texas.jpg" />
     <Content Include="SalesMap.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

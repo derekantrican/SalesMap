@@ -53,7 +53,7 @@
 (SD) South Dakota,0,N&ST
 (SK) Saskatchewan,0,CND
 (TN) Tennessee,0,SE
-(TX) Texas,1,N&ST
+(TX) Texas,0,N&ST
 (UT) Utah,0,NW
 (VT) Vermont,0,NE
 (VA) Virginia,0,NE
