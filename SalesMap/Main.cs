@@ -396,7 +396,7 @@ namespace SalesMap
             string rep = "";
             string cc = "";
             string phone = "";
-            string subject = "SigmaNEST Maintenance Subscription Renewal";
+            string subject = "SigmaNEST Subscription Membership Renewal";
             string body = "";
 
             string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
@@ -546,19 +546,38 @@ namespace SalesMap
 
             subject = mailtoFormat(subject, rep, cc.Split(';')[0], phone);
             body = mailtoFormat(body, rep, cc.Split(';')[0], phone);
-
+            
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject + "&body=" + body;
-            proc.Start();
+
+            if (Properties.Settings.Default.SignatureWorkaround)
+            {
+                proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject;
+                Clipboard.SetText(body);
+                proc.Start();
+
+                Thread.Sleep(250);
+                SendKeys.Send("{TAB}{TAB}{TAB}");
+                SendKeys.Send("^v");
+
+            }
+            else
+            {
+                proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject + "&body=" + body;
+                proc.Start();
+            }
         }
 
         private string mailtoFormat(string raw, string repName, string repEmail, string repPhone)
         {
             string rawReplaced = raw;
-            rawReplaced = rawReplaced.Replace(" ", "%20").Replace("\n", "%0D%0A");
             rawReplaced = rawReplaced.Replace("{SALESREPNAME}", repName);
             rawReplaced = rawReplaced.Replace("{SALESREPEMAIL}", repEmail);
             rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
+
+            if (Properties.Settings.Default.SignatureWorkaround == false)
+            {
+                rawReplaced = rawReplaced.Replace(" ", "%20").Replace("\n", "%0D%0A");
+            }
 
             return rawReplaced;
         }

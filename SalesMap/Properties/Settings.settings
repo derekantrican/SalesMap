@@ -6,12 +6,15 @@
       <Value Profile="(Default)">\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap.pdf</Value>
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">v4.3</Value>
+      <Value Profile="(Default)">v4.4</Value>
     </Setting>
     <Setting Name="AutoCheckUpdate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="FirstRun" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SignatureWorkaround" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>

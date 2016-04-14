@@ -40,6 +40,8 @@
             this.labelOffSMR = new System.Windows.Forms.Label();
             this.buttonVariables = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBoxSignature = new System.Windows.Forms.CheckBox();
+            this.linkLabelSignature = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -61,11 +63,11 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(311, 157);
+            this.buttonSave.Location = new System.Drawing.Point(300, 190);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.Size = new System.Drawing.Size(88, 28);
             this.buttonSave.TabIndex = 5;
-            this.buttonSave.Text = "Save";
+            this.buttonSave.Text = "Save && Close";
             this.toolTip1.SetToolTip(this.buttonSave, "Save changes\r\n\r\n(Ctrl + Click to \"factory reset\" program)");
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -73,7 +75,7 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(9, 157);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(9, 188);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(146, 13);
             this.linkLabelGitHub.TabIndex = 6;
@@ -93,7 +95,7 @@
             // linkLabelUpdate
             // 
             this.linkLabelUpdate.AutoSize = true;
-            this.linkLabelUpdate.Location = new System.Drawing.Point(9, 173);
+            this.linkLabelUpdate.Location = new System.Drawing.Point(9, 204);
             this.linkLabelUpdate.Name = "linkLabelUpdate";
             this.linkLabelUpdate.Size = new System.Drawing.Size(91, 13);
             this.linkLabelUpdate.TabIndex = 8;
@@ -104,7 +106,7 @@
             // checkBoxAutoUpdates
             // 
             this.checkBoxAutoUpdates.AutoSize = true;
-            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(123, 173);
+            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(123, 204);
             this.checkBoxAutoUpdates.Name = "checkBoxAutoUpdates";
             this.checkBoxAutoUpdates.Size = new System.Drawing.Size(169, 17);
             this.checkBoxAutoUpdates.TabIndex = 10;
@@ -137,11 +139,37 @@
             this.toolTip1.InitialDelay = 1000;
             this.toolTip1.ReshowDelay = 100;
             // 
+            // checkBoxSignature
+            // 
+            this.checkBoxSignature.AutoSize = true;
+            this.checkBoxSignature.Location = new System.Drawing.Point(225, 157);
+            this.checkBoxSignature.Name = "checkBoxSignature";
+            this.checkBoxSignature.Size = new System.Drawing.Size(155, 17);
+            this.checkBoxSignature.TabIndex = 13;
+            this.checkBoxSignature.Text = "Use Signature Workaround";
+            this.toolTip1.SetToolTip(this.checkBoxSignature, "Fix signature problems for Off SMR emails");
+            this.checkBoxSignature.UseVisualStyleBackColor = true;
+            this.checkBoxSignature.CheckedChanged += new System.EventHandler(this.checkBoxSignature_CheckedChanged);
+            // 
+            // linkLabelSignature
+            // 
+            this.linkLabelSignature.AutoSize = true;
+            this.linkLabelSignature.Location = new System.Drawing.Point(375, 157);
+            this.linkLabelSignature.Name = "linkLabelSignature";
+            this.linkLabelSignature.Size = new System.Drawing.Size(13, 13);
+            this.linkLabelSignature.TabIndex = 14;
+            this.linkLabelSignature.TabStop = true;
+            this.linkLabelSignature.Text = "?";
+            this.toolTip1.SetToolTip(this.linkLabelSignature, "What is this?");
+            this.linkLabelSignature.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSignature_LinkClicked);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 192);
+            this.ClientSize = new System.Drawing.Size(398, 228);
+            this.Controls.Add(this.linkLabelSignature);
+            this.Controls.Add(this.checkBoxSignature);
             this.Controls.Add(this.buttonVariables);
             this.Controls.Add(this.labelOffSMR);
             this.Controls.Add(this.checkBoxAutoUpdates);
@@ -172,5 +200,7 @@
         private System.Windows.Forms.Label labelOffSMR;
         private System.Windows.Forms.Button buttonVariables;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox checkBoxSignature;
+        private System.Windows.Forms.LinkLabel linkLabelSignature;
     }
 }

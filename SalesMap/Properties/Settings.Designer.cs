@@ -37,7 +37,7 @@ namespace SalesMap.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("v4.3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("v4.4")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
@@ -68,6 +68,18 @@ namespace SalesMap.Properties {
             }
             set {
                 this["FirstRun"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SignatureWorkaround {
+            get {
+                return ((bool)(this["SignatureWorkaround"]));
+            }
+            set {
+                this["SignatureWorkaround"] = value;
             }
         }
     }

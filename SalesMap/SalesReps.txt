@@ -1,7 +1,7 @@
 ﻿,,,,
-Brian Blair,brianb@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW
-Arie Brown,arieb@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS,RSM:SE
-Matt Brubaker,mattb@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL
+Brian Blair,brian.blair@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW
+Arie Brown,arie.brown@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS,RSM:SE
+Matt Brubaker,matt.brubaker@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL
 Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU,RSM:CND
 Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO,RSR:N&ST
 Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ,RSR:SW

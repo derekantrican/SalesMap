@@ -153,6 +153,18 @@ namespace SalesMap
                             "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
         }
 
+        private void checkBoxSignature_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.SignatureWorkaround = checkBoxSignature.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void linkLabelSignature_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string url = "https://www.experts-exchange.com/questions/26410679/HTML-Mailto-link-does-not-add-my-signature-in-Outlook.html";
+            System.Diagnostics.Process.Start(url);
+        }
+
         private void Log(string itemToLog)
         {
             //Add a check for a "on/off" for the log in settings?
