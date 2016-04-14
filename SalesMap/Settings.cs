@@ -55,6 +55,7 @@ namespace SalesMap
         {
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
             Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
+            Properties.Settings.Default.SignatureWorkaround = checkBoxSignature.Checked;
             Properties.Settings.Default.Save();
 
             if (Form.ModifierKeys == Keys.Control)
@@ -152,12 +153,6 @@ namespace SalesMap
                             "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
                             "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
                             "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
-        }
-
-        private void checkBoxSignature_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.SignatureWorkaround = checkBoxSignature.Checked;
-            Properties.Settings.Default.Save();
         }
 
         private void linkLabelSignature_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

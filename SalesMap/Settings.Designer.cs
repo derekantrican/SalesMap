@@ -149,7 +149,6 @@
             this.checkBoxSignature.Text = "Use Signature Workaround";
             this.toolTip1.SetToolTip(this.checkBoxSignature, "Fix signature problems for Off SMR emails\r\n(MAY HAVE BUGS)");
             this.checkBoxSignature.UseVisualStyleBackColor = true;
-            this.checkBoxSignature.CheckedChanged += new System.EventHandler(this.checkBoxSignature_CheckedChanged);
             // 
             // linkLabelSignature
             // 
