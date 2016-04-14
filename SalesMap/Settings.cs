@@ -22,6 +22,7 @@ namespace SalesMap
 
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
             checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
+            checkBoxSignature.Checked = Properties.Settings.Default.SignatureWorkaround;
 
             editOffSMR();
         }

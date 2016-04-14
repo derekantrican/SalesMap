@@ -147,20 +147,21 @@
             this.checkBoxSignature.Size = new System.Drawing.Size(155, 17);
             this.checkBoxSignature.TabIndex = 13;
             this.checkBoxSignature.Text = "Use Signature Workaround";
-            this.toolTip1.SetToolTip(this.checkBoxSignature, "Fix signature problems for Off SMR emails");
+            this.toolTip1.SetToolTip(this.checkBoxSignature, "Fix signature problems for Off SMR emails\r\n(MAY HAVE BUGS)");
             this.checkBoxSignature.UseVisualStyleBackColor = true;
             this.checkBoxSignature.CheckedChanged += new System.EventHandler(this.checkBoxSignature_CheckedChanged);
             // 
             // linkLabelSignature
             // 
             this.linkLabelSignature.AutoSize = true;
+            this.linkLabelSignature.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
             this.linkLabelSignature.Location = new System.Drawing.Point(375, 157);
             this.linkLabelSignature.Name = "linkLabelSignature";
             this.linkLabelSignature.Size = new System.Drawing.Size(13, 13);
             this.linkLabelSignature.TabIndex = 14;
             this.linkLabelSignature.TabStop = true;
             this.linkLabelSignature.Text = "?";
-            this.toolTip1.SetToolTip(this.linkLabelSignature, "What is this?");
+            this.toolTip1.SetToolTip(this.linkLabelSignature, "Pull up an explanation of why there needs to be a \"signature workaround\"");
             this.linkLabelSignature.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSignature_LinkClicked);
             // 
             // Settings
