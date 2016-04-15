@@ -782,8 +782,8 @@ namespace SalesMap
                     Log("Deleted the SalesReps.txt from the last version of this program");
                 }
 
-                //Properties.Settings.Default.FirstRun = false;
-                //Properties.Settings.Default.Save();
+                Properties.Settings.Default.FirstRun = false;
+                Properties.Settings.Default.Save();
                 Log("This was the last time this will run");
             }
         }
