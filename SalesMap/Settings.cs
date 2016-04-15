@@ -54,6 +54,8 @@ namespace SalesMap
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            Log("Saving settings");
+
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
             Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
             Properties.Settings.Default.SignatureWorkaround = checkBoxSignature.Checked;

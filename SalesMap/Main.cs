@@ -271,6 +271,7 @@ namespace SalesMap
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log("Selecting state: " + comboBoxState.SelectedItem.ToString());
             if (comboBoxState.SelectedItem.ToString() != "")
             {
                 comboBoxRepresentative.SelectedIndex = 0;
@@ -354,6 +355,8 @@ namespace SalesMap
 
         private void comboBoxRepresentative_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Log("Selecting rep: " + comboBoxRepresentative.SelectedItem.ToString());
+
             if (comboBoxRepresentative.SelectedItem.ToString() != "")
             {
                 comboBoxState.SelectedIndex = 0;
@@ -392,12 +395,14 @@ namespace SalesMap
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            Log("Opening config");
             Settings config = new Settings();
             config.Show();
         }
 
         private void pictureBoxMap_Click(object sender, EventArgs e)
         {
+            Log("Opening PDF map");
             string path = Properties.Settings.Default.MapFileLocation;
 
             try
@@ -412,6 +417,8 @@ namespace SalesMap
 
         private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
         {
+            Log("Opening Google Maps");
+
             if (comboBoxState.SelectedItem.ToString() == "")
             {
                 System.Diagnostics.Process.Start("https://www.google.com/maps/@38.9165981,-96.6887,5z");
@@ -425,6 +432,9 @@ namespace SalesMap
 
         private void pictureBoxOffSMR_Click(object sender, EventArgs e)
         {
+            Log("Composing an OffSMR email with state: " + comboBoxState.SelectedItem.ToString() + " & rep: " + 
+                comboBoxRepresentative.SelectedItem.ToString() + " & signature workaround: " + Properties.Settings.Default.SignatureWorkaround);
+
             string rep = "";
             string cc = "";
             string phone = "";
