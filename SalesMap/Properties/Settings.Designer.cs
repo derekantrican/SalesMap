@@ -82,5 +82,17 @@ namespace SalesMap.Properties {
                 this["SignatureWorkaround"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SendLog {
+            get {
+                return ((bool)(this["SendLog"]));
+            }
+            set {
+                this["SendLog"] = value;
+            }
+        }
     }
 }

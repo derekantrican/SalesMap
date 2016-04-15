@@ -58,16 +58,48 @@ namespace SalesMap
 
                 if (GitVersion != thisVersion)
                 {
+                    Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
+
                     if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
                                         "\n\nGo to " + url + " to download the new version?",
                                         "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                     {
                         System.Diagnostics.Process.Start(url);
+                        Log("User selected \"Yes\" for the new update");
+                    }
+                    else
+                    {
+                        Log("User selected \"No\" for the new update");
                     }
                 }
             }
 
             readFiles();
+        }
+
+        private void SalesMapSearch_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Properties.Settings.Default.SendLog)
+            {
+                DateTime date = DateTime.UtcNow;
+                string user = Environment.UserName;
+                string logPath = @"C:\Users\" + user + @"\log.txt";
+                string newLogPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + user + " " + date.ToString().Replace("/", "-").Replace(":", ".") + " log.txt";
+
+                if (File.Exists(logPath))
+                {
+                    try
+                    {
+                        File.Copy(logPath, newLogPath, true);
+                    }
+                    catch
+                    {
+                        Log("Could not copy log file");
+                    }
+                }
+            }
+
+            Log("++++++++++++ CLOSING SALESMAP ++++++++++++");
         }
 
         public void compareFiles()
@@ -152,12 +184,12 @@ namespace SalesMap
 
             if (File.Exists(regionPath))
             {
-                Console.WriteLine("Regions file exists");
+                Log("Reading from Regions.txt file");
                 fileStream = File.Open(regionPath, FileMode.Open);
             }
             else
             {
-                Console.WriteLine("Regions file does not exist");
+                Log("Reading from internal Regions file");
                 var resourceRegions = "SalesMap.Regions.txt";
                 var assembly = Assembly.GetExecutingAssembly();
 
@@ -189,12 +221,12 @@ namespace SalesMap
 
             if (File.Exists(salesPath))
             {
-                Console.WriteLine("SalesReps file exists");
+                Log("Reading from SalesReps.txt file");
                 fileStream1 = File.Open(salesPath, FileMode.Open);
             }
             else
             {
-                Console.WriteLine("SalesReps file does not exist");
+                Log("Reading from internal SalesReps file");
                 var resourceSales = "SalesMap.SalesReps.txt";
                 var assembly1 = Assembly.GetExecutingAssembly();
 
@@ -707,5 +739,6 @@ namespace SalesMap
                 Log("This was the last time this will run");
             }
         }
+
     }
 }

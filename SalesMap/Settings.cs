@@ -23,13 +23,14 @@ namespace SalesMap
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
             checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
             checkBoxSignature.Checked = Properties.Settings.Default.SignatureWorkaround;
+            checkBoxSendLog.Checked = Properties.Settings.Default.SendLog;
 
             editOffSMR();
         }
 
         private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/derekantrican/SalesMap/wiki");
+            Process.Start("https://github.com/derekantrican/SalesMap/wiki");
         }
 
         private void editOffSMR()
@@ -56,6 +57,7 @@ namespace SalesMap
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
             Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
             Properties.Settings.Default.SignatureWorkaround = checkBoxSignature.Checked;
+            Properties.Settings.Default.SendLog = checkBoxSendLog.Checked;
             Properties.Settings.Default.Save();
 
             if (Form.ModifierKeys == Keys.Control)
@@ -137,7 +139,7 @@ namespace SalesMap
                                     "\n\nGo to " + url + " to download the new version?",
                                     "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
-                    System.Diagnostics.Process.Start(url);
+                    Process.Start(url);
                 }
             }
             else
@@ -158,7 +160,7 @@ namespace SalesMap
         private void linkLabelSignature_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string url = "https://www.experts-exchange.com/questions/26410679/HTML-Mailto-link-does-not-add-my-signature-in-Outlook.html";
-            System.Diagnostics.Process.Start(url);
+            Process.Start(url);
         }
 
         private void Log(string itemToLog)

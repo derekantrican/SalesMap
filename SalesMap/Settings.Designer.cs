@@ -42,6 +42,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.checkBoxSignature = new System.Windows.Forms.CheckBox();
             this.linkLabelSignature = new System.Windows.Forms.LinkLabel();
+            this.checkBoxSendLog = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -63,7 +64,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(300, 190);
+            this.buttonSave.Location = new System.Drawing.Point(300, 237);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(88, 28);
             this.buttonSave.TabIndex = 5;
@@ -75,7 +76,7 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(9, 188);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(15, 230);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(146, 13);
             this.linkLabelGitHub.TabIndex = 6;
@@ -95,7 +96,7 @@
             // linkLabelUpdate
             // 
             this.linkLabelUpdate.AutoSize = true;
-            this.linkLabelUpdate.Location = new System.Drawing.Point(9, 204);
+            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 246);
             this.linkLabelUpdate.Name = "linkLabelUpdate";
             this.linkLabelUpdate.Size = new System.Drawing.Size(91, 13);
             this.linkLabelUpdate.TabIndex = 8;
@@ -106,7 +107,7 @@
             // checkBoxAutoUpdates
             // 
             this.checkBoxAutoUpdates.AutoSize = true;
-            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(123, 204);
+            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(225, 191);
             this.checkBoxAutoUpdates.Name = "checkBoxAutoUpdates";
             this.checkBoxAutoUpdates.Size = new System.Drawing.Size(169, 17);
             this.checkBoxAutoUpdates.TabIndex = 10;
@@ -163,11 +164,23 @@
             this.toolTip1.SetToolTip(this.linkLabelSignature, "Pull up an explanation of why there needs to be a \"signature workaround\"");
             this.linkLabelSignature.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSignature_LinkClicked);
             // 
+            // checkBoxSendLog
+            // 
+            this.checkBoxSendLog.AutoSize = true;
+            this.checkBoxSendLog.Location = new System.Drawing.Point(225, 214);
+            this.checkBoxSendLog.Name = "checkBoxSendLog";
+            this.checkBoxSendLog.Size = new System.Drawing.Size(152, 17);
+            this.checkBoxSendLog.TabIndex = 15;
+            this.checkBoxSendLog.Text = "Send log file to developer?";
+            this.toolTip1.SetToolTip(this.checkBoxSendLog, "Send log file to developer when program is closed");
+            this.checkBoxSendLog.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 228);
+            this.ClientSize = new System.Drawing.Size(398, 270);
+            this.Controls.Add(this.checkBoxSendLog);
             this.Controls.Add(this.linkLabelSignature);
             this.Controls.Add(this.checkBoxSignature);
             this.Controls.Add(this.buttonVariables);
@@ -202,5 +215,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox checkBoxSignature;
         private System.Windows.Forms.LinkLabel linkLabelSignature;
+        private System.Windows.Forms.CheckBox checkBoxSendLog;
     }
 }

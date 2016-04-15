@@ -297,6 +297,7 @@
             this.MaximizeBox = false;
             this.Name = "SalesMapSearch";
             this.Text = "Sales Map Search";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SalesMapSearch_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
