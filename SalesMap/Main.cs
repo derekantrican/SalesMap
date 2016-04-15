@@ -79,12 +79,13 @@ namespace SalesMap
 
         private void SalesMapSearch_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Log("++++++++++++ CLOSING SALESMAP ++++++++++++");
+
             if (Properties.Settings.Default.SendLog)
             {
-                DateTime date = DateTime.UtcNow;
                 string user = Environment.UserName;
                 string logPath = @"C:\Users\" + user + @"\log.txt";
-                string newLogPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + user + " " + date.ToString().Replace("/", "-").Replace(":", ".") + " log.txt";
+                string newLogPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + user + " log.txt";
 
                 if (File.Exists(logPath))
                 {
@@ -98,8 +99,6 @@ namespace SalesMap
                     }
                 }
             }
-
-            Log("++++++++++++ CLOSING SALESMAP ++++++++++++");
         }
 
         public void compareFiles()
@@ -271,9 +270,10 @@ namespace SalesMap
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log("Selecting state: " + comboBoxState.SelectedItem.ToString());
             if (comboBoxState.SelectedItem.ToString() != "")
             {
+                Log("Selecting state: " + comboBoxState.Text);
+
                 comboBoxRepresentative.SelectedIndex = 0;
                 labelRepResult.Text = "Sales Rep: ";
                 labelContactResult.Text = "Contact: ";
@@ -355,10 +355,10 @@ namespace SalesMap
 
         private void comboBoxRepresentative_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Log("Selecting rep: " + comboBoxRepresentative.SelectedItem.ToString());
-
             if (comboBoxRepresentative.SelectedItem.ToString() != "")
             {
+                Log("Selecting rep: " + comboBoxRepresentative.Text);
+
                 comboBoxState.SelectedIndex = 0;
                 labelRegionResult.Text = "Region: ";
             }
@@ -432,8 +432,8 @@ namespace SalesMap
 
         private void pictureBoxOffSMR_Click(object sender, EventArgs e)
         {
-            Log("Composing an OffSMR email with state: " + comboBoxState.SelectedItem.ToString() + " & rep: " + 
-                comboBoxRepresentative.SelectedItem.ToString() + " & signature workaround: " + Properties.Settings.Default.SignatureWorkaround);
+            Log("Composing an OffSMR email with state: " + comboBoxState.Text + " & rep: " + 
+                comboBoxRepresentative.Text + " & signature workaround: " + Properties.Settings.Default.SignatureWorkaround);
 
             string rep = "";
             string cc = "";
@@ -578,11 +578,11 @@ namespace SalesMap
             {
                 if (comboBoxRepresentative.SelectedItem.ToString() != "")
                 {
-                    Log("Could not find an RSM for the selection: " + comboBoxRepresentative.SelectedItem.ToString());
+                    Log("Could not find an RSM for the selection: " + comboBoxRepresentative.Text);
                 }
                 else if(comboBoxState.SelectedItem.ToString() != "")
                 {
-                    Log("Could not find an RSM for the selection: " + comboBoxState.SelectedItem.ToString());
+                    Log("Could not find an RSM for the selection: " + comboBoxState.Text);
                 }
             }
 
@@ -597,7 +597,7 @@ namespace SalesMap
                 Clipboard.SetText(body);
                 proc.Start();
 
-                Thread.Sleep(250);
+                Thread.Sleep(1000);
                 SendKeys.Send("{TAB}{TAB}{TAB}");
                 SendKeys.Send("^v");
 
@@ -744,8 +744,8 @@ namespace SalesMap
                     Log("Deleted the SalesReps.txt from the last version of this program");
                 }
 
-                //Properties.Settings.Default.FirstRun = false;
-                //Properties.Settings.Default.Save();
+                Properties.Settings.Default.FirstRun = false;
+                Properties.Settings.Default.Save();
                 Log("This was the last time this will run");
             }
         }
