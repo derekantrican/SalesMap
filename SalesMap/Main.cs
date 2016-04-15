@@ -47,7 +47,7 @@ namespace SalesMap
                 compareFiles();
 
                 WebClient client = new WebClient();
-                string url = "https://github.com/derekantrican/SalesMap/releases";
+                string url = "https://github.com/derekantrican/SalesMap/tags";
                 string html = "";
                 try
                 {
@@ -59,9 +59,6 @@ namespace SalesMap
                     return;
                 }
 
-                //---------------------------------
-                url = "https://github.com/derekantrican/SalesMap/tags";
-                html = client.DownloadString(url);
                 string nextUrl = "";
 
                 List<string> versions = new List<string>();

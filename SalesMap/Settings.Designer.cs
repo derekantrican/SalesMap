@@ -37,12 +37,13 @@
             this.textBoxEdit = new System.Windows.Forms.RichTextBox();
             this.linkLabelUpdate = new System.Windows.Forms.LinkLabel();
             this.checkBoxAutoUpdates = new System.Windows.Forms.CheckBox();
-            this.labelOffSMR = new System.Windows.Forms.Label();
             this.buttonVariables = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.checkBoxSignature = new System.Windows.Forms.CheckBox();
             this.linkLabelSignature = new System.Windows.Forms.LinkLabel();
             this.checkBoxSendLog = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -64,7 +65,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(300, 237);
+            this.buttonSave.Location = new System.Drawing.Point(307, 221);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(88, 28);
             this.buttonSave.TabIndex = 5;
@@ -76,7 +77,7 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(15, 230);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(15, 213);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(146, 13);
             this.linkLabelGitHub.TabIndex = 6;
@@ -86,7 +87,7 @@
             // 
             // textBoxEdit
             // 
-            this.textBoxEdit.Location = new System.Drawing.Point(12, 63);
+            this.textBoxEdit.Location = new System.Drawing.Point(11, 19);
             this.textBoxEdit.Name = "textBoxEdit";
             this.textBoxEdit.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.textBoxEdit.Size = new System.Drawing.Size(374, 88);
@@ -96,7 +97,7 @@
             // linkLabelUpdate
             // 
             this.linkLabelUpdate.AutoSize = true;
-            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 246);
+            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 229);
             this.linkLabelUpdate.Name = "linkLabelUpdate";
             this.linkLabelUpdate.Size = new System.Drawing.Size(91, 13);
             this.linkLabelUpdate.TabIndex = 8;
@@ -107,25 +108,16 @@
             // checkBoxAutoUpdates
             // 
             this.checkBoxAutoUpdates.AutoSize = true;
-            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(225, 191);
+            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(232, 180);
             this.checkBoxAutoUpdates.Name = "checkBoxAutoUpdates";
             this.checkBoxAutoUpdates.Size = new System.Drawing.Size(169, 17);
             this.checkBoxAutoUpdates.TabIndex = 10;
             this.checkBoxAutoUpdates.Text = "Check for updates on startup?";
             this.checkBoxAutoUpdates.UseVisualStyleBackColor = true;
             // 
-            // labelOffSMR
-            // 
-            this.labelOffSMR.AutoSize = true;
-            this.labelOffSMR.Location = new System.Drawing.Point(13, 47);
-            this.labelOffSMR.Name = "labelOffSMR";
-            this.labelOffSMR.Size = new System.Drawing.Size(100, 13);
-            this.labelOffSMR.TabIndex = 11;
-            this.labelOffSMR.Text = "Edit Off SMR Email:";
-            // 
             // buttonVariables
             // 
-            this.buttonVariables.Location = new System.Drawing.Point(356, 37);
+            this.buttonVariables.Location = new System.Drawing.Point(11, 110);
             this.buttonVariables.Name = "buttonVariables";
             this.buttonVariables.Size = new System.Drawing.Size(30, 23);
             this.buttonVariables.TabIndex = 12;
@@ -143,7 +135,7 @@
             // checkBoxSignature
             // 
             this.checkBoxSignature.AutoSize = true;
-            this.checkBoxSignature.Location = new System.Drawing.Point(225, 157);
+            this.checkBoxSignature.Location = new System.Drawing.Point(227, 115);
             this.checkBoxSignature.Name = "checkBoxSignature";
             this.checkBoxSignature.Size = new System.Drawing.Size(155, 17);
             this.checkBoxSignature.TabIndex = 13;
@@ -155,7 +147,7 @@
             // 
             this.linkLabelSignature.AutoSize = true;
             this.linkLabelSignature.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.linkLabelSignature.Location = new System.Drawing.Point(375, 157);
+            this.linkLabelSignature.Location = new System.Drawing.Point(376, 115);
             this.linkLabelSignature.Name = "linkLabelSignature";
             this.linkLabelSignature.Size = new System.Drawing.Size(13, 13);
             this.linkLabelSignature.TabIndex = 14;
@@ -167,7 +159,7 @@
             // checkBoxSendLog
             // 
             this.checkBoxSendLog.AutoSize = true;
-            this.checkBoxSendLog.Location = new System.Drawing.Point(225, 214);
+            this.checkBoxSendLog.Location = new System.Drawing.Point(232, 198);
             this.checkBoxSendLog.Name = "checkBoxSendLog";
             this.checkBoxSendLog.Size = new System.Drawing.Size(152, 17);
             this.checkBoxSendLog.TabIndex = 15;
@@ -175,19 +167,28 @@
             this.toolTip1.SetToolTip(this.checkBoxSendLog, "Send log file to developer when program is closed");
             this.checkBoxSendLog.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBoxEdit);
+            this.groupBox1.Controls.Add(this.linkLabelSignature);
+            this.groupBox1.Controls.Add(this.buttonVariables);
+            this.groupBox1.Controls.Add(this.checkBoxSignature);
+            this.groupBox1.Location = new System.Drawing.Point(4, 33);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(395, 139);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Edit Off SMR Email";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 270);
+            this.ClientSize = new System.Drawing.Size(407, 254);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.checkBoxSendLog);
-            this.Controls.Add(this.linkLabelSignature);
-            this.Controls.Add(this.checkBoxSignature);
-            this.Controls.Add(this.buttonVariables);
-            this.Controls.Add(this.labelOffSMR);
             this.Controls.Add(this.checkBoxAutoUpdates);
             this.Controls.Add(this.linkLabelUpdate);
-            this.Controls.Add(this.textBoxEdit);
             this.Controls.Add(this.linkLabelGitHub);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxMapLocation);
@@ -197,6 +198,8 @@
             this.MinimizeBox = false;
             this.Name = "Settings";
             this.Text = "Settings";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,11 +213,11 @@
         private System.Windows.Forms.RichTextBox textBoxEdit;
         private System.Windows.Forms.LinkLabel linkLabelUpdate;
         private System.Windows.Forms.CheckBox checkBoxAutoUpdates;
-        private System.Windows.Forms.Label labelOffSMR;
         private System.Windows.Forms.Button buttonVariables;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox checkBoxSignature;
         private System.Windows.Forms.LinkLabel linkLabelSignature;
         private System.Windows.Forms.CheckBox checkBoxSendLog;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

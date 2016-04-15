@@ -119,7 +119,7 @@ namespace SalesMap
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             WebClient client = new WebClient();
-            string url = "https://github.com/derekantrican/SalesMap/releases";
+            string url = "https://github.com/derekantrican/SalesMap/tags";
             string html = "";
             try
             {
@@ -128,25 +128,61 @@ namespace SalesMap
             catch
             {
                 Log("Attempted to check for new version and failed to get html");
-                MessageBox.Show("Connection problem....\n\nAre you connected to the internet?");
                 return;
             }
 
-            string GitVersion = html.Substring(html.IndexOf("<span class=\"css-truncate-target\">v") + 34).Split('<')[0];
+            string nextUrl = "";
+
+            List<string> versions = new List<string>();
+            string version = "";
+            while (html.IndexOf("<span class=\"disabled\">Next</span>") < 0)
+            {
+                while (html.IndexOf("<span class=\"tag-name\">v") > -1)
+                {
+                    html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
+                    version = html.Split('<')[0];
+
+                    if (version != "" && version.IndexOf("beta") < 0)
+                        versions.Add(html.Split('<')[0]);
+                }
+
+                nextUrl = html.Substring(html.IndexOf("<span class=\"disabled\">Previous</span>") + 47).Split('\"')[0];
+                html = client.DownloadString(nextUrl);
+            }
+
+            //Run this while loop again to get the last page
+            while (html.IndexOf("<span class=\"tag-name\">v") > -1)
+            {
+                html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
+                version = html.Split('<')[0];
+
+                if (version != "" && version.IndexOf("beta") < 0)
+                    versions.Add(html.Split('<')[0]);
+            }
+
+            //foreach (string s in versions)
+            //{
+            //    Console.WriteLine(s);
+            //}
+
+            string GitVersion = versions.First();
             string thisVersion = Properties.Settings.Default.Version;
 
             if (GitVersion != thisVersion)
             {
+                Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
+
                 if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
                                     "\n\nGo to " + url + " to download the new version?",
                                     "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
-                    Process.Start(url);
+                    System.Diagnostics.Process.Start(url);
+                    Log("User selected \"Yes\" for the new update");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Congrats! You have the most current version!\n\nVersion: " + thisVersion, "Current Version");
+                else
+                {
+                    Log("User selected \"No\" for the new update");
+                }
             }
         }
 
