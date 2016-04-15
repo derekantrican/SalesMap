@@ -32,10 +32,17 @@ namespace SalesMap
             InitializeComponent();
             Log("------------ STARTING SALESMAP ------------");
 
+            checkForUpdate();
+
             CheckFirstRun();
 
             //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
 
+            readFiles();
+        }
+
+        private void checkForUpdate()
+        {
             if (Properties.Settings.Default.AutoCheckUpdate)
             {
                 compareFiles();
@@ -53,7 +60,44 @@ namespace SalesMap
                     return;
                 }
 
-                string GitVersion = html.Substring(html.IndexOf("<span class=\"css-truncate-target\">v") + 34).Split('<')[0];
+                //---------------------------------
+                url = "https://github.com/derekantrican/SalesMap/tags";
+                html = client.DownloadString(url);
+                string nextUrl = "";
+
+                List<string> versions = new List<string>();
+                string version = "";
+                while (html.IndexOf("<span class=\"disabled\">Next</span>") < 0)
+                {
+                    while (html.IndexOf("<span class=\"tag-name\">v") > -1)
+                    {
+                        html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
+                        version = html.Split('<')[0];
+
+                        if (version != "" && version.IndexOf("beta") < 0)
+                            versions.Add(html.Split('<')[0]);
+                    }
+
+                    nextUrl = html.Substring(html.IndexOf("<span class=\"disabled\">Previous</span>") + 47).Split('\"')[0];
+                    html = client.DownloadString(nextUrl);
+                }
+
+                //Run this while loop again to get the last page
+                while (html.IndexOf("<span class=\"tag-name\">v") > -1)
+                {
+                    html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
+                    version = html.Split('<')[0];
+
+                    if (version != "" && version.IndexOf("beta") < 0)
+                        versions.Add(html.Split('<')[0]);
+                }
+
+                //foreach (string s in versions)
+                //{
+                //    Console.WriteLine(s);
+                //}
+
+                string GitVersion = versions.First();
                 string thisVersion = Properties.Settings.Default.Version;
 
                 if (GitVersion != thisVersion)
@@ -73,8 +117,6 @@ namespace SalesMap
                     }
                 }
             }
-
-            readFiles();
         }
 
         private void SalesMapSearch_FormClosing(object sender, FormClosingEventArgs e)
