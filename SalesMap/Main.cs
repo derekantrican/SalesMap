@@ -32,9 +32,8 @@ namespace SalesMap
             InitializeComponent();
             Log("------------ STARTING SALESMAP ------------");
 
+            checkFirstRun();
             checkForUpdate();
-
-            CheckFirstRun();
 
             //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
 
@@ -765,7 +764,7 @@ namespace SalesMap
             File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
         }
 
-        private void CheckFirstRun()
+        private void checkFirstRun()
         {
             string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
             string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
