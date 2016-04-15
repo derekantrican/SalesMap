@@ -128,6 +128,7 @@ namespace SalesMap
             catch
             {
                 Log("Attempted to check for new version and failed to get html");
+                MessageBox.Show("Failed to check for a new update. Are you connected to the internet?");
                 return;
             }
 
