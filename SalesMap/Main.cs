@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using Microsoft.Win32;
 using System.Net;
 using System.Reflection;
 using System.Resources;
@@ -763,29 +764,34 @@ namespace SalesMap
 
         private void checkFirstRun()
         {
-            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
+            RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap");
 
-            if (Properties.Settings.Default.FirstRun)
+            if (key == null || key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
             {
-                Log("First time running this program");
+                key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
+
+                Log("First time running version " + Properties.Settings.Default.Version + " of this program");
+
+                string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
+                string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
 
                 if (File.Exists(regionPath))
                 {
                     File.Delete(regionPath);
-                    Log("Deleted the Regions.txt from the last version of this program");
+                    Log("Deleted the Regions.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
                 }
 
                 if (File.Exists(salesPath))
                 {
                     File.Delete(salesPath);
-                    Log("Deleted the SalesReps.txt from the last version of this program");
+                    Log("Deleted the SalesReps.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
                 }
 
-                Properties.Settings.Default.FirstRun = false;
-                Properties.Settings.Default.Save();
                 Log("This was the last time this will run");
+                key.SetValue("FirstRun", Properties.Settings.Default.Version);
             }
+
+            key.Close();
         }
 
     }

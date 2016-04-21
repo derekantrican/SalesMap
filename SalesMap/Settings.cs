@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Microsoft.Win32;
 using System.Net;
 using System.Reflection;
 using System.Text;
@@ -68,9 +69,9 @@ namespace SalesMap
                 {
                     Log("Factory reset!");
 
-                    Properties.Settings.Default.FirstRun = true;
-                    Properties.Settings.Default.AutoCheckUpdate = true;
-                    Properties.Settings.Default.Save();
+                    RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap");
+                    key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
+                    key.SetValue("FirstRun", ""); //Reset the key value
 
                     ProcessStartInfo Info = new ProcessStartInfo();
                     Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
