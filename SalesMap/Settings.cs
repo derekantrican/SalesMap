@@ -199,7 +199,7 @@ namespace SalesMap
 
         private void linkLabelSignature_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string url = "https://www.experts-exchange.com/questions/26410679/HTML-Mailto-link-does-not-add-my-signature-in-Outlook.html";
+            string url = "https://goo.gl/BkoRR2";
             Process.Start(url);
         }
 
