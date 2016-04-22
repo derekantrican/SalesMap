@@ -459,30 +459,6 @@ namespace SalesMap
         {
             Log("Opening Google Maps");
 
-            //--------------------------------
-            try
-            {
-                Outlook.Application outlookApp = new Outlook.Application();
-                Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
-
-                string body = "THIS IS A BODY";
-                string signature = "<br><br><span style=\"color: #000000; font-family: calibri; font-size: 11pt\"> Derek Antrican<br> <i>Application Engineer</i><br> <b>SigmaTEK Systems, LLC</b><br> Main: 513.595.2002<br> 1445 Kemper Meadow Drive | Cincinnati, Ohio 45240<br> <a href=\"http://www.sigmanest.com\">www.sigmanest.com</a><br> </span> <a href=\"https://www.sigmanest.com/academy/\" target=\"_blank\"><img src=\"https://www.sigmanest.com/wp-content/uploads/2015/10/NESTX1-EMAIL.png\" moz -do-not-send=\"true\" border=\"0\"></a>";
-
-
-                mailItem.Subject = "SigmaNEST Subscription Membership Renewal";
-                mailItem.HTMLBody = body + signature;
-                mailItem.CC = "derekantrican@gmail.com;michael.fink@sigmanest.com";
-                mailItem.Display(true);
-                
-            }
-            catch (Exception eX)
-            {
-                throw new Exception("cDocument: Error occurred trying to Create an Outlook Email"
-                                + Environment.NewLine + eX.Message);
-            }
-            return;
-            //--------------------------------
-
             if (comboBoxState.SelectedItem.ToString() == "")
             {
                 System.Diagnostics.Process.Start("https://www.google.com/maps/@38.9165981,-96.6887,5z");
@@ -496,8 +472,7 @@ namespace SalesMap
 
         private void pictureBoxOffSMR_Click(object sender, EventArgs e)
         {
-            Log("Composing an OffSMR email with state: " + comboBoxState.Text + " & rep: " + 
-                comboBoxRepresentative.Text + " & signature workaround: " + Properties.Settings.Default.SignatureWorkaround);
+            Log("Composing an OffSMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
 
             string rep = "";
             string cc = "";
@@ -652,24 +627,21 @@ namespace SalesMap
 
             subject = replaceVariables(subject, rep, cc.Split(';')[0], phone);
             body = replaceVariables(body, rep, cc.Split(';')[0], phone);
-            
-            System.Diagnostics.Process proc = new System.Diagnostics.Process();
 
-            if (Properties.Settings.Default.SignatureWorkaround)
+            try
             {
-                proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject;
-                Clipboard.SetText(body);
-                proc.Start();
+                Outlook.Application outlookApp = new Outlook.Application();
+                Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
 
-                Thread.Sleep(1000);
-                SendKeys.Send("{TAB}{TAB}{TAB}");
-                SendKeys.Send("^v");
-
+                mailItem.Subject = subject;
+                mailItem.CC = cc;
+                mailItem.HTMLBody = body;
+                mailItem.Display(true);
             }
-            else
+            catch (Exception eX)
             {
-                proc.StartInfo.FileName = "mailto:?cc=" + cc + "&subject=" + subject + "&body=" + body;
-                proc.Start();
+                MessageBox.Show("Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again");
+                Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
             }
         }
 
@@ -679,11 +651,6 @@ namespace SalesMap
             rawReplaced = rawReplaced.Replace("{SALESREPNAME}", repName);
             rawReplaced = rawReplaced.Replace("{SALESREPEMAIL}", repEmail);
             rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
-
-            if (Properties.Settings.Default.SignatureWorkaround == false)
-            {
-                rawReplaced = rawReplaced.Replace(" ", "%20").Replace("\n", "%0D%0A");
-            }
 
             return rawReplaced;
         }

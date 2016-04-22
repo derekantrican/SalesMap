@@ -61,18 +61,6 @@ namespace SalesMap.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SignatureWorkaround {
-            get {
-                return ((bool)(this["SignatureWorkaround"]));
-            }
-            set {
-                this["SignatureWorkaround"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool SendLog {
             get {

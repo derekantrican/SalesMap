@@ -24,7 +24,6 @@ namespace SalesMap
             textBoxEditSubject.Text = Properties.Settings.Default.OffSMRSubject;
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
             checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
-            checkBoxSignature.Checked = Properties.Settings.Default.SignatureWorkaround;
             checkBoxSendLog.Checked = Properties.Settings.Default.SendLog;
 
             editOffSMR();
@@ -61,7 +60,6 @@ namespace SalesMap
             Properties.Settings.Default.OffSMRSubject = textBoxEditSubject.Text;
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
             Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
-            Properties.Settings.Default.SignatureWorkaround = checkBoxSignature.Checked;
             Properties.Settings.Default.SendLog = checkBoxSendLog.Checked;
             Properties.Settings.Default.Save();
 
@@ -192,12 +190,6 @@ namespace SalesMap
                             "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
                             "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
                             "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
-        }
-
-        private void linkLabelSignature_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string url = "https://goo.gl/BkoRR2";
-            Process.Start(url);
         }
 
         private void Log(string itemToLog)
