@@ -760,6 +760,17 @@ namespace SalesMap
 
             if (key == null || key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
             {
+                if (key != null && Convert.ToDouble(key.GetValue("FirstRun").ToString().Split('v').Last()) < 4.4)
+                {
+                    Log("The last version of SalesMap run on this computer was earlier than v4.4 (it was: " + key.GetValue("FirstRun").ToString() + "). Therefore, we'll delete OffSMR.txt (if it exists)");
+
+                    if (File.Exists(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt"))
+                    {
+                        File.Delete(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt");
+                        Log("Deleted OffSMR.txt");
+                    }
+                }
+
                 key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
 
                 Log("First time running version " + Properties.Settings.Default.Version + " of this program");

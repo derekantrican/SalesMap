@@ -102,7 +102,7 @@ namespace SalesMap
                     }
 
                     //If the file is unchanged, leave it alone
-                    if (OffSMRText != textBoxEdit.Text)
+                    if (removeSpecial(OffSMRText) != removeSpecial(textBoxEdit.Text))
                     {
                         Console.WriteLine("Creating file...");
                         using (var stream = File.Create(OffSMRPath))
@@ -190,6 +190,13 @@ namespace SalesMap
                             "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
                             "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
                             "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
+        }
+
+        private string removeSpecial(string input)
+        {
+            input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
+
+            return input;
         }
 
         private void Log(string itemToLog)
