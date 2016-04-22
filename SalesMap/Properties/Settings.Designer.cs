@@ -82,5 +82,17 @@ namespace SalesMap.Properties {
                 this["SendLog"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SigmaNEST Subscription Membership Renewal")]
+        public string OffSMRSubject {
+            get {
+                return ((string)(this["OffSMRSubject"]));
+            }
+            set {
+                this["OffSMRSubject"] = value;
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using Outlook = Microsoft.Office.Interop.Outlook;
 using Microsoft.Win32;
 using System.Net;
 using System.Reflection;
@@ -458,6 +459,30 @@ namespace SalesMap
         {
             Log("Opening Google Maps");
 
+            //--------------------------------
+            try
+            {
+                Outlook.Application outlookApp = new Outlook.Application();
+                Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
+
+                string body = "THIS IS A BODY";
+                string signature = "<br><br><span style=\"color: #000000; font-family: calibri; font-size: 11pt\"> Derek Antrican<br> <i>Application Engineer</i><br> <b>SigmaTEK Systems, LLC</b><br> Main: 513.595.2002<br> 1445 Kemper Meadow Drive | Cincinnati, Ohio 45240<br> <a href=\"http://www.sigmanest.com\">www.sigmanest.com</a><br> </span> <a href=\"https://www.sigmanest.com/academy/\" target=\"_blank\"><img src=\"https://www.sigmanest.com/wp-content/uploads/2015/10/NESTX1-EMAIL.png\" moz -do-not-send=\"true\" border=\"0\"></a>";
+
+
+                mailItem.Subject = "SigmaNEST Subscription Membership Renewal";
+                mailItem.HTMLBody = body + signature;
+                mailItem.CC = "derekantrican@gmail.com;michael.fink@sigmanest.com";
+                mailItem.Display(true);
+                
+            }
+            catch (Exception eX)
+            {
+                throw new Exception("cDocument: Error occurred trying to Create an Outlook Email"
+                                + Environment.NewLine + eX.Message);
+            }
+            return;
+            //--------------------------------
+
             if (comboBoxState.SelectedItem.ToString() == "")
             {
                 System.Diagnostics.Process.Start("https://www.google.com/maps/@38.9165981,-96.6887,5z");
@@ -477,7 +502,7 @@ namespace SalesMap
             string rep = "";
             string cc = "";
             string phone = "";
-            string subject = "SigmaNEST Subscription Membership Renewal";
+            string subject = Properties.Settings.Default.OffSMRSubject;
             string body = "";
 
             string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
@@ -625,8 +650,8 @@ namespace SalesMap
                 }
             }
 
-            subject = mailtoFormat(subject, rep, cc.Split(';')[0], phone);
-            body = mailtoFormat(body, rep, cc.Split(';')[0], phone);
+            subject = replaceVariables(subject, rep, cc.Split(';')[0], phone);
+            body = replaceVariables(body, rep, cc.Split(';')[0], phone);
             
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
 
@@ -648,7 +673,7 @@ namespace SalesMap
             }
         }
 
-        private string mailtoFormat(string raw, string repName, string repEmail, string repPhone)
+        private string replaceVariables(string raw, string repName, string repEmail, string repPhone)
         {
             string rawReplaced = raw;
             rawReplaced = rawReplaced.Replace("{SALESREPNAME}", repName);

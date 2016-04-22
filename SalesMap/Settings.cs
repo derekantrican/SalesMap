@@ -21,6 +21,7 @@ namespace SalesMap
         {
             InitializeComponent();
 
+            textBoxEditSubject.Text = Properties.Settings.Default.OffSMRSubject;
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
             checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
             checkBoxSignature.Checked = Properties.Settings.Default.SignatureWorkaround;
@@ -57,6 +58,7 @@ namespace SalesMap
         {
             Log("Saving settings");
 
+            Properties.Settings.Default.OffSMRSubject = textBoxEditSubject.Text;
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
             Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
             Properties.Settings.Default.SignatureWorkaround = checkBoxSignature.Checked;
@@ -161,11 +163,6 @@ namespace SalesMap
                 if (version != "" && version.IndexOf("beta") < 0)
                     versions.Add(html.Split('<')[0]);
             }
-
-            //foreach (string s in versions)
-            //{
-            //    Console.WriteLine(s);
-            //}
 
             string GitVersion = versions.First();
             string thisVersion = Properties.Settings.Default.Version;

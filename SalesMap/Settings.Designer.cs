@@ -43,6 +43,8 @@
             this.linkLabelSignature = new System.Windows.Forms.LinkLabel();
             this.checkBoxSendLog = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelEditSubject = new System.Windows.Forms.Label();
+            this.textBoxEditSubject = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +67,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(307, 221);
+            this.buttonSave.Location = new System.Drawing.Point(307, 238);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(88, 28);
             this.buttonSave.TabIndex = 5;
@@ -77,7 +79,7 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(15, 213);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(15, 230);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(146, 13);
             this.linkLabelGitHub.TabIndex = 6;
@@ -87,7 +89,7 @@
             // 
             // textBoxEdit
             // 
-            this.textBoxEdit.Location = new System.Drawing.Point(11, 19);
+            this.textBoxEdit.Location = new System.Drawing.Point(11, 37);
             this.textBoxEdit.Name = "textBoxEdit";
             this.textBoxEdit.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.textBoxEdit.Size = new System.Drawing.Size(374, 88);
@@ -97,7 +99,7 @@
             // linkLabelUpdate
             // 
             this.linkLabelUpdate.AutoSize = true;
-            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 229);
+            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 246);
             this.linkLabelUpdate.Name = "linkLabelUpdate";
             this.linkLabelUpdate.Size = new System.Drawing.Size(91, 13);
             this.linkLabelUpdate.TabIndex = 8;
@@ -108,7 +110,7 @@
             // checkBoxAutoUpdates
             // 
             this.checkBoxAutoUpdates.AutoSize = true;
-            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(232, 180);
+            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(232, 197);
             this.checkBoxAutoUpdates.Name = "checkBoxAutoUpdates";
             this.checkBoxAutoUpdates.Size = new System.Drawing.Size(169, 17);
             this.checkBoxAutoUpdates.TabIndex = 10;
@@ -117,7 +119,7 @@
             // 
             // buttonVariables
             // 
-            this.buttonVariables.Location = new System.Drawing.Point(11, 110);
+            this.buttonVariables.Location = new System.Drawing.Point(11, 128);
             this.buttonVariables.Name = "buttonVariables";
             this.buttonVariables.Size = new System.Drawing.Size(30, 23);
             this.buttonVariables.TabIndex = 12;
@@ -135,7 +137,7 @@
             // checkBoxSignature
             // 
             this.checkBoxSignature.AutoSize = true;
-            this.checkBoxSignature.Location = new System.Drawing.Point(227, 115);
+            this.checkBoxSignature.Location = new System.Drawing.Point(227, 133);
             this.checkBoxSignature.Name = "checkBoxSignature";
             this.checkBoxSignature.Size = new System.Drawing.Size(155, 17);
             this.checkBoxSignature.TabIndex = 13;
@@ -147,7 +149,7 @@
             // 
             this.linkLabelSignature.AutoSize = true;
             this.linkLabelSignature.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.linkLabelSignature.Location = new System.Drawing.Point(376, 115);
+            this.linkLabelSignature.Location = new System.Drawing.Point(376, 133);
             this.linkLabelSignature.Name = "linkLabelSignature";
             this.linkLabelSignature.Size = new System.Drawing.Size(13, 13);
             this.linkLabelSignature.TabIndex = 14;
@@ -159,7 +161,7 @@
             // checkBoxSendLog
             // 
             this.checkBoxSendLog.AutoSize = true;
-            this.checkBoxSendLog.Location = new System.Drawing.Point(232, 198);
+            this.checkBoxSendLog.Location = new System.Drawing.Point(232, 215);
             this.checkBoxSendLog.Name = "checkBoxSendLog";
             this.checkBoxSendLog.Size = new System.Drawing.Size(152, 17);
             this.checkBoxSendLog.TabIndex = 15;
@@ -169,22 +171,40 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxEditSubject);
+            this.groupBox1.Controls.Add(this.labelEditSubject);
             this.groupBox1.Controls.Add(this.textBoxEdit);
             this.groupBox1.Controls.Add(this.linkLabelSignature);
             this.groupBox1.Controls.Add(this.buttonVariables);
             this.groupBox1.Controls.Add(this.checkBoxSignature);
             this.groupBox1.Location = new System.Drawing.Point(4, 33);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(395, 139);
+            this.groupBox1.Size = new System.Drawing.Size(395, 158);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit Off SMR Email";
+            // 
+            // labelEditSubject
+            // 
+            this.labelEditSubject.AutoSize = true;
+            this.labelEditSubject.Location = new System.Drawing.Point(46, 19);
+            this.labelEditSubject.Name = "labelEditSubject";
+            this.labelEditSubject.Size = new System.Drawing.Size(46, 13);
+            this.labelEditSubject.TabIndex = 15;
+            this.labelEditSubject.Text = "Subject:";
+            // 
+            // textBoxEditSubject
+            // 
+            this.textBoxEditSubject.Location = new System.Drawing.Point(92, 14);
+            this.textBoxEditSubject.Name = "textBoxEditSubject";
+            this.textBoxEditSubject.Size = new System.Drawing.Size(293, 20);
+            this.textBoxEditSubject.TabIndex = 16;
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 254);
+            this.ClientSize = new System.Drawing.Size(407, 273);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.checkBoxSendLog);
             this.Controls.Add(this.checkBoxAutoUpdates);
@@ -219,5 +239,7 @@
         private System.Windows.Forms.LinkLabel linkLabelSignature;
         private System.Windows.Forms.CheckBox checkBoxSendLog;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBoxEditSubject;
+        private System.Windows.Forms.Label labelEditSubject;
     }
 }
