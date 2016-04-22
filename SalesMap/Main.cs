@@ -628,13 +628,25 @@ namespace SalesMap
             subject = replaceVariables(subject, rep, cc.Split(';')[0], phone);
             body = replaceVariables(body, rep, cc.Split(';')[0], phone);
 
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] {cc, subject, body});
+        }
+
+        private void composeOutlook(object parameters)
+        {
+            object[] array = parameters as object[];
+
+            string cc = Convert.ToString(array[0]);
+            string subject = Convert.ToString(array[1]);
+            string body = Convert.ToString(array[2]);
+
+
             try
             {
                 Outlook.Application outlookApp = new Outlook.Application();
                 Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
 
-                mailItem.Subject = subject;
                 mailItem.CC = cc;
+                mailItem.Subject = subject;
                 mailItem.HTMLBody = body;
                 mailItem.Display(true);
             }
