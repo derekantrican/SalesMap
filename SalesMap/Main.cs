@@ -32,7 +32,7 @@ namespace SalesMap
         public SalesMapSearch()
         {
             InitializeComponent();
-            Log("------------ STARTING SALESMAP ------------");
+            Log("------------ STARTING SALESMAP (" + Properties.Settings.Default.Version + "------------");
 
             checkFirstRun();
             checkForUpdate();
@@ -772,6 +772,9 @@ namespace SalesMap
 
             if (key == null || key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
             {
+                if (key == null)
+                    Log("Key does not exist. Creating Key...");
+
                 if (key != null && Convert.ToDouble(key.GetValue("FirstRun").ToString().Split('v').Last()) < 4.4)
                 {
                     Log("The last version of SalesMap run on this computer was earlier than v4.4 (it was: " + key.GetValue("FirstRun").ToString() + "). Therefore, we'll delete OffSMR.txt (if it exists)");
@@ -808,6 +811,5 @@ namespace SalesMap
 
             key.Close();
         }
-
     }
 }
