@@ -32,7 +32,7 @@ namespace SalesMap
         public SalesMapSearch()
         {
             InitializeComponent();
-            Log("------------ STARTING SALESMAP (" + Properties.Settings.Default.Version + "------------");
+            Log("------------ STARTING SALESMAP (" + Properties.Settings.Default.Version + ") ------------");
 
             checkFirstRun();
             checkForUpdate();
@@ -663,8 +663,33 @@ namespace SalesMap
             rawReplaced = rawReplaced.Replace("{SALESREPNAME}", repName);
             rawReplaced = rawReplaced.Replace("{SALESREPEMAIL}", repEmail);
             rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
+            rawReplaced = rawReplaced.Replace("{MYNAME}", formatName(Environment.UserName));
 
             return rawReplaced;
+        }
+
+        private string formatName(string name)
+        {
+            char[] array = name.Replace(".", " ").ToCharArray();
+
+            if (array.Length >= 1)
+            {
+                if (char.IsLower(array[0]))
+                    array[0] = char.ToUpper(array[0]);
+            }
+
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i - 1] == ' ')
+                {
+                    if (char.IsLower(array[i]))
+                    {
+                        array[i] = char.ToUpper(array[i]);
+                    }
+                }
+            }
+
+            return new string(array);
         }
 
         private void labelContactResult_Click(object sender, EventArgs e)

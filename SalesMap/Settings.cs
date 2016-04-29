@@ -189,7 +189,8 @@ namespace SalesMap
                             " when the email is composed):\n\n" +
                             "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
                             "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
-                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
+                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #" +
+                            "   - \"{MYNAME}\" .. which will get replaced with your name (based on your Windows username)", "Off SMR EMail Variables");
         }
 
         private string removeSpecial(string input)

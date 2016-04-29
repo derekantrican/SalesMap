@@ -6,7 +6,7 @@ Thank you for contacting SigmaNEST Technical Support and we look forward to cont
 <br>
 <br>
 <span style="color: #000000; font-family: calibri; font-size: 11pt"> 
-[Your Name Here]<br>
+{MYNAME}<br>
 <i>Application Engineer</i><br>
 <b>SigmaTEK Systems, LLC</b><br>
 Main: 513.595.2002<br>
