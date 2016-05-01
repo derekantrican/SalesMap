@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace SalesMap
 {
@@ -90,11 +91,6 @@ namespace SalesMap
                         versions.Add(html.Split('<')[0]);
                 }
 
-                //foreach (string s in versions)
-                //{
-                //    Console.WriteLine(s);
-                //}
-
                 string GitVersion = versions.First();
                 string thisVersion = Properties.Settings.Default.Version;
 
@@ -132,6 +128,18 @@ namespace SalesMap
                     try
                     {
                         File.Copy(logPath, newLogPath, true);
+
+
+                        //ProcessStartInfo Info = new ProcessStartInfo();
+                        //Info.UseShellExecute = false;
+                        //Info.RedirectStandardError = true;
+                        //Info.Arguments = @"/C copy C:\Users\" + Environment.UserName + @"\log.txt \\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + Environment.UserName + " log.txt";
+                        //Info.WindowStyle = ProcessWindowStyle.Hidden;
+                        //Info.CreateNoWindow = true;
+                        //Info.FileName = "cmd.exe";
+                        //Process infoProcess = Process.Start(Info);
+                        //string errors = infoProcess.StandardError.ReadToEnd();
+                        //Console.WriteLine("Error: " + errors);
                     }
                     catch
                     {
@@ -793,27 +801,33 @@ namespace SalesMap
 
         private void checkFirstRun()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap");
+            RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
 
-            if (key == null || key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
+            if (key == null)
             {
-                if (key == null)
-                    Log("Key does not exist. Creating Key...");
-
-                if (key != null && Convert.ToDouble(key.GetValue("FirstRun").ToString().Split('v').Last()) < 4.4)
+                Log("Key does not exist. Creating Key...");
+                try
                 {
-                    Log("The last version of SalesMap run on this computer was earlier than v4.4 (it was: " + key.GetValue("FirstRun").ToString() + "). Therefore, we'll delete OffSMR.txt (if it exists)");
+                    key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
+                    key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                }
+                catch
+                {
+                    Log("Could not create and set key (key does not exist).");
+                }
+            }
+            /*else*/if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
+            {
+                Log("First time running version " + Properties.Settings.Default.Version + " of this program. Last version: " + key.GetValue("FirstRun").ToString());
 
+                if (Convert.ToDouble(key.GetValue("FirstRun").ToString().Split('v').Last()) < 4.4)  //If the version last run is older than 4.4, delete the OffSMR.txt (because the whole thing has changed since then)
+                {
                     if (File.Exists(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt"))
                     {
                         File.Delete(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt");
                         Log("Deleted OffSMR.txt");
                     }
                 }
-
-                key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
-
-                Log("First time running version " + Properties.Settings.Default.Version + " of this program");
 
                 string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
                 string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
@@ -831,7 +845,15 @@ namespace SalesMap
                 }
 
                 Log("This was the last time this will run");
+            }
+
+            try
+            {
                 key.SetValue("FirstRun", Properties.Settings.Default.Version);
+            }
+            catch
+            {
+                Log("Could not set value at end of checkFirstRun");
             }
 
             key.Close();

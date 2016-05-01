@@ -69,9 +69,9 @@ namespace SalesMap
                 {
                     Log("Factory reset!");
 
-                    RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap");
-                    key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
-                    key.SetValue("FirstRun", ""); //Reset the key value
+                    RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
+                    if (key != null)
+                        key.DeleteSubKey("SalesMap");//Reset the key value
 
                     ProcessStartInfo Info = new ProcessStartInfo();
                     Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
