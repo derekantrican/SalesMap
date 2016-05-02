@@ -127,19 +127,18 @@ namespace SalesMap
                 {
                     try
                     {
-                        File.Copy(logPath, newLogPath, true);
+                        ProcessStartInfo Info = new ProcessStartInfo();
+                        Info.UseShellExecute = false;
+                        Info.RedirectStandardOutput = true;
+                        Info.Arguments = @"/C copy ""C:\Users\" + Environment.UserName + @"\log.txt"" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + Environment.UserName + " log.txt\" /y";
+                        Info.WindowStyle = ProcessWindowStyle.Hidden;
+                        Info.CreateNoWindow = true;
+                        Info.FileName = "cmd.exe";
+                        Process infoProcess = Process.Start(Info);
+                        string output = infoProcess.StandardOutput.ReadToEnd();
 
-
-                        //ProcessStartInfo Info = new ProcessStartInfo();
-                        //Info.UseShellExecute = false;
-                        //Info.RedirectStandardError = true;
-                        //Info.Arguments = @"/C copy C:\Users\" + Environment.UserName + @"\log.txt \\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + Environment.UserName + " log.txt";
-                        //Info.WindowStyle = ProcessWindowStyle.Hidden;
-                        //Info.CreateNoWindow = true;
-                        //Info.FileName = "cmd.exe";
-                        //Process infoProcess = Process.Start(Info);
-                        //string errors = infoProcess.StandardError.ReadToEnd();
-                        //Console.WriteLine("Error: " + errors);
+                        if (output != "")
+                            Log("Copying log file. Result: \"" + removeSpecial(output) + "\"");
                     }
                     catch
                     {

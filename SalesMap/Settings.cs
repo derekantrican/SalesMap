@@ -25,8 +25,10 @@ namespace SalesMap
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
             checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
             checkBoxSendLog.Checked = Properties.Settings.Default.SendLog;
-
-            editOffSMR();
+            textBoxEdit.Text = Properties.Settings.Default.OffSMRBody;
+            richTextBoxSignature.Text = Properties.Settings.Default.OffSMRSignature;
+            
+            //editOffSMR();
         }
 
         private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -34,24 +36,24 @@ namespace SalesMap
             Process.Start("https://github.com/derekantrican/SalesMap/wiki");
         }
 
-        private void editOffSMR()
-        {
-            string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
+        //private void editOffSMR()
+        //{
+        //    string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
 
-            if (File.Exists(offSMRPath))
-            {
-                Console.WriteLine("Off SMR file exists");
-                textBoxEdit.Text = File.ReadAllText(offSMRPath);
-            }
-            else
-            {
-                Console.WriteLine("Off SMR file does not exist");
-                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
-                {
-                    textBoxEdit.Text = reader.ReadToEnd();
-                }
-            }
-        }
+        //    if (File.Exists(offSMRPath))
+        //    {
+        //        Console.WriteLine("Off SMR file exists");
+        //        textBoxEdit.Text = File.ReadAllText(offSMRPath);
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Off SMR file does not exist");
+        //        using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
+        //        {
+        //            textBoxEdit.Text = reader.ReadToEnd();
+        //        }
+        //    }
+        //}
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -61,6 +63,8 @@ namespace SalesMap
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
             Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
             Properties.Settings.Default.SendLog = checkBoxSendLog.Checked;
+            Properties.Settings.Default.OffSMRBody = textBoxEdit.Text;
+            Properties.Settings.Default.OffSMRSignature = richTextBoxSignature.Text;
             Properties.Settings.Default.Save();
 
             if (Form.ModifierKeys == Keys.Control)
@@ -84,35 +88,35 @@ namespace SalesMap
             }
 
                 //WRITE TO OFF SMR FILE
-                string OffSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
+                //string OffSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
 
-                if (File.Exists(OffSMRPath))
-                {
-                    Console.WriteLine("Off SMR file exists");
-                    File.WriteAllText(OffSMRPath, textBoxEdit.Text);
-                }
-                else
-                {
-                    Console.WriteLine("Off SMR file does not exist");
+                //if (File.Exists(OffSMRPath))
+                //{
+                //    Console.WriteLine("Off SMR file exists");
+                //    File.WriteAllText(OffSMRPath, textBoxEdit.Text);
+                //}
+                //else
+                //{
+                //    Console.WriteLine("Off SMR file does not exist");
 
-                    string OffSMRText = "";
-                    using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
-                    {
-                        OffSMRText = reader.ReadToEnd();
-                    }
+                //    string OffSMRText = "";
+                //    using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
+                //    {
+                //        OffSMRText = reader.ReadToEnd();
+                //    }
 
-                    //If the file is unchanged, leave it alone
-                    if (removeSpecial(OffSMRText) != removeSpecial(textBoxEdit.Text))
-                    {
-                        Console.WriteLine("Creating file...");
-                        using (var stream = File.Create(OffSMRPath))
-                        {
-                            //Doing this "using bracket" so that IDisposable is implemented afterwards
-                        }
+                //    //If the file is unchanged, leave it alone
+                //    if (removeSpecial(OffSMRText) != removeSpecial(textBoxEdit.Text))
+                //    {
+                //        Console.WriteLine("Creating file...");
+                //        using (var stream = File.Create(OffSMRPath))
+                //        {
+                //            //Doing this "using bracket" so that IDisposable is implemented afterwards
+                //        }
 
-                        File.WriteAllText(OffSMRPath, textBoxEdit.Text);
-                    }
-                }
+                //        File.WriteAllText(OffSMRPath, textBoxEdit.Text);
+                //    }
+                //}
 
                 this.Close();
         }
@@ -189,8 +193,8 @@ namespace SalesMap
                             " when the email is composed):\n\n" +
                             "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
                             "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
-                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #" +
-                            "   - \"{MYNAME}\" .. which will get replaced with your name (based on your Windows username)", "Off SMR EMail Variables");
+                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #\n" +
+                            "   - \"{MYNAME}\" .. which will get replaced with your name", "Off SMR EMail Variables");
         }
 
         private string removeSpecial(string input)
