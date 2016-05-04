@@ -86,7 +86,7 @@ namespace SalesMap.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<span style=""color: #000000; font-family: calibri; font-size: 11pt""> 
-{MYNAME}<br>
+YOUR_NAME<br>
 <i>Application Engineer</i><br>
 <b>SigmaTEK Systems, LLC</b><br>
 Main: 513.595.2002<br>
@@ -226,6 +226,26 @@ Thank you for contacting SigmaNEST Technical Support and we look forward to cont
             }
             set {
                 this["Regions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<span style=""color: #000000; font-family: calibri; font-size: 11pt""> 
+YOUR_NAME<br>
+<i>Application Engineer</i><br>
+<b>SigmaTEK Systems, LLC</b><br>
+Main: 513.595.2002<br>
+1445 Kemper Meadow Drive | Cincinnati, Ohio 45240<br>
+<a href=""http://www.sigmanest.com"">www.sigmanest.com</a><br>
+</span>
+<a href=""https://www.sigmanest.com/academy/"" target=""_blank""><img src=""https://www.sigmanest.com/wp-content/uploads/2015/10/NESTX1-EMAIL.png"" moz -do-not-send=""true"" border=""0""></a>")]
+        public string OffSMRSignatureDefault {
+            get {
+                return ((string)(this["OffSMRSignatureDefault"]));
+            }
+            set {
+                this["OffSMRSignatureDefault"] = value;
             }
         }
     }

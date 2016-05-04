@@ -686,12 +686,6 @@ namespace SalesMap
 
             if (key == null)
             {
-                MessageBox.Show("Please set up your signature in the settings!");
-
-                Log("Opening config so the user can set their signature");
-                Settings config = new Settings();
-                config.ShowDialog();
-
                 Log("Key does not exist. Creating Key...");
                 try
                 {
@@ -703,6 +697,16 @@ namespace SalesMap
                     Log("Could not create and set key (key does not exist).");
                     return;
                 }
+            }
+
+            //Force the user to set up their signature
+            if (removeSpecial(Properties.Settings.Default.OffSMRSignature) == removeSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+            {
+                MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
+
+                Log("Opening config so the user can set their signature");
+                Settings config = new Settings();
+                config.ShowDialog();
             }
 
             if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)

@@ -29,8 +29,8 @@ namespace SalesMap
             textBoxEdit.Text = Properties.Settings.Default.OffSMRBody;
             richTextBoxSignature.Text = Properties.Settings.Default.OffSMRSignature;
 
-            RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
-            if (key == null)
+            //If the user's Off SMR Signature is the same as the default, show them where to set up a new one
+            if (removeSpecial(Properties.Settings.Default.OffSMRSignature) == removeSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
             {
                 tabControlOffSMREmail.SelectTab(1);
                 richTextBoxSignature.BackColor = Color.LightCoral;
@@ -159,9 +159,9 @@ namespace SalesMap
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             string subject = textBoxEditSubject.Text;
-            string body = replaceVariables(textBoxEdit.Text + richTextBoxSignature.Text, "Mr. SigmaNEST", "mr.sigmanest@sigmanest.com", "123-456-7890");
+            string body = replaceVariables(textBoxEdit.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
 
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "mr.sigmanest@sigmanest.com", subject, body });
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "mr.salesrep@sigmanest.com", subject, body });
         }
 
         private void composeOutlook(object parameters)
@@ -198,6 +198,13 @@ namespace SalesMap
             rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
 
             return rawReplaced;
+        }
+
+        private string removeSpecial(string input)
+        {
+            input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
+
+            return input;
         }
 
         private void Log(string itemToLog)
