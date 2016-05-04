@@ -162,7 +162,6 @@ namespace SalesMap
                 html = client.DownloadString(url);
 
                 regionTextOnline = html.Substring(html.IndexOf("<pre><code>") + 11).Split('<')[0];
-                Console.WriteLine(regionTextOnline);
                 salesTextOnline = html.Substring(html.LastIndexOf("<pre><code>") + 11).Split('<')[0];
             }
             catch
@@ -180,13 +179,13 @@ namespace SalesMap
             //Compare the raw text of files by checking files without special characters
             if (removeSpecial(Properties.Settings.Default.Regions) != removeSpecial(regionTextOnline) && regionTextOnline != "")
             {
-                Log("Regions.txt is not the same as online. Updating...");
+                Log("Internal regions is not the same as online. Updating...");
                 Properties.Settings.Default.Regions = regionTextOnline;
             }
 
             if (removeSpecial(Properties.Settings.Default.SalesReps) != removeSpecial(salesTextOnline) && salesTextOnline != "")
             {
-                Log("SalesReps.txt is not the same as online. Updating...");
+                Log("Internal SalesReps is not the same as online. Updating...");
                 Properties.Settings.Default.SalesReps = salesTextOnline;
             }
 
@@ -195,87 +194,55 @@ namespace SalesMap
 
         public void readFiles()
         {
-            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
-            Stream fileStream;
-            Stream fileStream1;
-
-            if (File.Exists(regionPath))
+            using (StringReader reader = new StringReader(Properties.Settings.Default.Regions))
             {
-                Log("Reading from Regions.txt file");
-                fileStream = File.Open(regionPath, FileMode.Open);
-            }
-            else
-            {
-                Log("Reading from internal Regions file");
-                var resourceRegions = "SalesMap.Regions.txt";
-                var assembly = Assembly.GetExecutingAssembly();
+                string line = reader.ReadLine();
 
-                fileStream = assembly.GetManifestResourceStream(resourceRegions);
-            }
-
-            using (StreamReader reader = new StreamReader(fileStream))
-            {
-                var lines = new List<string[]>();
-                int Row = 0;
-                while (!reader.EndOfStream)
+                while (line != null)
                 {
-                    string[] Line = reader.ReadLine().Split(',');
+                    string[] items = line.Split(',');
+
                     try
                     {
-                        RegionNames.Add(Line[0]);
-                        RegionParts.Add(Line[1]);
-                        RegionArea.Add(Line[2]);
-                        Row++;
+                        RegionNames.Add(items[0]);
+                        RegionParts.Add(items[1]);
+                        RegionArea.Add(items[2]);
                     }
                     catch
                     {
                         Log("Failed to read from Regions.txt");
-                        MessageBox.Show("Cannot read from Regions.txt in C:\\Users\\" + Environment.UserName + "\\Regions.txt \n\nCheck to make sure you have the right amount of commas");
-                        Environment.Exit(1);
                     }
+
+                    line = reader.ReadLine();
                 }
             }
 
-            if (File.Exists(salesPath))
+            using (StringReader reader = new StringReader(Properties.Settings.Default.SalesReps))
             {
-                Log("Reading from SalesReps.txt file");
-                fileStream1 = File.Open(salesPath, FileMode.Open);
-            }
-            else
-            {
-                Log("Reading from internal SalesReps file");
-                var resourceSales = "SalesMap.SalesReps.txt";
-                var assembly1 = Assembly.GetExecutingAssembly();
+                string line = reader.ReadLine();
 
-                fileStream1 = assembly1.GetManifestResourceStream(resourceSales);
-            }
-
-            using (StreamReader reader1 = new StreamReader(fileStream1))
-            {
-                var lines = new List<string[]>();
-                int Row = 0;
-                while (!reader1.EndOfStream)
+                while (line != null)
                 {
-                    string[] Line = reader1.ReadLine().Split(',');
+                    string[] items = line.Split(',');
+
                     try
                     {
-                        SalesRepNames.Add(Line[0]);
-                        SalesRepEmails.Add(Line[1]);
-                        SalesRepPhones.Add(Line[2]);
-                        SalesRepRegions.Add(Line[3]);
-                        SalesRepPosition.Add(Line[4]);
-                        Row++;
+                        SalesRepNames.Add(items[0]);
+                        SalesRepEmails.Add(items[1]);
+                        SalesRepPhones.Add(items[2]);
+                        SalesRepRegions.Add(items[3]);
+                        SalesRepPosition.Add(items[4]);
                     }
                     catch
                     {
                         Log("Failed to read from SalesReps.txt");
-                        MessageBox.Show("Cannot read from SalesReps.txt in C:\\Users\\" + Environment.UserName + "\\SalesReps.txt \n\nCheck to make sure you have the right amount of commas");
-                        Environment.Exit(2);
                     }
+
+                    line = reader.ReadLine();
                 }
             }
 
+            //Set the comboBoxes
             comboBoxState.DataSource = RegionNames;
             comboBoxState.Refresh();
             comboBoxRepresentative.DataSource = SalesRepNames;
