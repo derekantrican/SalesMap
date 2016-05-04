@@ -901,9 +901,9 @@ namespace SalesMap.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to While I was looking over your company overview, I noticed that your company’s maintenance subscription has expired.  We would like to continue working with you and your company, although we would need to get the maintenance subscription renewed.  I have copied your sales representative, {SALESREPNAME}, on this email so that he is aware of the pending renewal as well.  You may contact {SALESREPNAME} through his email address {SALESREPEMAIL} or by calling him directly at {SALESREPPHONE}.
-        ///
-        ///I would like to remi [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to While I was looking over your company overview, I noticed that your company’s maintenance subscription has expired.  We would like to continue working with you and your company, although we would need to get the maintenance subscription renewed.  I have copied your sales representative, {SALESREPNAME}, on this email so that he is aware of the pending renewal as well.  You may contact {SALESREPNAME} through his email address {SALESREPEMAIL} or by calling him directly at {SALESREPPHONE}.&lt;br&gt;
+        ///&lt;br&gt;
+        ///I would like [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string OffSMR {
             get {
@@ -917,6 +917,16 @@ namespace SalesMap.Properties {
         internal static System.Drawing.Bitmap offSMRPic {
             get {
                 object obj = ResourceManager.GetObject("offSMRPic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap preview {
+            get {
+                object obj = ResourceManager.GetObject("preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -977,14 +987,13 @@ namespace SalesMap.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to ,,,,
-        ///Brian Blair,brianb@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW
-        ///Arie Brown,arieb@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS,RSM:SE
-        ///Matt Brubaker,mattb@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL
+        ///Brian Blair,brian.blair@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW
+        ///Arie Brown,arie.brown@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS,RSM:SE
+        ///Matt Brubaker,matt.brubaker@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL
         ///Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU,RSM:CND
         ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO,RSR:N&amp;ST
         ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ,RSR:SW
-        ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN (S),RSR:GL
-        ///Jenn [rest of string was truncated]&quot;;.
+        ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,I [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SalesReps {
             get {

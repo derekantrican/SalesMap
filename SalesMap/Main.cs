@@ -578,33 +578,7 @@ namespace SalesMap
             rawReplaced = rawReplaced.Replace("{SALESREPNAME}", repName);
             rawReplaced = rawReplaced.Replace("{SALESREPEMAIL}", repEmail);
             rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
-            rawReplaced = rawReplaced.Replace("{MYNAME}", formatName(Environment.UserName));
-
             return rawReplaced;
-        }
-
-        private string formatName(string name)
-        {
-            char[] array = name.Replace(".", " ").ToCharArray();
-
-            if (array.Length >= 1)
-            {
-                if (char.IsLower(array[0]))
-                    array[0] = char.ToUpper(array[0]);
-            }
-
-            for (int i = 1; i < array.Length; i++)
-            {
-                if (array[i - 1] == ' ')
-                {
-                    if (char.IsLower(array[i]))
-                    {
-                        array[i] = char.ToUpper(array[i]);
-                    }
-                }
-            }
-
-            return new string(array);
         }
 
         private void labelContactResult_Click(object sender, EventArgs e)
@@ -712,6 +686,12 @@ namespace SalesMap
 
             if (key == null)
             {
+                MessageBox.Show("Please set up your signature in the settings!");
+
+                Log("Opening config so the user can set their signature");
+                Settings config = new Settings();
+                config.ShowDialog();
+
                 Log("Key does not exist. Creating Key...");
                 try
                 {
@@ -721,37 +701,36 @@ namespace SalesMap
                 catch
                 {
                     Log("Could not create and set key (key does not exist).");
+                    return;
                 }
             }
-            /*else*/if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
+
+            if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
             {
                 Log("First time running version " + Properties.Settings.Default.Version + " of this program. Last version: " + key.GetValue("FirstRun").ToString());
-
-                if (Convert.ToDouble(key.GetValue("FirstRun").ToString().Split('v').Last()) < 4.4)  //If the version last run is older than 4.4, delete the OffSMR.txt (because the whole thing has changed since then)
-                {
-                    if (File.Exists(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt"))
-                    {
-                        File.Delete(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt");
-                        Log("Deleted OffSMR.txt");
-                    }
-                }
-
-                string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-                string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
-
-                if (File.Exists(regionPath))
-                {
-                    File.Delete(regionPath);
-                    Log("Deleted the Regions.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
-                }
-
-                if (File.Exists(salesPath))
-                {
-                    File.Delete(salesPath);
-                    Log("Deleted the SalesReps.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
-                }
-
                 Log("This was the last time this will run");
+            }
+
+            //Delete old files (if they exist)
+            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
+            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
+
+            if (File.Exists(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt"))
+            {
+                File.Delete(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt");
+                Log("Deleted OffSMR.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
+            }
+
+            if (File.Exists(regionPath))
+            {
+                File.Delete(regionPath);
+                Log("Deleted the Regions.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
+            }
+
+            if (File.Exists(salesPath))
+            {
+                File.Delete(salesPath);
+                Log("Deleted the SalesReps.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
             }
 
             try

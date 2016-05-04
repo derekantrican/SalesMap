@@ -6,11 +6,12 @@ using System.Drawing;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Outlook = Microsoft.Office.Interop.Outlook;
 using Microsoft.Win32;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SalesMap
@@ -27,33 +28,23 @@ namespace SalesMap
             checkBoxSendLog.Checked = Properties.Settings.Default.SendLog;
             textBoxEdit.Text = Properties.Settings.Default.OffSMRBody;
             richTextBoxSignature.Text = Properties.Settings.Default.OffSMRSignature;
-            
-            //editOffSMR();
+
+            RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
+            if (key == null)
+            {
+                tabControlOffSMREmail.SelectTab(1);
+                richTextBoxSignature.BackColor = Color.LightCoral;
+            }
+            else
+            {
+                richTextBoxSignature.BackColor = Color.White;
+            }
         }
 
         private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/derekantrican/SalesMap/wiki");
         }
-
-        //private void editOffSMR()
-        //{
-        //    string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
-
-        //    if (File.Exists(offSMRPath))
-        //    {
-        //        Console.WriteLine("Off SMR file exists");
-        //        textBoxEdit.Text = File.ReadAllText(offSMRPath);
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Off SMR file does not exist");
-        //        using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
-        //        {
-        //            textBoxEdit.Text = reader.ReadToEnd();
-        //        }
-        //    }
-        //}
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -87,38 +78,7 @@ namespace SalesMap
                 }
             }
 
-                //WRITE TO OFF SMR FILE
-                //string OffSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
-
-                //if (File.Exists(OffSMRPath))
-                //{
-                //    Console.WriteLine("Off SMR file exists");
-                //    File.WriteAllText(OffSMRPath, textBoxEdit.Text);
-                //}
-                //else
-                //{
-                //    Console.WriteLine("Off SMR file does not exist");
-
-                //    string OffSMRText = "";
-                //    using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.OffSMR.txt")))
-                //    {
-                //        OffSMRText = reader.ReadToEnd();
-                //    }
-
-                //    //If the file is unchanged, leave it alone
-                //    if (removeSpecial(OffSMRText) != removeSpecial(textBoxEdit.Text))
-                //    {
-                //        Console.WriteLine("Creating file...");
-                //        using (var stream = File.Create(OffSMRPath))
-                //        {
-                //            //Doing this "using bracket" so that IDisposable is implemented afterwards
-                //        }
-
-                //        File.WriteAllText(OffSMRPath, textBoxEdit.Text);
-                //    }
-                //}
-
-                this.Close();
+            this.Close();
         }
 
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -193,15 +153,51 @@ namespace SalesMap
                             " when the email is composed):\n\n" +
                             "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
                             "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
-                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #\n" +
-                            "   - \"{MYNAME}\" .. which will get replaced with your name", "Off SMR EMail Variables");
+                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
         }
 
-        private string removeSpecial(string input)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
+            string subject = textBoxEditSubject.Text;
+            string body = replaceVariables(textBoxEdit.Text + richTextBoxSignature.Text, "Mr. SigmaNEST", "mr.sigmanest@sigmanest.com", "123-456-7890");
 
-            return input;
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "mr.sigmanest@sigmanest.com", subject, body });
+        }
+
+        private void composeOutlook(object parameters)
+        {
+            object[] array = parameters as object[];
+
+            string cc = Convert.ToString(array[0]);
+            string subject = Convert.ToString(array[1]);
+            string body = Convert.ToString(array[2]);
+
+
+            try
+            {
+                Outlook.Application outlookApp = new Outlook.Application();
+                Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
+
+                mailItem.CC = cc;
+                mailItem.Subject = subject;
+                mailItem.HTMLBody = body;
+                mailItem.Display(true);
+            }
+            catch (Exception eX)
+            {
+                MessageBox.Show("Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again");
+                Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
+            }
+        }
+
+        private string replaceVariables(string raw, string repName, string repEmail, string repPhone)
+        {
+            string rawReplaced = raw;
+            rawReplaced = rawReplaced.Replace("{SALESREPNAME}", repName);
+            rawReplaced = rawReplaced.Replace("{SALESREPEMAIL}", repEmail);
+            rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
+
+            return rawReplaced;
         }
 
         private void Log(string itemToLog)
@@ -212,5 +208,6 @@ namespace SalesMap
 
             File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
         }
+
     }
 }
