@@ -150,12 +150,6 @@ namespace SalesMap
 
         public void compareFiles()
         {
-            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
-
-            string regionText = "";
-            string salesText = "";
-
             WebClient client = new WebClient();
             string url = "https://github.com/derekantrican/SalesMap/wiki/Most-current-%22databases%22";
             string html = "";
@@ -177,30 +171,6 @@ namespace SalesMap
                 return;
             }
 
-            if (File.Exists(regionPath))
-            {
-                regionText = File.ReadAllText(regionPath);
-            }
-            else
-            {
-                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.Regions.txt")))
-                {
-                    regionText = reader.ReadToEnd();
-                }
-            }
-
-            if (File.Exists(salesPath))
-            {
-                salesText = File.ReadAllText(salesPath);
-            }
-            else
-            {
-                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.SalesReps.txt")))
-                {
-                    salesText = reader.ReadToEnd();
-                }
-            }
-
             //Remove the extra character that comes at the end of these strings and replace "&amp;" with "&"
             regionTextOnline = regionTextOnline.TrimEnd(regionTextOnline[regionTextOnline.Length - 1]);
             regionTextOnline = regionTextOnline.Replace("&amp;", "&");
@@ -208,17 +178,19 @@ namespace SalesMap
             salesTextOnline = salesTextOnline.Replace("&amp;", "&");
 
             //Compare the raw text of files by checking files without special characters
-            if (removeSpecial(regionText) != removeSpecial(regionTextOnline))
+            if (removeSpecial(Properties.Settings.Default.Regions) != removeSpecial(regionTextOnline) && regionTextOnline != "")
             {
                 Log("Regions.txt is not the same as online. Updating...");
-                File.WriteAllText(regionPath, regionTextOnline);
+                Properties.Settings.Default.Regions = regionTextOnline;
             }
 
-            if (removeSpecial(salesText) != removeSpecial(salesTextOnline))
+            if (removeSpecial(Properties.Settings.Default.SalesReps) != removeSpecial(salesTextOnline) && salesTextOnline != "")
             {
                 Log("SalesReps.txt is not the same as online. Updating...");
-                File.WriteAllText(salesPath, salesTextOnline);
+                Properties.Settings.Default.SalesReps = salesTextOnline;
             }
+
+            Properties.Settings.Default.Save();
         }
 
         public void readFiles()
@@ -485,38 +457,7 @@ namespace SalesMap
             string cc = "";
             string phone = "";
             string subject = Properties.Settings.Default.OffSMRSubject;
-            string body = "";
-
-            string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
-            Stream fileStream;
-
-            if (File.Exists(offSMRPath))
-            {
-                Console.WriteLine("Off SMR file exists");
-                fileStream = File.Open(offSMRPath, FileMode.Open);
-            }
-            else
-            {
-                Console.WriteLine("Off SMR file does not exist");
-                var resourceOffSMR = "SalesMap.OffSMR.txt";
-                var assembly = Assembly.GetExecutingAssembly();
-
-                fileStream = assembly.GetManifestResourceStream(resourceOffSMR);
-            }
-
-            using (StreamReader reader = new StreamReader(fileStream))
-            {
-                string offSMRBody = "";
-
-                while (!reader.EndOfStream)
-                {
-                    offSMRBody += reader.ReadLine();
-                    offSMRBody += Environment.NewLine;
-                }
-                Console.WriteLine(offSMRBody.Split('\n').Length);
-
-                body = offSMRBody;
-            }
+            string body = Properties.Settings.Default.OffSMRBody + Properties.Settings.Default.OffSMRSignature;
 
             if (labelRepResult.Text == "Sales Rep: ")
             {
