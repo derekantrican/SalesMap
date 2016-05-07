@@ -223,9 +223,6 @@
   <data name="Scott_Taylor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Scott Taylor.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SalesReps" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SalesReps.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="_OH__Ohio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\(OH) Ohio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -267,9 +264,6 @@
   </data>
   <data name="_ND__North_Dakota" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\(ND) North Dakota.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Regions" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Regions.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Faber_Fields" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Faber Fields.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -354,9 +348,6 @@
   </data>
   <data name="_MA__Massachusetts" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\(MA) Massachusetts.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="OffSMR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\offsmr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="_AK__Alaska" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\(AK) Alaska.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

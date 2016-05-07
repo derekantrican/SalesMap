@@ -684,7 +684,7 @@ namespace SalesMap
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
 
-            if (key == null)
+            if (key == null || key.GetValue("FirstRun") == null)
             {
                 Log("Key does not exist. Creating Key...");
                 try
