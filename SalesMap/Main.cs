@@ -180,12 +180,14 @@ namespace SalesMap
             if (removeSpecial(Properties.Settings.Default.Regions) != removeSpecial(regionTextOnline) && regionTextOnline != "")
             {
                 Log("Internal regions is not the same as online. Updating...");
+                Log("DIFF: " + diff(removeSpecial(Properties.Settings.Default.Regions), removeSpecial(regionTextOnline)), false);
                 Properties.Settings.Default.Regions = regionTextOnline;
             }
 
             if (removeSpecial(Properties.Settings.Default.SalesReps) != removeSpecial(salesTextOnline) && salesTextOnline != "")
             {
                 Log("Internal SalesReps is not the same as online. Updating...");
+                Log("DIFF: " + diff(removeSpecial(Properties.Settings.Default.SalesReps), removeSpecial(salesTextOnline)), false);
                 Properties.Settings.Default.SalesReps = salesTextOnline;
             }
 
@@ -665,6 +667,42 @@ namespace SalesMap
             labelPhoneResult2.Text = temp;
         }
 
+        private string diff(string s1, string s2)
+        {
+            if (s1 == s2)
+                return null;
+            
+            if (s1.Length > s2.Length)
+            {
+                for (var i = 0; i < s1.Length; i++)
+                {
+                    if (s1[i] != s2[i])
+                    {
+                        if (i >= 10)
+                            return s1.Substring(i - 10, 11) + " ||| " + s2.Substring(i - 10, 11);
+                        else
+                            return s1.Substring(0, 10) + " ||| " + s2.Substring(0, 11);
+                    }
+                        
+                }
+            }
+            else
+            {
+                for (var i = 0; i < s2.Length; i++)
+                {
+                    if (s1[i] != s2[i])
+                    {
+                        if (i >= 10)
+                            return s1.Substring(i - 10, 11) + " ||| " + s2.Substring(i - 10, 11);
+                        else
+                            return s1.Substring(0, 10) + " ||| " + s2.Substring(0, 10);
+                    }
+
+                }
+            }
+            return null;
+        }
+
         private string removeSpecial(string input)
         {
             input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
@@ -674,10 +712,22 @@ namespace SalesMap
 
         private void Log(string itemToLog)
         {
+            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
             DateTime date = DateTime.UtcNow;
+            File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
+        }
+
+        private void Log(string itemToLog, bool addTimeStamp)
+        {
             string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
 
-            File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
+            if (addTimeStamp)
+            {
+                DateTime date = DateTime.UtcNow;
+                File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
+            }
+            else
+                File.AppendAllText(logPath, itemToLog + Environment.NewLine);
         }
 
         private void checkFirstRun()
