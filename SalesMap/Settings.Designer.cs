@@ -39,18 +39,20 @@
             this.buttonVariables = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.checkBoxSendLog = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tabControlOffSMREmail = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBoxEdit = new System.Windows.Forms.RichTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.richTextBoxSignature = new System.Windows.Forms.RichTextBox();
             this.textBoxEditSubject = new System.Windows.Forms.TextBox();
             this.labelEditSubject = new System.Windows.Forms.Label();
-            this.tabControlOffSMREmail = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBoxEdit = new System.Windows.Forms.RichTextBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.richTextBoxSignature = new System.Windows.Forms.RichTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControlOffSMREmail.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -72,7 +74,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(307, 244);
+            this.buttonSave.Location = new System.Drawing.Point(307, 266);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(88, 28);
             this.buttonSave.TabIndex = 5;
@@ -84,7 +86,7 @@
             // linkLabelGitHub
             // 
             this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(15, 236);
+            this.linkLabelGitHub.Location = new System.Drawing.Point(15, 258);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
             this.linkLabelGitHub.Size = new System.Drawing.Size(146, 13);
             this.linkLabelGitHub.TabIndex = 6;
@@ -95,7 +97,7 @@
             // linkLabelUpdate
             // 
             this.linkLabelUpdate.AutoSize = true;
-            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 252);
+            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 274);
             this.linkLabelUpdate.Name = "linkLabelUpdate";
             this.linkLabelUpdate.Size = new System.Drawing.Size(91, 13);
             this.linkLabelUpdate.TabIndex = 8;
@@ -106,7 +108,7 @@
             // checkBoxAutoUpdates
             // 
             this.checkBoxAutoUpdates.AutoSize = true;
-            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(232, 203);
+            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(232, 225);
             this.checkBoxAutoUpdates.Name = "checkBoxAutoUpdates";
             this.checkBoxAutoUpdates.Size = new System.Drawing.Size(169, 17);
             this.checkBoxAutoUpdates.TabIndex = 10;
@@ -115,9 +117,10 @@
             // 
             // buttonVariables
             // 
+            this.buttonVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonVariables.Location = new System.Drawing.Point(11, 139);
             this.buttonVariables.Name = "buttonVariables";
-            this.buttonVariables.Size = new System.Drawing.Size(30, 23);
+            this.buttonVariables.Size = new System.Drawing.Size(30, 30);
             this.buttonVariables.TabIndex = 12;
             this.buttonVariables.Text = "{V}";
             this.toolTip1.SetToolTip(this.buttonVariables, "Canned email variables");
@@ -133,7 +136,7 @@
             // checkBoxSendLog
             // 
             this.checkBoxSendLog.AutoSize = true;
-            this.checkBoxSendLog.Location = new System.Drawing.Point(232, 221);
+            this.checkBoxSendLog.Location = new System.Drawing.Point(232, 243);
             this.checkBoxSendLog.Name = "checkBoxSendLog";
             this.checkBoxSendLog.Size = new System.Drawing.Size(152, 17);
             this.checkBoxSendLog.TabIndex = 15;
@@ -141,34 +144,31 @@
             this.toolTip1.SetToolTip(this.checkBoxSendLog, "Send log file to developer when program is closed");
             this.checkBoxSendLog.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SalesMap.Properties.Resources.preview;
+            this.pictureBox1.Location = new System.Drawing.Point(47, 139);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox1, "Preview Email");
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.tabControlOffSMREmail);
             this.groupBox1.Controls.Add(this.textBoxEditSubject);
             this.groupBox1.Controls.Add(this.labelEditSubject);
             this.groupBox1.Controls.Add(this.buttonVariables);
             this.groupBox1.Location = new System.Drawing.Point(4, 33);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(395, 166);
+            this.groupBox1.Size = new System.Drawing.Size(412, 172);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit Off SMR Email (HTML)";
-            // 
-            // textBoxEditSubject
-            // 
-            this.textBoxEditSubject.Location = new System.Drawing.Point(119, 139);
-            this.textBoxEditSubject.Name = "textBoxEditSubject";
-            this.textBoxEditSubject.Size = new System.Drawing.Size(266, 20);
-            this.textBoxEditSubject.TabIndex = 16;
-            // 
-            // labelEditSubject
-            // 
-            this.labelEditSubject.AutoSize = true;
-            this.labelEditSubject.Location = new System.Drawing.Point(74, 143);
-            this.labelEditSubject.Name = "labelEditSubject";
-            this.labelEditSubject.Size = new System.Drawing.Size(46, 13);
-            this.labelEditSubject.TabIndex = 15;
-            this.labelEditSubject.Text = "Subject:";
             // 
             // tabControlOffSMREmail
             // 
@@ -177,28 +177,8 @@
             this.tabControlOffSMREmail.Location = new System.Drawing.Point(6, 16);
             this.tabControlOffSMREmail.Name = "tabControlOffSMREmail";
             this.tabControlOffSMREmail.SelectedIndex = 0;
-            this.tabControlOffSMREmail.Size = new System.Drawing.Size(383, 121);
+            this.tabControlOffSMREmail.Size = new System.Drawing.Size(400, 121);
             this.tabControlOffSMREmail.TabIndex = 18;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.richTextBoxSignature);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(375, 95);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Signature";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // textBoxEdit
-            // 
-            this.textBoxEdit.Location = new System.Drawing.Point(3, 5);
-            this.textBoxEdit.Name = "textBoxEdit";
-            this.textBoxEdit.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.textBoxEdit.Size = new System.Drawing.Size(366, 88);
-            this.textBoxEdit.TabIndex = 7;
-            this.textBoxEdit.Text = "";
             // 
             // tabPage1
             // 
@@ -206,25 +186,62 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(375, 95);
+            this.tabPage1.Size = new System.Drawing.Size(392, 95);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Body";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // textBoxEdit
+            // 
+            this.textBoxEdit.Location = new System.Drawing.Point(3, 5);
+            this.textBoxEdit.Name = "textBoxEdit";
+            this.textBoxEdit.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.textBoxEdit.Size = new System.Drawing.Size(386, 88);
+            this.textBoxEdit.TabIndex = 7;
+            this.textBoxEdit.Text = "";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.richTextBoxSignature);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(392, 95);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Signature";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // richTextBoxSignature
             // 
+            this.richTextBoxSignature.BackColor = System.Drawing.SystemColors.Window;
             this.richTextBoxSignature.Location = new System.Drawing.Point(4, 3);
             this.richTextBoxSignature.Name = "richTextBoxSignature";
             this.richTextBoxSignature.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBoxSignature.Size = new System.Drawing.Size(366, 88);
+            this.richTextBoxSignature.Size = new System.Drawing.Size(385, 88);
             this.richTextBoxSignature.TabIndex = 8;
             this.richTextBoxSignature.Text = "";
+            // 
+            // textBoxEditSubject
+            // 
+            this.textBoxEditSubject.Location = new System.Drawing.Point(137, 144);
+            this.textBoxEditSubject.Name = "textBoxEditSubject";
+            this.textBoxEditSubject.Size = new System.Drawing.Size(266, 20);
+            this.textBoxEditSubject.TabIndex = 16;
+            // 
+            // labelEditSubject
+            // 
+            this.labelEditSubject.AutoSize = true;
+            this.labelEditSubject.Location = new System.Drawing.Point(88, 148);
+            this.labelEditSubject.Name = "labelEditSubject";
+            this.labelEditSubject.Size = new System.Drawing.Size(46, 13);
+            this.labelEditSubject.TabIndex = 15;
+            this.labelEditSubject.Text = "Subject:";
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 275);
+            this.ClientSize = new System.Drawing.Size(428, 301);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.checkBoxSendLog);
             this.Controls.Add(this.checkBoxAutoUpdates);
@@ -238,11 +255,12 @@
             this.MinimizeBox = false;
             this.Name = "Settings";
             this.Text = "Settings";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControlOffSMREmail.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,5 +284,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.RichTextBox textBoxEdit;
         private System.Windows.Forms.RichTextBox richTextBoxSignature;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

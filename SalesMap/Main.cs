@@ -150,12 +150,6 @@ namespace SalesMap
 
         public void compareFiles()
         {
-            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
-
-            string regionText = "";
-            string salesText = "";
-
             WebClient client = new WebClient();
             string url = "https://github.com/derekantrican/SalesMap/wiki/Most-current-%22databases%22";
             string html = "";
@@ -168,37 +162,12 @@ namespace SalesMap
                 html = client.DownloadString(url);
 
                 regionTextOnline = html.Substring(html.IndexOf("<pre><code>") + 11).Split('<')[0];
-                Console.WriteLine(regionTextOnline);
                 salesTextOnline = html.Substring(html.LastIndexOf("<pre><code>") + 11).Split('<')[0];
             }
             catch
             {
                 Log("Attempted to get the online databases and failed to get html");
                 return;
-            }
-
-            if (File.Exists(regionPath))
-            {
-                regionText = File.ReadAllText(regionPath);
-            }
-            else
-            {
-                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.Regions.txt")))
-                {
-                    regionText = reader.ReadToEnd();
-                }
-            }
-
-            if (File.Exists(salesPath))
-            {
-                salesText = File.ReadAllText(salesPath);
-            }
-            else
-            {
-                using (StreamReader reader = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SalesMap.SalesReps.txt")))
-                {
-                    salesText = reader.ReadToEnd();
-                }
             }
 
             //Remove the extra character that comes at the end of these strings and replace "&amp;" with "&"
@@ -208,102 +177,72 @@ namespace SalesMap
             salesTextOnline = salesTextOnline.Replace("&amp;", "&");
 
             //Compare the raw text of files by checking files without special characters
-            if (removeSpecial(regionText) != removeSpecial(regionTextOnline))
+            if (removeSpecial(Properties.Settings.Default.Regions) != removeSpecial(regionTextOnline) && regionTextOnline != "")
             {
-                Log("Regions.txt is not the same as online. Updating...");
-                File.WriteAllText(regionPath, regionTextOnline);
+                Log("Internal regions is not the same as online. Updating...");
+                Properties.Settings.Default.Regions = regionTextOnline;
             }
 
-            if (removeSpecial(salesText) != removeSpecial(salesTextOnline))
+            if (removeSpecial(Properties.Settings.Default.SalesReps) != removeSpecial(salesTextOnline) && salesTextOnline != "")
             {
-                Log("SalesReps.txt is not the same as online. Updating...");
-                File.WriteAllText(salesPath, salesTextOnline);
+                Log("Internal SalesReps is not the same as online. Updating...");
+                Properties.Settings.Default.SalesReps = salesTextOnline;
             }
+
+            Properties.Settings.Default.Save();
         }
 
         public void readFiles()
         {
-            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
-            Stream fileStream;
-            Stream fileStream1;
-
-            if (File.Exists(regionPath))
+            using (StringReader reader = new StringReader(Properties.Settings.Default.Regions))
             {
-                Log("Reading from Regions.txt file");
-                fileStream = File.Open(regionPath, FileMode.Open);
-            }
-            else
-            {
-                Log("Reading from internal Regions file");
-                var resourceRegions = "SalesMap.Regions.txt";
-                var assembly = Assembly.GetExecutingAssembly();
+                string line = reader.ReadLine();
 
-                fileStream = assembly.GetManifestResourceStream(resourceRegions);
-            }
-
-            using (StreamReader reader = new StreamReader(fileStream))
-            {
-                var lines = new List<string[]>();
-                int Row = 0;
-                while (!reader.EndOfStream)
+                while (line != null)
                 {
-                    string[] Line = reader.ReadLine().Split(',');
+                    string[] items = line.Split(',');
+
                     try
                     {
-                        RegionNames.Add(Line[0]);
-                        RegionParts.Add(Line[1]);
-                        RegionArea.Add(Line[2]);
-                        Row++;
+                        RegionNames.Add(items[0]);
+                        RegionParts.Add(items[1]);
+                        RegionArea.Add(items[2]);
                     }
                     catch
                     {
                         Log("Failed to read from Regions.txt");
-                        MessageBox.Show("Cannot read from Regions.txt in C:\\Users\\" + Environment.UserName + "\\Regions.txt \n\nCheck to make sure you have the right amount of commas");
-                        Environment.Exit(1);
                     }
+
+                    line = reader.ReadLine();
                 }
             }
 
-            if (File.Exists(salesPath))
+            using (StringReader reader = new StringReader(Properties.Settings.Default.SalesReps))
             {
-                Log("Reading from SalesReps.txt file");
-                fileStream1 = File.Open(salesPath, FileMode.Open);
-            }
-            else
-            {
-                Log("Reading from internal SalesReps file");
-                var resourceSales = "SalesMap.SalesReps.txt";
-                var assembly1 = Assembly.GetExecutingAssembly();
+                string line = reader.ReadLine();
 
-                fileStream1 = assembly1.GetManifestResourceStream(resourceSales);
-            }
-
-            using (StreamReader reader1 = new StreamReader(fileStream1))
-            {
-                var lines = new List<string[]>();
-                int Row = 0;
-                while (!reader1.EndOfStream)
+                while (line != null)
                 {
-                    string[] Line = reader1.ReadLine().Split(',');
+                    string[] items = line.Split(',');
+
                     try
                     {
-                        SalesRepNames.Add(Line[0]);
-                        SalesRepEmails.Add(Line[1]);
-                        SalesRepPhones.Add(Line[2]);
-                        SalesRepRegions.Add(Line[3]);
-                        SalesRepPosition.Add(Line[4]);
-                        Row++;
+                        SalesRepNames.Add(items[0]);
+                        SalesRepEmails.Add(items[1]);
+                        SalesRepPhones.Add(items[2]);
+                        SalesRepRegions.Add(items[3]);
+                        SalesRepPosition.Add(items[4]);
                     }
                     catch
                     {
                         Log("Failed to read from SalesReps.txt");
-                        MessageBox.Show("Cannot read from SalesReps.txt in C:\\Users\\" + Environment.UserName + "\\SalesReps.txt \n\nCheck to make sure you have the right amount of commas");
-                        Environment.Exit(2);
                     }
+
+                    line = reader.ReadLine();
                 }
             }
 
+            //Set the comboBoxes
             comboBoxState.DataSource = RegionNames;
             comboBoxState.Refresh();
             comboBoxRepresentative.DataSource = SalesRepNames;
@@ -485,38 +424,7 @@ namespace SalesMap
             string cc = "";
             string phone = "";
             string subject = Properties.Settings.Default.OffSMRSubject;
-            string body = "";
-
-            string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
-            Stream fileStream;
-
-            if (File.Exists(offSMRPath))
-            {
-                Console.WriteLine("Off SMR file exists");
-                fileStream = File.Open(offSMRPath, FileMode.Open);
-            }
-            else
-            {
-                Console.WriteLine("Off SMR file does not exist");
-                var resourceOffSMR = "SalesMap.OffSMR.txt";
-                var assembly = Assembly.GetExecutingAssembly();
-
-                fileStream = assembly.GetManifestResourceStream(resourceOffSMR);
-            }
-
-            using (StreamReader reader = new StreamReader(fileStream))
-            {
-                string offSMRBody = "";
-
-                while (!reader.EndOfStream)
-                {
-                    offSMRBody += reader.ReadLine();
-                    offSMRBody += Environment.NewLine;
-                }
-                Console.WriteLine(offSMRBody.Split('\n').Length);
-
-                body = offSMRBody;
-            }
+            string body = Properties.Settings.Default.OffSMRBody + Properties.Settings.Default.OffSMRSignature;
 
             if (labelRepResult.Text == "Sales Rep: ")
             {
@@ -670,33 +578,7 @@ namespace SalesMap
             rawReplaced = rawReplaced.Replace("{SALESREPNAME}", repName);
             rawReplaced = rawReplaced.Replace("{SALESREPEMAIL}", repEmail);
             rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
-            rawReplaced = rawReplaced.Replace("{MYNAME}", formatName(Environment.UserName));
-
             return rawReplaced;
-        }
-
-        private string formatName(string name)
-        {
-            char[] array = name.Replace(".", " ").ToCharArray();
-
-            if (array.Length >= 1)
-            {
-                if (char.IsLower(array[0]))
-                    array[0] = char.ToUpper(array[0]);
-            }
-
-            for (int i = 1; i < array.Length; i++)
-            {
-                if (array[i - 1] == ' ')
-                {
-                    if (char.IsLower(array[i]))
-                    {
-                        array[i] = char.ToUpper(array[i]);
-                    }
-                }
-            }
-
-            return new string(array);
         }
 
         private void labelContactResult_Click(object sender, EventArgs e)
@@ -800,36 +682,64 @@ namespace SalesMap
 
         private void checkFirstRun()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
-
-            if (key == null)
+            try
             {
-                Log("Key does not exist. Creating Key...");
-                try
-                {
-                    key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
-                    key.SetValue("FirstRun", Properties.Settings.Default.Version);
-                }
-                catch
-                {
-                    Log("Could not create and set key (key does not exist).");
-                }
-            }
-            /*else*/if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
-            {
-                Log("First time running version " + Properties.Settings.Default.Version + " of this program. Last version: " + key.GetValue("FirstRun").ToString());
+                string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
+                string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
+                string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
+                string settingsPath = @"C:\Users\" + Environment.UserName + @"\AppData\Local\SalesMap";
+                RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
 
-                if (Convert.ToDouble(key.GetValue("FirstRun").ToString().Split('v').Last()) < 4.4)  //If the version last run is older than 4.4, delete the OffSMR.txt (because the whole thing has changed since then)
+                if (key == null || key.GetValue("FirstRun") == null)
                 {
-                    if (File.Exists(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt"))
+                    Log("Key does not exist. Creating Key...");
+                    try
                     {
-                        File.Delete(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt");
-                        Log("Deleted OffSMR.txt");
+                        key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
+                        key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                    }
+                    catch
+                    {
+                        Log("Could not create and set key (key does not exist).");
+                        return;
+                    }
+                }
+                else
+                {
+                    if (Convert.ToDouble(key.GetValue("FirstRun").ToString().Split('v').Last()) < 5 && Directory.Exists(settingsPath)) //Version is older than v5, so delete the old settings
+                    {
+                        DirectoryInfo di = new DirectoryInfo(settingsPath);
+                        foreach (DirectoryInfo dir in di.GetDirectories())
+                            dir.Delete(true);
+
+                        Log("Cleared out the old settings and AppData folder");
                     }
                 }
 
-                string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-                string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
+                //Force the user to set up their signature
+                if (removeSpecial(Properties.Settings.Default.OffSMRSignature) == removeSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+                {
+                    MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
+
+                    Log("Opening config so the user can set their signature");
+                    Settings config = new Settings();
+                    config.ShowDialog();
+                }
+
+                if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
+                {
+                    key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                    Log("First time running version " + Properties.Settings.Default.Version + " of this program. Last version: " + key.GetValue("FirstRun").ToString());
+                    Log("This was the last time this will run");
+                }
+
+                //Delete old files (if they exist)
+
+                if (File.Exists(offSMRPath))
+                {
+                    File.Delete(offSMRPath);
+                    Log("Deleted OffSMR.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
+                }
 
                 if (File.Exists(regionPath))
                 {
@@ -843,19 +753,21 @@ namespace SalesMap
                     Log("Deleted the SalesReps.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
                 }
 
-                Log("This was the last time this will run");
-            }
+                try
+                {
+                    key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                }
+                catch
+                {
+                    Log("Could not set value at end of checkFirstRun");
+                }
 
-            try
-            {
-                key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                key.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                Log("Could not set value at end of checkFirstRun");
+                Log("Problems with running checkFirstRun. Error: " + ex.Message);
             }
-
-            key.Close();
         }
     }
 }

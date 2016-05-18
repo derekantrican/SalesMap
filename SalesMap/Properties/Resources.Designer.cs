@@ -813,6 +813,16 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Jandre_TerreBlanche {
+            get {
+                object obj = ResourceManager.GetObject("Jandre_TerreBlanche", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Jason_DeGraeve {
             get {
                 object obj = ResourceManager.GetObject("Jason_DeGraeve", resourceCulture);
@@ -901,17 +911,6 @@ namespace SalesMap.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to While I was looking over your company overview, I noticed that your company’s maintenance subscription has expired.  We would like to continue working with you and your company, although we would need to get the maintenance subscription renewed.  I have copied your sales representative, {SALESREPNAME}, on this email so that he is aware of the pending renewal as well.  You may contact {SALESREPNAME} through his email address {SALESREPEMAIL} or by calling him directly at {SALESREPPHONE}.
-        ///
-        ///I would like to remi [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string OffSMR {
-            get {
-                return ResourceManager.GetString("OffSMR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap offSMRPic {
@@ -922,36 +921,12 @@ namespace SalesMap.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ,,
-        ///(AB) Alberta,0,NW
-        ///(AL) Alabama,0,SE
-        ///(AK) Alaska,0,NW
-        ///(AZ) Arizona,0,SW
-        ///(AR) Arkansas,0,N&amp;ST
-        ///(BC) British Columbia,0,NW
-        ///(CA) California,1,NW:SW
-        ///(CO) Colorado,0,NW
-        ///(CT) Connecticut,0,NE
-        ///(DE) Delaware,0,NE
-        ///(FL) Florida,0,SE
-        ///(GA) Georgia,0,SE
-        ///(HI) Hawaii,0,HI
-        ///(ID) Idaho,0,NW
-        ///(IL) Illinois,0,N&amp;ST
-        ///(IN) Indiana,1,GL
-        ///(IA) Iowa,0,N&amp;ST
-        ///(KS) Kansas,0,N&amp;ST
-        ///(KY) Kentucky,0,GL
-        ///(LA) Louisiana,0,SE
-        ///(ME) Maine,0,NE
-        ///(MA) Massachusetts,0,NE
-        ///(MB) Manitoba,0,CND
-        ///(MD) Maryland,0,NE
-        ///(MI) Michigan,1,N&amp;S [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string Regions {
+        internal static System.Drawing.Bitmap preview {
             get {
-                return ResourceManager.GetString("Regions", resourceCulture);
+                object obj = ResourceManager.GetObject("preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -972,23 +947,6 @@ namespace SalesMap.Properties {
             get {
                 object obj = ResourceManager.GetObject("Ryan_Weymouth", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ,,,,
-        ///Brian Blair,brianb@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW
-        ///Arie Brown,arieb@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS,RSM:SE
-        ///Matt Brubaker,mattb@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL
-        ///Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU,RSM:CND
-        ///Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO,RSR:N&amp;ST
-        ///Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ,RSR:SW
-        ///Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN (S),RSR:GL
-        ///Jenn [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string SalesReps {
-            get {
-                return ResourceManager.GetString("SalesReps", resourceCulture);
             }
         }
         

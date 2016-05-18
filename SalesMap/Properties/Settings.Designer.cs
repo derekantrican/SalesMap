@@ -37,7 +37,7 @@ namespace SalesMap.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("v4.4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("v5.0")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
@@ -86,14 +86,14 @@ namespace SalesMap.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<span style=""color: #000000; font-family: calibri; font-size: 11pt""> 
-{MYNAME}<br>
+YOUR_NAME<br>
 <i>Application Engineer</i><br>
 <b>SigmaTEK Systems, LLC</b><br>
 Main: 513.595.2002<br>
 1445 Kemper Meadow Drive | Cincinnati, Ohio 45240<br>
 <a href=""http://www.sigmanest.com"">www.sigmanest.com</a><br>
 </span>
-<a href=""https://www.sigmanest.com/academy/"" target=""_blank""><img src=""https://www.sigmanest.com/wp-content/uploads/2015/10/NESTX1-EMAIL.png"" moz -do-not-send=""true"" border=""0""></a>")]
+<a href=""https://www.sigmanest.com/"" target=""_blank""><img src=""https://www.sigmanest.com/images/email/signature.png"" moz -do-not-send=""true"" border=""0""></a>")]
         public string OffSMRSignature {
             get {
                 return ((string)(this["OffSMRSignature"]));
@@ -118,6 +118,134 @@ Thank you for contacting SigmaNEST Technical Support and we look forward to cont
             }
             set {
                 this["OffSMRBody"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(",,,,\r\nBrian Bair,brian.blair@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW\r\nAr" +
+            "ie Brown,arie.brown@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS,RSM:SE\r\nMatt Bruba" +
+            "ker,matt.brubaker@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL\r\nJason DeGraev" +
+            "e,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU,RSM:CND\r\nDonnie D" +
+            "ugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO,RSR:N&ST\r\nJim Elmore,jim.el" +
+            "more@sigmanest.com,513-214-9269,CA (S):NV(S):AZ,RSR:SW\r\nFaber Fields,faber.field" +
+            "s@sigmanest.com,513-430-2973,IN (S),RSR:GL\r\nJoaquin Gonzales,joaquin.gonzales@si" +
+            "gmanest.com,513-507-7631,CA (N):NV (N),RSR:NW\r\nLarsen Kjellman,larsen.kjellman@s" +
+            "igmanest.com,513-218-3570,DE:MD:WV:VA,RSR:NE\r\nScott Lindley,scott.lindley@sigman" +
+            "est.com,513-309-1394,OR:ID:UT:CO:WY,RSR:NW\r\nRyan Lustig,ryan.lustig@sigmanest.co" +
+            "m,513-508-4271,ME:VT:NH:MA:CT:RI:NY:PA:NJ,RSM:NE\r\nMike Mizak,mike.mizak@sigmanes" +
+            "t.com,204-293-9418,MB,RSR:CND\r\nAlbert Otto,albert.otto@sigmanest.com,513-288-226" +
+            "2,MI (S),RSR:GL\r\nJonathan Padial,jonathan.padial@sigmanest.com,513-551-7212,KY:O" +
+            "H (S),RSR:GL\r\nSylvain Robidoux,sylvain.robidoux@sigmanest.com,438-401-8686,QC:NB" +
+            ":NS:PE:NL,RSR:CND\r\nDave Shifo,david.shifo@sigmanest.com,513-316-4791,IA,RSR:N&ST" +
+            "\r\nScott Taylor,scott.taylor@sigmanest.com,513-218-9883,NC:SC,RSR:SE\r\nJandre Terr" +
+            "eBlanche,jandre.terreblanche@sigmanest.com,513-595-2025,HI,VP:HI\r\nSteve Ties,ste" +
+            "ve.ties@sigmanest.com,513-214-9831,WI:MI (UP):ND:SD:NE:OK:AR:NM:MN,RSM:N&ST\r\nCha" +
+            "rlie Vanderzwaag,charlie.vanderzwaag@sigmanest.com,226-971-1093,ON (S),RSR:CND\r\n" +
+            "Schalk van Niekerk,schalk.vanniekerk@sigmanest.com,513-317-7293,IL,RSR:N&ST\r\nBri" +
+            "an Warburton,brian.warburton@sigmanest.com,513-903-7485,TX (N),RSR:N&ST\r\nEthan W" +
+            "yckoff,ethan.wyckoff@sigmanest.com,513-418-1755,FL,RSR:SE")]
+        public string SalesReps {
+            get {
+                return ((string)(this["SalesReps"]));
+            }
+            set {
+                this["SalesReps"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@",,
+(AB) Alberta,0,NW
+(AL) Alabama,0,SE
+(AK) Alaska,0,NW
+(AZ) Arizona,0,SW
+(AR) Arkansas,0,N&ST
+(BC) British Columbia,0,NW
+(CA) California,1,NW:SW
+(CO) Colorado,0,NW
+(CT) Connecticut,0,NE
+(DE) Delaware,0,NE
+(FL) Florida,0,SE
+(GA) Georgia,0,SE
+(HI) Hawaii,0,HI
+(ID) Idaho,0,NW
+(IL) Illinois,0,N&ST
+(IN) Indiana,1,GL
+(IA) Iowa,0,N&ST
+(KS) Kansas,0,N&ST
+(KY) Kentucky,0,GL
+(LA) Louisiana,0,SE
+(ME) Maine,0,NE
+(MA) Massachusetts,0,NE
+(MB) Manitoba,0,CND
+(MD) Maryland,0,NE
+(MI) Michigan,1,N&ST:GL
+(MN) Minnesota,0,N&ST
+(MS) Mississippi,0,SE
+(MO) Missouri,0,N&ST
+(MT) Montana,0,NW
+(NB) New Brunswick,0,CND
+(NE) Nebraska,0,N&ST
+(NV) Nevada,1,NW:SW
+(NH) New Hampshire,0,NE
+(NJ) New Jersey,0,NE
+(NL) Newfoundland and Labrador,0,CND
+(NM) New Mexico,0,N&ST
+(NS) Nova Scotia,0,CND
+(NT) Northwest Territories,0,CND
+(NY) New York,0,NE
+(NC) North Carolina,0,SE
+(ND) North Dakota,0,N&ST
+(NU) Nunavut,0,CND
+(OH) Ohio,1,GL
+(OK) Oklahoma,0,N&ST
+(ON) Ontario,1,CND
+(OR) Oregon,0,NW
+(PA) Pennsylvania,0,NE
+(PE) Prince Edward Island,0,CND
+(QC) Quebec,0,CND
+(RI) Rhode Island,0,NE
+(SC) South Carolina,0,SE
+(SD) South Dakota,0,N&ST
+(SK) Saskatchewan,0,CND
+(TN) Tennessee,0,SE
+(TX) Texas,0,N&ST
+(UT) Utah,0,NW
+(VT) Vermont,0,NE
+(VA) Virginia,0,NE
+(WA) Washington,0,NW
+(WV) West Virginia,0,NE
+(WI) Wisconsin,0,N&ST
+(WY) Wyoming,0,NW
+(YT) Yukon,0,CND")]
+        public string Regions {
+            get {
+                return ((string)(this["Regions"]));
+            }
+            set {
+                this["Regions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<span style=""color: #000000; font-family: calibri; font-size: 11pt""> 
+YOUR_NAME<br>
+<i>Application Engineer</i><br>
+<b>SigmaTEK Systems, LLC</b><br>
+Main: 513.595.2002<br>
+1445 Kemper Meadow Drive | Cincinnati, Ohio 45240<br>
+<a href=""http://www.sigmanest.com"">www.sigmanest.com</a><br>
+</span>
+<a href=""https://www.sigmanest.com/"" target=""_blank""><img src=""https://www.sigmanest.com/images/email/signature.png"" moz -do-not-send=""true"" border=""0""></a>")]
+        public string OffSMRSignatureDefault {
+            get {
+                return ((string)(this["OffSMRSignatureDefault"]));
+            }
+            set {
+                this["OffSMRSignatureDefault"] = value;
             }
         }
     }
