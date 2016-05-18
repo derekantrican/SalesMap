@@ -682,71 +682,92 @@ namespace SalesMap
 
         private void checkFirstRun()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
-
-            if (key == null || key.GetValue("FirstRun") == null)
+            try
             {
-                Log("Key does not exist. Creating Key...");
+                string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
+                string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
+                string offSMRPath = @"C:\Users\" + Environment.UserName + @"\OffSMR.txt";
+                string settingsPath = @"C:\Users\" + Environment.UserName + @"\AppData\Local\SalesMap";
+                RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
+
+                if (key == null || key.GetValue("FirstRun") == null)
+                {
+                    Log("Key does not exist. Creating Key...");
+                    try
+                    {
+                        key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
+                        key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                    }
+                    catch
+                    {
+                        Log("Could not create and set key (key does not exist).");
+                        return;
+                    }
+                }
+                else
+                {
+                    if (Convert.ToDouble(key.GetValue("FirstRun").ToString().Split('v').Last()) < 5 && Directory.Exists(settingsPath)) //Version is older than v5, so delete the old settings
+                    {
+                        DirectoryInfo di = new DirectoryInfo(settingsPath);
+                        foreach (DirectoryInfo dir in di.GetDirectories())
+                            dir.Delete(true);
+
+                        Log("Cleared out the old settings and AppData folder");
+                    }
+                }
+
+                //Force the user to set up their signature
+                if (removeSpecial(Properties.Settings.Default.OffSMRSignature) == removeSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+                {
+                    MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
+
+                    Log("Opening config so the user can set their signature");
+                    Settings config = new Settings();
+                    config.ShowDialog();
+                }
+
+                if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
+                {
+                    key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                    Log("First time running version " + Properties.Settings.Default.Version + " of this program. Last version: " + key.GetValue("FirstRun").ToString());
+                    Log("This was the last time this will run");
+                }
+
+                //Delete old files (if they exist)
+
+                if (File.Exists(offSMRPath))
+                {
+                    File.Delete(offSMRPath);
+                    Log("Deleted OffSMR.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
+                }
+
+                if (File.Exists(regionPath))
+                {
+                    File.Delete(regionPath);
+                    Log("Deleted the Regions.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
+                }
+
+                if (File.Exists(salesPath))
+                {
+                    File.Delete(salesPath);
+                    Log("Deleted the SalesReps.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
+                }
+
                 try
                 {
-                    key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
                     key.SetValue("FirstRun", Properties.Settings.Default.Version);
                 }
                 catch
                 {
-                    Log("Could not create and set key (key does not exist).");
-                    return;
+                    Log("Could not set value at end of checkFirstRun");
                 }
-            }
 
-            //Force the user to set up their signature
-            if (removeSpecial(Properties.Settings.Default.OffSMRSignature) == removeSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+                key.Close();
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
-
-                Log("Opening config so the user can set their signature");
-                Settings config = new Settings();
-                config.ShowDialog();
+                Log("Problems with running checkFirstRun. Error: " + ex.Message);
             }
-
-            if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
-            {
-                Log("First time running version " + Properties.Settings.Default.Version + " of this program. Last version: " + key.GetValue("FirstRun").ToString());
-                Log("This was the last time this will run");
-            }
-
-            //Delete old files (if they exist)
-            string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
-            string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
-
-            if (File.Exists(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt"))
-            {
-                File.Delete(@"C:\Users\" + Environment.UserName + @"\OffSMR.txt");
-                Log("Deleted OffSMR.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
-            }
-
-            if (File.Exists(regionPath))
-            {
-                File.Delete(regionPath);
-                Log("Deleted the Regions.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
-            }
-
-            if (File.Exists(salesPath))
-            {
-                File.Delete(salesPath);
-                Log("Deleted the SalesReps.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
-            }
-
-            try
-            {
-                key.SetValue("FirstRun", Properties.Settings.Default.Version);
-            }
-            catch
-            {
-                Log("Could not set value at end of checkFirstRun");
-            }
-
-            key.Close();
         }
     }
 }

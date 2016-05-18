@@ -64,9 +64,23 @@ namespace SalesMap
                 {
                     Log("Factory reset!");
 
-                    RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
-                    if (key != null)
-                        key.DeleteSubKey("SalesMap");//Reset the key value
+                    try
+                    {
+                        RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
+                        if (key != null)
+                            key.DeleteSubKey("SalesMap");//Reset the key value
+
+                        string settingsPath = @"C:\Users\" + Environment.UserName + @"\AppData\Local\SalesMap";
+                        DirectoryInfo di = new DirectoryInfo(settingsPath);
+                        foreach (DirectoryInfo dir in di.GetDirectories())
+                            dir.Delete(true);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log("Problems encountered during a factory reset: " + ex.Message);
+                        MessageBox.Show("Could not factory reset. Please contact the developer");
+                        return;
+                    }
 
                     ProcessStartInfo Info = new ProcessStartInfo();
                     Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";

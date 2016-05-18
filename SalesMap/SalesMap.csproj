@@ -418,6 +418,7 @@
     <None Include="Resources\%28TX%29 Texas.png" />
     <None Include="Resources\%28TX%29 Texas.jpg" />
     <None Include="Resources\preview.png" />
+    <None Include="Resources\Jandre TerreBlanche.jpg" />
     <Content Include="SalesMap.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
