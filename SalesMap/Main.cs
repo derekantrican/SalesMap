@@ -678,7 +678,9 @@ namespace SalesMap
                 {
                     if (s1[i] != s2[i])
                     {
-                        if (i >= 10)
+                        if (i >= 10 && i + 10 < s1.Length)
+                            return s1.Substring(i - 10, 21) + " ||| " + s2.Substring(i - 10, 21);
+                        else if (i >= 10)
                             return s1.Substring(i - 10, 11) + " ||| " + s2.Substring(i - 10, 11);
                         else
                             return s1.Substring(0, 10) + " ||| " + s2.Substring(0, 11);
@@ -692,7 +694,9 @@ namespace SalesMap
                 {
                     if (s1[i] != s2[i])
                     {
-                        if (i >= 10)
+                        if (i >= 10 && i + 10 < s2.Length)
+                            return s1.Substring(i - 10, 21) + " ||| " + s2.Substring(i - 10, 21);
+                        else if (i >= 10)
                             return s1.Substring(i - 10, 11) + " ||| " + s2.Substring(i - 10, 11);
                         else
                             return s1.Substring(0, 10) + " ||| " + s2.Substring(0, 10);
@@ -714,7 +718,7 @@ namespace SalesMap
         {
             string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
             DateTime date = DateTime.UtcNow;
-            File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
+            File.AppendAllText(logPath, "[" + date + "UTC] " + itemToLog + Environment.NewLine);
         }
 
         private void Log(string itemToLog, bool addTimeStamp)
@@ -753,16 +757,18 @@ namespace SalesMap
                         Log("Could not create and set key (key does not exist).");
                         return;
                     }
-                }
-                else
-                {
-                    if (Convert.ToDouble(key.GetValue("FirstRun").ToString().Split('v').Last()) < 5 && Directory.Exists(settingsPath)) //Version is older than v5, so delete the old settings
+
+                    try
                     {
                         DirectoryInfo di = new DirectoryInfo(settingsPath);
                         foreach (DirectoryInfo dir in di.GetDirectories())
                             dir.Delete(true);
 
                         Log("Cleared out the old settings and AppData folder");
+                    }
+                    catch
+                    {
+                        Log("Could not clear out old settings folder");
                     }
                 }
 

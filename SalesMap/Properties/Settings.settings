@@ -39,8 +39,8 @@ Thank you for contacting SigmaNEST Technical Support and we look forward to cont
     </Setting>
     <Setting Name="SalesReps" Type="System.String" Scope="User">
       <Value Profile="(Default)">,,,,
-Brian Bair,brian.blair@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW
-Arie Brown,arie.brown@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS,RSM:SE
+Brian Blair,brian.blair@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW
+Arie Brown,arie.brown@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS:NC:SC,RSM:SE
 Matt Brubaker,matt.brubaker@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL
 Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU,RSM:CND
 Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO,RSR:N&amp;ST
@@ -55,7 +55,6 @@ Albert Otto,albert.otto@sigmanest.com,513-288-2262,MI (S),RSR:GL
 Jonathan Padial,jonathan.padial@sigmanest.com,513-551-7212,KY:OH (S),RSR:GL
 Sylvain Robidoux,sylvain.robidoux@sigmanest.com,438-401-8686,QC:NB:NS:PE:NL,RSR:CND
 Dave Shifo,david.shifo@sigmanest.com,513-316-4791,IA,RSR:N&amp;ST
-Scott Taylor,scott.taylor@sigmanest.com,513-218-9883,NC:SC,RSR:SE
 Jandre TerreBlanche,jandre.terreblanche@sigmanest.com,513-595-2025,HI,VP:HI
 Steve Ties,steve.ties@sigmanest.com,513-214-9831,WI:MI (UP):ND:SD:NE:OK:AR:NM:MN,RSM:N&amp;ST
 Charlie Vanderzwaag,charlie.vanderzwaag@sigmanest.com,226-971-1093,ON (S),RSR:CND
