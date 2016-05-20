@@ -39,7 +39,7 @@
             this.buttonVariables = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.checkBoxSendLog = new System.Windows.Forms.CheckBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControlOffSMREmail = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -48,7 +48,7 @@
             this.richTextBoxSignature = new System.Windows.Forms.RichTextBox();
             this.textBoxEditSubject = new System.Windows.Forms.TextBox();
             this.labelEditSubject = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControlOffSMREmail.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -144,21 +144,21 @@
             this.toolTip1.SetToolTip(this.checkBoxSendLog, "Send log file to developer when program is closed");
             this.checkBoxSendLog.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // pictureBoxPreview
             // 
-            this.pictureBox1.Image = global::SalesMap.Properties.Resources.preview;
-            this.pictureBox1.Location = new System.Drawing.Point(47, 139);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox1, "Preview Email");
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBoxPreview.Image = global::SalesMap.Properties.Resources.preview;
+            this.pictureBoxPreview.Location = new System.Drawing.Point(47, 139);
+            this.pictureBoxPreview.Name = "pictureBoxPreview";
+            this.pictureBoxPreview.Size = new System.Drawing.Size(30, 30);
+            this.pictureBoxPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview.TabIndex = 19;
+            this.pictureBoxPreview.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxPreview, "Preview Email");
+            this.pictureBoxPreview.Click += new System.EventHandler(this.pictureBoxPreview_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.pictureBoxPreview);
             this.groupBox1.Controls.Add(this.tabControlOffSMREmail);
             this.groupBox1.Controls.Add(this.textBoxEditSubject);
             this.groupBox1.Controls.Add(this.labelEditSubject);
@@ -255,7 +255,7 @@
             this.MinimizeBox = false;
             this.Name = "Settings";
             this.Text = "Settings";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControlOffSMREmail.ResumeLayout(false);
@@ -284,6 +284,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.RichTextBox textBoxEdit;
         private System.Windows.Forms.RichTextBox richTextBoxSignature;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxPreview;
     }
 }

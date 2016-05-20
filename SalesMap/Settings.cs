@@ -170,7 +170,7 @@ namespace SalesMap
                             "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBoxPreview_Click(object sender, EventArgs e)
         {
             string subject = textBoxEditSubject.Text;
             string body = replaceVariables(textBoxEdit.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
@@ -229,6 +229,5 @@ namespace SalesMap
 
             File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
         }
-
     }
 }
