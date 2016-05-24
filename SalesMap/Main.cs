@@ -765,6 +765,14 @@ namespace SalesMap
                             dir.Delete(true);
 
                         Log("Cleared out the old settings and AppData folder");
+
+                        ProcessStartInfo Info = new ProcessStartInfo();
+                        Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
+                        Info.WindowStyle = ProcessWindowStyle.Hidden;
+                        Info.CreateNoWindow = true;
+                        Info.FileName = "cmd.exe";
+                        Process.Start(Info);
+                        Application.Exit();
                     }
                     catch
                     {
