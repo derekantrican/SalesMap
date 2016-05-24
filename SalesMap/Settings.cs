@@ -227,7 +227,20 @@ namespace SalesMap
             DateTime date = DateTime.UtcNow;
             string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
 
-            File.AppendAllText(logPath, "[" + date + "] " + itemToLog + Environment.NewLine);
+            File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
+        }
+
+        private void Log(string itemToLog, bool addTimeStamp)
+        {
+            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
+
+            if (addTimeStamp)
+            {
+                DateTime date = DateTime.UtcNow;
+                File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
+            }
+            else
+                File.AppendAllText(logPath, itemToLog + Environment.NewLine);
         }
     }
 }
