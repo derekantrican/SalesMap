@@ -873,9 +873,9 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Larsen_Kjellman {
+        internal static System.Drawing.Bitmap Justin_Brewer {
             get {
-                object obj = ResourceManager.GetObject("Larsen_Kjellman", resourceCulture);
+                object obj = ResourceManager.GetObject("Justin_Brewer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -966,16 +966,6 @@ namespace SalesMap.Properties {
         internal static System.Drawing.Bitmap Scott_Lindley {
             get {
                 object obj = ResourceManager.GetObject("Scott_Lindley", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Scott_Taylor {
-            get {
-                object obj = ResourceManager.GetObject("Scott_Taylor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

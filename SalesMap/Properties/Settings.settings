@@ -40,6 +40,7 @@ Thank you for contacting SigmaNEST Technical Support and we look forward to cont
     <Setting Name="SalesReps" Type="System.String" Scope="User">
       <Value Profile="(Default)">,,,,
 Brian Blair,brian.blair@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW
+Justin Brewer,justin.brewer@sigmanest.com,513-314-8381,VA:WV:DE:MD:PA,RSR:NE
 Arie Brown,arie.brown@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS:NC:SC,RSM:SE
 Matt Brubaker,matt.brubaker@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL
 Jason DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU,RSM:CND
@@ -47,7 +48,6 @@ Donnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO,RSR:N&amp;ST
 Jim Elmore,jim.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ,RSR:SW
 Faber Fields,faber.fields@sigmanest.com,513-430-2973,IN (S),RSR:GL
 Joaquin Gonzales,joaquin.gonzales@sigmanest.com,513-507-7631,CA (N):NV (N),RSR:NW
-Larsen Kjellman,larsen.kjellman@sigmanest.com,513-218-3570,DE:MD:WV:VA,RSR:NE
 Scott Lindley,scott.lindley@sigmanest.com,513-309-1394,OR:ID:UT:CO:WY,RSR:NW
 Ryan Lustig,ryan.lustig@sigmanest.com,513-508-4271,ME:VT:NH:MA:CT:RI:NY:PA:NJ,RSM:NE
 Mike Mizak,mike.mizak@sigmanest.com,204-293-9418,MB,RSR:CND

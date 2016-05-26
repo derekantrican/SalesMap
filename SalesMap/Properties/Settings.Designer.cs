@@ -123,27 +123,27 @@ Thank you for contacting SigmaNEST Technical Support and we look forward to cont
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(",,,,\r\nBrian Blair,brian.blair@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW\r\nA" +
-            "rie Brown,arie.brown@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS:NC:SC,RSM:SE\r\nMat" +
-            "t Brubaker,matt.brubaker@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL\r\nJason " +
-            "DeGraeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU,RSM:CND\r\nD" +
-            "onnie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO,RSR:N&ST\r\nJim Elmore" +
-            ",jim.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ,RSR:SW\r\nFaber Fields,fabe" +
-            "r.fields@sigmanest.com,513-430-2973,IN (S),RSR:GL\r\nJoaquin Gonzales,joaquin.gonz" +
-            "ales@sigmanest.com,513-507-7631,CA (N):NV (N),RSR:NW\r\nLarsen Kjellman,larsen.kje" +
-            "llman@sigmanest.com,513-218-3570,DE:MD:WV:VA,RSR:NE\r\nScott Lindley,scott.lindley" +
-            "@sigmanest.com,513-309-1394,OR:ID:UT:CO:WY,RSR:NW\r\nRyan Lustig,ryan.lustig@sigma" +
-            "nest.com,513-508-4271,ME:VT:NH:MA:CT:RI:NY:PA:NJ,RSM:NE\r\nMike Mizak,mike.mizak@s" +
-            "igmanest.com,204-293-9418,MB,RSR:CND\r\nAlbert Otto,albert.otto@sigmanest.com,513-" +
-            "288-2262,MI (S),RSR:GL\r\nJonathan Padial,jonathan.padial@sigmanest.com,513-551-72" +
-            "12,KY:OH (S),RSR:GL\r\nSylvain Robidoux,sylvain.robidoux@sigmanest.com,438-401-868" +
-            "6,QC:NB:NS:PE:NL,RSR:CND\r\nDave Shifo,david.shifo@sigmanest.com,513-316-4791,IA,R" +
-            "SR:N&ST\r\nJandre TerreBlanche,jandre.terreblanche@sigmanest.com,513-595-2025,HI,V" +
-            "P:HI\r\nSteve Ties,steve.ties@sigmanest.com,513-214-9831,WI:MI (UP):ND:SD:NE:OK:AR" +
-            ":NM:MN,RSM:N&ST\r\nCharlie Vanderzwaag,charlie.vanderzwaag@sigmanest.com,226-971-1" +
-            "093,ON (S),RSR:CND\r\nSchalk van Niekerk,schalk.vanniekerk@sigmanest.com,513-317-7" +
-            "293,IL,RSR:N&ST\r\nBrian Warburton,brian.warburton@sigmanest.com,513-903-7485,TX (" +
-            "N),RSR:N&ST\r\nEthan Wyckoff,ethan.wyckoff@sigmanest.com,513-418-1755,FL,RSR:SE")]
+        [global::System.Configuration.DefaultSettingValueAttribute(",,,,\r\nBrian Blair,brian.blair@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW\r\nJ" +
+            "ustin Brewer,justin.brewer@sigmanest.com,513-314-8381,VA:WV:DE:MD:PA,RSR:NE\r\nAri" +
+            "e Brown,arie.brown@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS:NC:SC,RSM:SE\r\nMatt " +
+            "Brubaker,matt.brubaker@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL\r\nJason De" +
+            "Graeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU,RSM:CND\r\nDon" +
+            "nie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO,RSR:N&ST\r\nJim Elmore,j" +
+            "im.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ,RSR:SW\r\nFaber Fields,faber." +
+            "fields@sigmanest.com,513-430-2973,IN (S),RSR:GL\r\nJoaquin Gonzales,joaquin.gonzal" +
+            "es@sigmanest.com,513-507-7631,CA (N):NV (N),RSR:NW\r\nScott Lindley,scott.lindley@" +
+            "sigmanest.com,513-309-1394,OR:ID:UT:CO:WY,RSR:NW\r\nRyan Lustig,ryan.lustig@sigman" +
+            "est.com,513-508-4271,ME:VT:NH:MA:CT:RI:NY:PA:NJ,RSM:NE\r\nMike Mizak,mike.mizak@si" +
+            "gmanest.com,204-293-9418,MB,RSR:CND\r\nAlbert Otto,albert.otto@sigmanest.com,513-2" +
+            "88-2262,MI (S),RSR:GL\r\nJonathan Padial,jonathan.padial@sigmanest.com,513-551-721" +
+            "2,KY:OH (S),RSR:GL\r\nSylvain Robidoux,sylvain.robidoux@sigmanest.com,438-401-8686" +
+            ",QC:NB:NS:PE:NL,RSR:CND\r\nDave Shifo,david.shifo@sigmanest.com,513-316-4791,IA,RS" +
+            "R:N&ST\r\nJandre TerreBlanche,jandre.terreblanche@sigmanest.com,513-595-2025,HI,VP" +
+            ":HI\r\nSteve Ties,steve.ties@sigmanest.com,513-214-9831,WI:MI (UP):ND:SD:NE:OK:AR:" +
+            "NM:MN,RSM:N&ST\r\nCharlie Vanderzwaag,charlie.vanderzwaag@sigmanest.com,226-971-10" +
+            "93,ON (S),RSR:CND\r\nSchalk van Niekerk,schalk.vanniekerk@sigmanest.com,513-317-72" +
+            "93,IL,RSR:N&ST\r\nBrian Warburton,brian.warburton@sigmanest.com,513-903-7485,TX (N" +
+            "),RSR:N&ST\r\nEthan Wyckoff,ethan.wyckoff@sigmanest.com,513-418-1755,FL,RSR:SE")]
         public string SalesReps {
             get {
                 return ((string)(this["SalesReps"]));
