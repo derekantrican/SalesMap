@@ -102,8 +102,8 @@ namespace SalesMap
                                         "\n\nGo to " + url + " to download the new version?",
                                         "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start(url);
                         Log("User selected \"Yes\" for the new update");
+                        Update(GitVersion);
                     }
                     else
                     {
@@ -405,8 +405,6 @@ namespace SalesMap
 
         private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
         {
-
-            Update("v5.0");
             Log("Opening Google Maps");
 
             if (comboBoxState.SelectedItem.ToString() == "")
