@@ -38,6 +38,7 @@ namespace SalesMap
 
             checkFirstRun();
             checkForUpdate();
+            compareFiles();
 
             //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
 
@@ -48,7 +49,6 @@ namespace SalesMap
         {
             if (Properties.Settings.Default.AutoCheckUpdate)
             {
-                compareFiles();
 
                 WebClient client = new WebClient();
                 string url = "https://github.com/derekantrican/SalesMap/tags";
