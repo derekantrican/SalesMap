@@ -151,14 +151,20 @@ namespace SalesMap
                                     "\n\nGo to " + url + " to download the new version?",
                                     "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
-                    System.Diagnostics.Process.Start(url);
                     Log("User selected \"Yes\" for the new update");
+                    Update(GitVersion);
                 }
                 else
                 {
                     Log("User selected \"No\" for the new update");
                 }
             }
+        }
+
+        private void Update(string version)
+        {
+            Updater updater = new Updater(version);
+            updater.ShowDialog();
         }
 
         private void buttonVariables_Click(object sender, EventArgs e)
