@@ -405,6 +405,8 @@ namespace SalesMap
 
         private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
         {
+
+            Update("v5.0");
             Log("Opening Google Maps");
 
             if (comboBoxState.SelectedItem.ToString() == "")
@@ -707,6 +709,12 @@ namespace SalesMap
             return null;
         }
 
+        private void Update(string version)
+        {
+            Updater updater = new Updater(version);
+            updater.ShowDialog();
+        }
+
         private string removeSpecial(string input)
         {
             input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
@@ -736,7 +744,7 @@ namespace SalesMap
 
         private void checkFirstRun()
         {
-            try
+            try //ToDo: Eventually, remove this (if we're never hitting it)
             {
                 string regionPath = @"C:\Users\" + Environment.UserName + @"\Regions.txt";
                 string salesPath = @"C:\Users\" + Environment.UserName + @"\SalesReps.txt";
@@ -795,6 +803,22 @@ namespace SalesMap
                     key.SetValue("FirstRun", Properties.Settings.Default.Version);
                     Log("First time running version " + Properties.Settings.Default.Version + " of this program. Last version: " + key.GetValue("FirstRun").ToString());
                     Log("This was the last time this will run");
+                }
+
+                if (key.GetValue("Updating") != null && Convert.ToBoolean(key.GetValue("Updating")) == true)
+                {
+                    try
+                    {
+                        File.Delete(Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf("\\") + 1) + "SalesMap-old.exe");
+                        Log("Deleted the old executable");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log("Could not delete the old executable: " + ex.Message);
+                    }
+
+                    key.SetValue("Updating", false);
+                    Log("Set \"Updating\" key to false");
                 }
 
                 //Delete old files (if they exist)
