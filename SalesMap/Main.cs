@@ -100,7 +100,7 @@ namespace SalesMap
                     Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
 
                     if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
-                                        "\n\nGo to " + url + " to download the new version?",
+                                        "\n\nDo you want to update to the new version?",
                                         "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                     {
                         Log("User selected \"Yes\" for the new update");
