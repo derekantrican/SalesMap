@@ -33,6 +33,7 @@ namespace SalesMap
         public SalesMapSearch()
         {
             InitializeComponent();
+            this.Text = this.Text + " (" + Properties.Settings.Default.Version + ")"; //Change the name of the window to include the current version
             Log("------------ STARTING SALESMAP (" + Properties.Settings.Default.Version + ") ------------");
 
             checkFirstRun();
