@@ -30,42 +30,33 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesMapSearch));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelState = new System.Windows.Forms.Label();
             this.labelOR = new System.Windows.Forms.Label();
             this.labelRepresentative = new System.Windows.Forms.Label();
-            this.pictureBackground = new System.Windows.Forms.PictureBox();
             this.comboBoxState = new System.Windows.Forms.ComboBox();
             this.comboBoxRepresentative = new System.Windows.Forms.ComboBox();
-            this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
             this.labelRepResult = new System.Windows.Forms.Label();
             this.labelRegionResult = new System.Windows.Forms.Label();
             this.labelContactResult = new System.Windows.Forms.Label();
-            this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.labelContactResult2 = new System.Windows.Forms.Label();
             this.labelRepResult2 = new System.Windows.Forms.Label();
             this.labelNoImage = new System.Windows.Forms.Label();
-            this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
-            this.pictureBoxOffSMR = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.labelPhoneResult = new System.Windows.Forms.Label();
             this.labelPhoneResult2 = new System.Windows.Forms.Label();
+            this.pictureBoxOffSMR = new System.Windows.Forms.PictureBox();
+            this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMap = new System.Windows.Forms.PictureBox();
+            this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBackground = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(36, 255);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(275, 275);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // labelState
             // 
@@ -97,15 +88,6 @@
             this.labelRepresentative.TabIndex = 6;
             this.labelRepresentative.Text = "Sales Rep Name:";
             // 
-            // pictureBackground
-            // 
-            this.pictureBackground.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.pictureBackground.Location = new System.Drawing.Point(12, 12);
-            this.pictureBackground.Name = "pictureBackground";
-            this.pictureBackground.Size = new System.Drawing.Size(299, 95);
-            this.pictureBackground.TabIndex = 8;
-            this.pictureBackground.TabStop = false;
-            // 
             // comboBoxState
             // 
             this.comboBoxState.FormattingEnabled = true;
@@ -125,18 +107,6 @@
             this.comboBoxRepresentative.TabIndex = 12;
             this.toolTip1.SetToolTip(this.comboBoxRepresentative, "Select a representative");
             this.comboBoxRepresentative.SelectedIndexChanged += new System.EventHandler(this.comboBoxRepresentative_SelectedIndexChanged);
-            // 
-            // pictureBoxSettings
-            // 
-            this.pictureBoxSettings.Image = global::SalesMap.Properties.Resources.settings;
-            this.pictureBoxSettings.Location = new System.Drawing.Point(317, -1);
-            this.pictureBoxSettings.Name = "pictureBoxSettings";
-            this.pictureBoxSettings.Size = new System.Drawing.Size(25, 25);
-            this.pictureBoxSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxSettings.TabIndex = 13;
-            this.pictureBoxSettings.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBoxSettings, "Settings");
-            this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // labelRepResult
             // 
@@ -170,18 +140,6 @@
             this.toolTip1.SetToolTip(this.labelContactResult, "Click to copy");
             this.labelContactResult.Click += new System.EventHandler(this.labelContactResult_Click);
             // 
-            // pictureBoxMap
-            // 
-            this.pictureBoxMap.Image = global::SalesMap.Properties.Resources.Map;
-            this.pictureBoxMap.Location = new System.Drawing.Point(317, 30);
-            this.pictureBoxMap.Name = "pictureBoxMap";
-            this.pictureBoxMap.Size = new System.Drawing.Size(25, 25);
-            this.pictureBoxMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxMap.TabIndex = 17;
-            this.pictureBoxMap.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBoxMap, "Sales Map document");
-            this.pictureBoxMap.Click += new System.EventHandler(this.pictureBoxMap_Click);
-            // 
             // labelContactResult2
             // 
             this.labelContactResult2.AutoSize = true;
@@ -213,31 +171,6 @@
             this.labelNoImage.TabIndex = 21;
             this.labelNoImage.Text = "No Image Available";
             // 
-            // pictureBoxOnlineMaps
-            // 
-            this.pictureBoxOnlineMaps.Image = global::SalesMap.Properties.Resources.GoogleMaps;
-            this.pictureBoxOnlineMaps.Location = new System.Drawing.Point(317, 61);
-            this.pictureBoxOnlineMaps.Name = "pictureBoxOnlineMaps";
-            this.pictureBoxOnlineMaps.Size = new System.Drawing.Size(25, 25);
-            this.pictureBoxOnlineMaps.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxOnlineMaps.TabIndex = 22;
-            this.pictureBoxOnlineMaps.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBoxOnlineMaps, "Google Maps of selected region");
-            this.pictureBoxOnlineMaps.Click += new System.EventHandler(this.pictureBoxOnlineMaps_Click);
-            // 
-            // pictureBoxOffSMR
-            // 
-            this.pictureBoxOffSMR.Image = global::SalesMap.Properties.Resources.offSMRPic;
-            this.pictureBoxOffSMR.Location = new System.Drawing.Point(317, 92);
-            this.pictureBoxOffSMR.Name = "pictureBoxOffSMR";
-            this.pictureBoxOffSMR.Size = new System.Drawing.Size(25, 25);
-            this.pictureBoxOffSMR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxOffSMR.TabIndex = 23;
-            this.pictureBoxOffSMR.TabStop = false;
-            this.pictureBoxOffSMR.Tag = "";
-            this.toolTip1.SetToolTip(this.pictureBoxOffSMR, "Compose an Off SMR email");
-            this.pictureBoxOffSMR.Click += new System.EventHandler(this.pictureBoxOffSMR_Click);
-            // 
             // toolTip1
             // 
             this.toolTip1.AutoPopDelay = 30000;
@@ -268,6 +201,73 @@
             this.toolTip1.SetToolTip(this.labelPhoneResult2, "Click to copy");
             this.labelPhoneResult2.Click += new System.EventHandler(this.labelPhoneResult2_Click);
             // 
+            // pictureBoxOffSMR
+            // 
+            this.pictureBoxOffSMR.Image = global::SalesMap.Properties.Resources.offSMRPic;
+            this.pictureBoxOffSMR.Location = new System.Drawing.Point(317, 92);
+            this.pictureBoxOffSMR.Name = "pictureBoxOffSMR";
+            this.pictureBoxOffSMR.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxOffSMR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxOffSMR.TabIndex = 23;
+            this.pictureBoxOffSMR.TabStop = false;
+            this.pictureBoxOffSMR.Tag = "";
+            this.toolTip1.SetToolTip(this.pictureBoxOffSMR, "Compose an Off SMR email");
+            this.pictureBoxOffSMR.Click += new System.EventHandler(this.pictureBoxOffSMR_Click);
+            // 
+            // pictureBoxOnlineMaps
+            // 
+            this.pictureBoxOnlineMaps.Image = global::SalesMap.Properties.Resources.GoogleMaps;
+            this.pictureBoxOnlineMaps.Location = new System.Drawing.Point(317, 61);
+            this.pictureBoxOnlineMaps.Name = "pictureBoxOnlineMaps";
+            this.pictureBoxOnlineMaps.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxOnlineMaps.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxOnlineMaps.TabIndex = 22;
+            this.pictureBoxOnlineMaps.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxOnlineMaps, "Google Maps of selected region");
+            this.pictureBoxOnlineMaps.Click += new System.EventHandler(this.pictureBoxOnlineMaps_Click);
+            // 
+            // pictureBoxMap
+            // 
+            this.pictureBoxMap.Image = global::SalesMap.Properties.Resources.Map;
+            this.pictureBoxMap.Location = new System.Drawing.Point(317, 30);
+            this.pictureBoxMap.Name = "pictureBoxMap";
+            this.pictureBoxMap.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxMap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxMap.TabIndex = 17;
+            this.pictureBoxMap.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxMap, "Sales Map document");
+            this.pictureBoxMap.Click += new System.EventHandler(this.pictureBoxMap_Click);
+            // 
+            // pictureBoxSettings
+            // 
+            this.pictureBoxSettings.Image = global::SalesMap.Properties.Resources.settings;
+            this.pictureBoxSettings.Location = new System.Drawing.Point(317, -1);
+            this.pictureBoxSettings.Name = "pictureBoxSettings";
+            this.pictureBoxSettings.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxSettings.TabIndex = 13;
+            this.pictureBoxSettings.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxSettings, "Settings");
+            this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(36, 255);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(275, 275);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBackground
+            // 
+            this.pictureBackground.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pictureBackground.Location = new System.Drawing.Point(12, 12);
+            this.pictureBackground.Name = "pictureBackground";
+            this.pictureBackground.Size = new System.Drawing.Size(299, 95);
+            this.pictureBackground.TabIndex = 8;
+            this.pictureBackground.TabStop = false;
+            // 
             // SalesMapSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -296,14 +296,14 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SalesMapSearch";
-            this.Text = "Sales Map Search";
+            this.Text = "SalesMap";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SalesMapSearch_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
