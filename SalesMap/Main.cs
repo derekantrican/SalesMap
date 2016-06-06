@@ -120,6 +120,8 @@ namespace SalesMap
 
             if (Properties.Settings.Default.SendLog)
             {
+                SendStatistics();
+
                 string user = Environment.UserName;
                 string logPath = @"C:\Users\" + user + @"\log.txt";
                 string newLogPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + user + " log.txt";
@@ -708,6 +710,35 @@ namespace SalesMap
             input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
 
             return input;
+        }
+
+        private void SendStatistics()
+        {
+            string statisticsPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\usage statistics.txt";
+            bool found = false;
+
+            if (File.Exists(statisticsPath))
+            {
+                string[] contents = File.ReadAllLines(statisticsPath);
+                List<string> contentsList = contents.OfType<string>().ToList();
+
+                foreach (string s in contentsList)
+                {
+                    Console.WriteLine(s);
+
+                    if (s.Split(',').First() == Environment.UserName)
+                    {
+                        contentsList[contentsList.IndexOf(s)] = Environment.UserName + "," + Properties.Settings.Default.Version + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time"));
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    contentsList.Add(Environment.UserName + "," + Properties.Settings.Default.Version + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time")));
+
+                File.WriteAllLines(statisticsPath, contentsList);
+            }
         }
 
         private void Log(string itemToLog)
