@@ -159,6 +159,10 @@ namespace SalesMap
                     Log("User selected \"No\" for the new update");
                 }
             }
+            else
+            {
+                MessageBox.Show("Congrats, you have the most current version! You are running version v5.5");
+            }
         }
 
         private void Update(string version)

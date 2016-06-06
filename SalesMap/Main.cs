@@ -814,19 +814,19 @@ namespace SalesMap
                 if (File.Exists(offSMRPath))
                 {
                     File.Delete(offSMRPath);
-                    Log("Deleted OffSMR.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
+                    Log("Deleted OffSMR.txt from the last version of this program");
                 }
 
                 if (File.Exists(regionPath))
                 {
                     File.Delete(regionPath);
-                    Log("Deleted the Regions.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
+                    Log("Deleted the Regions.txt from the last version of this program");
                 }
 
                 if (File.Exists(salesPath))
                 {
                     File.Delete(salesPath);
-                    Log("Deleted the SalesReps.txt from version " + key.GetValue("FirstRun").ToString() + " of this program");
+                    Log("Deleted the SalesReps.txt from the last version of this program");
                 }
 
                 try
