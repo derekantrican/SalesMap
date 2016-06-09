@@ -584,6 +584,7 @@ namespace SalesMap
             {
                 Clipboard.SetText(copy);
                 labelContactResult.Text = "Contact: COPIED!";
+                Log("Clicked first Sales Rep email and set clipboard to \"" + copy + "\"");
             }
             catch
             {
@@ -605,6 +606,7 @@ namespace SalesMap
             {
                 Clipboard.SetText(copy);
                 labelPhoneResult.Text = "COPIED!";
+                Log("Clicked first Sales Rep phone and set clipboard to \"" + copy + "\"");
             }
             catch
             {
@@ -626,6 +628,7 @@ namespace SalesMap
             {
                 Clipboard.SetText(copy);
                 labelContactResult2.Text = "Contact: COPIED!";
+                Log("Clicked second Sales Rep email and set clipboard to \"" + copy + "\"");
             }
             catch
             {
@@ -647,6 +650,7 @@ namespace SalesMap
             {
                 Clipboard.SetText(copy);
                 labelPhoneResult2.Text = "COPIED!";
+                Log("Clicked second Sales Rep phone and set clipboard to \"" + copy + "\"");
             }
             catch
             {
@@ -729,13 +733,17 @@ namespace SalesMap
                     if (s.Split(',').First() == Environment.UserName)
                     {
                         contentsList[contentsList.IndexOf(s)] = Environment.UserName + "," + Properties.Settings.Default.Version + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time"));
+                        Log("Added this session's info to the stats table");
                         found = true;
                         break;
                     }
                 }
 
                 if (!found)
+                {
                     contentsList.Add(Environment.UserName + "," + Properties.Settings.Default.Version + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time")));
+                    Log("Could not find a previous session in the stats table, so created one");
+                }
 
                 File.WriteAllLines(statisticsPath, contentsList);
             }
