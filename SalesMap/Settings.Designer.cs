@@ -48,6 +48,7 @@
             this.richTextBoxSignature = new System.Windows.Forms.RichTextBox();
             this.textBoxEditSubject = new System.Windows.Forms.TextBox();
             this.labelEditSubject = new System.Windows.Forms.Label();
+            this.checkBoxInternational = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControlOffSMREmail.SuspendLayout();
@@ -237,11 +238,22 @@
             this.labelEditSubject.TabIndex = 15;
             this.labelEditSubject.Text = "Subject:";
             // 
+            // checkBoxInternational
+            // 
+            this.checkBoxInternational.AutoSize = true;
+            this.checkBoxInternational.Location = new System.Drawing.Point(18, 218);
+            this.checkBoxInternational.Name = "checkBoxInternational";
+            this.checkBoxInternational.Size = new System.Drawing.Size(152, 30);
+            this.checkBoxInternational.TabIndex = 17;
+            this.checkBoxInternational.Text = "Show international results?\r\n(requires restart)";
+            this.checkBoxInternational.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 301);
+            this.Controls.Add(this.checkBoxInternational);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.checkBoxSendLog);
             this.Controls.Add(this.checkBoxAutoUpdates);
@@ -285,5 +297,6 @@
         private System.Windows.Forms.RichTextBox textBoxEdit;
         private System.Windows.Forms.RichTextBox richTextBoxSignature;
         private System.Windows.Forms.PictureBox pictureBoxPreview;
+        private System.Windows.Forms.CheckBox checkBoxInternational;
     }
 }

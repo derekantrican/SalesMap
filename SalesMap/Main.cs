@@ -171,7 +171,7 @@ namespace SalesMap
             //Compare the raw text of files by checking files without special characters
             if (removeSpecial(Properties.Settings.Default.Regions) != removeSpecial(regionTextOnline) && regionTextOnline != "")
             {
-                Log("Internal regions is not the same as online. Updating...");
+                Log("Internal Regions is not the same as online. Updating...");
                 Log("DIFF: " + diff(removeSpecial(Properties.Settings.Default.Regions), removeSpecial(regionTextOnline)), false);
                 Properties.Settings.Default.Regions = regionTextOnline;
             }
@@ -183,12 +183,72 @@ namespace SalesMap
                 Properties.Settings.Default.SalesReps = salesTextOnline;
             }
 
+            url = "https://github.com/derekantrican/SalesMap/wiki/International-Databases";
+            html = "";
+
+            string internationalRegionTextOnline = "";
+            string internationalSalesTextOnline = "";
+
+            try
+            {
+                html = client.DownloadString(url);
+
+                internationalRegionTextOnline = html.Substring(html.IndexOf("<pre><code>") + 11).Split('<')[0];
+                internationalSalesTextOnline = html.Substring(html.LastIndexOf("<pre><code>") + 11).Split('<')[0];
+            }
+            catch
+            {
+                Log("Attempted to get the online databases and failed to get html");
+                return;
+            }
+
+            //Remove the extra character that comes at the end of these strings and replace "&amp;" with "&"
+            internationalRegionTextOnline = internationalRegionTextOnline.TrimEnd(internationalRegionTextOnline[internationalRegionTextOnline.Length - 1]);
+            internationalRegionTextOnline = internationalRegionTextOnline.Replace("&amp;", "&");
+            internationalSalesTextOnline = internationalSalesTextOnline.TrimEnd(internationalSalesTextOnline[internationalSalesTextOnline.Length - 1]);
+            internationalSalesTextOnline = internationalSalesTextOnline.Replace("&amp;", "&");
+
+            //Compare the raw text of files by checking files without special characters
+            if (removeSpecial(Properties.Settings.Default.InternationalRegions) != removeSpecial(internationalRegionTextOnline) && internationalRegionTextOnline != "")
+            {
+                Log("Internal InternationalRegions is not the same as online. Updating...");
+                Log("DIFF: " + diff(removeSpecial(Properties.Settings.Default.InternationalRegions), removeSpecial(internationalRegionTextOnline)), false);
+                Properties.Settings.Default.InternationalRegions = internationalRegionTextOnline;
+            }
+
+            if (removeSpecial(Properties.Settings.Default.InternationalReps) != removeSpecial(internationalSalesTextOnline) && internationalSalesTextOnline != "")
+            {
+                Log("Internal InternationalSalesReps is not the same as online. Updating...");
+                Log("DIFF: " + diff(removeSpecial(Properties.Settings.Default.InternationalReps), removeSpecial(internationalSalesTextOnline)), false);
+                Properties.Settings.Default.InternationalReps = internationalSalesTextOnline;
+            }
+
             Properties.Settings.Default.Save();
         }
 
         public void readFiles()
         {
-            using (StringReader reader = new StringReader(Properties.Settings.Default.Regions))
+            string regionsSource = "";
+            string repsSource = "";
+
+            if (Properties.Settings.Default.UseInternational)
+            {
+                regionsSource = Properties.Settings.Default.InternationalRegions;
+                repsSource = Properties.Settings.Default.InternationalReps;
+            }
+            else
+            {
+                regionsSource = Properties.Settings.Default.Regions;
+                repsSource = Properties.Settings.Default.SalesReps;
+            }
+
+            if (regionsSource == "" || repsSource == "")
+            {
+                Log("Error setting comboBox values (UseInternational: " + Properties.Settings.Default.UseInternational + ")");
+                Environment.Exit(1);
+            }
+
+            using (StringReader reader = new StringReader(regionsSource))
             {
                 string line = reader.ReadLine();
 
@@ -211,7 +271,7 @@ namespace SalesMap
                 }
             }
 
-            using (StringReader reader = new StringReader(Properties.Settings.Default.SalesReps))
+            using (StringReader reader = new StringReader(repsSource))
             {
                 string line = reader.ReadLine();
 
@@ -477,7 +537,7 @@ namespace SalesMap
             {
                 for (var i = 0; i < RegionNamesArray.Length; i++)
                 {
-                    if (RegionNamesArray[i] == comboBoxState.SelectedItem.ToString())
+                    if (RegionNamesArray[i] == comboBoxState.SelectedItem.ToString() && RegionAreaArray[i] != "")
                     {
                         area = "RSM:" + RegionAreaArray[i];
                         break;
@@ -486,7 +546,7 @@ namespace SalesMap
 
                 for (var i = 0; i < SalesRepPositionArray.Length; i++)
                 {
-                    if (SalesRepPositionArray[i].IndexOf(area) >= 0)
+                    if (SalesRepPositionArray[i].IndexOf(area) >= 0 && area != "")
                     {
                         rsm = SalesRepEmailArray[i];
                         break;

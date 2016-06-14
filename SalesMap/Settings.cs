@@ -24,6 +24,7 @@ namespace SalesMap
 
             textBoxEditSubject.Text = Properties.Settings.Default.OffSMRSubject;
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
+            checkBoxInternational.Checked = Properties.Settings.Default.UseInternational;
             checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
             checkBoxSendLog.Checked = Properties.Settings.Default.SendLog;
             textBoxEdit.Text = Properties.Settings.Default.OffSMRBody;
@@ -56,7 +57,22 @@ namespace SalesMap
             Properties.Settings.Default.SendLog = checkBoxSendLog.Checked;
             Properties.Settings.Default.OffSMRBody = textBoxEdit.Text;
             Properties.Settings.Default.OffSMRSignature = richTextBoxSignature.Text;
-            Properties.Settings.Default.Save();
+
+            if (Properties.Settings.Default.UseInternational != checkBoxInternational.Checked)
+            {
+                MessageBox.Show("The program will now restart...", "Restart Required", MessageBoxButtons.OK);
+                Properties.Settings.Default.UseInternational = checkBoxInternational.Checked;
+                Properties.Settings.Default.Save();
+
+                ProcessStartInfo Info = new ProcessStartInfo();
+                Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
+                Info.WindowStyle = ProcessWindowStyle.Hidden;
+                Info.CreateNoWindow = true;
+                Info.FileName = "cmd.exe";
+                Process.Start(Info);
+                Application.Exit();
+            }
+
 
             if (Form.ModifierKeys == Keys.Control)
             {

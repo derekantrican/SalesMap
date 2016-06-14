@@ -247,5 +247,136 @@ Main: 513.595.2002<br>
                 this["OffSMRSignatureDefault"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(",,,,\r\nBrian Blair,brian.blair@sigmanest.com,513-314-7422,BC:AB:WA:MT:AK,RSM:NW\r\nJ" +
+            "ustin Brewer,justin.brewer@sigmanest.com,513-314-8381,VA:WV:DE:MD:PA,RSR:NE\r\nAri" +
+            "e Brown,arie.brown@sigmanest.com,513-335-7432,GA:LA:TN:AL:MS:NC:SC,RSM:SE\r\nMatt " +
+            "Brubaker,matt.brubaker@sigmanest.com,513-532-3544,IN (N):OH (N),RSM:GL\r\nJason De" +
+            "Graeve,jason.degraeve@sigmanest.com,519-831-5774,ON (N):SK:NT:YT:NU,RSM:CND\r\nDon" +
+            "nie Dugger,donnie.dugger@sigmanest.com,816-454-0600,KS:MO,RSR:N&ST\r\nJim Elmore,j" +
+            "im.elmore@sigmanest.com,513-214-9269,CA (S):NV(S):AZ,RSR:SW\r\nFaber Fields,faber." +
+            "fields@sigmanest.com,513-430-2973,IN (S),RSR:GL\r\nJoaquin Gonzales,joaquin.gonzal" +
+            "es@sigmanest.com,513-507-7631,CA (N):NV (N),RSR:NW\r\nScott Lindley,scott.lindley@" +
+            "sigmanest.com,513-309-1394,OR:ID:UT:CO:WY,RSR:NW\r\nRyan Lustig,ryan.lustig@sigman" +
+            "est.com,513-508-4271,ME:VT:NH:MA:CT:RI:NY:NJ,RSM:NE\r\nMike Mizak,mike.mizak@sigma" +
+            "nest.com,204-293-9418,MB,RSR:CND\r\nAlbert Otto,albert.otto@sigmanest.com,513-288-" +
+            "2262,MI (S),RSR:GL\r\nJonathan Padial,jonathan.padial@sigmanest.com,513-551-7212,K" +
+            "Y:OH (S),RSR:GL\r\nSylvain Robidoux,sylvain.robidoux@sigmanest.com,438-401-8686,QC" +
+            ":NB:NS:PE:NL,RSR:CND\r\nDave Shifo,david.shifo@sigmanest.com,513-316-4791,IA,RSR:N" +
+            "&ST\r\nJandre TerreBlanche,jandre.terreblanche@sigmanest.com,513-595-2025,HI,RSM:K" +
+            "orea\r\nSteve Ties,steve.ties@sigmanest.com,513-214-9831,WI:MI (UP):ND:SD:NE:OK:AR" +
+            ":NM:MN,RSM:N&ST\r\nCharlie Vanderzwaag,charlie.vanderzwaag@sigmanest.com,226-971-1" +
+            "093,ON (S),RSR:CND\r\nSchalk van Niekerk,schalk.vanniekerk@sigmanest.com,513-317-7" +
+            "293,IL,RSR:N&ST\r\nBrian Warburton,brian.warburton@sigmanest.com,513-903-7485,TX (" +
+            "N),RSR:N&ST\r\nEthan Wyckoff,ethan.wyckoff@sigmanest.com,513-418-1755,FL,RSR:SE\r\nC" +
+            "hris Cooper,chris.cooper@sigmanest.com,,,RSM:Europe&MiddleEast\r\nChristoph Weber," +
+            "christoph.weber@sigmanest.com,,,RSM:Germany&Netherlands\r\nValter Bonelli,valter.b" +
+            "onelli@sigmanest.com,513-338-8149,,RSM:Italy\r\nJoe Keblesh,joe.keblesh@sigmanest." +
+            "com,513-322-1646,,RSM:SouthernAsia-RSM:Aus&NewZealand\r\nFernando Jank,fernando.ja" +
+            "nk@sigmanest.com,,Argentina:Belize:Brazil:Bolivia:Columbia:Chili:Ecuador:Fr Guia" +
+            "na:Guatemala:Guyana:Paraguay:Peru:Suriname:Uruguay:Venezuela,\r\nWilliam Haggon,wi" +
+            "lliam.haggon@sigmanest.com,,Albania:Austria:Belarus:Bosnia:Bulgaria:Croatia:Czec" +
+            "h Rep:Denmark:England:Estonia:Finland:Greece:Hungary:Iceland:Ireland:Latvia:Liec" +
+            "htenstein:Lithuania:Macedonia:Moldova:Montenegro:Norway:Romania:Russia:Scandinav" +
+            "ia:Scottland:SebiaSlovenia:Sweden:Switzerland:UK:Ukraine:WalesAfghanistan:Bahrai" +
+            "n:Iran:Israel:Jordan:Kyrgyzstan:Kuwait:Lebanon:Oman:Pakistan:Palestine:Qatar:Sau" +
+            "di Arabia:Syria:Tajikistan:Turkey:Turkmenistan:United Arab Emirates (UAE):Uzbeki" +
+            "stan:Yemen,RSR:Europe&MiddleEast\r\nGonzalo Ruiz,gonzalo.ruiz@sigmanest.com,,Portu" +
+            "gal:Spain,RSR:Europe&MiddleEast\r\nStigo  (Reseller),biuro@stigo.com.pl,,Poland,RS" +
+            "R:Europe&MiddleEast\r\nPeter van Trappen,peter.vantrappen@sigmanest.com,,Netherlan" +
+            "ds:Belgium:Benelux:Luxembourg,RSR:Germany&Netherlands\r\nAlexander Kuhn,alexander." +
+            "kuehn@sigmanest.com,,Germany (N),RSR:Germany&Netherlands\r\nSven Waldlhier,sven.wa" +
+            "ldhier@sigmanest.com,,Germany (S),RSR:Germany&Netherlands\r\nMassimo Corvi,massimo" +
+            ".corvi@sigmanest.com,,Italy,RSR:Italy\r\nHannes Pretorius,hannes@mecad.co.za,,Sub-" +
+            "Sharan Africa:South Africa,\r\nLaurent Delemme,laurent.delemme@sigmanest.com,,Alge" +
+            "ria:Egypt:Morocco:Northern Africa:Tunisia:France,\r\nJohn Salisbury,john.salisbury" +
+            "@sigmanest.com,,Australia (S),RSR:Aus&NewZealand\r\nNeill Kapp,neill.kapp@sigmanes" +
+            "t.com,,Australia (N),RSR:Aus&NewZealand\r\nGlen Gray (Reseller),glen@kerf.co.nz,,N" +
+            "ew Zealand,RSR:Aus&NewZealand\r\nVeil Ge,veil.ge@sigmanest.com,,China:Indonesia:Ma" +
+            "laysia:Taiwan:Thailand:Vietnam,RSR:SouthernAsia\r\nMahesh Khandale,mahesh.khandale" +
+            "@sigmanest.com,,India:Bangladesh:Gulf Countries:Lebanon,\r\nHan-Joo Kim,hanjoo.kim" +
+            "@sigmanest.com,,Korea,RSR:Korea\r\nHideki Chiba,hideki.chiba@sigmanest.com,,Japan," +
+            "")]
+        public string InternationalReps {
+            get {
+                return ((string)(this["InternationalReps"]));
+            }
+            set {
+                this["InternationalReps"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(",,\r\n(AB) Alberta,0,NW\r\n(AK) Alaska,0,NW\r\n(AL) Alabama,0,SE\r\n(AR) Arkansas,0,N&ST\r" +
+            "\n(AZ) Arizona,0,SW\r\n(BC) British Columbia,0,NW\r\n(CA) California,1,NW\r\n(CO) Color" +
+            "ado,0,NW\r\n(CT) Connecticut,0,NE\r\n(DE) Delaware,0,NE\r\n(FL) Florida,0,SE\r\n(GA) Geo" +
+            "rgia,0,SE\r\n(HI) Hawaii,0,HI\r\n(IA) Iowa,0,N&ST\r\n(ID) Idaho,0,NW\r\n(IL) Illinois,0," +
+            "N&ST\r\n(IN) Indiana,1,GL\r\n(KS) Kansas,0,N&ST\r\n(KY) Kentucky,0,GL\r\n(LA) Louisiana," +
+            "0,SE\r\n(MA) Massachusetts,0,NE\r\n(MB) Manitoba,0,CND\r\n(MD) Maryland,0,NE\r\n(ME) Mai" +
+            "ne,0,NE\r\n(MI) Michigan,1,GL\r\n(MN) Minnesota,0,N&ST\r\n(MO) Missouri,0,N&ST\r\n(MS) M" +
+            "ississippi,0,SE\r\n(MT) Montana,0,NW\r\n(NB) New Brunswick,0,CND\r\n(NC) North Carolin" +
+            "a,0,SE\r\n(ND) North Dakota,0,N&ST\r\n(NE) Nebraska,0,N&ST\r\n(NH) New Hampshire,0,NE\r" +
+            "\n(NJ) New Jersey,0,NE\r\n(NL) Newfoundland and Labrador,0,CND\r\n(NM) New Mexico,0,N" +
+            "&ST\r\n(NS) Nova Scotia,0,CND\r\n(NT) Northwest Territories,0,CND\r\n(NU) Nunavut,0,CN" +
+            "D\r\n(NV) Nevada,1,NW\r\n(NY) New York,0,NE\r\n(OH) Ohio,1,GL\r\n(OK) Oklahoma,0,N&ST\r\n(" +
+            "ON) Ontario,1,CND\r\n(OR) Oregon,0,NW\r\n(PA) Pennsylvania,0,NE\r\n(PE) Prince Edward " +
+            "Island,0,CND\r\n(QC) Quebec,0,CND\r\n(RI) Rhode Island,0,NE\r\n(SC) South Carolina,0,S" +
+            "E\r\n(SD) South Dakota,0,N&ST\r\n(SK) Saskatchewan,0,CND\r\n(TN) Tennessee,0,SE\r\n(TX) " +
+            "Texas,0,N&ST\r\n(UT) Utah,0,NW\r\n(VA) Virginia,0,NE\r\n(VT) Vermont,0,NE\r\n(WA) Washin" +
+            "gton,0,NW\r\n(WI) Wisconsin,0,N&ST\r\n(WV) West Virginia,0,NE\r\n(WY) Wyoming,0,NW\r\n(Y" +
+            "T) Yukon,0,CND\r\nAlbania,0,Europe&MiddleEast\r\nAlgeria,0,\r\nAfghanistan,0,Europe&Mi" +
+            "ddleEast\r\nArgentina,0,\r\nAustralia,1,Aus&NewZealand\r\nAustria,0,Europe&MiddleEast\r" +
+            "\nBahrain,0,Europe&MiddleEast\r\nBangladesh,0,\r\nBelarus,0,Europe&MiddleEast\r\nBelgiu" +
+            "m,0,Germany&Netherlands\r\nBelize,0,\r\nBenelux,0,Germany&Netherlands\r\nBolivia,0,\r\nB" +
+            "osnia,0,Europe&MiddleEast\r\nBrazil,0,\r\nBulgaria,0,Europe&MiddleEast\r\nChili,0,\r\nCh" +
+            "ina,0,SouthernAsia\r\nColumbia,0,\r\nCroatia,0,Europe&MiddleEast\r\nCzech Rep,0,Europe" +
+            "&MiddleEast\r\nDenmark,0,Europe&MiddleEast\r\nEcuador,0,\r\nEgypt,0,\r\nEngland,0,Europe" +
+            "&MiddleEast\r\nEstonia,0,Europe&MiddleEast\r\nFinland,0,Europe&MiddleEast\r\nFr Guiana" +
+            ",0,\r\nFrance,0,Europe&MiddleEast\r\nGermany,1,Germany&Netherlands\r\nGreece,0,Europe&" +
+            "MiddleEast\r\nGuatemala,0,\r\nGulf Countries,0,\r\nGuyana,0,\r\nHungary,0,Europe&MiddleE" +
+            "ast\r\nIceland,0,Europe&MiddleEast\r\nIndia,0,\r\nIndonesia,0,SouthernAsia\r\nIran,0,Eur" +
+            "ope&MiddleEast\r\nIreland,0,Europe&MiddleEast\r\nIsrael,0,Europe&MiddleEast\r\nItaly,0" +
+            ",Italy\r\nJapan,0,\r\nJordan,0,Europe&MiddleEast\r\nKorea,0,Korea\r\nKuwait,0,Europe&Mid" +
+            "dleEast\r\nKyrgyzstan,0,Europe&MiddleEast\r\nLatvia,0,Europe&MiddleEast\r\nLebanon,0,E" +
+            "urope&MiddleEast\r\nLebanon,0,\r\nLiechtenstein,0,Europe&MiddleEast\r\nLithuania,0,Eur" +
+            "ope&MiddleEast\r\nLuxembourg,0,Germany&Netherlands\r\nMacedonia,0,Europe&MiddleEast\r" +
+            "\nMalaysia,0,SouthernAsia\r\nMoldova,0,Europe&MiddleEast\r\nMontenegro,0,Europe&Middl" +
+            "eEast\r\nMorocco,0,\r\nNetherlands,0,Germany&Netherlands\r\nNew Zealand,0,Aus&NewZeala" +
+            "nd\r\nNorthern Africa,0,\r\nNorway,0,Europe&MiddleEast\r\nOman,0,Europe&MiddleEast\r\nPa" +
+            "kistan,0,Europe&MiddleEast\r\nPalestine,0,Europe&MiddleEast\r\nParaguay,0,\r\nPeru,0,\r" +
+            "\nPoland,0,Europe&MiddleEast\r\nPortugal,0,Europe&MiddleEast\r\nQatar,0,Europe&Middle" +
+            "East\r\nRomania,0,Europe&MiddleEast\r\nRussia,0,Europe&MiddleEast\r\nSaudi Arabia,0,Eu" +
+            "rope&MiddleEast\r\nScandinavia,0,Europe&MiddleEast\r\nScottland,0,Europe&MiddleEast\r" +
+            "\nSebiaSlovenia,0,Europe&MiddleEast\r\nSouth Africa,0,\r\nSpain,0,Europe&MiddleEast\r\n" +
+            "Sub-Sharan Africa,0,\r\nSuriname,0,\r\nSweden,0,Europe&MiddleEast\r\nSwitzerland,0,Eur" +
+            "ope&MiddleEast\r\nSyria,0,Europe&MiddleEast\r\nTaiwan,0,SouthernAsia\r\nTajikistan,0,E" +
+            "urope&MiddleEast\r\nThailand,0,SouthernAsia\r\nTunisia,0,\r\nTurkey,0,Europe&MiddleEas" +
+            "t\r\nTurkmenistan,0,Europe&MiddleEast\r\nUK,0,Europe&MiddleEast\r\nUkraine,0,Europe&Mi" +
+            "ddleEast\r\nUnited Arab Emirates (UAE),0,Europe&MiddleEast\r\nUruguay,0,\r\nUzbekistan" +
+            ",0,Europe&MiddleEast\r\nVenezuela,0,\r\nVietnam,0,SouthernAsia\r\nWales,0,Europe&Middl" +
+            "eEast\r\nYemen,0,Europe&MiddleEast")]
+        public string InternationalRegions {
+            get {
+                return ((string)(this["InternationalRegions"]));
+            }
+            set {
+                this["InternationalRegions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseInternational {
+            get {
+                return ((bool)(this["UseInternational"]));
+            }
+            set {
+                this["UseInternational"] = value;
+            }
+        }
     }
 }
