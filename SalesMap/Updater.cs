@@ -36,10 +36,10 @@ namespace SalesMap
             }
             catch (Exception ex)
             {
-                Log("[UPDATER] Problem renaming the old executable: " + ex.Message, false);
+                Common.Log("[UPDATER] Problem renaming the old executable: " + ex.Message, false);
             }
 
-            Log("[UPDATER] Downloading new version... (" + versionToDownload + ")", false);
+            Common.Log("[UPDATER] Downloading new version... (" + versionToDownload + ")", false);
 
             WebClient webClient = new WebClient();
             webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
@@ -57,7 +57,7 @@ namespace SalesMap
             string progName = Application.ExecutablePath.Substring(Application.ExecutablePath.LastIndexOf("\\") + 1);
             string progLoc = Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf("\\") + 1);
 
-            Log("[UPDATER] Download has completed....restarting", false);
+            Common.Log("[UPDATER] Download has completed....restarting", false);
 
             ProcessStartInfo Info = new ProcessStartInfo();
             Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + progLoc + progName + "\"";
@@ -66,26 +66,6 @@ namespace SalesMap
             Info.FileName = "cmd.exe";
             Process.Start(Info);
             Application.Exit();
-        }
-
-        private void Log(string itemToLog)
-        {
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
-            DateTime date = DateTime.UtcNow;
-            File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
-        }
-
-        private void Log(string itemToLog, bool addTimeStamp)
-        {
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
-
-            if (addTimeStamp)
-            {
-                DateTime date = DateTime.UtcNow;
-                File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
-            }
-            else
-                File.AppendAllText(logPath, itemToLog + Environment.NewLine);
         }
     }
 }

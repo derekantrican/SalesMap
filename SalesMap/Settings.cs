@@ -31,7 +31,7 @@ namespace SalesMap
             richTextBoxSignature.Text = Properties.Settings.Default.OffSMRSignature;
 
             //If the user's Off SMR Signature is the same as the default, show them where to set up a new one
-            if (removeSpecial(Properties.Settings.Default.OffSMRSignature) == removeSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+            if (Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignature) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
             {
                 tabControlOffSMREmail.SelectTab(1);
                 richTextBoxSignature.BackColor = Color.LightCoral;
@@ -49,7 +49,7 @@ namespace SalesMap
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            Log("Saving settings");
+            Common.Log("Saving settings");
 
             Properties.Settings.Default.OffSMRSubject = textBoxEditSubject.Text;
             Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
@@ -78,7 +78,7 @@ namespace SalesMap
             {
                 if (MessageBox.Show("This will factory reset this program! \n\nAre you sure?", "Factory Reset",MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    Log("Factory reset!");
+                    Common.Log("Factory reset!");
 
                     try
                     {
@@ -93,7 +93,7 @@ namespace SalesMap
                     }
                     catch (Exception ex)
                     {
-                        Log("Problems encountered during a factory reset: " + ex.Message);
+                        Common.Log("Problems encountered during a factory reset: " + ex.Message);
                         MessageBox.Show("Could not factory reset. Please contact the developer");
                         return;
                     }
@@ -113,66 +113,23 @@ namespace SalesMap
 
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            WebClient client = new WebClient();
-            string url = "https://github.com/derekantrican/SalesMap/tags";
-            string html = "";
-            try
-            {
-                html = client.DownloadString(url);
-            }
-            catch
-            {
-                Log("Attempted to check for new version and failed to get html");
-                MessageBox.Show("Failed to check for a new update. Are you connected to the internet?");
-                return;
-            }
-
-            string nextUrl = "";
-
-            List<string> versions = new List<string>();
-            string version = "";
-            while (html.IndexOf("<span class=\"disabled\">Next</span>") < 0)
-            {
-                while (html.IndexOf("<span class=\"tag-name\">v") > -1)
-                {
-                    html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
-                    version = html.Split('<')[0];
-
-                    if (version != "" && version.IndexOf("beta") < 0)
-                        versions.Add(html.Split('<')[0]);
-                }
-
-                nextUrl = html.Substring(html.IndexOf("<span class=\"disabled\">Previous</span>") + 47).Split('\"')[0];
-                html = client.DownloadString(nextUrl);
-            }
-
-            //Run this while loop again to get the last page
-            while (html.IndexOf("<span class=\"tag-name\">v") > -1)
-            {
-                html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
-                version = html.Split('<')[0];
-
-                if (version != "" && version.IndexOf("beta") < 0)
-                    versions.Add(html.Split('<')[0]);
-            }
-
-            string GitVersion = versions.First();
+            string GitVersion = Common.checkGitHub();
             string thisVersion = Properties.Settings.Default.Version;
 
             if (GitVersion != thisVersion)
             {
-                Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
+                Common.Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
 
                 if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
                                     "\n\nDo you want to update to the new version?",
                                     "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
-                    Log("User selected \"Yes\" for the new update");
+                    Common.Log("User selected \"Yes\" for the new update");
                     Update(GitVersion);
                 }
                 else
                 {
-                    Log("User selected \"No\" for the new update");
+                    Common.Log("User selected \"No\" for the new update");
                 }
             }
             else
@@ -226,7 +183,7 @@ namespace SalesMap
             catch (Exception eX)
             {
                 MessageBox.Show("Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again");
-                Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
+                Common.Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
             }
         }
 
@@ -238,35 +195,6 @@ namespace SalesMap
             rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
 
             return rawReplaced;
-        }
-
-        private string removeSpecial(string input)
-        {
-            input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
-
-            return input;
-        }
-
-        private void Log(string itemToLog)
-        {
-            //Add a check for a "on/off" for the log in settings?
-            DateTime date = DateTime.UtcNow;
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
-
-            File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
-        }
-
-        private void Log(string itemToLog, bool addTimeStamp)
-        {
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
-
-            if (addTimeStamp)
-            {
-                DateTime date = DateTime.UtcNow;
-                File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
-            }
-            else
-                File.AppendAllText(logPath, itemToLog + Environment.NewLine);
         }
     }
 }
