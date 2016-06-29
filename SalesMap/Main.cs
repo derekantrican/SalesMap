@@ -32,6 +32,24 @@ namespace SalesMap
         List<String> SalesRepRegions = new List<String>();
         List<String> SalesRepPosition = new List<String>();
 
+        public class Region
+        {
+            public string DispayName { get; set; }
+            public string Abbreviation { get; set; }
+            public string Area { get; set; }
+            public string Picture { get; set; }
+        }
+
+        public class SalesRep
+        {
+            public string Name { get; set; }
+            public string Email { get; set; }
+            public string Phone { get; set; }
+            public List<string> Responsibilities { get; set; }
+            public string Title { get; set; }
+            public bool IsRSM { get; set; }
+        }
+
         public SalesMapSearch()
         {
             InitializeComponent();
@@ -284,19 +302,7 @@ namespace SalesMap
                 return;
             }
 
-            ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources", Assembly.GetExecutingAssembly());
-            pictureBox1.Image = rm.GetObject(comboBoxState.SelectedItem.ToString().Replace(')', '_').Replace('(', '_').Replace(' ', '_')) as Image;
-
-            if (pictureBox1.Image == null && comboBoxState.SelectedIndex != 0)
-            {
-                labelNoImage.Text = "No Image Available";
-            }
-            else
-            {
-                labelNoImage.Text = "";
-            }
-
-            rm.ReleaseAllResources();
+            showPicture("Regions/" + comboBoxState.SelectedItem.ToString().Replace(" ", "%20") + ".jpg");
 
             string[] SalesRegions = SalesRepRegions.ToArray();
             string[] SalesNames = SalesRepNames.ToArray();
@@ -365,21 +371,7 @@ namespace SalesMap
                 return;
             }
 
-            ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources", Assembly.GetExecutingAssembly());
-            pictureBox1.Image = rm.GetObject(comboBoxRepresentative.SelectedItem.ToString().Replace(' ', '_')) as Image;
-
-            if (pictureBox1.Image == null && comboBoxRepresentative.SelectedIndex != 0)
-            {
-                labelNoImage.Text = "No Image Available";
-            }
-            else
-            {
-                labelNoImage.Text = "";
-            }
-
-            rm.ReleaseAllResources();
-
-
+            showPicture("SalesReps/" + comboBoxRepresentative.SelectedItem.ToString().Replace(" ", "%20") + ".jpg");
 
             labelRepResult.Text = "Sales Rep: " + comboBoxRepresentative.SelectedItem.ToString();
             labelContactResult.Text = "Contact: " + SalesRepEmails[comboBoxRepresentative.SelectedIndex];
@@ -679,6 +671,23 @@ namespace SalesMap
             Application.DoEvents();
             Thread.Sleep(750);
             labelPhoneResult2.Text = temp;
+        }
+
+        private void showPicture(string name)
+        {
+            string url = "http://info.sigmatek.net/downloads/SalesMap/" + name;
+
+            try
+            {
+                labelNoImage.Hide();
+                pictureBox1.Show();
+                pictureBox1.Load(url);
+            }
+            catch
+            {
+                pictureBox1.Hide();
+                labelNoImage.Show();
+            }
         }
 
         private void Update(string version)

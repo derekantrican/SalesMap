@@ -48,14 +48,14 @@
             this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBackground = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelState
@@ -63,34 +63,31 @@
             resources.ApplyResources(this.labelState, "labelState");
             this.labelState.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.labelState.Name = "labelState";
-            this.toolTip1.SetToolTip(this.labelState, resources.GetString("labelState.ToolTip"));
             // 
             // labelOR
             // 
             resources.ApplyResources(this.labelOR, "labelOR");
             this.labelOR.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.labelOR.Name = "labelOR";
-            this.toolTip1.SetToolTip(this.labelOR, resources.GetString("labelOR.ToolTip"));
             // 
             // labelRepresentative
             // 
             resources.ApplyResources(this.labelRepresentative, "labelRepresentative");
             this.labelRepresentative.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.labelRepresentative.Name = "labelRepresentative";
-            this.toolTip1.SetToolTip(this.labelRepresentative, resources.GetString("labelRepresentative.ToolTip"));
             // 
             // comboBoxState
             // 
-            resources.ApplyResources(this.comboBoxState, "comboBoxState");
             this.comboBoxState.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxState, "comboBoxState");
             this.comboBoxState.Name = "comboBoxState";
             this.toolTip1.SetToolTip(this.comboBoxState, resources.GetString("comboBoxState.ToolTip"));
             this.comboBoxState.SelectedIndexChanged += new System.EventHandler(this.comboBoxState_SelectedIndexChanged);
             // 
             // comboBoxRepresentative
             // 
-            resources.ApplyResources(this.comboBoxRepresentative, "comboBoxRepresentative");
             this.comboBoxRepresentative.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBoxRepresentative, "comboBoxRepresentative");
             this.comboBoxRepresentative.Name = "comboBoxRepresentative";
             this.toolTip1.SetToolTip(this.comboBoxRepresentative, resources.GetString("comboBoxRepresentative.ToolTip"));
             this.comboBoxRepresentative.SelectedIndexChanged += new System.EventHandler(this.comboBoxRepresentative_SelectedIndexChanged);
@@ -99,13 +96,11 @@
             // 
             resources.ApplyResources(this.labelRepResult, "labelRepResult");
             this.labelRepResult.Name = "labelRepResult";
-            this.toolTip1.SetToolTip(this.labelRepResult, resources.GetString("labelRepResult.ToolTip"));
             // 
             // labelRegionResult
             // 
             resources.ApplyResources(this.labelRegionResult, "labelRegionResult");
             this.labelRegionResult.Name = "labelRegionResult";
-            this.toolTip1.SetToolTip(this.labelRegionResult, resources.GetString("labelRegionResult.ToolTip"));
             // 
             // labelContactResult
             // 
@@ -125,13 +120,11 @@
             // 
             resources.ApplyResources(this.labelRepResult2, "labelRepResult2");
             this.labelRepResult2.Name = "labelRepResult2";
-            this.toolTip1.SetToolTip(this.labelRepResult2, resources.GetString("labelRepResult2.ToolTip"));
             // 
             // labelNoImage
             // 
             resources.ApplyResources(this.labelNoImage, "labelNoImage");
             this.labelNoImage.Name = "labelNoImage";
-            this.toolTip1.SetToolTip(this.labelNoImage, resources.GetString("labelNoImage.ToolTip"));
             // 
             // toolTip1
             // 
@@ -155,8 +148,8 @@
             // 
             // pictureBoxOffSMR
             // 
-            resources.ApplyResources(this.pictureBoxOffSMR, "pictureBoxOffSMR");
             this.pictureBoxOffSMR.Image = global::SalesMap.Properties.Resources.offSMRPic;
+            resources.ApplyResources(this.pictureBoxOffSMR, "pictureBoxOffSMR");
             this.pictureBoxOffSMR.Name = "pictureBoxOffSMR";
             this.pictureBoxOffSMR.TabStop = false;
             this.pictureBoxOffSMR.Tag = "";
@@ -165,8 +158,8 @@
             // 
             // pictureBoxOnlineMaps
             // 
-            resources.ApplyResources(this.pictureBoxOnlineMaps, "pictureBoxOnlineMaps");
             this.pictureBoxOnlineMaps.Image = global::SalesMap.Properties.Resources.GoogleMaps;
+            resources.ApplyResources(this.pictureBoxOnlineMaps, "pictureBoxOnlineMaps");
             this.pictureBoxOnlineMaps.Name = "pictureBoxOnlineMaps";
             this.pictureBoxOnlineMaps.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBoxOnlineMaps, resources.GetString("pictureBoxOnlineMaps.ToolTip"));
@@ -174,8 +167,8 @@
             // 
             // pictureBoxMap
             // 
-            resources.ApplyResources(this.pictureBoxMap, "pictureBoxMap");
             this.pictureBoxMap.Image = global::SalesMap.Properties.Resources.Map;
+            resources.ApplyResources(this.pictureBoxMap, "pictureBoxMap");
             this.pictureBoxMap.Name = "pictureBoxMap";
             this.pictureBoxMap.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBoxMap, resources.GetString("pictureBoxMap.ToolTip"));
@@ -183,27 +176,25 @@
             // 
             // pictureBoxSettings
             // 
-            resources.ApplyResources(this.pictureBoxSettings, "pictureBoxSettings");
             this.pictureBoxSettings.Image = global::SalesMap.Properties.Resources.settings;
+            resources.ApplyResources(this.pictureBoxSettings, "pictureBoxSettings");
             this.pictureBoxSettings.Name = "pictureBoxSettings";
             this.pictureBoxSettings.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBoxSettings, resources.GetString("pictureBoxSettings.ToolTip"));
             this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBackground
+            // 
+            this.pictureBackground.BackColor = System.Drawing.SystemColors.ScrollBar;
+            resources.ApplyResources(this.pictureBackground, "pictureBackground");
+            this.pictureBackground.Name = "pictureBackground";
+            this.pictureBackground.TabStop = false;
             // 
             // pictureBox1
             // 
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox1, resources.GetString("pictureBox1.ToolTip"));
-            // 
-            // pictureBackground
-            // 
-            resources.ApplyResources(this.pictureBackground, "pictureBackground");
-            this.pictureBackground.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.pictureBackground.Name = "pictureBackground";
-            this.pictureBackground.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBackground, resources.GetString("pictureBackground.ToolTip"));
             // 
             // SalesMapSearch
             // 
@@ -231,22 +222,19 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "SalesMapSearch";
-            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SalesMapSearch_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelState;
         private System.Windows.Forms.Label labelOR;
         private System.Windows.Forms.Label labelRepresentative;
@@ -266,6 +254,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label labelPhoneResult;
         private System.Windows.Forms.Label labelPhoneResult2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
