@@ -32,24 +32,6 @@ namespace SalesMap
         List<String> SalesRepRegions = new List<String>();
         List<String> SalesRepPosition = new List<String>();
 
-        public class Region
-        {
-            public string DispayName { get; set; }
-            public string Abbreviation { get; set; }
-            public string Area { get; set; }
-            public string Picture { get; set; }
-        }
-
-        public class SalesRep
-        {
-            public string Name { get; set; }
-            public string Email { get; set; }
-            public string Phone { get; set; }
-            public List<string> Responsibilities { get; set; }
-            public string Title { get; set; }
-            public bool IsRSM { get; set; }
-        }
-
         public SalesMapSearch()
         {
             InitializeComponent();
@@ -407,6 +389,9 @@ namespace SalesMap
 
         private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
         {
+            XMLFunctions.parseReps();
+            return;
+
             Common.Log("Opening Google Maps");
 
             if (comboBoxState.SelectedItem.ToString() == "")
@@ -673,6 +658,7 @@ namespace SalesMap
             labelPhoneResult2.Text = temp;
         }
 
+        [STAThread]
         private void showPicture(string name)
         {
             string url = "http://info.sigmatek.net/downloads/SalesMap/" + name;

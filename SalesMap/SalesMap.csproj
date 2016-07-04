@@ -97,6 +97,7 @@
     <Compile Include="Updater.Designer.cs">
       <DependentUpon>Updater.cs</DependentUpon>
     </Compile>
+    <Compile Include="XMLFunctions.cs" />
     <EmbeddedResource Include="Main.aa-DJ.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

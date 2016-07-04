@@ -11,6 +11,29 @@ namespace SalesMap
 {
     public partial class Common
     {
+        public class Name
+        {
+            public string First { get; set; }
+            public string Last { get; set; }
+        }
+        public class Region
+        {
+            public string Name { get; set; }
+            public string Abbreviation { get; set; }
+            public string Area { get; set; }
+            public string Picture { get; set; }
+        }
+
+        public class SalesRep
+        {
+            public Name Name { get; set; }
+            public string Email { get; set; }
+            public string Phone { get; set; }
+            public List<string> Responsibilities { get; set; }
+            public List<string> CC { get; set; }
+            public string Picture { get; set; }
+        }
+
         public static string checkGitHub()
         {
             WebClient client = new WebClient();
