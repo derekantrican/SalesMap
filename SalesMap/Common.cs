@@ -22,6 +22,13 @@ namespace SalesMap
             public string Abbreviation { get; set; }
             public string Area { get; set; }
             public string Picture { get; set; }
+            public string DisplayName
+            {
+                get
+                {
+                    return "(" + Abbreviation + ") " + Name;
+                }
+            }
         }
 
         public class SalesRep
@@ -32,6 +39,13 @@ namespace SalesMap
             public List<string> Responsibilities { get; set; }
             public List<string> CC { get; set; }
             public string Picture { get; set; }
+            public string DisplayName
+            {
+                get
+                {
+                    return Name.First + " " + Name.Last;
+                }
+            }
         }
 
         public static string checkGitHub()

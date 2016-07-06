@@ -22,16 +22,6 @@ namespace SalesMap
 {
     public partial class SalesMapSearch : Form
     {
-        List<String> RegionNames = new List<String>();
-        List<String> RegionParts = new List<String>();
-        List<String> RegionArea = new List<String>();
-
-        List<String> SalesRepNames = new List<String>();
-        List<String> SalesRepEmails = new List<String>();
-        List<String> SalesRepPhones = new List<String>();
-        List<String> SalesRepRegions = new List<String>();
-        List<String> SalesRepPosition = new List<String>();
-
         public SalesMapSearch()
         {
             InitializeComponent();
@@ -44,7 +34,7 @@ namespace SalesMap
 
             //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
 
-            readFiles();
+            populateComboBoxes();
         }
 
         private void checkForUpdate()
@@ -184,80 +174,15 @@ namespace SalesMap
             Properties.Settings.Default.Save();
         }
 
-        public void readFiles()
+        public void populateComboBoxes()
         {
-            string regionsSource = "";
-            string repsSource = "";
-
-            if (Properties.Settings.Default.UseInternational)
-            {
-                regionsSource = Properties.Settings.Default.InternationalRegions;
-                repsSource = Properties.Settings.Default.InternationalReps;
-            }
-            else
-            {
-                regionsSource = Properties.Settings.Default.Regions;
-                repsSource = Properties.Settings.Default.SalesReps;
-            }
-
-            if (regionsSource == "" || repsSource == "")
-            {
-                Common.Log("Error setting comboBox values (UseInternational: " + Properties.Settings.Default.UseInternational + ")");
-                Environment.Exit(1);
-            }
-
-            using (StringReader reader = new StringReader(regionsSource))
-            {
-                string line = reader.ReadLine();
-
-                while (line != null)
-                {
-                    string[] items = line.Split(',');
-
-                    try
-                    {
-                        RegionNames.Add(items[0]);
-                        RegionParts.Add(items[1]);
-                        RegionArea.Add(items[2]);
-                    }
-                    catch
-                    {
-                        Common.Log("Failed to read from Regions.txt");
-                    }
-
-                    line = reader.ReadLine();
-                }
-            }
-
-            using (StringReader reader = new StringReader(repsSource))
-            {
-                string line = reader.ReadLine();
-
-                while (line != null)
-                {
-                    string[] items = line.Split(',');
-
-                    try
-                    {
-                        SalesRepNames.Add(items[0]);
-                        SalesRepEmails.Add(items[1]);
-                        SalesRepPhones.Add(items[2]);
-                        SalesRepRegions.Add(items[3]);
-                        SalesRepPosition.Add(items[4]);
-                    }
-                    catch
-                    {
-                        Common.Log("Failed to read from SalesReps.txt");
-                    }
-
-                    line = reader.ReadLine();
-                }
-            }
-
             //Set the comboBoxes
-            comboBoxState.DataSource = RegionNames;
-            comboBoxState.Refresh();
-            comboBoxRepresentative.DataSource = SalesRepNames;
+            XMLFunctions.parseRegions();
+            XMLFunctions.parseReps();
+            comboBoxState.DataSource = XMLFunctions.RegionList;
+            comboBoxState.DisplayMember = "DisplayName";
+            comboBoxRepresentative.DataSource = XMLFunctions.SalesRepList;
+            comboBoxRepresentative.DisplayMember = "DisplayName";
 
             //Clear the result labels on startup
             labelPhoneResult.Text = "";
@@ -268,7 +193,7 @@ namespace SalesMap
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxState.SelectedItem.ToString() != "")
+            if (comboBoxState.SelectedItem.ToString() != "" && comboBoxRepresentative.Items.Count > 0)
             {
                 Common.Log("Selecting state: " + comboBoxState.Text);
 
@@ -277,24 +202,18 @@ namespace SalesMap
                 labelContactResult.Text = "Contact: ";
                 labelPhoneResult.Text = "";
 
-                labelRegionResult.Text = "Region: " + comboBoxState.SelectedItem.ToString();
+                labelRegionResult.Text = "Region: " + (comboBoxState.SelectedItem as Common.Region).Name;
             }
             else if (comboBoxState.SelectedItem == null || comboBoxRepresentative.SelectedItem == null)
             {
                 return;
             }
 
-            showPicture("Regions/" + comboBoxState.SelectedItem.ToString().Replace(" ", "%20") + ".jpg");
-
-            string[] SalesRegions = SalesRepRegions.ToArray();
-            string[] SalesNames = SalesRepNames.ToArray();
-            string[] SalesEmails = SalesRepEmails.ToArray();
-            string[] SalesPhones = SalesRepPhones.ToArray();
-            string[] RegionPart = RegionParts.ToArray();
+            showPicture("Regions/" + (comboBoxState.SelectedItem as Common.Region).Picture);
 
             int found = 0;
 
-            string search = comboBoxState.SelectedItem.ToString().Split('(').Last().Split(')').First();
+            string search = (comboBoxState.SelectedItem as Common.Region).Abbreviation;
             Console.WriteLine("\"" + search + "\"");
 
             if (search == "")
@@ -307,26 +226,29 @@ namespace SalesMap
                 labelPhoneResult2.Text = "";
                 return;
             }
-
-            for (int i = 0; i < SalesRegions.Length; i++)
+            else if ((comboBoxState.SelectedItem as Common.Region).Name == "Corporate Account")
             {
-                Console.WriteLine(SalesRegions[i]);
-                if (SalesRegions[i].IndexOf(search) >= 0)
+                //ToDo: set Bill Huffman & Mike Galetti as reps
+            }
+
+            foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
+            {
+                if (rep.Responsibilities.Contains((comboBoxState.SelectedItem as Common.Region).Abbreviation))
                 {
                     found++;
-                    Console.WriteLine("found: " + found);
+
                     if (found == 1)
                     {
-                        labelRepResult.Text = "Sales Rep: " + SalesNames[i];
-                        labelContactResult.Text = "Contact: " + SalesEmails[i];
-                        labelPhoneResult.Text = SalesPhones[i];
+                        labelRepResult.Text = "Sales Rep: " + rep.DisplayName;
+                        labelContactResult.Text = "Contact: " + rep.Email;
+                        labelPhoneResult.Text = rep.Phone;
                     }
 
                     if (found > 1)
                     {
-                        labelRepResult2.Text = "2nd Sales Rep: " + SalesNames[i];
-                        labelContactResult2.Text = "Contact: " + SalesEmails[i];
-                        labelPhoneResult2.Text = SalesPhones[i];
+                        labelRepResult.Text = "2nd Sales Rep: " + rep.DisplayName;
+                        labelContactResult.Text = "Contact: " + rep.Email;
+                        labelPhoneResult.Text = rep.Phone;
                     }
                 }
             }
@@ -353,12 +275,15 @@ namespace SalesMap
                 return;
             }
 
-            showPicture("SalesReps/" + comboBoxRepresentative.SelectedItem.ToString().Replace(" ", "%20") + ".jpg");
+            showPicture("SalesReps/" + (comboBoxRepresentative.SelectedItem as Common.SalesRep).Picture);
 
-            labelRepResult.Text = "Sales Rep: " + comboBoxRepresentative.SelectedItem.ToString();
-            labelContactResult.Text = "Contact: " + SalesRepEmails[comboBoxRepresentative.SelectedIndex];
-            labelPhoneResult.Text = SalesRepPhones[comboBoxRepresentative.SelectedIndex];
-            labelRegionResult.Text = "Region: " + SalesRepRegions[comboBoxRepresentative.SelectedIndex].Replace(":", ", ");
+            labelRepResult.Text = "Sales Rep: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName;
+            labelContactResult.Text = "Contact: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email;
+            labelPhoneResult.Text = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Phone;
+            labelRegionResult.Text = "Region: ";
+
+            foreach (string region in (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities)
+                labelRegionResult.Text += ", " + region;
 
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";
@@ -389,9 +314,6 @@ namespace SalesMap
 
         private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
         {
-            XMLFunctions.parseReps();
-            return;
-
             Common.Log("Opening Google Maps");
 
             if (comboBoxState.SelectedItem.ToString() == "")
@@ -459,54 +381,24 @@ namespace SalesMap
 
             cc = Common.RemoveSpecial(cc); //Remove any extraneous characters
 
-            string[] RegionNamesArray = RegionNames.ToArray();
-            string[] RegionAreaArray = RegionArea.ToArray();
-            string[] SalesRepNamesArray = SalesRepNames.ToArray();
-            string[] SalesRepEmailArray = SalesRepEmails.ToArray();
-            string[] SalesRepPositionArray = SalesRepPosition.ToArray();
-            string area = "";
             string rsm = "";
-
+            
             //Find the RSM
-            if (comboBoxState.SelectedItem.ToString() != "")
+            if (comboBoxState.SelectedItem.ToString() != "") //If a state is selected
             {
-                for (var i = 0; i < RegionNamesArray.Length; i++)
+                foreach (Common.SalesRep salesRep in XMLFunctions.SalesRepList)
                 {
-                    if (RegionNamesArray[i] == comboBoxState.SelectedItem.ToString() && RegionAreaArray[i] != "")
+                    if (salesRep.CC.Contains((comboBoxState.SelectedItem as Common.Region).Area))
                     {
-                        area = "RSM:" + RegionAreaArray[i];
-                        break;
-                    }
-                }
-
-                for (var i = 0; i < SalesRepPositionArray.Length; i++)
-                {
-                    if (SalesRepPositionArray[i].IndexOf(area) >= 0 && area != "")
-                    {
-                        rsm = SalesRepEmailArray[i];
+                        rsm = salesRep.Email;
                         break;
                     }
                 }
             }
-            else if (comboBoxRepresentative.SelectedItem.ToString() != "")
+            else if (comboBoxRepresentative.SelectedItem.ToString() != "") //If a rep is selected
             {
-                for (var i = 0; i < SalesRepNamesArray.Length; i++)
-                {
-                    if (SalesRepNamesArray[i].IndexOf(comboBoxRepresentative.SelectedItem.ToString()) >= 0)
-                    {
-                        area = "RSM:" + SalesRepPositionArray[i].Split(':')[1];
-                        break;
-                    }
-                }
-
-                for (var i = 0; i < SalesRepPositionArray.Length; i++)
-                {
-                    if (SalesRepPositionArray[i].IndexOf(area) >= 0)
-                    {
-                        rsm = SalesRepEmailArray[i];
-                        break;
-                    }
-                }
+                //This has been deprecated as of v6.0, but this is being left here in case we want to also CC the rep
+                //when we are composing an email with just a rep selected
             }
 
             if (rsm == cc) //If the rsr IS the rsm
@@ -517,7 +409,7 @@ namespace SalesMap
             {
                 cc += ";" + rsm;
             }
-            else if (rsm == "" && area != "") //If there is no rsm
+            else if (rsm == "" && comboBoxState.Text != "") //If there is no rsm
             {
                 if (comboBoxRepresentative.SelectedItem.ToString() != "")
                 {
@@ -638,6 +530,8 @@ namespace SalesMap
 
         private void labelPhoneResult2_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(sender.GetType() + " | " + sender.ToString());
+
             string temp = labelPhoneResult2.Text;
             string copy = Common.RemoveSpecial(temp);
 

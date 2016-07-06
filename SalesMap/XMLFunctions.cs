@@ -20,6 +20,7 @@ namespace SalesMap
             Regions
         }
 
+        [STAThread]
         private static string downloadXML(Database database)
         {
             string regionsURL = "http://info.sigmatek.net/downloads/SalesMap/Settings/Regions.xml";
@@ -36,6 +37,7 @@ namespace SalesMap
             return html;
         }
 
+        [STAThread]
         public static void parseRegions()
         {
             XDocument document = XDocument.Parse(downloadXML(Database.Regions));
@@ -61,12 +63,11 @@ namespace SalesMap
             }
         }
 
+        [STAThread]
         public static void parseReps()
         {
             XDocument document = XDocument.Parse(downloadXML(Database.Reps));
             XElement parent = document.Element("SalesReps");
-            List<string> responsibilities = new List<string>();
-            List<string> CC = new List<string>();
 
             foreach (XElement element in parent.Elements("Rep"))
             {
@@ -81,7 +82,7 @@ namespace SalesMap
                     rep.Email = element.Element("Email").Value;
                     rep.Phone = element.Element("Phone").Value;
                 
-                    responsibilities.Clear();
+                    List<string> responsibilities = new List<string>();
                     foreach (XElement responsibility in element.Element("Responsibilities").Elements("Region"))
                     {
                         responsibilities.Add(responsibility.Value);
@@ -89,7 +90,7 @@ namespace SalesMap
 
                     rep.Responsibilities = responsibilities.Count > 0 ? responsibilities : null;
 
-                    CC.Clear();
+                    List<string> CC = new List<string>();
                     foreach (XElement cc in element.Element("CC").Elements("Area"))
                     {
                         CC.Add(cc.Value);
