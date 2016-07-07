@@ -11,6 +11,9 @@ namespace SalesMap
 {
     public partial class Common
     {
+        public static string UserSettingsPath = @"C:\Users\derek.antrican\AppData\Local\SalesMap\";
+        public static string InfoSiteBase = "http://info.sigmatek.net/downloads/SalesMap/";
+
         public class Name
         {
             public string First { get; set; }
@@ -145,7 +148,7 @@ namespace SalesMap
 
         public static void Log(string itemToLog)
         {
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
+            string logPath = UserSettingsPath + "log.txt";
             DateTime date = DateTime.Now;
             TimeZone zone = TimeZone.CurrentTimeZone;
 
@@ -154,7 +157,7 @@ namespace SalesMap
 
         public static void Log(string itemToLog, bool addTimeStamp)
         {
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
+            string logPath = UserSettingsPath + "log.txt";
 
             if (addTimeStamp)
             {

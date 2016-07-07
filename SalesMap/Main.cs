@@ -90,88 +90,20 @@ namespace SalesMap
 
         public void compareFiles()
         {
-            WebClient client = new WebClient();
-            string url = "https://github.com/derekantrican/SalesMap/wiki/Most-current-%22databases%22";
-            string html = "";
+            XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions);
+            XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps);
 
-            string regionTextOnline = "";
-            string salesTextOnline = "";
-
-            try
+            if (XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions) != null && 
+                XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions) < XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions))
             {
-                html = client.DownloadString(url);
 
-                regionTextOnline = html.Substring(html.IndexOf("<pre><code>") + 11).Split('<')[0];
-                salesTextOnline = html.Substring(html.LastIndexOf("<pre><code>") + 11).Split('<')[0];
-            }
-            catch
-            {
-                Common.Log("Attempted to get the online databases and failed to get html");
-                return;
             }
 
-            //Remove the extra character that comes at the end of these strings and replace "&amp;" with "&"
-            regionTextOnline = regionTextOnline.TrimEnd(regionTextOnline[regionTextOnline.Length - 1]);
-            regionTextOnline = regionTextOnline.Replace("&amp;", "&");
-            salesTextOnline = salesTextOnline.TrimEnd(salesTextOnline[salesTextOnline.Length - 1]);
-            salesTextOnline = salesTextOnline.Replace("&amp;", "&");
-
-            //Compare the raw text of files by checking files without special characters
-            if (Common.RemoveSpecial(Properties.Settings.Default.Regions) != Common.RemoveSpecial(regionTextOnline) && regionTextOnline != "")
+            if (XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps) != null &&
+                XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps) < XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps))
             {
-                Common.Log("Internal Regions is not the same as online. Updating...");
-                Common.Log("DIFF: " + Common.Diff(Common.RemoveSpecial(Properties.Settings.Default.Regions), Common.RemoveSpecial(regionTextOnline)), false);
-                Properties.Settings.Default.Regions = regionTextOnline;
+
             }
-
-            if (Common.RemoveSpecial(Properties.Settings.Default.SalesReps) != Common.RemoveSpecial(salesTextOnline) && salesTextOnline != "")
-            {
-                Common.Log("Internal SalesReps is not the same as online. Updating...");
-                Common.Log("DIFF: " + Common.Diff(Common.RemoveSpecial(Properties.Settings.Default.SalesReps), Common.RemoveSpecial(salesTextOnline)), false);
-                Properties.Settings.Default.SalesReps = salesTextOnline;
-            }
-
-            url = "https://github.com/derekantrican/SalesMap/wiki/International-Databases";
-            html = "";
-
-            string internationalRegionTextOnline = "";
-            string internationalSalesTextOnline = "";
-
-            try
-            {
-                html = client.DownloadString(url);
-
-                internationalRegionTextOnline = html.Substring(html.IndexOf("<pre><code>") + 11).Split('<')[0];
-                internationalSalesTextOnline = html.Substring(html.LastIndexOf("<pre><code>") + 11).Split('<')[0];
-            }
-            catch
-            {
-                Common.Log("Attempted to get the online databases and failed to get html");
-                return;
-            }
-
-            //Remove the extra character that comes at the end of these strings and replace "&amp;" with "&"
-            internationalRegionTextOnline = internationalRegionTextOnline.TrimEnd(internationalRegionTextOnline[internationalRegionTextOnline.Length - 1]);
-            internationalRegionTextOnline = internationalRegionTextOnline.Replace("&amp;", "&");
-            internationalSalesTextOnline = internationalSalesTextOnline.TrimEnd(internationalSalesTextOnline[internationalSalesTextOnline.Length - 1]);
-            internationalSalesTextOnline = internationalSalesTextOnline.Replace("&amp;", "&");
-
-            //Compare the raw text of files by checking files without special characters
-            if (Common.RemoveSpecial(Properties.Settings.Default.InternationalRegions) != Common.RemoveSpecial(internationalRegionTextOnline) && internationalRegionTextOnline != "")
-            {
-                Common.Log("Internal InternationalRegions is not the same as online. Updating...");
-                Common.Log("DIFF: " + Common.Diff(Common.RemoveSpecial(Properties.Settings.Default.InternationalRegions), Common.RemoveSpecial(internationalRegionTextOnline)), false);
-                Properties.Settings.Default.InternationalRegions = internationalRegionTextOnline;
-            }
-
-            if (Common.RemoveSpecial(Properties.Settings.Default.InternationalReps) != Common.RemoveSpecial(internationalSalesTextOnline) && internationalSalesTextOnline != "")
-            {
-                Common.Log("Internal InternationalSalesReps is not the same as online. Updating...");
-                Common.Log("DIFF: " + Common.Diff(Common.RemoveSpecial(Properties.Settings.Default.InternationalReps), Common.RemoveSpecial(internationalSalesTextOnline)), false);
-                Properties.Settings.Default.InternationalReps = internationalSalesTextOnline;
-            }
-
-            Properties.Settings.Default.Save();
         }
 
         public void populateComboBoxes()

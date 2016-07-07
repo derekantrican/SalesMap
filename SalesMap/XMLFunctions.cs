@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -14,17 +15,64 @@ namespace SalesMap
         public static List<Region> RegionList = new List<Region>();
         public static List<SalesRep> SalesRepList = new List<SalesRep>();
 
-        private enum Database
+        public enum Database
         {
             Reps,
             Regions
         }
 
+        public static DateTime getLastXmlOnlineUpdated(Database database)
+        {
+            XDocument document = XDocument.Parse(downloadXML(database));
+            DateTime updated;
+            if (database == Database.Reps)
+                updated = DateTime.Parse(document.Element("SalesReps").Attribute("updated").Value);
+            else
+                updated = DateTime.Parse(document.Element("Regions").Attribute("updated").Value);
+
+            return updated;
+        }
+
+        public static DateTime? getLastXmlLocalUpdated(Database database)
+        {
+            string desiredXml = database == Database.Reps ? "SalesReps.xml" : "Regions.xml";
+
+            if (database == Database.Regions && !File.Exists(UserSettingsPath + desiredXml))
+            {
+                DownloadXMLToDisk(database);
+                return null;
+            }
+            else if (database == Database.Reps && !File.Exists(UserSettingsPath + desiredXml))
+            {
+                DownloadXMLToDisk(database);
+                return null;
+            }
+
+            XDocument document = XDocument.Load(UserSettingsPath + desiredXml);
+            DateTime updated;
+            if (database == Database.Reps)
+                updated = DateTime.Parse(document.Element("SalesReps").Attribute("updated").Value);
+            else
+                updated = DateTime.Parse(document.Element("Regions").Attribute("updated").Value);
+
+            return updated;
+        }
+
+        [STAThread]
+        public static void DownloadXMLToDisk(Database database)
+        {
+            string databaseSelection = database == Database.Regions ? "Regions.xml" : "SalesReps.xml";
+            string downloadURL = InfoSiteBase + databaseSelection;
+
+            WebClient webClient = new WebClient();
+            webClient.DownloadFileAsync(new Uri(downloadURL), UserSettingsPath + databaseSelection);
+        }
+
         [STAThread]
         private static string downloadXML(Database database)
         {
-            string regionsURL = "http://info.sigmatek.net/downloads/SalesMap/Settings/Regions.xml";
-            string salesRepURL = "http://info.sigmatek.net/downloads/SalesMap/Settings/SalesReps.xml";
+            string regionsURL = InfoSiteBase + "Settings/Regions.xml";
+            string salesRepURL = InfoSiteBase + "Settings/SalesReps.xml";
             string html = "";
 
             WebClient client = new WebClient();
