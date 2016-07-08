@@ -18,9 +18,13 @@ namespace SalesMap
 {
     public partial class Settings : Form
     {
-        public Settings()
+        bool hasParent;
+
+        public Settings(bool openingFromSalesMap = true)
         {
             InitializeComponent();
+
+            hasParent = openingFromSalesMap;
 
             textBoxEditSubject.Text = Properties.Settings.Default.OffSMRSubject;
             textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
@@ -195,6 +199,16 @@ namespace SalesMap
             rawReplaced = rawReplaced.Replace("{SALESREPPHONE}", repPhone);
 
             return rawReplaced;
+        }
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+            if (!hasParent)
+            {
+                Screen screen = Screen.FromPoint(new Point(Cursor.Position.X, Cursor.Position.Y));
+                this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
+                this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
+            }
         }
     }
 }

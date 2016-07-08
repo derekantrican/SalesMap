@@ -33,40 +33,42 @@ namespace SalesMap
             return updated;
         }
 
-        public static DateTime? getLastXmlLocalUpdated(Database database)
-        {
-            string desiredXml = database == Database.Reps ? "SalesReps.xml" : "Regions.xml";
+        //"Local XML" functionality is partially introduced for version 6.0+, but will not be implemented unless deemed necessary
 
-            if (database == Database.Regions && !File.Exists(UserSettingsPath + desiredXml))
-            {
-                DownloadXMLToDisk(database);
-                return null;
-            }
-            else if (database == Database.Reps && !File.Exists(UserSettingsPath + desiredXml))
-            {
-                DownloadXMLToDisk(database);
-                return null;
-            }
+        //public static DateTime? getLastXmlLocalUpdated(Database database)
+        //{
+        //    string desiredXml = database == Database.Reps ? "SalesReps.xml" : "Regions.xml";
 
-            XDocument document = XDocument.Load(UserSettingsPath + desiredXml);
-            DateTime updated;
-            if (database == Database.Reps)
-                updated = DateTime.Parse(document.Element("SalesReps").Attribute("updated").Value);
-            else
-                updated = DateTime.Parse(document.Element("Regions").Attribute("updated").Value);
+        //    if (database == Database.Regions && !File.Exists(UserSettingsPath + desiredXml))
+        //    {
+        //        DownloadXMLToDisk(database);
+        //        return null;
+        //    }
+        //    else if (database == Database.Reps && !File.Exists(UserSettingsPath + desiredXml))
+        //    {
+        //        DownloadXMLToDisk(database);
+        //        return null;
+        //    }
 
-            return updated;
-        }
+        //    XDocument document = XDocument.Load(UserSettingsPath + desiredXml);
+        //    DateTime updated;
+        //    if (database == Database.Reps)
+        //        updated = DateTime.Parse(document.Element("SalesReps").Attribute("updated").Value);
+        //    else
+        //        updated = DateTime.Parse(document.Element("Regions").Attribute("updated").Value);
 
-        [STAThread]
-        public static void DownloadXMLToDisk(Database database)
-        {
-            string databaseSelection = database == Database.Regions ? "Regions.xml" : "SalesReps.xml";
-            string downloadURL = InfoSiteBase + databaseSelection;
+        //    return updated;
+        //}
 
-            WebClient webClient = new WebClient();
-            webClient.DownloadFileAsync(new Uri(downloadURL), UserSettingsPath + databaseSelection);
-        }
+        //[STAThread]
+        //public static void DownloadXMLToDisk(Database database)
+        //{
+        //    string databaseSelection = database == Database.Regions ? "Regions.xml" : "SalesReps.xml";
+        //    string downloadURL = InfoSiteBase + databaseSelection;
+
+        //    WebClient webClient = new WebClient();
+        //    webClient.DownloadFileAsync(new Uri(downloadURL), UserSettingsPath + databaseSelection);
+        //}
 
         [STAThread]
         private static string downloadXML(Database database)
@@ -90,6 +92,9 @@ namespace SalesMap
         {
             XDocument document = XDocument.Parse(downloadXML(Database.Regions));
             XElement parent = document.Element("Regions");
+
+            Region blankRegion = new Region();
+            RegionList.Add(blankRegion);
 
             foreach (XElement element in parent.Elements("Region"))
             {
@@ -116,6 +121,12 @@ namespace SalesMap
         {
             XDocument document = XDocument.Parse(downloadXML(Database.Reps));
             XElement parent = document.Element("SalesReps");
+
+            SalesRep blankRep = new SalesRep();
+            blankRep.Name = new Name();
+            blankRep.Responsibilities = new List<string>();
+            blankRep.CC = new List<string>();
+            SalesRepList.Add(blankRep);
 
             foreach (XElement element in parent.Elements("Rep"))
             {

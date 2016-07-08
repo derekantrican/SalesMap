@@ -47,7 +47,13 @@ namespace SalesMap
             {
                 get
                 {
-                    return "(" + Abbreviation + ") " + Name;
+                    if (Abbreviation != "" && Abbreviation != null)
+                        return "(" + Abbreviation + ") " + Name;
+                    else if (Name != "" && Name != null)
+                        return Name;
+                    else
+                        return null;
+
                 }
             }
         }
@@ -64,7 +70,10 @@ namespace SalesMap
             {
                 get
                 {
-                    return Name.First + " " + Name.Last;
+                    if (Name.First != null)
+                        return Name.First + " " + Name.Last;
+                    else
+                        return null;
                 }
             }
         }

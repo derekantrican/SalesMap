@@ -25,6 +25,7 @@ namespace SalesMap
         public SalesMapSearch()
         {
             InitializeComponent();
+
             this.Text = this.Text + " (" + Common.ThisVersion + ")"; //Change the name of the window to include the current version
             //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
             Common.Log("------------ STARTING SALESMAP (" + Common.ThisVersion + ") ------------");
@@ -145,7 +146,7 @@ namespace SalesMap
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxState.SelectedItem.ToString() != "" && comboBoxRepresentative.Items.Count > 0)
+            if (comboBoxState.Text != "" && comboBoxRepresentative.Items.Count > 0)
             {
                 Common.Log("Selecting state: " + comboBoxState.Text);
 
@@ -215,7 +216,7 @@ namespace SalesMap
 
         private void comboBoxRepresentative_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxRepresentative.SelectedItem.ToString() != "")
+            if (comboBoxRepresentative.Text != "")
             {
                 Common.Log("Selecting rep: " + comboBoxRepresentative.Text);
 
@@ -592,7 +593,7 @@ namespace SalesMap
                     MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
 
                     Common.Log("Opening config so the user can set their signature");
-                    Settings config = new Settings();
+                    Settings config = new Settings(false);
                     config.ShowDialog();
                 }
 
@@ -658,9 +659,9 @@ namespace SalesMap
 
         private void SalesMapSearch_Load(object sender, EventArgs e)
         {
-            var _point = new Point(Cursor.Position.X, Cursor.Position.Y);
-            this.Top = _point.Y;
-            this.Left = _point.X;
+            Screen screen = Screen.FromPoint(new Point(Cursor.Position.X, Cursor.Position.Y));
+            this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
+            this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
         }
     }
 }
