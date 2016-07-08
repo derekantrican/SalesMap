@@ -114,7 +114,7 @@ namespace SalesMap
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string GitVersion = Common.checkGitHub();
-            string thisVersion = Properties.Settings.Default.Version;
+            string thisVersion = "v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
 
             if (GitVersion != thisVersion)
             {

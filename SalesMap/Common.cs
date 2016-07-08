@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +15,23 @@ namespace SalesMap
     {
         public static string UserSettingsPath = @"C:\Users\derek.antrican\AppData\Local\SalesMap\";
         public static string InfoSiteBase = "http://info.sigmatek.net/downloads/SalesMap/";
-
+        public static string ThisVersion = "v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+        public static bool IsOnline
+        {
+            get
+            {
+                try
+                {
+                    WebClient client = new WebClient();
+                    Stream stream = client.OpenRead("http://www.google.com");
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
         public class Name
         {
             public string First { get; set; }
@@ -97,46 +115,6 @@ namespace SalesMap
             }
 
             return versions.First();
-        }
-
-        public static string Diff(string s1, string s2)
-        {
-            if (s1 == s2)
-                return null;
-
-            if (s1.Length > s2.Length)
-            {
-                for (var i = 0; i < s1.Length; i++)
-                {
-                    if (s1[i] != s2[i])
-                    {
-                        if (i >= 10 && i + 10 < s1.Length)
-                            return s1.Substring(i - 10, 21) + " ||| " + s2.Substring(i - 10, 21);
-                        else if (i >= 10)
-                            return s1.Substring(i - 10, 11) + " ||| " + s2.Substring(i - 10, 11);
-                        else
-                            return s1.Substring(0, 10) + " ||| " + s2.Substring(0, 11);
-                    }
-
-                }
-            }
-            else
-            {
-                for (var i = 0; i < s2.Length; i++)
-                {
-                    if (s1[i] != s2[i])
-                    {
-                        if (i >= 10 && i + 10 < s2.Length)
-                            return s1.Substring(i - 10, 21) + " ||| " + s2.Substring(i - 10, 21);
-                        else if (i >= 10)
-                            return s1.Substring(i - 10, 11) + " ||| " + s2.Substring(i - 10, 11);
-                        else
-                            return s1.Substring(0, 10) + " ||| " + s2.Substring(0, 10);
-                    }
-
-                }
-            }
-            return null;
         }
 
         public static string RemoveSpecial(string input)

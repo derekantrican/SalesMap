@@ -25,14 +25,30 @@ namespace SalesMap
         public SalesMapSearch()
         {
             InitializeComponent();
-            this.Text = this.Text + " (" + Properties.Settings.Default.Version + ")"; //Change the name of the window to include the current version
-            Common.Log("------------ STARTING SALESMAP (" + Properties.Settings.Default.Version + ") ------------");
+            this.Text = this.Text + " (" + Common.ThisVersion + ")"; //Change the name of the window to include the current version
+            //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
+            Common.Log("------------ STARTING SALESMAP (" + Common.ThisVersion + ") ------------");
+
+            if (!Common.IsOnline)
+            {
+                Common.Log("No internet connection");
+                DialogResult res = MessageBox.Show("You are not connected to the internet. SalesMap " + Common.ThisVersion + " requires an internet connection", "Not connected to the internet...", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                
+                if (res == DialogResult.Retry && !Common.IsOnline)
+                {
+                    MessageBox.Show(".....nope, still no internets");
+                    Common.Log("Retried, but still no internet connection");
+                    Application.Exit();
+                }
+                else if (res == DialogResult.Cancel)
+                {
+                    Application.Exit();
+                }
+            }
 
             checkFirstRun();
             checkForUpdate();
             compareFiles();
-
-            //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
 
             populateComboBoxes();
         }
@@ -42,7 +58,7 @@ namespace SalesMap
             if (Properties.Settings.Default.AutoCheckUpdate)
             {
                 string GitVersion = Common.checkGitHub();
-                string thisVersion = Properties.Settings.Default.Version;
+                string thisVersion = Common.ThisVersion;
 
                 if (GitVersion != thisVersion)
                 {
@@ -72,7 +88,7 @@ namespace SalesMap
                 SendStatistics();
 
                 string user = Environment.UserName;
-                string logPath = @"C:\Users\" + user + @"\log.txt";
+                string logPath = Common.UserSettingsPath + "log.txt";
 
                 if (File.Exists(logPath))
                 {
@@ -90,20 +106,24 @@ namespace SalesMap
 
         public void compareFiles()
         {
-            XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions);
-            XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps);
+            //"Local XML" functionality is partially introduced for version 6.0+, but will not be implemented unless deemed necessary
 
-            if (XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions) != null && 
-                XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions) < XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions))
-            {
+            //XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions);
+            //XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps);
 
-            }
+            //if (XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions) != null && 
+            //    XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions) < XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions))
+            //{
 
-            if (XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps) != null &&
-                XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps) < XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps))
-            {
+                //Common.Log("Updated Regions.xml from " + XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions).ToString() + " to " + XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions).ToString());
+            //}
 
-            }
+            //if (XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps) != null &&
+            //    XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps) < XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps))
+            //{
+
+                //Common.Log("Updated SalesReps.xml from " + XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps).ToString() + " to " + XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps).ToString());
+            //}
         }
 
         public void populateComboBoxes()
@@ -524,7 +544,7 @@ namespace SalesMap
 
                     if (s.Split(',').First() == Environment.UserName)
                     {
-                        contentsList[contentsList.IndexOf(s)] = Environment.UserName + "," + Properties.Settings.Default.Version + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time"));
+                        contentsList[contentsList.IndexOf(s)] = Environment.UserName + "," + Common.ThisVersion + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time"));
                         Common.Log("Added this session's info to the stats table");
                         found = true;
                         break;
@@ -533,7 +553,7 @@ namespace SalesMap
 
                 if (!found)
                 {
-                    contentsList.Add(Environment.UserName + "," + Properties.Settings.Default.Version + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time")));
+                    contentsList.Add(Environment.UserName + "," + Common.ThisVersion + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time")));
                     Common.Log("Could not find a previous session in the stats table, so created one");
                 }
 
@@ -557,7 +577,7 @@ namespace SalesMap
                     try
                     {
                         key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
-                        key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                        key.SetValue("FirstRun", Common.ThisVersion);
                     }
                     catch
                     {
@@ -576,10 +596,10 @@ namespace SalesMap
                     config.ShowDialog();
                 }
 
-                if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
+                if (key.GetValue("FirstRun").ToString() != Common.ThisVersion)
                 {
-                    key.SetValue("FirstRun", Properties.Settings.Default.Version);
-                    Common.Log("First time running version " + Properties.Settings.Default.Version + " of this program.");
+                    key.SetValue("FirstRun", Common.ThisVersion);
+                    Common.Log("First time running version " + Common.ThisVersion + " of this program.");
                     Common.Log("This was the last time this will run");
                 }
 
@@ -621,7 +641,7 @@ namespace SalesMap
 
                 try
                 {
-                    key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                    key.SetValue("FirstRun", Common.ThisVersion);
                 }
                 catch
                 {
