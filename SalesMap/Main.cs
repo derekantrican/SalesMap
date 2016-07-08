@@ -655,5 +655,12 @@ namespace SalesMap
                 Common.Log("Problems with running checkFirstRun. Error: " + ex.Message);
             }
         }
+
+        private void SalesMapSearch_Load(object sender, EventArgs e)
+        {
+            var _point = new Point(Cursor.Position.X, Cursor.Position.Y);
+            this.Top = _point.Y;
+            this.Left = _point.X;
+        }
     }
 }

@@ -223,6 +223,7 @@
             this.MaximizeBox = false;
             this.Name = "SalesMapSearch";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SalesMapSearch_FormClosing);
+            this.Load += new System.EventHandler(this.SalesMapSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
