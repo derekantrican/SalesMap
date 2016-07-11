@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 using static SalesMap.Common;
 
@@ -24,7 +25,7 @@ namespace SalesMap
         public static object readSetting(string settingName, Type defaultType = null, object defaultValue = null)
         {
             if (!File.Exists(UserSettingsPath + "Settings.xml"))
-                return null;
+                DownloadDefaultXml();
 
             XDocument document = XDocument.Load(UserSettingsPath + "Settings.xml");
             var setting = document.Descendants("Setting").Where(x => x.Attribute("name").Value.Equals(settingName)).SingleOrDefault();
@@ -56,7 +57,7 @@ namespace SalesMap
         public static void saveSetting(string settingName, object value)
         {
             if (!File.Exists(UserSettingsPath + "Settings.xml"))
-                return;
+                DownloadDefaultXml();
 
             XDocument document = XDocument.Load(UserSettingsPath + "Settings.xml");
             var setting = document.Descendants("Setting").Where(x => x.Attribute("name").Value.Equals(settingName)).SingleOrDefault();
@@ -81,6 +82,14 @@ namespace SalesMap
             }
 
             document.Save(UserSettingsPath + "Settings.xml");
+        }
+
+        static void DownloadDefaultXml()
+        {
+            WebClient client = new WebClient();
+            client.DownloadFile(InfoSiteBase + "Settings.xml", UserSettingsPath + "Settings.xml");
+
+            Log("Downloaded the default Settings.xml from online");
         }
 
         public static DateTime getLastXmlOnlineUpdated(Database database)
