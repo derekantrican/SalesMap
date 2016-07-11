@@ -21,6 +21,38 @@ namespace SalesMap
             Regions
         }
 
+        public static object readSetting(string settingName, Type defaultType = null, object defaultValue = null)
+        {
+            if (!File.Exists(UserSettingsPath + "Settings.xml"))
+                return null;
+
+            XDocument document = XDocument.Load(UserSettingsPath + "Settings.xml");
+            var setting = document.Descendants("Setting").Where(x => x.Attribute("name").Value.Equals(settingName)).SingleOrDefault();
+
+            if (setting != null)
+                return XMLConverter(setting);
+            else
+            {
+                Log("The setting \"" + settingName + "\" does not exist");
+
+                if (defaultType == null || defaultValue == null)
+                {
+                    Log("A defaultType/defaultValue was not specified");
+                    return null;
+                }
+
+                setting = new XElement("Setting",
+                          new XAttribute("name", settingName),
+                          new XAttribute("type", defaultType.ToString()),
+                          defaultValue);
+
+                document.Element("Settings").Add(setting);
+                document.Save(UserSettingsPath + "Settings.xml");
+                return defaultValue;
+
+            }
+        }
+
         public static DateTime getLastXmlOnlineUpdated(Database database)
         {
             XDocument document = XDocument.Parse(downloadXML(database));
@@ -166,6 +198,23 @@ namespace SalesMap
 
                 SalesRepList.Add(rep);
             }
+        }
+
+        public static object XMLConverter(XElement XMLElement)
+        {
+            string type = XMLElement.Attribute("type").Value;
+            if (type == "System.Boolean")
+                return Convert.ToBoolean(XMLElement.Value);
+            else if (type == "System.Drawing.Point")
+            {
+                System.Drawing.Point p = new System.Drawing.Point();
+                p.X = Convert.ToInt32(XMLElement.Element("X").Value);
+                p.Y = Convert.ToInt32(XMLElement.Element("Y").Value);
+
+                return p;
+            }
+            else
+                return XMLElement.Value;
         }
     }
 }
