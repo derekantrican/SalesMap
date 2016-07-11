@@ -56,7 +56,7 @@ namespace SalesMap
 
         private void checkForUpdate()
         {
-            if (Properties.Settings.Default.AutoCheckUpdate)
+            if ((bool)XMLFunctions.readSetting("AutoCheckForUpdates"))
             {
                 string GitVersion = Common.checkGitHub();
                 string thisVersion = Common.ThisVersion;
@@ -253,11 +253,11 @@ namespace SalesMap
         private void pictureBoxMap_Click(object sender, EventArgs e)
         {
             Common.Log("Opening PDF map");
-            string path = Properties.Settings.Default.MapFileLocation;
+            string path = (string)XMLFunctions.readSetting("MapFileLocation");
 
             try
             {
-                System.Diagnostics.Process.Start(@path);
+                System.Diagnostics.Process.Start(path);
             }
             catch
             {
@@ -287,8 +287,8 @@ namespace SalesMap
             string rep = "";
             string cc = "";
             string phone = "";
-            string subject = Properties.Settings.Default.OffSMRSubject;
-            string body = Properties.Settings.Default.OffSMRBody + Properties.Settings.Default.OffSMRSignature;
+            string subject = (string)XMLFunctions.readSetting("OffSMRSubject");
+            string body = (string)XMLFunctions.readSetting("OffSMRBody") + (string)XMLFunctions.readSetting("OffSMRSignature");
 
             if (labelRepResult.Text == "Sales Rep: ")
             {
@@ -588,7 +588,7 @@ namespace SalesMap
                 }
 
                 //Force the user to set up their signature
-                if (Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignature) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+                if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature")) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
                 {
                     MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
 

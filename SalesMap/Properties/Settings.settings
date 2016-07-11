@@ -2,37 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SalesMap.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="MapFileLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap.pdf</Value>
-    </Setting>
-    <Setting Name="AutoCheckUpdate" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="SendLog" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="OffSMRSubject" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SigmaNEST Subscription Membership Renewal</Value>
-    </Setting>
-    <Setting Name="OffSMRSignature" Type="System.String" Scope="User">
-      <Value Profile="(Default)">&lt;span style="color: #000000; font-family: calibri; font-size: 11pt"&gt; 
-YOUR_NAME&lt;br&gt;
-&lt;i&gt;Application Engineer&lt;/i&gt;&lt;br&gt;
-&lt;b&gt;SigmaTEK Systems, LLC&lt;/b&gt;&lt;br&gt;
-Main: 513.595.2002&lt;br&gt;
-1445 Kemper Meadow Drive | Cincinnati, Ohio 45240&lt;br&gt;
-&lt;a href="http://www.sigmanest.com"&gt;www.sigmanest.com&lt;/a&gt;&lt;br&gt;
-&lt;/span&gt;
-&lt;a href="https://www.sigmanest.com/" target="_blank"&gt;&lt;img src="https://www.sigmanest.com/images/email/signature.png" moz -do-not-send="true" border="0"&gt;&lt;/a&gt;</Value>
-    </Setting>
-    <Setting Name="OffSMRBody" Type="System.String" Scope="User">
-      <Value Profile="(Default)">While I was looking over your company overview, I noticed that your company’s maintenance subscription has expired.  We would like to continue working with you and your company, although we would need to get the maintenance subscription renewed.  I have copied your sales representative, {SALESREPNAME}, on this email so that he is aware of the pending renewal as well.  You may contact {SALESREPNAME} through his email address {SALESREPEMAIL} or by calling him directly at {SALESREPPHONE}.&lt;br&gt;
-&lt;br&gt;
-I would like to remind you of the benefits of having a current maintenance subscription.  Being an “on-maintenance” customer allows you to call or email our Technical Support Team and receive help with SigmaNEST, whether it is setting up your machines with SigmaNEST or helping you resolve a difficult nesting problem.  You also have free access to install any supported release of SigmaNEST, including future releases.  These releases contain new features and fixes to old problems, most of which is reported by our customers.  This allows you to have an influence in how our software develops and changes.&lt;br&gt;
-&lt;br&gt;
-Thank you for contacting SigmaNEST Technical Support and we look forward to continuing to work with you.  If there is anything that we can do to assist your maintenance renewal, please let us know and we would be happy to assist.&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;</Value>
     </Setting>
     <Setting Name="OffSMRSignatureDefault" Type="System.String" Scope="User">
       <Value Profile="(Default)">&lt;span style="color: #000000; font-family: calibri; font-size: 11pt"&gt; 

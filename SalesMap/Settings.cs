@@ -26,16 +26,16 @@ namespace SalesMap
 
             hasParent = openingFromSalesMap;
 
-            textBoxEditSubject.Text = Properties.Settings.Default.OffSMRSubject;
-            textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
+            textBoxEditSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject");
+            textBoxMapLocation.Text = (string)XMLFunctions.readSetting("MapFileLocation");
             checkBoxInternational.Checked = Properties.Settings.Default.UseInternational;
-            checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
-            checkBoxSendLog.Checked = Properties.Settings.Default.SendLog;
-            textBoxEdit.Text = Properties.Settings.Default.OffSMRBody;
-            richTextBoxSignature.Text = Properties.Settings.Default.OffSMRSignature;
+            checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates");
+            checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper");
+            textBoxEdit.Text = (string)XMLFunctions.readSetting("OffSMRBody");
+            richTextBoxSignature.Text = (string)XMLFunctions.readSetting("OffSMRSignature");
 
             //If the user's Off SMR Signature is the same as the default, show them where to set up a new one
-            if (Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignature) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+            if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature")) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
             {
                 tabControlOffSMREmail.SelectTab(1);
                 richTextBoxSignature.BackColor = Color.LightCoral;
@@ -55,12 +55,12 @@ namespace SalesMap
         {
             Common.Log("Saving settings");
 
-            Properties.Settings.Default.OffSMRSubject = textBoxEditSubject.Text;
-            Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
-            Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
-            Properties.Settings.Default.SendLog = checkBoxSendLog.Checked;
-            Properties.Settings.Default.OffSMRBody = textBoxEdit.Text;
-            Properties.Settings.Default.OffSMRSignature = richTextBoxSignature.Text;
+            XMLFunctions.saveSetting("OffSMRSubject", textBoxEditSubject.Text);
+            XMLFunctions.saveSetting("MapFileLocation", textBoxMapLocation.Text);
+            XMLFunctions.saveSetting("AutoCheckForUpdates", checkBoxAutoUpdates.Checked);
+            XMLFunctions.saveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);
+            XMLFunctions.saveSetting("OffSMRBody", textBoxEdit.Text);
+            XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
 
             if (Properties.Settings.Default.UseInternational != checkBoxInternational.Checked)
             {

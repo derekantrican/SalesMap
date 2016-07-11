@@ -53,6 +53,36 @@ namespace SalesMap
             }
         }
 
+        public static void saveSetting(string settingName, object value)
+        {
+            if (!File.Exists(UserSettingsPath + "Settings.xml"))
+                return;
+
+            XDocument document = XDocument.Load(UserSettingsPath + "Settings.xml");
+            var setting = document.Descendants("Setting").Where(x => x.Attribute("name").Value.Equals(settingName)).SingleOrDefault();
+
+            if (setting == null)
+            {
+                setting = new XElement("Setting",
+                          new XAttribute("name", settingName),
+                          new XAttribute("type", value.GetType()),
+                          value);
+                document.Element("Settings").Add(setting);
+            }
+            else
+            {
+                if (setting.Attribute("type").Value != value.GetType().ToString())
+                {
+                    Log("Trying to save setting \"" + settingName + "\" but the saved type is " + setting.Attribute("type").Value + " and trying to save type " + value.GetType().ToString());
+                    return;
+                }
+
+                setting.Value = value.ToString();
+            }
+
+            document.Save(UserSettingsPath + "Settings.xml");
+        }
+
         public static DateTime getLastXmlOnlineUpdated(Database database)
         {
             XDocument document = XDocument.Parse(downloadXML(database));

@@ -25,30 +25,6 @@ namespace SalesMap.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\sigmatek.net\\Documents\\Employees\\Derek_Antrican\\SalesMap.pdf")]
-        public string MapFileLocation {
-            get {
-                return ((string)(this["MapFileLocation"]));
-            }
-            set {
-                this["MapFileLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool AutoCheckUpdate {
-            get {
-                return ((bool)(this["AutoCheckUpdate"]));
-            }
-            set {
-                this["AutoCheckUpdate"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool SendLog {
             get {
@@ -56,56 +32,6 @@ namespace SalesMap.Properties {
             }
             set {
                 this["SendLog"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SigmaNEST Subscription Membership Renewal")]
-        public string OffSMRSubject {
-            get {
-                return ((string)(this["OffSMRSubject"]));
-            }
-            set {
-                this["OffSMRSubject"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<span style=""color: #000000; font-family: calibri; font-size: 11pt""> 
-YOUR_NAME<br>
-<i>Application Engineer</i><br>
-<b>SigmaTEK Systems, LLC</b><br>
-Main: 513.595.2002<br>
-1445 Kemper Meadow Drive | Cincinnati, Ohio 45240<br>
-<a href=""http://www.sigmanest.com"">www.sigmanest.com</a><br>
-</span>
-<a href=""https://www.sigmanest.com/"" target=""_blank""><img src=""https://www.sigmanest.com/images/email/signature.png"" moz -do-not-send=""true"" border=""0""></a>")]
-        public string OffSMRSignature {
-            get {
-                return ((string)(this["OffSMRSignature"]));
-            }
-            set {
-                this["OffSMRSignature"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"While I was looking over your company overview, I noticed that your company’s maintenance subscription has expired.  We would like to continue working with you and your company, although we would need to get the maintenance subscription renewed.  I have copied your sales representative, {SALESREPNAME}, on this email so that he is aware of the pending renewal as well.  You may contact {SALESREPNAME} through his email address {SALESREPEMAIL} or by calling him directly at {SALESREPPHONE}.<br>
-<br>
-I would like to remind you of the benefits of having a current maintenance subscription.  Being an “on-maintenance” customer allows you to call or email our Technical Support Team and receive help with SigmaNEST, whether it is setting up your machines with SigmaNEST or helping you resolve a difficult nesting problem.  You also have free access to install any supported release of SigmaNEST, including future releases.  These releases contain new features and fixes to old problems, most of which is reported by our customers.  This allows you to have an influence in how our software develops and changes.<br>
-<br>
-Thank you for contacting SigmaNEST Technical Support and we look forward to continuing to work with you.  If there is anything that we can do to assist your maintenance renewal, please let us know and we would be happy to assist.<br>
-<br>
-<br>")]
-        public string OffSMRBody {
-            get {
-                return ((string)(this["OffSMRBody"]));
-            }
-            set {
-                this["OffSMRBody"] = value;
             }
         }
         
