@@ -82,6 +82,8 @@ namespace SalesMap
 
         private void SalesMapSearch_FormClosing(object sender, FormClosingEventArgs e)
         {
+            XMLFunctions.saveSetting("MainWindowLocation", this.Location);
+
             Common.Log("++++++++++++ CLOSING SALESMAP ++++++++++++");
 
             if (Properties.Settings.Default.SendLog)
@@ -659,6 +661,22 @@ namespace SalesMap
 
         private void SalesMapSearch_Load(object sender, EventArgs e)
         {
+            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation");
+
+            if (!startupPoint.IsEmpty)
+            {
+                foreach (Screen s in Screen.AllScreens)
+                {
+                    if (s.Bounds.Contains(startupPoint))
+                    {
+                        this.Top = startupPoint.Y;
+                        this.Left = startupPoint.X;
+
+                        return;
+                    }
+                }
+            }
+
             Screen screen = Screen.FromPoint(new Point(Cursor.Position.X, Cursor.Position.Y));
             this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
             this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);

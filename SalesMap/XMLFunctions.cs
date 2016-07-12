@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -247,8 +248,10 @@ namespace SalesMap
             else if (type == "System.Drawing.Point")
             {
                 System.Drawing.Point p = new System.Drawing.Point();
-                p.X = Convert.ToInt32(XMLElement.Element("X").Value);
-                p.Y = Convert.ToInt32(XMLElement.Element("Y").Value);
+                var pointString = Regex.Replace(XMLElement.Value, @"[\{\}a-zA-Z=]", "").Split(',');
+
+                p.X = int.Parse(pointString[0]);
+                p.Y = int.Parse(pointString[1]);
 
                 return p;
             }
