@@ -26,8 +26,13 @@ namespace SalesMap
         {
             InitializeComponent();
 
+            if (File.ReadLines(Common.UserSettingsPath + "log.txt").Count() > 10000)
+            {
+                File.WriteAllText(Common.UserSettingsPath + "log.txt", ""); //Clear the log
+                Common.Log("Cleared the log as it was longer than 10,000 lines");
+            }
+
             this.Text = this.Text + " (" + Common.ThisVersion + ")"; //Change the name of the window to include the current version
-            //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
             Common.Log("------------ STARTING SALESMAP (" + Common.ThisVersion + ") ------------");
 
             if (!Common.IsOnline)
