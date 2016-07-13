@@ -59,7 +59,6 @@ namespace SalesMap
         {
             if (!File.Exists(UserSettingsPath + "Settings.xml"))
                 DownloadDefaultXml();
-
             XDocument document = XDocument.Load(UserSettingsPath + "Settings.xml");
             var setting = document.Descendants("Setting").Where(x => x.Attribute("name").Value.Equals(settingName)).SingleOrDefault();
 
@@ -82,6 +81,7 @@ namespace SalesMap
                 setting.Value = value.ToString();
             }
 
+            document.Element("Settings").Attribute("updated").Value = DateTime.Now.ToString("%M/%d/yyyy HH:mm");
             document.Save(UserSettingsPath + "Settings.xml");
         }
 
