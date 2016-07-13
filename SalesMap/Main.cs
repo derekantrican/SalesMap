@@ -624,6 +624,8 @@ namespace SalesMap
 
                 //Delete old files (if they exist)
 
+                XMLFunctions.ReadOldSettings();
+
                 if (File.Exists(offSMRPath))
                 {
                     File.Delete(offSMRPath);

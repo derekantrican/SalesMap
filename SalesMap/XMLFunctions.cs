@@ -258,5 +258,70 @@ namespace SalesMap
             else
                 return XMLElement.Value;
         }
+
+        public static void ReadOldSettings()
+        {
+            if (!Directory.Exists(UserSettingsPath) && (new DirectoryInfo(UserSettingsPath)).GetDirectories().Count() > 0)
+                return;
+
+            if (!File.Exists(UserSettingsPath + "Settings.xml"))
+                DownloadDefaultXml();
+
+            Log("Copying over the old settings to Settings.xml");
+
+            bool settingCopied = false;
+            DirectoryInfo UserSettingsFolder = new DirectoryInfo(UserSettingsPath);
+            DirectoryInfo oldSettingsFolder = null;
+            foreach (DirectoryInfo di in UserSettingsFolder.GetDirectories())
+            {
+                if (oldSettingsFolder == null || di.LastAccessTime > oldSettingsFolder.LastAccessTime)
+                    oldSettingsFolder = di;
+            }
+            
+            while (oldSettingsFolder.GetDirectories().Count() > 0)
+            {
+                oldSettingsFolder = oldSettingsFolder.GetDirectories().First();
+            }
+
+            XDocument document = XDocument.Load(oldSettingsFolder.GetFiles()[0].FullName);
+            XElement OffSMRSignature = document.Descendants("setting").Where(x => x.Attribute("name").Value.Equals("OffSMRSignature")).SingleOrDefault();
+            if (OffSMRSignature != null)
+            {
+                saveSetting("OffSMRSignature", OffSMRSignature.Value);
+                Log("Copied over OffSMRSignature from the old settings");
+                settingCopied = true;
+            }
+
+            XElement OffSMRBody = document.Descendants("setting").Where(x => x.Attribute("name").Value.Equals("OffSMRBody")).SingleOrDefault();
+            if (OffSMRBody != null)
+            {
+                saveSetting("OffSMRBody", OffSMRBody.Value);
+                Log("Copied over OffSMRBody from the old settings");
+                settingCopied = true;
+            }
+
+            XElement OffSMRSubject = document.Descendants("setting").Where(x => x.Attribute("name").Value.Equals("OffSMRSubject")).SingleOrDefault();
+            if (OffSMRSubject != null)
+            {
+                saveSetting("OffSMRSubject", OffSMRSubject.Value);
+                Log("Copied over OffSMRSubject from the old settings");
+                settingCopied = true;
+            }
+
+            XElement MapFileLocation = document.Descendants("setting").Where(x => x.Attribute("name").Value.Equals("MapFileLocation")).SingleOrDefault();
+            if (MapFileLocation != null)
+            {
+                saveSetting("MapFileLocation", MapFileLocation.Value);
+                Log("Copied over MapFileLocation from the old settings");
+                settingCopied = true;
+            }
+
+            if (settingCopied)
+            {
+                Log("Deleting all the old settings folders");
+                foreach (DirectoryInfo di in UserSettingsFolder.GetDirectories())
+                    di.Delete(true);
+            }
+        }
     }
 }
