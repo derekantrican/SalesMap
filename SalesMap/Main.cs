@@ -243,7 +243,12 @@ namespace SalesMap
             labelRegionResult.Text = "Region: ";
 
             foreach (string region in (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities)
-                labelRegionResult.Text += ", " + region;
+            {
+                labelRegionResult.Text += region;
+
+                if (region != (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities.Last())
+                    labelRegionResult.Text += ", ";
+            }
 
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";

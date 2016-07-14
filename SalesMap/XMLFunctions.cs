@@ -267,8 +267,6 @@ namespace SalesMap
             if (!File.Exists(UserSettingsPath + "Settings.xml"))
                 DownloadDefaultXml();
 
-            Log("Copying over the old settings to Settings.xml");
-
             bool settingCopied = false;
             DirectoryInfo UserSettingsFolder = new DirectoryInfo(UserSettingsPath);
             DirectoryInfo oldSettingsFolder = null;
