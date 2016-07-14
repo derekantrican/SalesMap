@@ -155,7 +155,7 @@ namespace SalesMap
         {
             if (comboBoxState.Text != "" && comboBoxRepresentative.Items.Count > 0)
             {
-                Common.Log("Selecting state: " + comboBoxState.Text);
+                Common.Log("Selecting state: " + (comboBoxState.SelectedItem as Common.Region).DisplayName);
 
                 comboBoxRepresentative.SelectedIndex = 0;
                 labelRepResult.Text = "Sales Rep: ";
@@ -225,7 +225,7 @@ namespace SalesMap
         {
             if (comboBoxRepresentative.Text != "")
             {
-                Common.Log("Selecting rep: " + comboBoxRepresentative.Text);
+                Common.Log("Selecting rep: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName);
 
                 comboBoxState.SelectedIndex = 0;
                 labelRegionResult.Text = "Region: ";
