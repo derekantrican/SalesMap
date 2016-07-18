@@ -38,15 +38,18 @@ namespace SalesMap
             if (!Common.IsOnline)
             {
                 Common.Log("No internet connection");
-                DialogResult res = MessageBox.Show("You are not connected to the internet. SalesMap " + Common.ThisVersion + " requires an internet connection", "Not connected to the internet...", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                MessageBox messageBox = new MessageBox("Not connected to the internet...", "You are not connected to the internet. SalesMap " + Common.ThisVersion + " requires an internet connection",
+                    "Cancel", Common.MessageBoxResult.Cancel, true, "Retry", Common.MessageBoxResult.Retry);
+                messageBox.ShowDialog();
                 
-                if (res == DialogResult.Retry && !Common.IsOnline)
+                if (Common.DialogResult == Common.MessageBoxResult.Retry && !Common.IsOnline)
                 {
-                    MessageBox.Show(".....nope, still no internets");
+                    MessageBox messageBox2 = new MessageBox("Not connected to the internet...", "...still can't find an internet connection. \n\nThe program will now exit.", "Ok", Common.MessageBoxResult.Ok);
+                    messageBox2.ShowDialog();
                     Common.Log("Retried, but still no internet connection");
                     Application.Exit();
                 }
-                else if (res == DialogResult.Cancel)
+                else if (Common.DialogResult == Common.MessageBoxResult.Cancel)
                 {
                     Application.Exit();
                 }
@@ -70,9 +73,10 @@ namespace SalesMap
                 {
                     Common.Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
 
-                    if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
-                                        "\n\nDo you want to update to the new version?",
-                                        "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                    MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
+                                        "\n\nDo you want to update to the new version?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
+                    messageBox.ShowDialog();
+                    if (Common.DialogResult == Common.MessageBoxResult.Yes)
                     {
                         Common.Log("User selected \"Yes\" for the new update");
                         Update(GitVersion);
@@ -273,7 +277,8 @@ namespace SalesMap
             }
             catch
             {
-                MessageBox.Show("The path " + path + " is invalid.");
+                MessageBox messageBox = new MessageBox("Invalid Path", "The path " + path + " is invalid.", "Ok", Common.MessageBoxResult.Ok);
+                messageBox.ShowDialog();
             }
         }
 
@@ -304,7 +309,8 @@ namespace SalesMap
 
             if (labelRepResult.Text == "Sales Rep: ")
             {
-                MessageBox.Show("Please choose a Region or Sales Rep from the dropdowns");
+                MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "Ok", Common.MessageBoxResult.Ok);
+                messageBox.ShowDialog();
                 return;
             }
             else if (labelRepResult.Text != "" && labelRepResult2.Text == "")
@@ -413,7 +419,8 @@ namespace SalesMap
             }
             catch (Exception eX)
             {
-                MessageBox.Show("Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again");
+                MessageBox messageBox = new MessageBox("Email Failed", "Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again", "Ok", Common.MessageBoxResult.Ok);
+                messageBox.ShowDialog();
                 Common.Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
             }
         }
@@ -602,7 +609,10 @@ namespace SalesMap
                 //Force the user to set up their signature
                 if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature")) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
                 {
-                    MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
+                    MessageBox messageBox = new MessageBox("Signature not set", "Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)",
+                                                            "Ok", Common.MessageBoxResult.Ok);
+                    messageBox.ShowDialog();
+                    //MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
 
                     Common.Log("Opening config so the user can set their signature");
                     Settings config = new Settings(false);

@@ -64,7 +64,8 @@ namespace SalesMap
 
             if (Properties.Settings.Default.UseInternational != checkBoxInternational.Checked)
             {
-                MessageBox.Show("The program will now restart...", "Restart Required", MessageBoxButtons.OK);
+                MessageBox messageBox = new MessageBox("Restart Required", "The program will now restart...", "Ok", Common.MessageBoxResult.Ok);
+                messageBox.ShowDialog();
                 Properties.Settings.Default.UseInternational = checkBoxInternational.Checked;
                 Properties.Settings.Default.Save();
 
@@ -80,7 +81,9 @@ namespace SalesMap
 
             if (Form.ModifierKeys == Keys.Control)
             {
-                if (MessageBox.Show("This will factory reset this program! \n\nAre you sure?", "Factory Reset",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                MessageBox messageBox = new MessageBox("Factory Reset", "This will factory reset this program! \n\nAre you sure?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
+                messageBox.ShowDialog();
+                if (Common.DialogResult == Common.MessageBoxResult.Yes)
                 {
                     Common.Log("Factory reset!");
 
@@ -98,7 +101,8 @@ namespace SalesMap
                     catch (Exception ex)
                     {
                         Common.Log("Problems encountered during a factory reset: " + ex.Message);
-                        MessageBox.Show("Could not factory reset. Please contact the developer");
+                        MessageBox messageBox2 = new MessageBox("Error during factory reset", "Could not factory reset. Please contact the developer", "Ok", Common.MessageBoxResult.Ok);
+                        messageBox2.ShowDialog();
                         return;
                     }
 
@@ -124,9 +128,10 @@ namespace SalesMap
             {
                 Common.Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
 
-                if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
-                                    "\n\nDo you want to update to the new version?",
-                                    "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
+                                    "\n\nDo you want to update to the new version?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
+                messageBox.ShowDialog();
+                if (Common.DialogResult == Common.MessageBoxResult.Yes)
                 {
                     Common.Log("User selected \"Yes\" for the new update");
                     Update(GitVersion);
@@ -138,7 +143,8 @@ namespace SalesMap
             }
             else
             {
-                MessageBox.Show("Congrats, you have the most current version! You are running version v5.5");
+                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version v5.5", "Ok", Common.MessageBoxResult.Ok);
+                messageBox2.ShowDialog();
             }
         }
 
@@ -150,11 +156,11 @@ namespace SalesMap
 
         private void buttonVariables_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You can use the following variables when defining the Off SMR Email (which will get replaced with the appropriate information" +
-                            " when the email is composed):\n\n" +
-                            "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
-                            "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
-                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
+            MessageBox messageBox = new MessageBox("Off SMR EMail Variables", "You can use the following variables when defining the Off SMR Email:\n\n" +
+                                                    "   - \"{SALESREPNAME}\" ... the rep's name\n" +
+                                                    "   - \"{SALESREPEMAIL}\" ... the rep's email\n" +
+                                                    "   - \"{SALESREPPHONE}\" ... the rep's phone #", "Ok", Common.MessageBoxResult.Ok);
+            messageBox.ShowDialog();
         }
 
         private void pictureBoxPreview_Click(object sender, EventArgs e)
@@ -186,8 +192,7 @@ namespace SalesMap
             }
             catch (Exception eX)
             {
-                MessageBox.Show("Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again");
-                Common.Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
+                Common.Log("Failed to create test email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
             }
         }
 

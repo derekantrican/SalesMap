@@ -16,6 +16,16 @@ namespace SalesMap
         public static string UserSettingsPath = @"C:\Users\derek.antrican\AppData\Local\SalesMap\";
         public static string InfoSiteBase = "http://info.sigmatek.net/downloads/SalesMap/";
         public static string ThisVersion = "v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+        public static MessageBoxResult DialogResult = MessageBoxResult.Cancel;
+        public enum MessageBoxResult
+        {
+            Cancel,
+            Ok,
+            Yes,
+            No,
+            Retry
+        }
+
         public static bool IsOnline
         {
             get
@@ -90,7 +100,8 @@ namespace SalesMap
             catch
             {
                 Common.Log("Attempted to check for new version and failed to get html");
-                MessageBox.Show("Failed to check for a new update. Are you connected to the internet?");
+                MessageBox messageBox = new MessageBox("Check for Update failed", "Failed to check for a new update. Are you connected to the internet?", "Ok", MessageBoxResult.Ok);
+                messageBox.ShowDialog();
                 return null;
             }
 
