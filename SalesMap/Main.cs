@@ -190,14 +190,10 @@ namespace SalesMap
                 labelPhoneResult2.Text = "";
                 return;
             }
-            else if ((comboBoxState.SelectedItem as Common.Region).Name == "Corporate Account")
-            {
-                //ToDo: set Bill Huffman & Mike Galetti as reps
-            }
 
             foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
             {
-                if (rep.Responsibilities.Contains((comboBoxState.SelectedItem as Common.Region).Abbreviation))
+                if (rep.Responsibilities != null && rep.Responsibilities.Contains((comboBoxState.SelectedItem as Common.Region).Abbreviation))
                 {
                     found++;
 
@@ -210,9 +206,9 @@ namespace SalesMap
 
                     if (found > 1)
                     {
-                        labelRepResult.Text = "2nd Sales Rep: " + rep.DisplayName;
-                        labelContactResult.Text = "Contact: " + rep.Email;
-                        labelPhoneResult.Text = rep.Phone;
+                        labelRepResult2.Text = "2nd Sales Rep: " + rep.DisplayName;
+                        labelContactResult2.Text = "Contact: " + rep.Email;
+                        labelPhoneResult2.Text = rep.Phone;
                     }
                 }
             }
@@ -246,13 +242,17 @@ namespace SalesMap
             labelPhoneResult.Text = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Phone;
             labelRegionResult.Text = "Region: ";
 
-            foreach (string region in (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities)
+            if ((comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities != null)
             {
-                labelRegionResult.Text += region;
+                foreach (string region in (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities)
+                {
+                    labelRegionResult.Text += region;
 
-                if (region != (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities.Last())
-                    labelRegionResult.Text += ", ";
+                    if (region != (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities.Last())
+                        labelRegionResult.Text += ", ";
+                }
             }
+
 
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";
@@ -355,21 +355,24 @@ namespace SalesMap
             string rsm = "";
             
             //Find the RSM
-            if (comboBoxState.SelectedItem.ToString() != "") //If a state is selected
+            if ((comboBoxState.SelectedItem as Common.Region).DisplayName != null) //If a state is selected
             {
                 foreach (Common.SalesRep salesRep in XMLFunctions.SalesRepList)
                 {
-                    if (salesRep.CC.Contains((comboBoxState.SelectedItem as Common.Region).Area))
+                    if (salesRep.CC != null && salesRep.CC.Contains((comboBoxState.SelectedItem as Common.Region).Area))
                     {
                         rsm = salesRep.Email;
                         break;
                     }
                 }
             }
-            else if (comboBoxRepresentative.SelectedItem.ToString() != "") //If a rep is selected
+            else if ((comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName != null) //If a rep is selected
             {
                 //This has been deprecated as of v6.0, but this is being left here in case we want to also CC the rep
                 //when we are composing an email with just a rep selected
+
+                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email, "", "", (string)XMLFunctions.readSetting("OffSMRSignature") });
+                return;
             }
 
             if (rsm == cc) //If the rsr IS the rsm
@@ -395,16 +398,17 @@ namespace SalesMap
             subject = replaceVariables(subject, rep, cc.Split(';')[0], phone);
             body = replaceVariables(body, rep, cc.Split(';')[0], phone);
 
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] {cc, subject, body});
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] {"", cc, subject, body});
         }
 
         private void composeOutlook(object parameters)
         {
             object[] array = parameters as object[];
 
-            string cc = Convert.ToString(array[0]);
-            string subject = Convert.ToString(array[1]);
-            string body = Convert.ToString(array[2]);
+            string to = Convert.ToString(array[0]);
+            string cc = Convert.ToString(array[1]);
+            string subject = Convert.ToString(array[2]);
+            string body = Convert.ToString(array[3]);
 
 
             try
@@ -412,6 +416,7 @@ namespace SalesMap
                 Outlook.Application outlookApp = new Outlook.Application();
                 Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
 
+                mailItem.To = to;
                 mailItem.CC = cc;
                 mailItem.Subject = subject;
                 mailItem.HTMLBody = body;

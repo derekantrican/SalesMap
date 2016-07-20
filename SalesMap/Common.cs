@@ -57,7 +57,7 @@ namespace SalesMap
             {
                 get
                 {
-                    if (Abbreviation != "" && Abbreviation != null)
+                    if (Abbreviation != "" && Abbreviation != null && Abbreviation != "Corporate Accounts")
                         return "(" + Abbreviation + ") " + Name;
                     else if (Name != "" && Name != null)
                         return Name;
