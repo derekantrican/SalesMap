@@ -371,7 +371,7 @@ namespace SalesMap
                 //This has been deprecated as of v6.0, but this is being left here in case we want to also CC the rep
                 //when we are composing an email with just a rep selected
 
-                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email, "", "", (string)XMLFunctions.readSetting("OffSMRSignature") });
+                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email, "", "", "<br/><br/>" + (string)XMLFunctions.readSetting("OffSMRSignature") });
                 return;
             }
 
@@ -620,7 +620,7 @@ namespace SalesMap
                     //MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
 
                     Common.Log("Opening config so the user can set their signature");
-                    Settings config = new Settings(false);
+                    Settings config = new Settings();
                     config.ShowDialog();
                 }
 

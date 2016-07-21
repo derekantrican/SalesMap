@@ -18,13 +18,9 @@ namespace SalesMap
 {
     public partial class Settings : Form
     {
-        bool hasParent;
-
-        public Settings(bool openingFromSalesMap = true)
+        public Settings()
         {
             InitializeComponent();
-
-            hasParent = openingFromSalesMap;
 
             textBoxEditSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject");
             textBoxMapLocation.Text = (string)XMLFunctions.readSetting("MapFileLocation");
@@ -208,28 +204,25 @@ namespace SalesMap
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            if (!hasParent)
+            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation");
+
+            if (!startupPoint.IsEmpty)
             {
-                Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation");
-
-                if (!startupPoint.IsEmpty)
+                foreach (Screen s in Screen.AllScreens)
                 {
-                    foreach (Screen s in Screen.AllScreens)
+                    if (s.Bounds.Contains(startupPoint))
                     {
-                        if (s.Bounds.Contains(startupPoint))
-                        {
-                            this.Top = startupPoint.Y;
-                            this.Left = startupPoint.X;
+                        this.Top = startupPoint.Y;
+                        this.Left = startupPoint.X;
 
-                            return;
-                        }
+                        return;
                     }
                 }
-
-                Screen screen = Screen.FromPoint(new Point(Cursor.Position.X, Cursor.Position.Y));
-                this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
-                this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
             }
+
+            Screen screen = Screen.FromPoint(new Point(Cursor.Position.X, Cursor.Position.Y));
+            this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
+            this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
         }
     }
 }
