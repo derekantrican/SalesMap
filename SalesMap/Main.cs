@@ -157,7 +157,7 @@ namespace SalesMap
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxState.Text != "" && comboBoxRepresentative.Items.Count > 0)
+            if ((comboBoxState.SelectedItem as Common.Region).DisplayName != null && comboBoxRepresentative.Items.Count > 0)
             {
                 Common.Log("Selecting state: " + (comboBoxState.SelectedItem as Common.Region).DisplayName);
 
@@ -223,7 +223,7 @@ namespace SalesMap
 
         private void comboBoxRepresentative_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxRepresentative.Text != "")
+            if ((comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName != null && comboBoxRepresentative.Items.Count > 0)
             {
                 Common.Log("Selecting rep: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName);
 
