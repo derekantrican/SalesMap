@@ -13,8 +13,5 @@ Main: 513.595.2002&lt;br&gt;
 &lt;/span&gt;
 &lt;a href="https://www.sigmanest.com/" target="_blank"&gt;&lt;img src="https://www.sigmanest.com/images/email/signature.png" moz -do-not-send="true" border="0"&gt;&lt;/a&gt;</Value>
     </Setting>
-    <Setting Name="UseInternational" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

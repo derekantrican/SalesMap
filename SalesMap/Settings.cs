@@ -24,7 +24,7 @@ namespace SalesMap
 
             textBoxEditSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject");
             textBoxMapLocation.Text = (string)XMLFunctions.readSetting("MapFileLocation");
-            checkBoxInternational.Checked = Properties.Settings.Default.UseInternational;
+            checkBoxInternational.Checked = (bool)XMLFunctions.readSetting("UseInternational");
             checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates");
             checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper");
             textBoxEdit.Text = (string)XMLFunctions.readSetting("OffSMRBody");
@@ -58,20 +58,20 @@ namespace SalesMap
             XMLFunctions.saveSetting("OffSMRBody", textBoxEdit.Text);
             XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
 
-            if (Properties.Settings.Default.UseInternational != checkBoxInternational.Checked)
+            if (checkBoxInternational.Checked)
             {
-                MessageBox messageBox = new MessageBox("Restart Required", "The program will now restart...", "Ok", Common.MessageBoxResult.Ok);
-                messageBox.ShowDialog();
-                Properties.Settings.Default.UseInternational = checkBoxInternational.Checked;
-                Properties.Settings.Default.Save();
+                //    MessageBox messageBox = new MessageBox("Restart Required", "The program will now restart...", "Ok", Common.MessageBoxResult.Ok);
+                //    messageBox.ShowDialog();
+                //    Properties.Settings.Default.UseInternational = checkBoxInternational.Checked;
+                //    Properties.Settings.Default.Save();
 
-                ProcessStartInfo Info = new ProcessStartInfo();
-                Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
-                Info.WindowStyle = ProcessWindowStyle.Hidden;
-                Info.CreateNoWindow = true;
-                Info.FileName = "cmd.exe";
-                Process.Start(Info);
-                Application.Exit();
+                //    ProcessStartInfo Info = new ProcessStartInfo();
+                //    Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
+                //    Info.WindowStyle = ProcessWindowStyle.Hidden;
+                //    Info.CreateNoWindow = true;
+                //    Info.FileName = "cmd.exe";
+                //    Process.Start(Info);
+                //    Application.Exit();
             }
 
 

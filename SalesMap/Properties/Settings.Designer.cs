@@ -42,17 +42,5 @@ Main: 513.595.2002<br>
                 this["OffSMRSignatureDefault"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool UseInternational {
-            get {
-                return ((bool)(this["UseInternational"]));
-            }
-            set {
-                this["UseInternational"] = value;
-            }
-        }
     }
 }
