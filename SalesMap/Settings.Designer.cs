@@ -109,7 +109,7 @@
             // checkBoxAutoUpdates
             // 
             this.checkBoxAutoUpdates.AutoSize = true;
-            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(232, 225);
+            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(234, 211);
             this.checkBoxAutoUpdates.Name = "checkBoxAutoUpdates";
             this.checkBoxAutoUpdates.Size = new System.Drawing.Size(169, 17);
             this.checkBoxAutoUpdates.TabIndex = 10;
@@ -137,7 +137,7 @@
             // checkBoxSendLog
             // 
             this.checkBoxSendLog.AutoSize = true;
-            this.checkBoxSendLog.Location = new System.Drawing.Point(232, 243);
+            this.checkBoxSendLog.Location = new System.Drawing.Point(234, 229);
             this.checkBoxSendLog.Name = "checkBoxSendLog";
             this.checkBoxSendLog.Size = new System.Drawing.Size(152, 17);
             this.checkBoxSendLog.TabIndex = 15;
@@ -241,11 +241,11 @@
             // checkBoxInternational
             // 
             this.checkBoxInternational.AutoSize = true;
-            this.checkBoxInternational.Location = new System.Drawing.Point(18, 218);
+            this.checkBoxInternational.Location = new System.Drawing.Point(18, 211);
             this.checkBoxInternational.Name = "checkBoxInternational";
-            this.checkBoxInternational.Size = new System.Drawing.Size(152, 30);
+            this.checkBoxInternational.Size = new System.Drawing.Size(152, 17);
             this.checkBoxInternational.TabIndex = 17;
-            this.checkBoxInternational.Text = "Show international results?\r\n(requires restart)";
+            this.checkBoxInternational.Text = "Show international results?\r\n";
             this.checkBoxInternational.UseVisualStyleBackColor = true;
             // 
             // Settings

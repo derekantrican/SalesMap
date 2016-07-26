@@ -95,7 +95,7 @@ namespace SalesMap
 
             Common.Log("++++++++++++ CLOSING SALESMAP ++++++++++++");
 
-            if (Properties.Settings.Default.SendLog)
+            if ((bool)XMLFunctions.readSetting("SendLogToDeveloper"))
             {
                 SendStatistics();
 

@@ -73,19 +73,6 @@ namespace SalesMap
 
                 //Todo: Fire events to repopulate the comboBoxes
                 XMLFunctions.saveSetting("UseInternational", checkBoxInternational.Checked);
-
-                //    MessageBox messageBox = new MessageBox("Restart Required", "The program will now restart...", "Ok", Common.MessageBoxResult.Ok);
-                //    messageBox.ShowDialog();
-                //    Properties.Settings.Default.UseInternational = checkBoxInternational.Checked;
-                //    Properties.Settings.Default.Save();
-
-                //    ProcessStartInfo Info = new ProcessStartInfo();
-                //    Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
-                //    Info.WindowStyle = ProcessWindowStyle.Hidden;
-                //    Info.CreateNoWindow = true;
-                //    Info.FileName = "cmd.exe";
-                //    Process.Start(Info);
-                //    Application.Exit();
             }
 
 

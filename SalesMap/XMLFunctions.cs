@@ -275,7 +275,10 @@ namespace SalesMap
                 if (oldSettingsFolder == null || di.LastAccessTime > oldSettingsFolder.LastAccessTime)
                     oldSettingsFolder = di;
             }
-            
+
+            if (oldSettingsFolder == null)
+                return;
+
             while (oldSettingsFolder.GetDirectories().Count() > 0)
             {
                 oldSettingsFolder = oldSettingsFolder.GetDirectories().First();

@@ -181,6 +181,7 @@
     <Content Include="map.ico" />
     <None Include="Resources\preview.png" />
     <None Include="Resources\GoogleMaps.jpg" />
+    <None Include="Resources\envelope_icon.jpg" />
     <Content Include="SalesMap.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

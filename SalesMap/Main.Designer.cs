@@ -148,7 +148,7 @@
             // 
             // pictureBoxOffSMR
             // 
-            this.pictureBoxOffSMR.Image = global::SalesMap.Properties.Resources.offSMRPic;
+            this.pictureBoxOffSMR.Image = global::SalesMap.Properties.Resources.envelope_icon;
             resources.ApplyResources(this.pictureBoxOffSMR, "pictureBoxOffSMR");
             this.pictureBoxOffSMR.Name = "pictureBoxOffSMR";
             this.pictureBoxOffSMR.TabStop = false;
