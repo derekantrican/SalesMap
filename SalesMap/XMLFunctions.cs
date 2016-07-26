@@ -93,9 +93,9 @@ namespace SalesMap
             Log("Downloaded the default Settings.xml from online");
         }
 
-        public static DateTime getLastXmlOnlineUpdated(Database database)
+        public static DateTime getLastXmlOnlineUpdated(Database database, bool useInternational = false)
         {
-            XDocument document = XDocument.Parse(downloadXML(database));
+            XDocument document = XDocument.Parse(downloadXML(database, useInternational));
             DateTime updated;
             if (database == Database.Reps)
                 updated = DateTime.Parse(document.Element("SalesReps").Attribute("updated").Value);
@@ -143,10 +143,10 @@ namespace SalesMap
         //}
 
         [STAThread]
-        private static string downloadXML(Database database)
+        private static string downloadXML(Database database, bool useInternational)
         {
-            string regionsURL = InfoSiteBase + "Settings/Regions.xml";
-            string salesRepURL = InfoSiteBase + "Settings/SalesReps.xml";
+            string regionsURL = !useInternational ? InfoSiteBase + "Settings/Regions.xml" : InfoSiteBase + "Settings/Regions_International.xml";
+            string salesRepURL = !useInternational ? InfoSiteBase + "Settings/SalesReps.xml" : InfoSiteBase + "Settings/SalesReps_International.xml";
             string html = "";
 
             WebClient client = new WebClient();
@@ -160,9 +160,9 @@ namespace SalesMap
         }
 
         [STAThread]
-        public static void parseRegions()
+        public static void parseRegions(bool useInternational = false)
         {
-            XDocument document = XDocument.Parse(downloadXML(Database.Regions));
+            XDocument document = XDocument.Parse(downloadXML(Database.Regions, useInternational));
             XElement parent = document.Element("Regions");
 
             Region blankRegion = new Region();
@@ -189,9 +189,9 @@ namespace SalesMap
         }
 
         [STAThread]
-        public static void parseReps()
+        public static void parseReps(bool useInternational = false)
         {
-            XDocument document = XDocument.Parse(downloadXML(Database.Reps));
+            XDocument document = XDocument.Parse(downloadXML(Database.Reps, useInternational));
             XElement parent = document.Element("SalesReps");
 
             SalesRep blankRep = new SalesRep();

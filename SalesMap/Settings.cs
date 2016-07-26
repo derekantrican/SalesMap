@@ -57,10 +57,23 @@ namespace SalesMap
             XMLFunctions.saveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);
             XMLFunctions.saveSetting("OffSMRBody", textBoxEdit.Text);
             XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
-            XMLFunctions.saveSetting("UseInternational", checkBoxInternational.Checked);
 
-            if (checkBoxInternational.Checked)
+            if (checkBoxInternational.Checked != (bool)XMLFunctions.readSetting("UseInternational"))
             {
+                if (checkBoxInternational.Checked)
+                {
+                    XMLFunctions.parseRegions(true);
+                    XMLFunctions.parseReps(true);
+                }
+                else
+                {
+                    XMLFunctions.parseRegions(false);
+                    XMLFunctions.parseReps(false);
+                }
+
+                //Todo: Fire events to repopulate the comboBoxes
+                XMLFunctions.saveSetting("UseInternational", checkBoxInternational.Checked);
+
                 //    MessageBox messageBox = new MessageBox("Restart Required", "The program will now restart...", "Ok", Common.MessageBoxResult.Ok);
                 //    messageBox.ShowDialog();
                 //    Properties.Settings.Default.UseInternational = checkBoxInternational.Checked;
