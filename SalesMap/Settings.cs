@@ -57,6 +57,7 @@ namespace SalesMap
             XMLFunctions.saveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);
             XMLFunctions.saveSetting("OffSMRBody", textBoxEdit.Text);
             XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
+            XMLFunctions.saveSetting("UseInternational", checkBoxInternational.Checked);
 
             if (checkBoxInternational.Checked)
             {
