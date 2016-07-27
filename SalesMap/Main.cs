@@ -59,6 +59,17 @@ namespace SalesMap
             checkForUpdate();
             compareFiles();
 
+            if (!(bool)XMLFunctions.readSetting("UseInternational"))
+            {
+                XMLFunctions.parseRegions();
+                XMLFunctions.parseReps();
+            }
+            else
+            {
+                XMLFunctions.parseRegions(true);
+                XMLFunctions.parseReps(true);
+            }
+
             populateComboBoxes();
         }
 
@@ -141,8 +152,6 @@ namespace SalesMap
         public void populateComboBoxes()
         {
             //Set the comboBoxes
-            XMLFunctions.parseRegions();
-            XMLFunctions.parseReps();
             comboBoxState.DataSource = XMLFunctions.RegionList;
             comboBoxState.DisplayMember = "DisplayName";
             comboBoxRepresentative.DataSource = XMLFunctions.SalesRepList;
@@ -263,7 +272,8 @@ namespace SalesMap
         {
             Common.Log("Opening config");
             Settings config = new Settings();
-            config.Show();
+            config.UpdateComboBoxes += populateComboBoxes;
+            config.ShowDialog();
         }
 
         private void pictureBoxMap_Click(object sender, EventArgs e)

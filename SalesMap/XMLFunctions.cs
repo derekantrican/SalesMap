@@ -165,6 +165,9 @@ namespace SalesMap
             XDocument document = XDocument.Parse(downloadXML(Database.Regions, useInternational));
             XElement parent = document.Element("Regions");
 
+            if (RegionList != new List<Region>())
+                RegionList = new List<Region>();
+
             Region blankRegion = new Region();
             RegionList.Add(blankRegion);
 
@@ -193,6 +196,9 @@ namespace SalesMap
         {
             XDocument document = XDocument.Parse(downloadXML(Database.Reps, useInternational));
             XElement parent = document.Element("SalesReps");
+
+            if (SalesRepList != new List<SalesRep>())
+                SalesRepList = new List<SalesRep>();
 
             SalesRep blankRep = new SalesRep();
             blankRep.Name = new Name();

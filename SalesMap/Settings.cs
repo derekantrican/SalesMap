@@ -71,7 +71,7 @@ namespace SalesMap
                     XMLFunctions.parseReps(false);
                 }
 
-                //Todo: Fire events to repopulate the comboBoxes
+                UpdateComboBoxes();
                 XMLFunctions.saveSetting("UseInternational", checkBoxInternational.Checked);
             }
 
@@ -225,5 +225,8 @@ namespace SalesMap
             this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
             this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
         }
+
+        public delegate void UpdateComboBoxesDelegate();
+        public UpdateComboBoxesDelegate UpdateComboBoxes;
     }
 }
