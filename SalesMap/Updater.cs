@@ -50,6 +50,7 @@ namespace SalesMap
         private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             progressBar.Value = e.ProgressPercentage;
+            this.Text = "Updating... (" + e.ProgressPercentage + "%)";
         }
 
         private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
