@@ -177,8 +177,17 @@ namespace SalesMap
 
                 labelRegionResult.Text = "Region: " + (comboBoxState.SelectedItem as Common.Region).Name;
             }
-            else if (comboBoxState.SelectedItem == null || comboBoxRepresentative.SelectedItem == null)
+            else if ((comboBoxState.SelectedItem as Common.Region).DisplayName == null || (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName == null)
             {
+                labelRepResult.Text = "Sales Rep: ";
+                labelContactResult.Text = "Contact: ";
+                labelPhoneResult.Text = "";
+                labelRepResult2.Text = "";
+                labelContactResult2.Text = "";
+                labelPhoneResult2.Text = "";
+                labelRegionResult.Text = "Region: ";
+                showPicture("");
+
                 return;
             }
 
@@ -239,8 +248,17 @@ namespace SalesMap
                 comboBoxState.SelectedIndex = 0;
                 labelRegionResult.Text = "Region: ";
             }
-            else if (comboBoxRepresentative.SelectedItem == null || comboBoxState.SelectedItem == null)
+            else if ((comboBoxState.SelectedItem as Common.Region).DisplayName == null || (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName == null)
             {
+                labelRepResult.Text = "Sales Rep: ";
+                labelContactResult.Text = "Contact: ";
+                labelPhoneResult.Text = "";
+                labelRepResult2.Text = "";
+                labelContactResult2.Text = "";
+                labelPhoneResult2.Text = "";
+                labelRegionResult.Text = "Region: ";
+                showPicture("");
+
                 return;
             }
 
@@ -317,9 +335,15 @@ namespace SalesMap
             string subject = (string)XMLFunctions.readSetting("OffSMRSubject");
             string body = (string)XMLFunctions.readSetting("OffSMRBody") + (string)XMLFunctions.readSetting("OffSMRSignature");
 
-            if (labelRepResult.Text == "Sales Rep: ")
+            if ((comboBoxState.SelectedItem as Common.Region).DisplayName == null && (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName == null)
             {
                 MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "Ok", Common.MessageBoxResult.Ok);
+                messageBox.ShowDialog();
+                return;
+            }
+            else if (labelRepResult.Text == "Sales Rep: ")
+            {
+                MessageBox messageBox = new MessageBox("No Reps for selected Region", "The selected region has no representatives", "Ok", Common.MessageBoxResult.Ok);
                 messageBox.ShowDialog();
                 return;
             }
