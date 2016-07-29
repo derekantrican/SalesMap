@@ -202,7 +202,7 @@ namespace SalesMap
 
             foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
             {
-                if (rep.Responsibilities != null && rep.Responsibilities.Contains((comboBoxState.SelectedItem as Common.Region).Abbreviation))
+                if (rep.Responsibilities != null && rep.Responsibilities.Find(p => p.IndexOf(search) >= 0) != null)
                 {
                     found++;
 
