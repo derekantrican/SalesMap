@@ -44,18 +44,22 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.labelPhoneResult = new System.Windows.Forms.Label();
             this.labelPhoneResult2 = new System.Windows.Forms.Label();
+            this.sortReps = new System.Windows.Forms.PictureBox();
             this.pictureBoxOffSMR = new System.Windows.Forms.PictureBox();
             this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
-            this.pictureBackground = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBackground = new System.Windows.Forms.PictureBox();
+            this.sortRegions = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.sortReps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sortRegions)).BeginInit();
             this.SuspendLayout();
             // 
             // labelState
@@ -146,6 +150,15 @@
             this.toolTip1.SetToolTip(this.labelPhoneResult2, resources.GetString("labelPhoneResult2.ToolTip"));
             this.labelPhoneResult2.Click += new System.EventHandler(this.labelPhoneResult2_Click);
             // 
+            // sortReps
+            // 
+            this.sortReps.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.sortReps.Image = global::SalesMap.Properties.Resources.sort;
+            resources.ApplyResources(this.sortReps, "sortReps");
+            this.sortReps.Name = "sortReps";
+            this.sortReps.TabStop = false;
+            this.sortReps.Click += new System.EventHandler(this.sortReps_Click);
+            // 
             // pictureBoxOffSMR
             // 
             this.pictureBoxOffSMR.Image = global::SalesMap.Properties.Resources.envelope_icon;
@@ -183,6 +196,12 @@
             this.toolTip1.SetToolTip(this.pictureBoxSettings, resources.GetString("pictureBoxSettings.ToolTip"));
             this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
             // pictureBackground
             // 
             this.pictureBackground.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -190,16 +209,21 @@
             this.pictureBackground.Name = "pictureBackground";
             this.pictureBackground.TabStop = false;
             // 
-            // pictureBox1
+            // sortRegions
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
+            this.sortRegions.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.sortRegions.Image = global::SalesMap.Properties.Resources.sort;
+            resources.ApplyResources(this.sortRegions, "sortRegions");
+            this.sortRegions.Name = "sortRegions";
+            this.sortRegions.TabStop = false;
+            this.sortRegions.Click += new System.EventHandler(this.sortRegions_Click);
             // 
             // SalesMapSearch
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.sortRegions);
+            this.Controls.Add(this.sortReps);
             this.Controls.Add(this.labelPhoneResult2);
             this.Controls.Add(this.labelPhoneResult);
             this.Controls.Add(this.pictureBoxOffSMR);
@@ -224,12 +248,14 @@
             this.Name = "SalesMapSearch";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SalesMapSearch_FormClosing);
             this.Load += new System.EventHandler(this.SalesMapSearch_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.sortReps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sortRegions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,6 +282,8 @@
         private System.Windows.Forms.Label labelPhoneResult;
         private System.Windows.Forms.Label labelPhoneResult2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox sortReps;
+        private System.Windows.Forms.PictureBox sortRegions;
     }
 }
 

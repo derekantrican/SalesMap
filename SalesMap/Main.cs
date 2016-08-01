@@ -325,6 +325,62 @@ namespace SalesMap
             }
         }
 
+        private void sortRegions_Click(object sender, EventArgs e)
+        {
+            MenuItem arrangeByAbbrev = new MenuItem();
+            arrangeByAbbrev.Text = "Arrange by Abbreviation";
+            arrangeByAbbrev.Click += ArrangeByAbbrev;
+
+            MenuItem arrangeByName = new MenuItem();
+            arrangeByName.Text = "Arrange by Name";
+            arrangeByName.Click += ArrangeByName;
+
+            ContextMenu contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(arrangeByAbbrev);
+            contextMenu.MenuItems.Add(arrangeByName);
+            contextMenu.Show((sender as PictureBox), new Point(20, 20));
+        }
+
+        private void ArrangeByAbbrev(object sender, EventArgs e)
+        {
+            var result = XMLFunctions.RegionList.OrderBy(p => p.Abbreviation).ToList();
+            comboBoxState.DataSource = result;
+        }
+
+        private void ArrangeByName(object sender, EventArgs e)
+        {
+            var result = XMLFunctions.RegionList.OrderBy(p => p.Name).ToList();
+            comboBoxState.DataSource = result;
+        }
+
+        private void sortReps_Click(object sender, EventArgs e)
+        {
+            MenuItem arrangeByFirst = new MenuItem();
+            arrangeByFirst.Text = "Arrange by First Name";
+            arrangeByFirst.Click += ArrangeByFirstName;
+
+            MenuItem arrangeByLast = new MenuItem();
+            arrangeByLast.Text = "Arrange by Last Name";
+            arrangeByLast.Click += ArrangeByLastName;
+
+            ContextMenu contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(arrangeByFirst);
+            contextMenu.MenuItems.Add(arrangeByLast);
+            contextMenu.Show((sender as PictureBox), new Point(20,20));
+        }
+
+        private void ArrangeByFirstName(object sender, EventArgs e)
+        {
+            var result = XMLFunctions.SalesRepList.OrderBy(p => p.Name.First).ToList();
+            comboBoxRepresentative.DataSource = result;
+        }
+
+        private void ArrangeByLastName(object sender, EventArgs e)
+        {
+            var result = XMLFunctions.SalesRepList.OrderBy(p => p.Name.Last).ToList();
+            comboBoxRepresentative.DataSource = result;
+        }
+
         private void pictureBoxOffSMR_Click(object sender, EventArgs e)
         {
             Common.Log("Composing an OffSMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
@@ -742,5 +798,7 @@ namespace SalesMap
             this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
             this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
         }
+
+
     }
 }
