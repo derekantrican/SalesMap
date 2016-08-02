@@ -327,57 +327,93 @@ namespace SalesMap
 
         private void sortRegions_Click(object sender, EventArgs e)
         {
+            MenuItem arrangeByDefault = new MenuItem();
+            arrangeByDefault.Text = "Default Sorting";
+            arrangeByDefault.Click += ArrangeRegionsByDefault;
+
             MenuItem arrangeByAbbrev = new MenuItem();
-            arrangeByAbbrev.Text = "Arrange by Abbreviation";
+            arrangeByAbbrev.Text = "Sort by Abbreviation";
             arrangeByAbbrev.Click += ArrangeByAbbrev;
 
             MenuItem arrangeByName = new MenuItem();
-            arrangeByName.Text = "Arrange by Name";
+            arrangeByName.Text = "Sort by Name";
             arrangeByName.Click += ArrangeByName;
 
             ContextMenu contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(arrangeByDefault);
             contextMenu.MenuItems.Add(arrangeByAbbrev);
             contextMenu.MenuItems.Add(arrangeByName);
             contextMenu.Show((sender as PictureBox), new Point(20, 20));
         }
 
+        private void ArrangeRegionsByDefault(object sender, EventArgs e)
+        {
+            comboBoxState.DataSource = XMLFunctions.RegionList;
+        }
+
         private void ArrangeByAbbrev(object sender, EventArgs e)
         {
-            var result = XMLFunctions.RegionList.OrderBy(p => p.Abbreviation).ToList();
+            var result = XMLFunctions.RegionList.ToList();
+            result.RemoveAt(0);
+            result.RemoveAt(0);
+            result = result.OrderBy(p => p.Abbreviation).ToList();
+            result.Insert(0, XMLFunctions.RegionList[1]);
+            result.Insert(0, XMLFunctions.RegionList[0]);
             comboBoxState.DataSource = result;
         }
 
         private void ArrangeByName(object sender, EventArgs e)
         {
-            var result = XMLFunctions.RegionList.OrderBy(p => p.Name).ToList();
+            var result = XMLFunctions.RegionList.ToList();
+            result.RemoveAt(0);
+            result.RemoveAt(0);
+            result = result.OrderBy(p => p.Name).ToList();
+            result.Insert(0, XMLFunctions.RegionList[1]);
+            result.Insert(0, XMLFunctions.RegionList[0]);
             comboBoxState.DataSource = result;
         }
 
         private void sortReps_Click(object sender, EventArgs e)
         {
+            MenuItem arrangeByDefault = new MenuItem();
+            arrangeByDefault.Text = "Default Sorting";
+            arrangeByDefault.Click += ArrangeRepsByDefault;
+
             MenuItem arrangeByFirst = new MenuItem();
-            arrangeByFirst.Text = "Arrange by First Name";
+            arrangeByFirst.Text = "Sort by First Name";
             arrangeByFirst.Click += ArrangeByFirstName;
 
             MenuItem arrangeByLast = new MenuItem();
-            arrangeByLast.Text = "Arrange by Last Name";
+            arrangeByLast.Text = "Sort by Last Name";
             arrangeByLast.Click += ArrangeByLastName;
 
             ContextMenu contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(arrangeByDefault);
             contextMenu.MenuItems.Add(arrangeByFirst);
             contextMenu.MenuItems.Add(arrangeByLast);
             contextMenu.Show((sender as PictureBox), new Point(20,20));
         }
 
+        private void ArrangeRepsByDefault(object sender, EventArgs e)
+        {
+            comboBoxRepresentative.DataSource = XMLFunctions.SalesRepList;
+        }
+
         private void ArrangeByFirstName(object sender, EventArgs e)
         {
-            var result = XMLFunctions.SalesRepList.OrderBy(p => p.Name.First).ToList();
+            var result = XMLFunctions.SalesRepList.ToList();
+            result.RemoveAt(0);
+            result = result.OrderBy(p => p.Name.First).ToList();
+            result.Insert(0, XMLFunctions.SalesRepList[0]);
             comboBoxRepresentative.DataSource = result;
         }
 
         private void ArrangeByLastName(object sender, EventArgs e)
         {
-            var result = XMLFunctions.SalesRepList.OrderBy(p => p.Name.Last).ToList();
+            var result = XMLFunctions.SalesRepList.ToList();
+            result.RemoveAt(0);
+            result = result.OrderBy(p => p.Name.Last).ToList();
+            result.Insert(0, XMLFunctions.SalesRepList[0]);
             comboBoxRepresentative.DataSource = result;
         }
 

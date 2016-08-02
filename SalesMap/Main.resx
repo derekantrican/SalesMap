@@ -210,9 +210,6 @@
   <data name="&gt;&gt;labelRepresentative.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="comboBoxState.Location" type="System.Drawing.Point, System.Drawing">
     <value>107, 26</value>
   </data>
@@ -222,6 +219,9 @@
   <data name="comboBoxState.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="comboBoxState.ToolTip" xml:space="preserve">
     <value>Select a region</value>
   </data>
@@ -462,9 +462,6 @@
   <data name="&gt;&gt;labelNoImage.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="labelPhoneResult.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -536,33 +533,6 @@
   </data>
   <data name="&gt;&gt;labelPhoneResult2.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="sortReps.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="sortReps.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 68</value>
-  </data>
-  <data name="sortReps.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="sortReps.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="sortReps.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;sortReps.Name" xml:space="preserve">
-    <value>sortReps</value>
-  </data>
-  <data name="&gt;&gt;sortReps.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;sortReps.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;sortReps.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="pictureBoxOffSMR.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -684,6 +654,36 @@
   <data name="&gt;&gt;pictureBoxSettings.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
+  <data name="sortReps.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="sortReps.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 68</value>
+  </data>
+  <data name="sortReps.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="sortReps.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="sortReps.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="sortReps.ToolTip" xml:space="preserve">
+    <value>Sort by...</value>
+  </data>
+  <data name="&gt;&gt;sortReps.Name" xml:space="preserve">
+    <value>sortReps</value>
+  </data>
+  <data name="&gt;&gt;sortReps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortReps.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;sortReps.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -749,6 +749,9 @@
   </data>
   <data name="sortRegions.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
+  </data>
+  <data name="sortRegions.ToolTip" xml:space="preserve">
+    <value>Sort by...</value>
   </data>
   <data name="&gt;&gt;sortRegions.Name" xml:space="preserve">
     <value>sortRegions</value>
@@ -1026,9 +1029,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAA
         AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>SalesMap</value>
