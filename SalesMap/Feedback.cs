@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace SalesMap
 {
@@ -58,11 +59,10 @@ namespace SalesMap
         private void ButtonOk_Click(object sender, EventArgs e)
         {
             string subject = textBox.Text;
-            string email = "derekantrican+jtqvwnmoer0jrzmbktqy@boards.trello.com";
 
             if (bug)
             {
-                //Send email
+                sendEmail(subject + " #Bug");
 
                 MessageBox messageBug = new MessageBox("Added to Trello!", "Your bug report has been added to the SalesMap Trello board!", "Go to Trello", Common.MessageBoxResult.Yes, true, "OK", Common.MessageBoxResult.Ok);
                 messageBug.ShowDialog();
@@ -74,7 +74,7 @@ namespace SalesMap
             }
             else if (feature)
             {
-                //Send email
+                sendEmail(subject + " #Feature");
 
                 MessageBox messageFeature = new MessageBox("Added to Trello!", "Your feature request has been added to the SalesMap Trello board!", "Go to Trello", Common.MessageBoxResult.Yes, true, "OK", Common.MessageBoxResult.Ok);
                 messageFeature.ShowDialog();
@@ -83,6 +83,23 @@ namespace SalesMap
                     Process.Start("https://trello.com/b/mvRhnwaF/salesmap");
 
                 this.Close();
+            }
+        }
+
+        private void sendEmail(string subject)
+        {
+            try
+            {
+                Outlook.Application outlookApp = new Outlook.Application();
+                Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
+                mailItem.To = "derekantrican+jtqvwnmoer0jrzmbktqy@boards.trello.com";
+                mailItem.Body = "Submitted by " + Environment.UserName;
+                mailItem.Subject = subject;
+                mailItem.Send();
+            }
+            catch(Exception ex)
+            {
+                Common.Log("Exception when submitting a bug/feature: " + ex.Message);
             }
         }
     }
