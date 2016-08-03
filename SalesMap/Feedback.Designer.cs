@@ -41,6 +41,7 @@
             this.buttonBug.TabIndex = 0;
             this.buttonBug.Text = "Submit a Bug Report";
             this.buttonBug.UseVisualStyleBackColor = true;
+            this.buttonBug.Click += new System.EventHandler(this.buttonBug_Click);
             // 
             // buttonFeature
             // 
@@ -50,6 +51,7 @@
             this.buttonFeature.TabIndex = 1;
             this.buttonFeature.Text = "Submit a Feature Request";
             this.buttonFeature.UseVisualStyleBackColor = true;
+            this.buttonFeature.Click += new System.EventHandler(this.buttonFeature_Click);
             // 
             // buttonFeedback
             // 
@@ -59,6 +61,7 @@
             this.buttonFeedback.TabIndex = 2;
             this.buttonFeedback.Text = "General Feedback";
             this.buttonFeedback.UseVisualStyleBackColor = true;
+            this.buttonFeedback.Click += new System.EventHandler(this.buttonFeedback_Click);
             // 
             // Feedback
             // 

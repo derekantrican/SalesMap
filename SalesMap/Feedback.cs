@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,22 @@ namespace SalesMap
         public Feedback()
         {
             InitializeComponent();
+        }
+
+        private void buttonFeedback_Click(object sender, EventArgs e)
+        {
+            Process.Start("mailto:derek.antrican@sigmanest.com&Subject=SalesMap%20Feedback");
+            this.Close();
+        }
+
+        private void buttonFeature_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonBug_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
