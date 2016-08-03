@@ -44,7 +44,8 @@ namespace SalesMap
 
         private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/derekantrican/SalesMap/wiki");
+            Feedback feedback = new Feedback();
+            feedback.ShowDialog();
         }
 
         private void buttonSave_Click(object sender, EventArgs e)

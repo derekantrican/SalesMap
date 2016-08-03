@@ -89,10 +89,10 @@
             this.linkLabelGitHub.AutoSize = true;
             this.linkLabelGitHub.Location = new System.Drawing.Point(15, 258);
             this.linkLabelGitHub.Name = "linkLabelGitHub";
-            this.linkLabelGitHub.Size = new System.Drawing.Size(146, 13);
+            this.linkLabelGitHub.Size = new System.Drawing.Size(173, 13);
             this.linkLabelGitHub.TabIndex = 6;
             this.linkLabelGitHub.TabStop = true;
-            this.linkLabelGitHub.Text = "Wiki/Bugs/Feature Requests";
+            this.linkLabelGitHub.Text = "Bugs/Feature Requests/Feedback";
             this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
             // 
             // linkLabelUpdate
