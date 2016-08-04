@@ -419,6 +419,9 @@ namespace SalesMap
 
         private void pictureBoxOffSMR_Click(object sender, EventArgs e)
         {
+            throw new Exception();
+            return;
+
             Common.Log("Composing an OffSMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
 
             string rep = "";
@@ -739,7 +742,7 @@ namespace SalesMap
                 }
 
                 //Force the user to set up their signature
-                if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature"), typeof(string), Properties.Settings.Default.OffSMRSignatureDefault) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+                if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
                 {
                     MessageBox messageBox = new MessageBox("Signature not set", "Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)",
                                                             "Ok", Common.MessageBoxResult.Ok);

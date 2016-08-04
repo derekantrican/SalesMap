@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,19 @@ namespace SalesMap
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SalesMapSearch());
+
+            try
+            {
+                Application.Run(new SalesMapSearch());
+            }
+            catch (Exception ex)
+            {
+                if (!Debugger.IsAttached)
+                {
+                    Common.Log("Uhandled exception " + ex.Message);
+                    Common.Log("Stack trace " + ex.StackTrace, false);
+                }
+            }
         }
     }
 }
