@@ -59,7 +59,7 @@ namespace SalesMap
             checkForUpdate();
             compareFiles();
 
-            if (!(bool)XMLFunctions.readSetting("UseInternational"))
+            if (!(bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
             {
                 XMLFunctions.parseRegions();
                 XMLFunctions.parseReps();
@@ -75,7 +75,7 @@ namespace SalesMap
 
         private void checkForUpdate()
         {
-            if ((bool)XMLFunctions.readSetting("AutoCheckForUpdates"))
+            if ((bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true))
             {
                 string GitVersion = Common.checkGitHub();
                 string thisVersion = Common.ThisVersion;
@@ -106,7 +106,7 @@ namespace SalesMap
 
             Common.Log("++++++++++++ CLOSING SALESMAP ++++++++++++");
 
-            if ((bool)XMLFunctions.readSetting("SendLogToDeveloper"))
+            if ((bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true))
             {
                 SendStatistics();
 
@@ -297,7 +297,7 @@ namespace SalesMap
         private void pictureBoxMap_Click(object sender, EventArgs e)
         {
             Common.Log("Opening PDF map");
-            string path = (string)XMLFunctions.readSetting("MapFileLocation");
+            string path = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap.pdf");
 
             try
             {
@@ -424,8 +424,8 @@ namespace SalesMap
             string rep = "";
             string cc = "";
             string phone = "";
-            string subject = (string)XMLFunctions.readSetting("OffSMRSubject");
-            string body = (string)XMLFunctions.readSetting("OffSMRBody") + (string)XMLFunctions.readSetting("OffSMRSignature");
+            string subject = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
+            string body = (string)XMLFunctions.readSetting("OffSMRBody") + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
             if ((comboBoxState.SelectedItem as Common.Region).DisplayName == null && (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName == null)
             {
@@ -497,7 +497,8 @@ namespace SalesMap
                 //This has been deprecated as of v6.0, but this is being left here in case we want to also CC the rep
                 //when we are composing an email with just a rep selected
 
-                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email, "", "", "<br/><br/>" + (string)XMLFunctions.readSetting("OffSMRSignature") });
+                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email, "", "",
+                    "<br/><br/>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault) });
                 return;
             }
 
@@ -738,7 +739,7 @@ namespace SalesMap
                 }
 
                 //Force the user to set up their signature
-                if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature")) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+                if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature"), typeof(string), Properties.Settings.Default.OffSMRSignatureDefault) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
                 {
                     MessageBox messageBox = new MessageBox("Signature not set", "Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)",
                                                             "Ok", Common.MessageBoxResult.Ok);
@@ -814,7 +815,7 @@ namespace SalesMap
 
         private void SalesMapSearch_Load(object sender, EventArgs e)
         {
-            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation");
+            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation", typeof(System.Drawing.Point), new Point(0,0));
 
             if (!startupPoint.IsEmpty)
             {

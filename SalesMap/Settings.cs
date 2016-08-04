@@ -22,16 +22,16 @@ namespace SalesMap
         {
             InitializeComponent();
 
-            textBoxEditSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject");
-            textBoxMapLocation.Text = (string)XMLFunctions.readSetting("MapFileLocation");
-            checkBoxInternational.Checked = (bool)XMLFunctions.readSetting("UseInternational");
-            checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates");
-            checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper");
+            textBoxEditSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
+            textBoxMapLocation.Text = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap.pdf");
+            checkBoxInternational.Checked = (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false);
+            checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true);
+            checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true);
             textBoxEdit.Text = (string)XMLFunctions.readSetting("OffSMRBody");
-            richTextBoxSignature.Text = (string)XMLFunctions.readSetting("OffSMRSignature");
+            richTextBoxSignature.Text = (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
             //If the user's Off SMR Signature is the same as the default, show them where to set up a new one
-            if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature")) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+            if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(bool), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
             {
                 tabControlOffSMREmail.SelectTab(1);
                 richTextBoxSignature.BackColor = Color.LightCoral;
@@ -59,7 +59,7 @@ namespace SalesMap
             XMLFunctions.saveSetting("OffSMRBody", textBoxEdit.Text);
             XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
 
-            if (checkBoxInternational.Checked != (bool)XMLFunctions.readSetting("UseInternational"))
+            if (checkBoxInternational.Checked != (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
             {
                 if (checkBoxInternational.Checked)
                 {
@@ -206,7 +206,7 @@ namespace SalesMap
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation");
+            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation", typeof(System.Drawing.Point), new Point(0,0));
 
             if (!startupPoint.IsEmpty)
             {
