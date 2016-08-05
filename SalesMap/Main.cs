@@ -419,9 +419,6 @@ namespace SalesMap
 
         private void pictureBoxOffSMR_Click(object sender, EventArgs e)
         {
-            throw new Exception();
-            return;
-
             Common.Log("Composing an OffSMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
 
             string rep = "";
