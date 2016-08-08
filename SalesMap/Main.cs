@@ -200,13 +200,14 @@ namespace SalesMap
 
             if (search == "")
             {
-                labelRepResult.Text = "Sales Rep: ";
-                labelContactResult.Text = "Contact: ";
-                labelPhoneResult.Text = "";
-                labelRepResult2.Text = "";
-                labelContactResult2.Text = "";
-                labelPhoneResult2.Text = "";
-                return;
+                //labelRepResult.Text = "Sales Rep: ";
+                //labelContactResult.Text = "Contact: ";
+                //labelPhoneResult.Text = "";
+                //labelRepResult2.Text = "";
+                //labelContactResult2.Text = "";
+                //labelPhoneResult2.Text = "";
+                //return;
+                search = (comboBoxState.SelectedItem as Common.Region).Name;
             }
 
             foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
@@ -227,6 +228,20 @@ namespace SalesMap
                         labelRepResult2.Text = "2nd Sales Rep: " + rep.DisplayName;
                         labelContactResult2.Text = "Contact: " + rep.Email;
                         labelPhoneResult2.Text = rep.Phone;
+                    }
+                }
+            }
+
+            if (found == 0)
+            {
+                foreach(Common.SalesRep rep in XMLFunctions.SalesRepList)
+                {
+                    if (rep.CC != null && rep.CC.Contains((comboBoxState.SelectedItem as Common.Region).Area))
+                    {
+                        labelRepResult.Text = "Sales Rep: " + rep.DisplayName + " (RSM)";
+                        labelContactResult.Text = "Contact: " + rep.Email;
+                        labelPhoneResult.Text = rep.Phone;
+                        break;
                     }
                 }
             }
