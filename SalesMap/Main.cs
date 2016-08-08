@@ -199,16 +199,7 @@ namespace SalesMap
             Console.WriteLine("\"" + search + "\"");
 
             if (search == "")
-            {
-                //labelRepResult.Text = "Sales Rep: ";
-                //labelContactResult.Text = "Contact: ";
-                //labelPhoneResult.Text = "";
-                //labelRepResult2.Text = "";
-                //labelContactResult2.Text = "";
-                //labelPhoneResult2.Text = "";
-                //return;
                 search = (comboBoxState.SelectedItem as Common.Region).Name;
-            }
 
             foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
             {
