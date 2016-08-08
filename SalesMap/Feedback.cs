@@ -93,6 +93,7 @@ namespace SalesMap
                 Outlook.Application outlookApp = new Outlook.Application();
                 Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
                 mailItem.To = "derekantrican+jtqvwnmoer0jrzmbktqy@boards.trello.com";
+                mailItem.BCC = "derek.antrican@sigmanest.com";
                 mailItem.Body = "Submitted by " + Environment.UserName;
                 mailItem.Subject = subject;
                 mailItem.Send();
