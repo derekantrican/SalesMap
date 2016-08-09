@@ -33,13 +33,12 @@
             this.labelMapLocation = new System.Windows.Forms.Label();
             this.textBoxMapLocation = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.linkLabelGitHub = new System.Windows.Forms.LinkLabel();
+            this.linkLabelFeedback = new System.Windows.Forms.LinkLabel();
             this.linkLabelUpdate = new System.Windows.Forms.LinkLabel();
             this.checkBoxAutoUpdates = new System.Windows.Forms.CheckBox();
             this.buttonVariables = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.checkBoxSendLog = new System.Windows.Forms.CheckBox();
-            this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControlOffSMREmail = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -49,11 +48,14 @@
             this.textBoxEditSubject = new System.Windows.Forms.TextBox();
             this.labelEditSubject = new System.Windows.Forms.Label();
             this.checkBoxInternational = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
+            this.pictureBoxAbout = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.tabControlOffSMREmail.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -84,16 +86,16 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // linkLabelGitHub
+            // linkLabelFeedback
             // 
-            this.linkLabelGitHub.AutoSize = true;
-            this.linkLabelGitHub.Location = new System.Drawing.Point(15, 258);
-            this.linkLabelGitHub.Name = "linkLabelGitHub";
-            this.linkLabelGitHub.Size = new System.Drawing.Size(173, 13);
-            this.linkLabelGitHub.TabIndex = 6;
-            this.linkLabelGitHub.TabStop = true;
-            this.linkLabelGitHub.Text = "Bugs/Feature Requests/Feedback";
-            this.linkLabelGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelGitHub_LinkClicked);
+            this.linkLabelFeedback.AutoSize = true;
+            this.linkLabelFeedback.Location = new System.Drawing.Point(15, 258);
+            this.linkLabelFeedback.Name = "linkLabelFeedback";
+            this.linkLabelFeedback.Size = new System.Drawing.Size(173, 13);
+            this.linkLabelFeedback.TabIndex = 6;
+            this.linkLabelFeedback.TabStop = true;
+            this.linkLabelFeedback.Text = "Bugs/Feature Requests/Feedback";
+            this.linkLabelFeedback.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelFeedback_LinkClicked);
             // 
             // linkLabelUpdate
             // 
@@ -144,18 +146,6 @@
             this.checkBoxSendLog.Text = "Send log file to developer?";
             this.toolTip1.SetToolTip(this.checkBoxSendLog, "Send log file to developer when program is closed");
             this.checkBoxSendLog.UseVisualStyleBackColor = true;
-            // 
-            // pictureBoxPreview
-            // 
-            this.pictureBoxPreview.Image = global::SalesMap.Properties.Resources.preview;
-            this.pictureBoxPreview.Location = new System.Drawing.Point(47, 139);
-            this.pictureBoxPreview.Name = "pictureBoxPreview";
-            this.pictureBoxPreview.Size = new System.Drawing.Size(30, 30);
-            this.pictureBoxPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview.TabIndex = 19;
-            this.pictureBoxPreview.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBoxPreview, "Preview Email");
-            this.pictureBoxPreview.Click += new System.EventHandler(this.pictureBoxPreview_Click);
             // 
             // groupBox1
             // 
@@ -248,17 +238,41 @@
             this.checkBoxInternational.Text = "Show international results?\r\n";
             this.checkBoxInternational.UseVisualStyleBackColor = true;
             // 
+            // pictureBoxAbout
+            // 
+            this.pictureBoxAbout.Image = global::SalesMap.Properties.Resources.about;
+            this.pictureBoxAbout.Location = new System.Drawing.Point(402, 1);
+            this.pictureBoxAbout.Name = "pictureBoxAbout";
+            this.pictureBoxAbout.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxAbout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxAbout.TabIndex = 18;
+            this.pictureBoxAbout.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxAbout, "About");
+            this.pictureBoxAbout.Click += new System.EventHandler(this.pictureBoxAbout_Click);
+            // 
+            // pictureBoxPreview
+            // 
+            this.pictureBoxPreview.Location = new System.Drawing.Point(47, 139);
+            this.pictureBoxPreview.Name = "pictureBoxPreview";
+            this.pictureBoxPreview.Size = new System.Drawing.Size(30, 30);
+            this.pictureBoxPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview.TabIndex = 19;
+            this.pictureBoxPreview.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxPreview, "Preview Email");
+            this.pictureBoxPreview.Click += new System.EventHandler(this.pictureBoxPreview_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 301);
+            this.Controls.Add(this.pictureBoxAbout);
             this.Controls.Add(this.checkBoxInternational);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.checkBoxSendLog);
             this.Controls.Add(this.checkBoxAutoUpdates);
             this.Controls.Add(this.linkLabelUpdate);
-            this.Controls.Add(this.linkLabelGitHub);
+            this.Controls.Add(this.linkLabelFeedback);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxMapLocation);
             this.Controls.Add(this.labelMapLocation);
@@ -269,12 +283,13 @@
             this.Name = "Settings";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControlOffSMREmail.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,7 +299,7 @@
         private System.Windows.Forms.Label labelMapLocation;
         private System.Windows.Forms.TextBox textBoxMapLocation;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.LinkLabel linkLabelGitHub;
+        private System.Windows.Forms.LinkLabel linkLabelFeedback;
         private System.Windows.Forms.LinkLabel linkLabelUpdate;
         private System.Windows.Forms.CheckBox checkBoxAutoUpdates;
         private System.Windows.Forms.Button buttonVariables;
@@ -300,5 +315,6 @@
         private System.Windows.Forms.RichTextBox richTextBoxSignature;
         private System.Windows.Forms.PictureBox pictureBoxPreview;
         private System.Windows.Forms.CheckBox checkBoxInternational;
+        private System.Windows.Forms.PictureBox pictureBoxAbout;
     }
 }

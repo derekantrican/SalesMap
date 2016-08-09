@@ -44,7 +44,7 @@ namespace SalesMap
                 
                 if (Common.DialogResult == Common.MessageBoxResult.Retry && !Common.IsOnline)
                 {
-                    MessageBox messageBox2 = new MessageBox("Not connected to the internet...", "...still can't find an internet connection. \n\nThe program will now exit.", "Ok", Common.MessageBoxResult.Ok);
+                    MessageBox messageBox2 = new MessageBox("Not connected to the internet...", "...still can't find an internet connection. \n\nThe program will now exit.", "OK", Common.MessageBoxResult.OK);
                     messageBox2.ShowDialog();
                     Common.Log("Retried, but still no internet connection");
                     Application.Exit();
@@ -311,7 +311,7 @@ namespace SalesMap
             }
             catch
             {
-                MessageBox messageBox = new MessageBox("Invalid Path", "The path " + path + " is invalid.", "Ok", Common.MessageBoxResult.Ok);
+                MessageBox messageBox = new MessageBox("Invalid Path", "The path " + path + " is invalid.", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
             }
         }
@@ -435,13 +435,13 @@ namespace SalesMap
 
             if ((comboBoxState.SelectedItem as Common.Region).DisplayName == null && (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName == null)
             {
-                MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "Ok", Common.MessageBoxResult.Ok);
+                MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
                 return;
             }
             else if (labelRepResult.Text == "Sales Rep: ")
             {
-                MessageBox messageBox = new MessageBox("No Reps for selected Region", "The selected region has no representatives", "Ok", Common.MessageBoxResult.Ok);
+                MessageBox messageBox = new MessageBox("No Reps for selected Region", "The selected region has no representatives", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
                 return;
             }
@@ -557,7 +557,7 @@ namespace SalesMap
             }
             catch (Exception eX)
             {
-                MessageBox messageBox = new MessageBox("Email Failed", "Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again", "Ok", Common.MessageBoxResult.Ok);
+                MessageBox messageBox = new MessageBox("Email Failed", "Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
                 Common.Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
             }
@@ -748,7 +748,7 @@ namespace SalesMap
                 if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
                 {
                     MessageBox messageBox = new MessageBox("Signature not set", "Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)",
-                                                            "Ok", Common.MessageBoxResult.Ok);
+                                                            "OK", Common.MessageBoxResult.OK);
                     messageBox.ShowDialog();
                     //MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
 

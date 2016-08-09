@@ -70,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common.cs" />
     <Compile Include="Feedback.cs">
       <SubType>Form</SubType>
@@ -110,11 +116,15 @@
       <DependentUpon>Updater.cs</DependentUpon>
     </Compile>
     <Compile Include="XMLFunctions.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Feedback.resx">
       <DependentUpon>Feedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.aa-DJ.resx">
       <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.en.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -192,6 +202,7 @@
     <None Include="Resources\GoogleMaps.jpg" />
     <None Include="Resources\envelope_icon.jpg" />
     <None Include="Resources\sort.png" />
+    <None Include="Resources\about.png" />
     <Content Include="SalesMap.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

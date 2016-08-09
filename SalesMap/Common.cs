@@ -20,7 +20,7 @@ namespace SalesMap
         public enum MessageBoxResult
         {
             Cancel,
-            Ok,
+            OK,
             Yes,
             No,
             Retry
@@ -100,7 +100,7 @@ namespace SalesMap
             catch
             {
                 Common.Log("Attempted to check for new version and failed to get html");
-                MessageBox messageBox = new MessageBox("Check for Update failed", "Failed to check for a new update. Are you connected to the internet?", "Ok", MessageBoxResult.Ok);
+                MessageBox messageBox = new MessageBox("Check for Update failed", "Failed to check for a new update. Are you connected to the internet?", "OK", MessageBoxResult.OK);
                 messageBox.ShowDialog();
                 return null;
             }

@@ -42,7 +42,13 @@ namespace SalesMap
             }
         }
 
-        private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void pictureBoxAbout_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
+
+        private void linkLabelFeedback_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Feedback feedback = new Feedback();
             feedback.ShowDialog();
@@ -99,7 +105,7 @@ namespace SalesMap
                     catch (Exception ex)
                     {
                         Common.Log("Problems encountered during a factory reset: " + ex.Message);
-                        MessageBox messageBox2 = new MessageBox("Error during factory reset", "Could not factory reset. Please contact the developer", "Ok", Common.MessageBoxResult.Ok);
+                        MessageBox messageBox2 = new MessageBox("Error during factory reset", "Could not factory reset. Please contact the developer", "OK", Common.MessageBoxResult.OK);
                         messageBox2.ShowDialog();
                         return;
                     }
@@ -141,7 +147,7 @@ namespace SalesMap
             }
             else
             {
-                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version v5.5", "Ok", Common.MessageBoxResult.Ok);
+                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version v5.5", "OK", Common.MessageBoxResult.OK);
                 messageBox2.ShowDialog();
             }
         }
@@ -157,7 +163,7 @@ namespace SalesMap
             MessageBox messageBox = new MessageBox("Off SMR EMail Variables", "You can use the following variables when defining the Off SMR Email:\n\n" +
                                                     "   - \"{SALESREPNAME}\" ... the rep's name\n" +
                                                     "   - \"{SALESREPEMAIL}\" ... the rep's email\n" +
-                                                    "   - \"{SALESREPPHONE}\" ... the rep's phone #", "Ok", Common.MessageBoxResult.Ok);
+                                                    "   - \"{SALESREPPHONE}\" ... the rep's phone #", "OK", Common.MessageBoxResult.OK);
             messageBox.ShowDialog();
         }
 

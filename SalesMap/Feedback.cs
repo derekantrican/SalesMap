@@ -64,7 +64,7 @@ namespace SalesMap
             {
                 sendEmail(subject + " #Bug");
 
-                MessageBox messageBug = new MessageBox("Added to Trello!", "Your bug report has been added to the SalesMap Trello board!", "Go to Trello", Common.MessageBoxResult.Yes, true, "OK", Common.MessageBoxResult.Ok);
+                MessageBox messageBug = new MessageBox("Added to Trello!", "Your bug report has been added to the SalesMap Trello board!", "Go to Trello", Common.MessageBoxResult.Yes, true, "OK", Common.MessageBoxResult.OK);
                 messageBug.ShowDialog();
 
                 if (Common.DialogResult == Common.MessageBoxResult.Yes)
@@ -76,7 +76,7 @@ namespace SalesMap
             {
                 sendEmail(subject + " #Feature");
 
-                MessageBox messageFeature = new MessageBox("Added to Trello!", "Your feature request has been added to the SalesMap Trello board!", "Go to Trello", Common.MessageBoxResult.Yes, true, "OK", Common.MessageBoxResult.Ok);
+                MessageBox messageFeature = new MessageBox("Added to Trello!", "Your feature request has been added to the SalesMap Trello board!", "Go to Trello", Common.MessageBoxResult.Yes, true, "OK", Common.MessageBoxResult.OK);
                 messageFeature.ShowDialog();
 
                 if (Common.DialogResult == Common.MessageBoxResult.Yes)
