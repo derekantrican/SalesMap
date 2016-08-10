@@ -21,7 +21,7 @@ namespace SalesMap
             InitializeComponent();
 
             WebClient client = new WebClient();
-            string url = "https://github.com/derekantrican/SalesMap/releases/tag/" + "v5.5";//Common.ThisVersion;
+            string url = "https://github.com/derekantrican/SalesMap/releases/tag/" + Common.ThisVersion;
             string html = "";
             try
             {
@@ -80,6 +80,11 @@ namespace SalesMap
         {
             Updater updater = new Updater(version);
             updater.ShowDialog();
+        }
+
+        private void richTextBoxChangelog_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            Process.Start(e.LinkText);
         }
     }
 }

@@ -36,12 +36,14 @@
             // 
             // richTextBoxChangelog
             // 
+            this.richTextBoxChangelog.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.richTextBoxChangelog.Location = new System.Drawing.Point(12, 90);
             this.richTextBoxChangelog.Name = "richTextBoxChangelog";
             this.richTextBoxChangelog.ReadOnly = true;
             this.richTextBoxChangelog.Size = new System.Drawing.Size(355, 116);
             this.richTextBoxChangelog.TabIndex = 0;
             this.richTextBoxChangelog.Text = "";
+            this.richTextBoxChangelog.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxChangelog_LinkClicked);
             // 
             // buttonClose
             // 
@@ -86,6 +88,7 @@
             this.Controls.Add(this.richTextBoxChangelog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "About";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
             this.ResumeLayout(false);
             this.PerformLayout();

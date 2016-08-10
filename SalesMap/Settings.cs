@@ -126,13 +126,12 @@ namespace SalesMap
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string GitVersion = Common.checkGitHub();
-            string thisVersion = "v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
 
-            if (GitVersion != thisVersion)
+            if (GitVersion != Common.ThisVersion)
             {
-                Common.Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
+                Common.Log("Prompted for new update. Current: " + Common.ThisVersion + "  Online: " + GitVersion);
 
-                MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
+                MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + Common.ThisVersion +
                                     "\n\nDo you want to update to the new version?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
                 messageBox.ShowDialog();
                 if (Common.DialogResult == Common.MessageBoxResult.Yes)
@@ -147,7 +146,7 @@ namespace SalesMap
             }
             else
             {
-                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version v5.5", "OK", Common.MessageBoxResult.OK);
+                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version " + Common.ThisVersion, "OK", Common.MessageBoxResult.OK);
                 messageBox2.ShowDialog();
             }
         }
