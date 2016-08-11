@@ -20,6 +20,8 @@ namespace SalesMap
         {
             InitializeComponent();
 
+            this.labelApplication.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version;
+
             WebClient client = new WebClient();
             string url = "https://github.com/derekantrican/SalesMap/releases/tag/" + Common.ThisVersion;
             string html = "";
@@ -85,6 +87,11 @@ namespace SalesMap
         private void richTextBoxChangelog_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             Process.Start(e.LinkText);
+        }
+
+        private void linkLabelEmail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("mailto: derek.antrican@sigmanest.com & Subject = SalesMap % 20Feedback");
         }
     }
 }

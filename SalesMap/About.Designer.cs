@@ -32,6 +32,10 @@
             this.buttonClose = new System.Windows.Forms.Button();
             this.linkLabelUpdate = new System.Windows.Forms.LinkLabel();
             this.linkLabelFeedback = new System.Windows.Forms.LinkLabel();
+            this.labelApplication = new System.Windows.Forms.Label();
+            this.labelDeveloper = new System.Windows.Forms.Label();
+            this.linkLabelEmail = new System.Windows.Forms.LinkLabel();
+            this.labelVersion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // richTextBoxChangelog
@@ -77,11 +81,54 @@
             this.linkLabelFeedback.Text = "Bugs/Feature Requests/Feedback";
             this.linkLabelFeedback.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelFeedback_LinkClicked);
             // 
+            // labelApplication
+            // 
+            this.labelApplication.AutoSize = true;
+            this.labelApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelApplication.Location = new System.Drawing.Point(136, 9);
+            this.labelApplication.Name = "labelApplication";
+            this.labelApplication.Size = new System.Drawing.Size(99, 13);
+            this.labelApplication.TabIndex = 11;
+            this.labelApplication.Text = "About SalesMap";
+            // 
+            // labelDeveloper
+            // 
+            this.labelDeveloper.AutoSize = true;
+            this.labelDeveloper.Location = new System.Drawing.Point(9, 50);
+            this.labelDeveloper.Name = "labelDeveloper";
+            this.labelDeveloper.Size = new System.Drawing.Size(133, 13);
+            this.labelDeveloper.TabIndex = 12;
+            this.labelDeveloper.Text = "Developer: Derek Antrican";
+            // 
+            // linkLabelEmail
+            // 
+            this.linkLabelEmail.AutoSize = true;
+            this.linkLabelEmail.Location = new System.Drawing.Point(10, 65);
+            this.linkLabelEmail.Name = "linkLabelEmail";
+            this.linkLabelEmail.Size = new System.Drawing.Size(156, 13);
+            this.linkLabelEmail.TabIndex = 13;
+            this.linkLabelEmail.TabStop = true;
+            this.linkLabelEmail.Text = "derek.antrican@sigmanest.com";
+            this.linkLabelEmail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelEmail_LinkClicked);
+            // 
+            // labelVersion
+            // 
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(9, 36);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(48, 13);
+            this.labelVersion.TabIndex = 14;
+            this.labelVersion.Text = "Version: ";
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 247);
+            this.Controls.Add(this.labelVersion);
+            this.Controls.Add(this.linkLabelEmail);
+            this.Controls.Add(this.labelDeveloper);
+            this.Controls.Add(this.labelApplication);
             this.Controls.Add(this.linkLabelUpdate);
             this.Controls.Add(this.linkLabelFeedback);
             this.Controls.Add(this.buttonClose);
@@ -101,5 +148,9 @@
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.LinkLabel linkLabelUpdate;
         private System.Windows.Forms.LinkLabel linkLabelFeedback;
+        private System.Windows.Forms.Label labelApplication;
+        private System.Windows.Forms.Label labelDeveloper;
+        private System.Windows.Forms.LinkLabel linkLabelEmail;
+        private System.Windows.Forms.Label labelVersion;
     }
 }
