@@ -50,6 +50,7 @@
             this.textBoxEditSubject = new System.Windows.Forms.TextBox();
             this.labelEditSubject = new System.Windows.Forms.Label();
             this.checkBoxInternational = new System.Windows.Forms.CheckBox();
+            this.checkBoxAboutOnStartup = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -77,7 +78,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(307, 266);
+            this.buttonSave.Location = new System.Drawing.Point(307, 283);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(88, 28);
             this.buttonSave.TabIndex = 5;
@@ -89,7 +90,7 @@
             // linkLabelFeedback
             // 
             this.linkLabelFeedback.AutoSize = true;
-            this.linkLabelFeedback.Location = new System.Drawing.Point(15, 258);
+            this.linkLabelFeedback.Location = new System.Drawing.Point(15, 275);
             this.linkLabelFeedback.Name = "linkLabelFeedback";
             this.linkLabelFeedback.Size = new System.Drawing.Size(173, 13);
             this.linkLabelFeedback.TabIndex = 6;
@@ -100,7 +101,7 @@
             // linkLabelUpdate
             // 
             this.linkLabelUpdate.AutoSize = true;
-            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 274);
+            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 291);
             this.linkLabelUpdate.Name = "linkLabelUpdate";
             this.linkLabelUpdate.Size = new System.Drawing.Size(91, 13);
             this.linkLabelUpdate.TabIndex = 8;
@@ -139,7 +140,7 @@
             // checkBoxSendLog
             // 
             this.checkBoxSendLog.AutoSize = true;
-            this.checkBoxSendLog.Location = new System.Drawing.Point(234, 229);
+            this.checkBoxSendLog.Location = new System.Drawing.Point(234, 248);
             this.checkBoxSendLog.Name = "checkBoxSendLog";
             this.checkBoxSendLog.Size = new System.Drawing.Size(152, 17);
             this.checkBoxSendLog.TabIndex = 15;
@@ -262,11 +263,23 @@
             this.checkBoxInternational.Text = "Show international results?\r\n";
             this.checkBoxInternational.UseVisualStyleBackColor = true;
             // 
+            // checkBoxAboutOnStartup
+            // 
+            this.checkBoxAboutOnStartup.AutoSize = true;
+            this.checkBoxAboutOnStartup.Location = new System.Drawing.Point(234, 229);
+            this.checkBoxAboutOnStartup.Name = "checkBoxAboutOnStartup";
+            this.checkBoxAboutOnStartup.Size = new System.Drawing.Size(175, 17);
+            this.checkBoxAboutOnStartup.TabIndex = 19;
+            this.checkBoxAboutOnStartup.Text = "Show About screen on startup?";
+            this.toolTip1.SetToolTip(this.checkBoxAboutOnStartup, "Send log file to developer when program is closed");
+            this.checkBoxAboutOnStartup.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 301);
+            this.ClientSize = new System.Drawing.Size(428, 318);
+            this.Controls.Add(this.checkBoxAboutOnStartup);
             this.Controls.Add(this.pictureBoxAbout);
             this.Controls.Add(this.checkBoxInternational);
             this.Controls.Add(this.groupBox1);
@@ -317,5 +330,6 @@
         private System.Windows.Forms.PictureBox pictureBoxPreview;
         private System.Windows.Forms.CheckBox checkBoxInternational;
         private System.Windows.Forms.PictureBox pictureBoxAbout;
+        private System.Windows.Forms.CheckBox checkBoxAboutOnStartup;
     }
 }

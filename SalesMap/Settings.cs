@@ -26,6 +26,7 @@ namespace SalesMap
             textBoxMapLocation.Text = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap.pdf");
             checkBoxInternational.Checked = (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false);
             checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true);
+            checkBoxAboutOnStartup.Checked = (bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true);
             checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true);
             textBoxEdit.Text = (string)XMLFunctions.readSetting("OffSMRBody");
             richTextBoxSignature.Text = (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
@@ -61,6 +62,7 @@ namespace SalesMap
             XMLFunctions.saveSetting("OffSMRSubject", textBoxEditSubject.Text);
             XMLFunctions.saveSetting("MapFileLocation", textBoxMapLocation.Text);
             XMLFunctions.saveSetting("AutoCheckForUpdates", checkBoxAutoUpdates.Checked);
+            XMLFunctions.saveSetting("ShowAboutOnStartup", checkBoxAboutOnStartup.Checked);
             XMLFunctions.saveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);
             XMLFunctions.saveSetting("OffSMRBody", textBoxEdit.Text);
             XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);

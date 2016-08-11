@@ -761,6 +761,8 @@ namespace SalesMap
                 {
                     key.SetValue("FirstRun", Common.ThisVersion);
                     Common.Log("First time running version " + Common.ThisVersion + " of this program.");
+                    About about = new About();
+                    about.ShowDialog();
                     Common.Log("This was the last time this will run");
                 }
 
