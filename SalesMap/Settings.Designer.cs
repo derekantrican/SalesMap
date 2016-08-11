@@ -39,6 +39,8 @@
             this.buttonVariables = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.checkBoxSendLog = new System.Windows.Forms.CheckBox();
+            this.pictureBoxAbout = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControlOffSMREmail = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -48,14 +50,12 @@
             this.textBoxEditSubject = new System.Windows.Forms.TextBox();
             this.labelEditSubject = new System.Windows.Forms.Label();
             this.checkBoxInternational = new System.Windows.Forms.CheckBox();
-            this.pictureBoxAbout = new System.Windows.Forms.PictureBox();
-            this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControlOffSMREmail.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -146,6 +146,30 @@
             this.checkBoxSendLog.Text = "Send log file to developer?";
             this.toolTip1.SetToolTip(this.checkBoxSendLog, "Send log file to developer when program is closed");
             this.checkBoxSendLog.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxAbout
+            // 
+            this.pictureBoxAbout.Image = global::SalesMap.Properties.Resources.about;
+            this.pictureBoxAbout.Location = new System.Drawing.Point(402, 1);
+            this.pictureBoxAbout.Name = "pictureBoxAbout";
+            this.pictureBoxAbout.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxAbout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxAbout.TabIndex = 18;
+            this.pictureBoxAbout.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxAbout, "About");
+            this.pictureBoxAbout.Click += new System.EventHandler(this.pictureBoxAbout_Click);
+            // 
+            // pictureBoxPreview
+            // 
+            this.pictureBoxPreview.Image = global::SalesMap.Properties.Resources.preview;
+            this.pictureBoxPreview.Location = new System.Drawing.Point(47, 139);
+            this.pictureBoxPreview.Name = "pictureBoxPreview";
+            this.pictureBoxPreview.Size = new System.Drawing.Size(30, 30);
+            this.pictureBoxPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview.TabIndex = 19;
+            this.pictureBoxPreview.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxPreview, "Preview Email");
+            this.pictureBoxPreview.Click += new System.EventHandler(this.pictureBoxPreview_Click);
             // 
             // groupBox1
             // 
@@ -238,29 +262,6 @@
             this.checkBoxInternational.Text = "Show international results?\r\n";
             this.checkBoxInternational.UseVisualStyleBackColor = true;
             // 
-            // pictureBoxAbout
-            // 
-            this.pictureBoxAbout.Image = global::SalesMap.Properties.Resources.about;
-            this.pictureBoxAbout.Location = new System.Drawing.Point(402, 1);
-            this.pictureBoxAbout.Name = "pictureBoxAbout";
-            this.pictureBoxAbout.Size = new System.Drawing.Size(25, 25);
-            this.pictureBoxAbout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxAbout.TabIndex = 18;
-            this.pictureBoxAbout.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBoxAbout, "About");
-            this.pictureBoxAbout.Click += new System.EventHandler(this.pictureBoxAbout_Click);
-            // 
-            // pictureBoxPreview
-            // 
-            this.pictureBoxPreview.Location = new System.Drawing.Point(47, 139);
-            this.pictureBoxPreview.Name = "pictureBoxPreview";
-            this.pictureBoxPreview.Size = new System.Drawing.Size(30, 30);
-            this.pictureBoxPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview.TabIndex = 19;
-            this.pictureBoxPreview.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBoxPreview, "Preview Email");
-            this.pictureBoxPreview.Click += new System.EventHandler(this.pictureBoxPreview_Click);
-            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,13 +284,13 @@
             this.Name = "Settings";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControlOffSMREmail.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
