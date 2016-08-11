@@ -20,7 +20,7 @@ namespace SalesMap
         {
             InitializeComponent();
 
-            this.labelApplication.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version;
+            this.labelVersion.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version;
 
             WebClient client = new WebClient();
             string url = "https://github.com/derekantrican/SalesMap/releases/tag/" + Common.ThisVersion;
