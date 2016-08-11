@@ -95,31 +95,34 @@
             // labelDeveloper
             // 
             this.labelDeveloper.AutoSize = true;
-            this.labelDeveloper.Location = new System.Drawing.Point(9, 50);
+            this.labelDeveloper.Location = new System.Drawing.Point(119, 54);
             this.labelDeveloper.Name = "labelDeveloper";
             this.labelDeveloper.Size = new System.Drawing.Size(133, 13);
             this.labelDeveloper.TabIndex = 12;
             this.labelDeveloper.Text = "Developer: Derek Antrican";
+            this.labelDeveloper.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // linkLabelEmail
             // 
             this.linkLabelEmail.AutoSize = true;
-            this.linkLabelEmail.Location = new System.Drawing.Point(10, 65);
+            this.linkLabelEmail.Location = new System.Drawing.Point(111, 69);
             this.linkLabelEmail.Name = "linkLabelEmail";
             this.linkLabelEmail.Size = new System.Drawing.Size(156, 13);
             this.linkLabelEmail.TabIndex = 13;
             this.linkLabelEmail.TabStop = true;
             this.linkLabelEmail.Text = "derek.antrican@sigmanest.com";
+            this.linkLabelEmail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkLabelEmail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelEmail_LinkClicked);
             // 
             // labelVersion
             // 
             this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(9, 36);
+            this.labelVersion.Location = new System.Drawing.Point(121, 40);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(48, 13);
             this.labelVersion.TabIndex = 14;
             this.labelVersion.Text = "Version: ";
+            this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelWhatsNew
             // 

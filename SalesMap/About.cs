@@ -91,7 +91,7 @@ namespace SalesMap
 
         private void linkLabelEmail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("mailto: derek.antrican@sigmanest.com & Subject = SalesMap % 20Feedback");
+            Process.Start("mailto:derek.antrican@sigmanest.com&Subject=SalesMap%20Feedback");
         }
     }
 }
