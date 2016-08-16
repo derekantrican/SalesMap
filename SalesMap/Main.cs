@@ -281,7 +281,8 @@ namespace SalesMap
             {
                 foreach (string region in (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities)
                 {
-                    labelRegionResult.Text += XMLFunctions.RegionList.Where(p => p.Name == region).SingleOrDefault().Abbreviation;
+                    string abbreviation = XMLFunctions.RegionList.Where(p => p.Name == region).SingleOrDefault().Abbreviation;
+                    labelRegionResult.Text += abbreviation != null && abbreviation != "" ? abbreviation : region;
 
                     if (region != (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities.Last())
                         labelRegionResult.Text += ", ";
