@@ -191,15 +191,16 @@ namespace SalesMap
                 return;
             }
 
-            showPicture("Regions/" + (comboBoxState.SelectedItem as Common.Region).Picture);
+            string pictureLocation = (comboBoxState.SelectedItem as Common.Region).Picture;
+            new Thread(() => showPicture("Regions/" + pictureLocation)).Start();
 
             int found = 0;
 
-            string search = (comboBoxState.SelectedItem as Common.Region).Abbreviation;
+            string search = (comboBoxState.SelectedItem as Common.Region).Name;
             Console.WriteLine("\"" + search + "\"");
 
             if (search == "")
-                search = (comboBoxState.SelectedItem as Common.Region).Name;
+                return;
 
             foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
             {
@@ -268,7 +269,8 @@ namespace SalesMap
                 return;
             }
 
-            showPicture("SalesReps/" + (comboBoxRepresentative.SelectedItem as Common.SalesRep).Picture);
+            string pictureLocation = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Picture;
+            new Thread(() => showPicture("SalesReps/" + pictureLocation)).Start();
 
             labelRepResult.Text = "Sales Rep: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName;
             labelContactResult.Text = "Contact: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email;
@@ -279,7 +281,7 @@ namespace SalesMap
             {
                 foreach (string region in (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities)
                 {
-                    labelRegionResult.Text += region;
+                    labelRegionResult.Text += XMLFunctions.RegionList.Where(p => p.Name == region).SingleOrDefault().Abbreviation;
 
                     if (region != (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities.Last())
                         labelRegionResult.Text += ", ";
@@ -663,20 +665,21 @@ namespace SalesMap
         }
 
         [STAThread]
-        private void showPicture(string name)
+        private bool showPicture(string name)
         {
+            return false;
             string url = "http://info.sigmatek.net/downloads/SalesMap/" + name;
 
             try
             {
-                labelNoImage.Hide();
                 pictureBox1.Show();
                 pictureBox1.Load(url);
+                return false;
             }
             catch
             {
                 pictureBox1.Hide();
-                labelNoImage.Show();
+                return true;
             }
         }
 
