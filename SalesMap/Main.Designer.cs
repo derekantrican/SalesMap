@@ -49,17 +49,17 @@
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
             this.sortReps = new System.Windows.Forms.PictureBox();
+            this.sortRegions = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBackground = new System.Windows.Forms.PictureBox();
-            this.sortRegions = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sortReps)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sortRegions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sortRegions)).BeginInit();
             this.SuspendLayout();
             // 
             // labelState
@@ -82,16 +82,16 @@
             // 
             // comboBoxState
             // 
-            this.comboBoxState.FormattingEnabled = true;
             resources.ApplyResources(this.comboBoxState, "comboBoxState");
+            this.comboBoxState.FormattingEnabled = true;
             this.comboBoxState.Name = "comboBoxState";
             this.toolTip1.SetToolTip(this.comboBoxState, resources.GetString("comboBoxState.ToolTip"));
             this.comboBoxState.SelectedIndexChanged += new System.EventHandler(this.comboBoxState_SelectedIndexChanged);
             // 
             // comboBoxRepresentative
             // 
-            this.comboBoxRepresentative.FormattingEnabled = true;
             resources.ApplyResources(this.comboBoxRepresentative, "comboBoxRepresentative");
+            this.comboBoxRepresentative.FormattingEnabled = true;
             this.comboBoxRepresentative.Name = "comboBoxRepresentative";
             this.toolTip1.SetToolTip(this.comboBoxRepresentative, resources.GetString("comboBoxRepresentative.ToolTip"));
             this.comboBoxRepresentative.SelectedIndexChanged += new System.EventHandler(this.comboBoxRepresentative_SelectedIndexChanged);
@@ -197,6 +197,16 @@
             this.toolTip1.SetToolTip(this.sortReps, resources.GetString("sortReps.ToolTip"));
             this.sortReps.Click += new System.EventHandler(this.sortReps_Click);
             // 
+            // sortRegions
+            // 
+            this.sortRegions.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.sortRegions.Image = global::SalesMap.Properties.Resources.sort;
+            resources.ApplyResources(this.sortRegions, "sortRegions");
+            this.sortRegions.Name = "sortRegions";
+            this.sortRegions.TabStop = false;
+            this.toolTip1.SetToolTip(this.sortRegions, resources.GetString("sortRegions.ToolTip"));
+            this.sortRegions.Click += new System.EventHandler(this.sortRegions_Click);
+            // 
             // pictureBox1
             // 
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
@@ -209,16 +219,6 @@
             resources.ApplyResources(this.pictureBackground, "pictureBackground");
             this.pictureBackground.Name = "pictureBackground";
             this.pictureBackground.TabStop = false;
-            // 
-            // sortRegions
-            // 
-            this.sortRegions.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.sortRegions.Image = global::SalesMap.Properties.Resources.sort;
-            resources.ApplyResources(this.sortRegions, "sortRegions");
-            this.sortRegions.Name = "sortRegions";
-            this.sortRegions.TabStop = false;
-            this.toolTip1.SetToolTip(this.sortRegions, resources.GetString("sortRegions.ToolTip"));
-            this.sortRegions.Click += new System.EventHandler(this.sortRegions_Click);
             // 
             // SalesMapSearch
             // 
@@ -255,9 +255,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sortReps)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sortRegions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sortRegions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

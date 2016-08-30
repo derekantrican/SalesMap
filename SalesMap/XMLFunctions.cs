@@ -132,7 +132,6 @@ namespace SalesMap
         //    return updated;
         //}
 
-        //[STAThread]
         //public static void DownloadXMLToDisk(Database database)
         //{
         //    string databaseSelection = database == Database.Regions ? "Regions.xml" : "SalesReps.xml";
@@ -142,7 +141,6 @@ namespace SalesMap
         //    webClient.DownloadFileAsync(new Uri(downloadURL), UserSettingsPath + databaseSelection);
         //}
 
-        [STAThread]
         private static string downloadXML(Database database, bool useInternational)
         {
             string regionsURL = !useInternational ? InfoSiteBase + "Settings/Regions.xml" : InfoSiteBase + "Settings/Regions_International.xml";
@@ -159,7 +157,6 @@ namespace SalesMap
             return html;
         }
 
-        [STAThread]
         public static void parseRegions(bool useInternational = false)
         {
             XDocument document = XDocument.Parse(downloadXML(Database.Regions, useInternational));
@@ -189,9 +186,10 @@ namespace SalesMap
 
                 RegionList.Add(region);
             }
+
+            UpdateComboBoxes.Invoke();
         }
 
-        [STAThread]
         public static void parseReps(bool useInternational = false)
         {
             XDocument document = XDocument.Parse(downloadXML(Database.Reps, useInternational));
@@ -244,6 +242,8 @@ namespace SalesMap
 
                 SalesRepList.Add(rep);
             }
+
+            UpdateComboBoxes.Invoke();
         }
 
         public static object XMLConverter(XElement XMLElement)
@@ -330,5 +330,8 @@ namespace SalesMap
                     di.Delete(true);
             }
         }
+
+        public delegate void UpdateComboBoxesDelegate();
+        public static UpdateComboBoxesDelegate UpdateComboBoxes;
     }
 }

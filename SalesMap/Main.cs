@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Configuration;
 using System.Xml.Linq;
+using System.Linq.Expressions;
 
 namespace SalesMap
 {
@@ -55,22 +56,22 @@ namespace SalesMap
                 }
             }
 
+            XMLFunctions.UpdateComboBoxes += populateComboBoxes;
+
             checkFirstRun();
             checkForUpdate();
             compareFiles();
 
             if (!(bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
             {
-                XMLFunctions.parseRegions();
-                XMLFunctions.parseReps();
+                new Thread(() => XMLFunctions.parseRegions(false)).Start();
+                new Thread(() => XMLFunctions.parseReps(false)).Start();
             }
             else
             {
                 XMLFunctions.parseRegions(true);
                 XMLFunctions.parseReps(true);
             }
-
-            populateComboBoxes();
         }
 
         private void checkForUpdate()
@@ -152,21 +153,30 @@ namespace SalesMap
         public void populateComboBoxes()
         {
             //Set the comboBoxes
-            comboBoxState.DataSource = XMLFunctions.RegionList;
-            comboBoxState.DisplayMember = "DisplayName";
-            comboBoxRepresentative.DataSource = XMLFunctions.SalesRepList;
-            comboBoxRepresentative.DisplayMember = "DisplayName";
+            this.Invoke((MethodInvoker)delegate 
+            {
+                comboBoxState.DataSource = XMLFunctions.RegionList;
+                comboBoxState.DisplayMember = "DisplayName";
+                comboBoxRepresentative.DataSource = XMLFunctions.SalesRepList;
+                comboBoxRepresentative.DisplayMember = "DisplayName";
+            });
 
             //Clear the result labels on startup
-            labelPhoneResult.Text = "";
-            labelRepResult2.Text = "";
-            labelContactResult2.Text = "";
-            labelPhoneResult2.Text = "";
+            this.Invoke((MethodInvoker)delegate 
+            {
+                labelPhoneResult.Text = "";
+                labelRepResult2.Text = "";
+                labelContactResult2.Text = "";
+                labelPhoneResult2.Text = "";
+
+                comboBoxState.Enabled = true;
+                comboBoxRepresentative.Enabled = true;
+            });
         }
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((comboBoxState.SelectedItem as Common.Region).DisplayName != null && comboBoxRepresentative.Items.Count > 0)
+            if (!isNullOrEmpty(comboBoxState) && comboBoxRepresentative.Items.Count > 0)
             {
                 Common.Log("Selecting state: " + (comboBoxState.SelectedItem as Common.Region).DisplayName);
 
@@ -177,7 +187,7 @@ namespace SalesMap
 
                 labelRegionResult.Text = "Region: " + (comboBoxState.SelectedItem as Common.Region).Name;
             }
-            else if ((comboBoxState.SelectedItem as Common.Region).DisplayName == null || (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName == null)
+            else if (isNullOrEmpty(comboBoxState) || isNullOrEmpty(comboBoxRepresentative))
             {
                 labelRepResult.Text = "Sales Rep: ";
                 labelContactResult.Text = "Contact: ";
@@ -248,14 +258,14 @@ namespace SalesMap
 
         private void comboBoxRepresentative_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName != null && comboBoxRepresentative.Items.Count > 0)
+            if (!isNullOrEmpty(comboBoxRepresentative) && comboBoxRepresentative.Items.Count > 0)
             {
                 Common.Log("Selecting rep: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName);
 
                 comboBoxState.SelectedIndex = 0;
                 labelRegionResult.Text = "Region: ";
             }
-            else if ((comboBoxState.SelectedItem as Common.Region).DisplayName == null || (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName == null)
+            else if (isNullOrEmpty(comboBoxRepresentative) || isNullOrEmpty(comboBoxState))
             {
                 labelRepResult.Text = "Sales Rep: ";
                 labelContactResult.Text = "Contact: ";
@@ -281,8 +291,11 @@ namespace SalesMap
             {
                 foreach (string region in (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities)
                 {
-                    string abbreviation = XMLFunctions.RegionList.Where(p => p.Name == region).SingleOrDefault().Abbreviation;
-                    labelRegionResult.Text += abbreviation != null && abbreviation != "" ? abbreviation : region;
+                    Common.Region relatedRegion = XMLFunctions.RegionList.Where(p => p.Name == region).SingleOrDefault();
+
+                    string abbreviation = relatedRegion != null && relatedRegion.Abbreviation != null ? relatedRegion.Abbreviation : region;
+
+                    labelRegionResult.Text += abbreviation;
 
                     if (region != (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities.Last())
                         labelRegionResult.Text += ", ";
@@ -299,7 +312,6 @@ namespace SalesMap
         {
             Common.Log("Opening config");
             Settings config = new Settings();
-            config.UpdateComboBoxes += populateComboBoxes;
             config.ShowDialog();
         }
 
@@ -436,7 +448,7 @@ namespace SalesMap
             string subject = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
             string body = (string)XMLFunctions.readSetting("OffSMRBody") + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
-            if ((comboBoxState.SelectedItem as Common.Region).DisplayName == null && (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName == null)
+            if (isNullOrEmpty(comboBoxState) && isNullOrEmpty(comboBoxRepresentative))
             {
                 MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
@@ -490,7 +502,7 @@ namespace SalesMap
             string rsm = "";
             
             //Find the RSM
-            if ((comboBoxState.SelectedItem as Common.Region).DisplayName != null) //If a state is selected
+            if (!isNullOrEmpty(comboBoxState)) //If a state is selected
             {
                 foreach (Common.SalesRep salesRep in XMLFunctions.SalesRepList)
                 {
@@ -501,11 +513,8 @@ namespace SalesMap
                     }
                 }
             }
-            else if ((comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName != null) //If a rep is selected
+            else if (!isNullOrEmpty(comboBoxRepresentative)) //If a rep is selected
             {
-                //This has been deprecated as of v6.0, but this is being left here in case we want to also CC the rep
-                //when we are composing an email with just a rep selected
-
                 ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email, "", "",
                     "<br/><br/>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault) });
                 return;
@@ -665,23 +674,39 @@ namespace SalesMap
             labelPhoneResult2.Text = temp;
         }
 
-        [STAThread]
-        private bool showPicture(string name)
+        private void showPicture(string name)
         {
-            return false;
             string url = "http://info.sigmatek.net/downloads/SalesMap/" + name;
+            this.Invoke((MethodInvoker)delegate
+            {
+                try
+                {
+                    labelNoImage.Hide();
+                    pictureBox1.Show();
+                    pictureBox1.Load(url);
+                }
+                catch
+                {
+                    pictureBox1.Hide();
+                    labelNoImage.Show();
+                }
+            });
+        }
 
-            try
-            {
-                pictureBox1.Show();
-                pictureBox1.Load(url);
-                return false;
-            }
-            catch
-            {
-                pictureBox1.Hide();
-                return true;
-            }
+        private bool isNullOrEmpty(ComboBox comboBox)
+        {
+            bool result = false;
+
+            if (comboBox.SelectedItem == null)
+                result = true;
+            else if (comboBox.Text == "")
+                result = true;
+            else if (comboBox.SelectedItem is Common.SalesRep && string.IsNullOrEmpty((comboBox.SelectedItem as Common.SalesRep).DisplayName))
+                result = true;
+            else if (comboBox.SelectedItem is Common.Region && string.IsNullOrEmpty((comboBox.SelectedItem as Common.Region).DisplayName))
+                result = true;
+
+            return result;
         }
 
         private void Update(string version)
@@ -847,7 +872,5 @@ namespace SalesMap
             this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
             this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
         }
-
-
     }
 }
