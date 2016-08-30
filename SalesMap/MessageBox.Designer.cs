@@ -77,7 +77,6 @@
             this.MinimizeBox = false;
             this.Name = "MessageBox";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.Text = "MessageBox";
             this.Load += new System.EventHandler(this.MessageBox_Load);
             this.ResumeLayout(false);
