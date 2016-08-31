@@ -69,8 +69,8 @@ namespace SalesMap
             }
             else
             {
-                XMLFunctions.parseRegions(true);
-                XMLFunctions.parseReps(true);
+                new Thread(() => XMLFunctions.parseRegions(true)).Start();
+                new Thread(() => XMLFunctions.parseReps(true)).Start();
             }
         }
 

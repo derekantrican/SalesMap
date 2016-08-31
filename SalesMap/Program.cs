@@ -29,6 +29,8 @@ namespace SalesMap
                     Common.Log("Uhandled exception " + ex.Message);
                     Common.Log("Stack trace " + ex.StackTrace, false);
                 }
+                else
+                    System.Windows.Forms.MessageBox.Show("Unhandled Exception: \n\n" + ex.Message);
             }
         }
     }
