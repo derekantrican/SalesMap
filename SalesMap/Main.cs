@@ -27,7 +27,9 @@ namespace SalesMap
         {
             InitializeComponent();
 
-            if (File.ReadLines(Common.UserSettingsPath + "log.txt").Count() > 10000)
+            Common.CheckPaths();
+
+            if (File.Exists(Common.UserSettingsPath + "log.txt") && File.ReadLines(Common.UserSettingsPath + "log.txt").Count() > 10000)
             {
                 File.WriteAllText(Common.UserSettingsPath + "log.txt", ""); //Clear the log
                 Common.Log("Cleared the log as it was longer than 10,000 lines");
@@ -35,7 +37,7 @@ namespace SalesMap
 
             this.Text = this.Text + " (" + Common.ThisVersion + ")"; //Change the name of the window to include the current version
             Common.Log("------------ STARTING SALESMAP (" + Common.ThisVersion + ") ------------");
-
+            
             if (!Common.IsOnline)
             {
                 Common.Log("No internet connection");
@@ -78,20 +80,21 @@ namespace SalesMap
         {
             if ((bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true))
             {
-                string GitVersion = Common.checkGitHub();
-                string thisVersion = Common.ThisVersion;
+                string GitVersionString = Common.checkGitHub();
+                double GitVersion = Convert.ToDouble(GitVersionString.Split('v').Last());
+                double thisVersion = Convert.ToDouble(Common.ThisVersion.Split('v').Last());
 
-                if (GitVersion != thisVersion)
+                if (GitVersion > thisVersion)
                 {
                     Common.Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
 
-                    MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
+                    MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersionString + " and you are running " + Common.ThisVersion +
                                         "\n\nDo you want to update to the new version?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
                     messageBox.ShowDialog();
                     if (Common.DialogResult == Common.MessageBoxResult.Yes)
                     {
                         Common.Log("User selected \"Yes\" for the new update");
-                        Update(GitVersion);
+                        Update(GitVersionString);
                     }
                     else
                     {
@@ -109,7 +112,10 @@ namespace SalesMap
 
             if ((bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true))
             {
-                SendStatistics();
+                this.Invoke((MethodInvoker)delegate
+                {
+                    SendStatistics();
+                });
 
                 string user = Environment.UserName;
                 string logPath = Common.UserSettingsPath + "log.txt";
@@ -318,13 +324,11 @@ namespace SalesMap
         private void pictureBoxMap_Click(object sender, EventArgs e)
         {
             Common.Log("Opening PDF map");
-            string path = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap.pdf");
+            string path = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrcian\SalesMap.pdf");
 
-            try
-            {
+            if (Common.NetworkFileExists(new Uri(path), 250))
                 System.Diagnostics.Process.Start(path);
-            }
-            catch
+            else
             {
                 MessageBox messageBox = new MessageBox("Invalid Path", "The path " + path + " is invalid.", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
@@ -335,13 +339,13 @@ namespace SalesMap
         {
             Common.Log("Opening Google Maps");
 
-            if (comboBoxState.SelectedItem.ToString() == "")
+            if (isNullOrEmpty(comboBoxState) || (comboBoxState.SelectedItem as Common.Region).Name == "")
             {
                 System.Diagnostics.Process.Start("https://www.google.com/maps/@38.9165981,-96.6887,5z");
             }
             else
             {
-                string state = comboBoxState.SelectedItem.ToString().Split(')').Last().Replace(" ", "+");
+                string state = (comboBoxState.SelectedItem as Common.Region).Name;
                 System.Diagnostics.Process.Start("https://www.google.com/maps/place/" + state);
             }
         }
@@ -720,7 +724,7 @@ namespace SalesMap
             string statisticsPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Common.Log Files\usage statistics.txt";
             bool found = false;
 
-            if (File.Exists(statisticsPath))
+            if (Common.NetworkFileExists(new Uri(statisticsPath), 250))
             {
                 string[] contents = File.ReadAllLines(statisticsPath);
                 List<string> contentsList = contents.OfType<string>().ToList();
@@ -789,7 +793,6 @@ namespace SalesMap
                 if (key.GetValue("FirstRun").ToString() != Common.ThisVersion)
                 {
                     key.SetValue("FirstRun", Common.ThisVersion);
-                    Common.Log("First time running version " + Common.ThisVersion + " of this program.");
                     About about = new About();
                     about.ShowDialog();
                     Common.Log("This was the last time this will run");

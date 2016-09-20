@@ -45,6 +45,7 @@ namespace SalesMap
 
         private void pictureBoxAbout_Click(object sender, EventArgs e)
         {
+            System.Windows.Forms.MessageBox.Show("Showing About screen! (From about)");
             About about = new About();
             about.ShowDialog();
         }
@@ -126,19 +127,21 @@ namespace SalesMap
 
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string GitVersion = Common.checkGitHub();
+            string GitVersionString = Common.checkGitHub();
+            double GitVersion = Convert.ToDouble(GitVersionString.Split('v').Last());
+            double thisVersion = Convert.ToDouble(Common.ThisVersion.Split('v').Last());
 
-            if (GitVersion != Common.ThisVersion)
+            if (GitVersion > thisVersion)
             {
                 Common.Log("Prompted for new update. Current: " + Common.ThisVersion + "  Online: " + GitVersion);
 
-                MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + Common.ThisVersion +
+                MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersionString + " and you are running " + Common.ThisVersion +
                                     "\n\nDo you want to update to the new version?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
                 messageBox.ShowDialog();
                 if (Common.DialogResult == Common.MessageBoxResult.Yes)
                 {
                     Common.Log("User selected \"Yes\" for the new update");
-                    Update(GitVersion);
+                    Update(GitVersionString);
                 }
                 else
                 {

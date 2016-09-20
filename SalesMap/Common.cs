@@ -13,7 +13,7 @@ namespace SalesMap
 {
     public partial class Common
     {
-        public static string UserSettingsPath = @"C:\Users\derek.antrican\AppData\Local\SalesMap\";
+        public static string UserSettingsPath = @"C:\Users\" + Environment.UserName + @"\AppData\Local\SalesMap\";
         public static string InfoSiteBase = "http://info.sigmatek.net/downloads/SalesMap/";
         public static string ThisVersion = "v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
         public static MessageBoxResult DialogResult = MessageBoxResult.Cancel;
@@ -165,6 +165,23 @@ namespace SalesMap
             }
             else
                 File.AppendAllText(logPath, itemToLog + Environment.NewLine);
+        }
+
+        public static bool NetworkFileExists(Uri uri, int timeout)
+        {
+            var task = new Task<bool>(() =>
+            {
+                var fi = new FileInfo(uri.LocalPath);
+                return fi.Exists;
+            });
+            task.Start();
+            return task.Wait(timeout) && task.Result;
+        }
+
+        public static void CheckPaths()
+        {
+            if (!Directory.Exists(UserSettingsPath))
+                Directory.CreateDirectory(UserSettingsPath);
         }
 
         private static string abbreviate(string longForm)
