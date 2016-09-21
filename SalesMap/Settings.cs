@@ -22,19 +22,21 @@ namespace SalesMap
         {
             InitializeComponent();
 
-            textBoxEditSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
             textBoxMapLocation.Text = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap.pdf");
             checkBoxInternational.Checked = (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false);
             checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true);
             checkBoxAboutOnStartup.Checked = (bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true);
             checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true);
-            textBoxEdit.Text = (string)XMLFunctions.readSetting("OffSMRBody");
+            textBoxOffSMRBody.Text = (string)XMLFunctions.readSetting("OffSMRBody");
+            textBoxOffSMRSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
+            textBoxGracePeriodBody.Text = (string)XMLFunctions.readSetting("GracePeriodBody");
+            textBoxGracePeriodSubject.Text = (string)XMLFunctions.readSetting("GracePeriodSubject");
             richTextBoxSignature.Text = (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
             //If the user's Off SMR Signature is the same as the default, show them where to set up a new one
             if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(bool), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
             {
-                tabControlOffSMREmail.SelectTab(1);
+                tabControlOffSMREmail.SelectTab(2);
                 richTextBoxSignature.BackColor = Color.LightCoral;
             }
             else
@@ -45,7 +47,6 @@ namespace SalesMap
 
         private void pictureBoxAbout_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("Showing About screen! (From about)");
             About about = new About();
             about.ShowDialog();
         }
@@ -60,13 +61,15 @@ namespace SalesMap
         {
             Common.Log("Saving settings");
 
-            XMLFunctions.saveSetting("OffSMRSubject", textBoxEditSubject.Text);
             XMLFunctions.saveSetting("MapFileLocation", textBoxMapLocation.Text);
             XMLFunctions.saveSetting("AutoCheckForUpdates", checkBoxAutoUpdates.Checked);
             XMLFunctions.saveSetting("ShowAboutOnStartup", checkBoxAboutOnStartup.Checked);
             XMLFunctions.saveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);
-            XMLFunctions.saveSetting("OffSMRBody", textBoxEdit.Text);
+            XMLFunctions.saveSetting("OffSMRSubject", textBoxOffSMRSubject.Text);
+            XMLFunctions.saveSetting("OffSMRBody", textBoxOffSMRBody.Text);
             XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
+            XMLFunctions.saveSetting("GracePeriodBody", textBoxGracePeriodBody.Text);
+            XMLFunctions.saveSetting("GracePeriodSubject", textBoxGracePeriodSubject.Text);
 
             if (checkBoxInternational.Checked != (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
             {
@@ -170,10 +173,18 @@ namespace SalesMap
             messageBox.ShowDialog();
         }
 
-        private void pictureBoxPreview_Click(object sender, EventArgs e)
+        private void OffSMRPreview_Click(object sender, EventArgs e)
         {
-            string subject = textBoxEditSubject.Text;
-            string body = replaceVariables(textBoxEdit.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
+            string subject = textBoxOffSMRSubject.Text;
+            string body = replaceVariables(textBoxOffSMRBody.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
+
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "mr.salesrep@sigmanest.com", subject, body });
+        }
+
+        private void GracePeriodPreview_Click(object sender, EventArgs e)
+        {
+            string subject = textBoxGracePeriodSubject.Text;
+            string body = replaceVariables(textBoxGracePeriodBody.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
 
             ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "mr.salesrep@sigmanest.com", subject, body });
         }

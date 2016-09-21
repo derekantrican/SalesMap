@@ -74,7 +74,7 @@ namespace SalesMap
             }
             else
             {
-                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version v5.5", "OK", Common.MessageBoxResult.OK);
+                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version " + Common.ThisVersion, "OK", Common.MessageBoxResult.OK);
                 messageBox2.ShowDialog();
             }
         }
