@@ -27,10 +27,10 @@ namespace SalesMap
             checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true);
             checkBoxAboutOnStartup.Checked = (bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true);
             checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true);
-            textBoxOffSMRBody.Text = (string)XMLFunctions.readSetting("OffSMRBody");
+            textBoxOffSMRBody.Text = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string));
             textBoxOffSMRSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
-            textBoxGracePeriodBody.Text = (string)XMLFunctions.readSetting("GracePeriodBody");
-            textBoxGracePeriodSubject.Text = (string)XMLFunctions.readSetting("GracePeriodSubject");
+            textBoxGracePeriodBody.Text = (string)XMLFunctions.readSetting("GracePeriodBody", typeof(string));
+            textBoxGracePeriodSubject.Text = (string)XMLFunctions.readSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
             richTextBoxSignature.Text = (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
             //If the user's Off SMR Signature is the same as the default, show them where to set up a new one
@@ -186,7 +186,7 @@ namespace SalesMap
             string subject = textBoxGracePeriodSubject.Text;
             string body = replaceVariables(textBoxGracePeriodBody.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
 
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "mr.salesrep@sigmanest.com", subject, body });
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "bill.huffman@sigmanest.com;jandre.terreblanche@sigmanest.com;mr.salesrep@sigmanest.com", subject, body });
         }
 
         private void composeOutlook(object parameters)

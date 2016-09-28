@@ -42,29 +42,29 @@
             this.pictureBoxAbout = new System.Windows.Forms.PictureBox();
             this.OffSMRPreview = new System.Windows.Forms.PictureBox();
             this.checkBoxAboutOnStartup = new System.Windows.Forms.CheckBox();
+            this.GracePeriodPreview = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControlOffSMREmail = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBoxOffSMRBody = new System.Windows.Forms.RichTextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.richTextBoxSignature = new System.Windows.Forms.RichTextBox();
-            this.textBoxOffSMRSubject = new System.Windows.Forms.TextBox();
             this.labelEditSubject = new System.Windows.Forms.Label();
-            this.checkBoxInternational = new System.Windows.Forms.CheckBox();
+            this.textBoxOffSMRSubject = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBoxGracePeriodBody = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxGracePeriodSubject = new System.Windows.Forms.TextBox();
-            this.GracePeriodPreview = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.richTextBoxSignature = new System.Windows.Forms.RichTextBox();
+            this.checkBoxInternational = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OffSMRPreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GracePeriodPreview)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControlOffSMREmail.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GracePeriodPreview)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelMapLocation
@@ -191,6 +191,30 @@
             this.toolTip1.SetToolTip(this.checkBoxAboutOnStartup, "Send log file to developer when program is closed");
             this.checkBoxAboutOnStartup.UseVisualStyleBackColor = true;
             // 
+            // GracePeriodPreview
+            // 
+            this.GracePeriodPreview.Image = global::SalesMap.Properties.Resources.preview;
+            this.GracePeriodPreview.Location = new System.Drawing.Point(45, 97);
+            this.GracePeriodPreview.Name = "GracePeriodPreview";
+            this.GracePeriodPreview.Size = new System.Drawing.Size(30, 30);
+            this.GracePeriodPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.GracePeriodPreview.TabIndex = 21;
+            this.GracePeriodPreview.TabStop = false;
+            this.toolTip1.SetToolTip(this.GracePeriodPreview, "Preview Email");
+            this.GracePeriodPreview.Click += new System.EventHandler(this.GracePeriodPreview_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(9, 97);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 30);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "{V}";
+            this.toolTip1.SetToolTip(this.button1, "Canned email variables");
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonVariables_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tabControlOffSMREmail);
@@ -236,34 +260,6 @@
             this.textBoxOffSMRBody.TabIndex = 7;
             this.textBoxOffSMRBody.Text = "";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.richTextBoxSignature);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(392, 122);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Signature";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // richTextBoxSignature
-            // 
-            this.richTextBoxSignature.BackColor = System.Drawing.SystemColors.Window;
-            this.richTextBoxSignature.Location = new System.Drawing.Point(4, 3);
-            this.richTextBoxSignature.Name = "richTextBoxSignature";
-            this.richTextBoxSignature.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBoxSignature.Size = new System.Drawing.Size(385, 113);
-            this.richTextBoxSignature.TabIndex = 8;
-            this.richTextBoxSignature.Text = "";
-            // 
-            // textBoxOffSMRSubject
-            // 
-            this.textBoxOffSMRSubject.Location = new System.Drawing.Point(142, 103);
-            this.textBoxOffSMRSubject.Name = "textBoxOffSMRSubject";
-            this.textBoxOffSMRSubject.Size = new System.Drawing.Size(244, 20);
-            this.textBoxOffSMRSubject.TabIndex = 16;
-            // 
             // labelEditSubject
             // 
             this.labelEditSubject.AutoSize = true;
@@ -273,15 +269,12 @@
             this.labelEditSubject.TabIndex = 15;
             this.labelEditSubject.Text = "Subject:";
             // 
-            // checkBoxInternational
+            // textBoxOffSMRSubject
             // 
-            this.checkBoxInternational.AutoSize = true;
-            this.checkBoxInternational.Location = new System.Drawing.Point(18, 221);
-            this.checkBoxInternational.Name = "checkBoxInternational";
-            this.checkBoxInternational.Size = new System.Drawing.Size(152, 17);
-            this.checkBoxInternational.TabIndex = 17;
-            this.checkBoxInternational.Text = "Show international results?\r\n";
-            this.checkBoxInternational.UseVisualStyleBackColor = true;
+            this.textBoxOffSMRSubject.Location = new System.Drawing.Point(142, 103);
+            this.textBoxOffSMRSubject.Name = "textBoxOffSMRSubject";
+            this.textBoxOffSMRSubject.Size = new System.Drawing.Size(244, 20);
+            this.textBoxOffSMRSubject.TabIndex = 16;
             // 
             // tabPage3
             // 
@@ -322,29 +315,36 @@
             this.textBoxGracePeriodSubject.Size = new System.Drawing.Size(244, 20);
             this.textBoxGracePeriodSubject.TabIndex = 19;
             // 
-            // GracePeriodPreview
+            // tabPage2
             // 
-            this.GracePeriodPreview.Image = global::SalesMap.Properties.Resources.preview;
-            this.GracePeriodPreview.Location = new System.Drawing.Point(45, 97);
-            this.GracePeriodPreview.Name = "GracePeriodPreview";
-            this.GracePeriodPreview.Size = new System.Drawing.Size(30, 30);
-            this.GracePeriodPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.GracePeriodPreview.TabIndex = 21;
-            this.GracePeriodPreview.TabStop = false;
-            this.toolTip1.SetToolTip(this.GracePeriodPreview, "Preview Email");
-            this.GracePeriodPreview.Click += new System.EventHandler(this.GracePeriodPreview_Click);
+            this.tabPage2.Controls.Add(this.richTextBoxSignature);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(392, 133);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Signature";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // richTextBoxSignature
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(9, 97);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 30);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "{V}";
-            this.toolTip1.SetToolTip(this.button1, "Canned email variables");
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonVariables_Click);
+            this.richTextBoxSignature.BackColor = System.Drawing.SystemColors.Window;
+            this.richTextBoxSignature.Location = new System.Drawing.Point(4, 3);
+            this.richTextBoxSignature.Name = "richTextBoxSignature";
+            this.richTextBoxSignature.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.richTextBoxSignature.Size = new System.Drawing.Size(385, 127);
+            this.richTextBoxSignature.TabIndex = 8;
+            this.richTextBoxSignature.Text = "";
+            // 
+            // checkBoxInternational
+            // 
+            this.checkBoxInternational.AutoSize = true;
+            this.checkBoxInternational.Location = new System.Drawing.Point(18, 221);
+            this.checkBoxInternational.Name = "checkBoxInternational";
+            this.checkBoxInternational.Size = new System.Drawing.Size(152, 17);
+            this.checkBoxInternational.TabIndex = 17;
+            this.checkBoxInternational.Text = "Show international results?\r\n";
+            this.checkBoxInternational.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -371,14 +371,14 @@
             this.Load += new System.EventHandler(this.Settings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OffSMRPreview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GracePeriodPreview)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tabControlOffSMREmail.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GracePeriodPreview)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

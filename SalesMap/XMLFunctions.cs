@@ -256,8 +256,13 @@ namespace SalesMap
                 System.Drawing.Point p = new System.Drawing.Point();
                 var pointString = Regex.Replace(XMLElement.Value, @"[\{\}a-zA-Z=]", "").Split(',');
 
-                p.X = int.Parse(pointString[0]);
-                p.Y = int.Parse(pointString[1]);
+                Console.WriteLine(pointString.Where(o => o == "").FirstOrDefault());
+
+                if (pointString.Count() == 2 && pointString.Where(o => o == "").FirstOrDefault() == null)
+                {
+                    p.X = int.Parse(pointString[0]);
+                    p.Y = int.Parse(pointString[1]);
+                }
 
                 return p;
             }

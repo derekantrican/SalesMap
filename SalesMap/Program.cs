@@ -30,7 +30,10 @@ namespace SalesMap
                     Common.Log("Stack trace " + ex.StackTrace, false);
                 }
                 else
+                {
                     System.Windows.Forms.MessageBox.Show("Unhandled Exception: \n\n" + ex.Message);
+                    System.Windows.Forms.MessageBox.Show("Unhandled Exception: \n\n" + ex.StackTrace);
+                }
             }
         }
     }

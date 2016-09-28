@@ -442,112 +442,136 @@ namespace SalesMap
             comboBoxRepresentative.DataSource = result;
         }
 
-        private void pictureBoxOffSMR_Click(object sender, EventArgs e)
+        private void pictureBoxEmail_Click(object sender, EventArgs e)
         {
-            Common.Log("Composing an OffSMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
-
-            string rep = "";
-            string cc = "";
-            string phone = "";
-            string subject = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
-            string body = (string)XMLFunctions.readSetting("OffSMRBody") + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
-
             if (isNullOrEmpty(comboBoxState) && isNullOrEmpty(comboBoxRepresentative))
             {
                 MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
                 return;
             }
-            else if (labelRepResult.Text == "Sales Rep: ")
-            {
-                MessageBox messageBox = new MessageBox("No Reps for selected Region", "The selected region has no representatives", "OK", Common.MessageBoxResult.OK);
-                messageBox.ShowDialog();
-                return;
-            }
-            else if (labelRepResult.Text != "" && labelRepResult2.Text == "")
-            {
-                rep = labelRepResult.Text;
-                rep = rep.Substring(rep.IndexOf(": ") + 2);
-                cc = labelContactResult.Text.Split(' ').ElementAt(1);
-                phone = labelPhoneResult.Text;
-            }
-            else if (labelRepResult.Text != "" && labelRepResult2.Text != "")
-            {
-                //Choose a rep with the "North-South" dialog
-                DialogResult res = new DialogResult();
-                string firstRep = labelRepResult.Text.Split(':').Last();
-                string secondRep = labelRepResult2.Text.Split(':').Last();
 
-                North_South frm = new North_South(firstRep, secondRep);
-                res = frm.ShowDialog();
+            MenuItem offSMREmail = new MenuItem();
+            offSMREmail.Text = "Off SMR Email";
+            offSMREmail.Click += OffSMREmail_Click;
 
-                if (res == DialogResult.Yes) //"Yes" means "North rep"
-                {
-                    rep = labelRepResult.Text;
-                    rep = rep.Substring(rep.IndexOf(": ") + 2);
-                    cc = labelContactResult.Text.Split(' ').ElementAt(1);
-                    phone = labelPhoneResult.Text;
-                }
-                else if (res == DialogResult.No) //"No" means "South rep"
-                {
-                    rep = labelRepResult2.Text;
-                    rep = rep.Substring(rep.IndexOf(": ") + 2);
-                    cc = labelContactResult2.Text.Split(' ').ElementAt(1);
-                    phone = labelPhoneResult2.Text;
-                }
-                else //User closed out the dialog box
-                {
-                    return;
-                }
+            MenuItem gracePeriodEmail = new MenuItem();
+            gracePeriodEmail.Text = "Grace Period Email";
+            gracePeriodEmail.Click += GracePeriodEmail_Click;
+
+            MenuItem email = new MenuItem();
+            email.Text = "Blank Email";
+            email.Click += Email_Click;
+
+            ContextMenu contextMenu = new ContextMenu();
+
+            if (!isNullOrEmpty(comboBoxState))
+            {
+                contextMenu.MenuItems.Add(offSMREmail);
+                contextMenu.MenuItems.Add(gracePeriodEmail);
             }
 
-            cc = Common.RemoveSpecial(cc); //Remove any extraneous characters
+            if (!isNullOrEmpty(comboBoxRepresentative))
+                contextMenu.MenuItems.Add(email);
 
-            string rsm = "";
-            
-            //Find the RSM
-            if (!isNullOrEmpty(comboBoxState)) //If a state is selected
+            contextMenu.Show((sender as PictureBox), new Point(20, 20));
+        }
+
+        private void OffSMREmail_Click(object sender, EventArgs e)
+        {
+            Common.Log("Composing an Off SMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+
+            Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
+
+            string cc = rep.Email + ";" + getCC(comboBoxState.SelectedItem as Common.Region);
+            string subject = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
+            string body = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string)) + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+
+            subject = replaceVariables(subject, rep.DisplayName, rep.Email, rep.Phone);
+            body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
+
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
+        }
+
+        private void GracePeriodEmail_Click(object sender, EventArgs e)
+        {
+            Common.Log("Composing a Grace Period email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+
+            Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
+
+            string cc = rep.Email + ";" + getCC(comboBoxState.SelectedItem as Common.Region) + getCC(new Common.Region() { Area = "Grace"});
+            string subject = (string)XMLFunctions.readSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
+            string body = (string)XMLFunctions.readSetting("GracePeriodBody") + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+
+            subject = replaceVariables(subject, rep.DisplayName, rep.Email, rep.Phone);
+            body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
+
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
+        }
+
+        private void Email_Click(object sender, EventArgs e)
+        {
+            Common.Log("Composing a blank email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+            string to = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email;
+            string body = "<br><br>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { to, "", "", body });
+        }
+
+        private Common.SalesRep getRep(Common.Region region)
+        {
+            Common.SalesRep rep = null;
+            foreach (Common.SalesRep representative in XMLFunctions.SalesRepList)
             {
-                foreach (Common.SalesRep salesRep in XMLFunctions.SalesRepList)
+                if (representative.Responsibilities != null && representative.Responsibilities.Contains(region.Name))
                 {
-                    if (salesRep.CC != null && salesRep.CC.Contains((comboBoxState.SelectedItem as Common.Region).Area))
+                    if (rep == null)
+                        rep = representative;
+                    else
                     {
-                        rsm = salesRep.Email;
-                        break;
+                        //Choose a rep with the "North-South" dialog
+                        DialogResult res = new DialogResult();
+                        North_South frm = new North_South(rep.DisplayName, representative.DisplayName);
+                        res = frm.ShowDialog();
+
+                        if (res == DialogResult.Yes) //"Yes" means "North rep"
+                            continue; //aka rep = rep;
+                        else if (res == DialogResult.No) //"No" means "South rep"
+                            rep = representative;
+                        else //User closed out the dialog box
+                            return null;
                     }
                 }
             }
-            else if (!isNullOrEmpty(comboBoxRepresentative)) //If a rep is selected
-            {
-                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email, "", "",
-                    "<br/><br/>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault) });
-                return;
-            }
 
-            if (rsm == cc) //If the rsr IS the rsm
+            if (rep == null) //No reps, so look for an RSM
             {
-                cc = rsm;
-            }
-            else if (rsm != "") //If the rsr IS NOT the rsm
-            {
-                cc += ";" + rsm;
-            }
-            else if (rsm == "" && comboBoxState.Text != "") //If there is no rsm
-            {
-                if (comboBoxRepresentative.SelectedItem.ToString() != "")
+                foreach (Common.SalesRep rsm in XMLFunctions.SalesRepList)
                 {
-                    Common.Log("Could not find an RSM for the selection: " + comboBoxRepresentative.Text);
-                }
-                else if(comboBoxState.SelectedItem.ToString() != "")
-                {
-                    Common.Log("Could not find an RSM for the selection: " + comboBoxState.Text);
+                    if (rsm.CC != null && rsm.CC.Contains(region.Area))
+                        rep = rsm;
                 }
             }
 
-            subject = replaceVariables(subject, rep, cc.Split(';')[0], phone);
-            body = replaceVariables(body, rep, cc.Split(';')[0], phone);
+            if (rep == null)
+            {
+                MessageBox messageBox = new MessageBox("No Reps or RSMs for selected Region", "The selected region has no representatives or RSMs", "OK", Common.MessageBoxResult.OK);
+                messageBox.ShowDialog();
+            }
 
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] {"", cc, subject, body});
+            return rep;
+        }
+
+        private string getCC(Common.Region region)
+        {
+            string result = "";
+
+            foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
+            {
+                if (rep.CC != null && rep.CC.Contains(region.Area))
+                    result += rep.Email + ";";
+            }
+
+            return result;
         }
 
         private void composeOutlook(object parameters)
@@ -573,7 +597,7 @@ namespace SalesMap
             }
             catch (Exception eX)
             {
-                MessageBox messageBox = new MessageBox("Email Failed", "Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again", "OK", Common.MessageBoxResult.OK);
+                MessageBox messageBox = new MessageBox("Email Failed", "Failed to create the email. (Exception: " + eX.Message + ")\n\n Please try again", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
                 Common.Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
             }

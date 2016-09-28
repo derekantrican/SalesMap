@@ -44,7 +44,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.labelPhoneResult = new System.Windows.Forms.Label();
             this.labelPhoneResult2 = new System.Windows.Forms.Label();
-            this.pictureBoxOffSMR = new System.Windows.Forms.PictureBox();
+            this.pictureBoxEmail = new System.Windows.Forms.PictureBox();
             this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
@@ -52,7 +52,7 @@
             this.sortRegions = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBackground = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
@@ -150,15 +150,15 @@
             this.toolTip1.SetToolTip(this.labelPhoneResult2, resources.GetString("labelPhoneResult2.ToolTip"));
             this.labelPhoneResult2.Click += new System.EventHandler(this.labelPhoneResult2_Click);
             // 
-            // pictureBoxOffSMR
+            // pictureBoxEmail
             // 
-            this.pictureBoxOffSMR.Image = global::SalesMap.Properties.Resources.envelope_icon;
-            resources.ApplyResources(this.pictureBoxOffSMR, "pictureBoxOffSMR");
-            this.pictureBoxOffSMR.Name = "pictureBoxOffSMR";
-            this.pictureBoxOffSMR.TabStop = false;
-            this.pictureBoxOffSMR.Tag = "";
-            this.toolTip1.SetToolTip(this.pictureBoxOffSMR, resources.GetString("pictureBoxOffSMR.ToolTip"));
-            this.pictureBoxOffSMR.Click += new System.EventHandler(this.pictureBoxOffSMR_Click);
+            this.pictureBoxEmail.Image = global::SalesMap.Properties.Resources.envelope_icon;
+            resources.ApplyResources(this.pictureBoxEmail, "pictureBoxEmail");
+            this.pictureBoxEmail.Name = "pictureBoxEmail";
+            this.pictureBoxEmail.TabStop = false;
+            this.pictureBoxEmail.Tag = "";
+            this.toolTip1.SetToolTip(this.pictureBoxEmail, resources.GetString("pictureBoxEmail.ToolTip"));
+            this.pictureBoxEmail.Click += new System.EventHandler(this.pictureBoxEmail_Click);
             // 
             // pictureBoxOnlineMaps
             // 
@@ -228,7 +228,7 @@
             this.Controls.Add(this.sortReps);
             this.Controls.Add(this.labelPhoneResult2);
             this.Controls.Add(this.labelPhoneResult);
-            this.Controls.Add(this.pictureBoxOffSMR);
+            this.Controls.Add(this.pictureBoxEmail);
             this.Controls.Add(this.pictureBoxOnlineMaps);
             this.Controls.Add(this.labelNoImage);
             this.Controls.Add(this.labelContactResult2);
@@ -250,7 +250,7 @@
             this.Name = "SalesMapSearch";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SalesMapSearch_FormClosing);
             this.Load += new System.EventHandler(this.SalesMapSearch_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOffSMR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
@@ -279,7 +279,7 @@
         private System.Windows.Forms.Label labelRepResult2;
         private System.Windows.Forms.Label labelNoImage;
         private System.Windows.Forms.PictureBox pictureBoxOnlineMaps;
-        private System.Windows.Forms.PictureBox pictureBoxOffSMR;
+        private System.Windows.Forms.PictureBox pictureBoxEmail;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label labelPhoneResult;
         private System.Windows.Forms.Label labelPhoneResult2;
