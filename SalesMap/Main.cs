@@ -623,9 +623,9 @@ namespace SalesMap
                 labelContactResult.Text = "Contact: COPIED!";
                 Common.Log("Clicked first Sales Rep email and set clipboard to \"" + copy + "\"");
             }
-            catch
+            catch(Exception ex)
             {
-                Common.Log("Attempted to set the clipboard text and failed");
+                Common.Log("Attempted to set the clipboard text and failed (Exception: " + ex.Message + ")");
                 labelContactResult.Text = "Contact: FAILED TO COPY...TRY AGAIN";
             }
 
@@ -645,9 +645,9 @@ namespace SalesMap
                 labelPhoneResult.Text = "COPIED!";
                 Common.Log("Clicked first Sales Rep phone and set clipboard to \"" + copy + "\"");
             }
-            catch
+            catch(Exception ex)
             {
-                Common.Log("Attempted to set the clipboard text and failed");
+                Common.Log("Attempted to set the clipboard text and failed (Exception: " + ex.Message + ")");
                 labelPhoneResult.Text = "FAILED TO COPY...TRY AGAIN";
             }
 
