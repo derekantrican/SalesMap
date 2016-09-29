@@ -483,7 +483,13 @@ namespace SalesMap
 
             Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
 
-            string cc = rep.Email + ";" + getCC(comboBoxState.SelectedItem as Common.Region);
+            string rsr = rep.Email;
+            string cc = getCC(comboBoxState.SelectedItem as Common.Region);
+
+            if (cc.Contains(rsr))
+                cc = cc.Replace(rsr, "");
+
+            cc = rsr + ";" + cc;
             string subject = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
             string body = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string)) + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
@@ -499,7 +505,13 @@ namespace SalesMap
 
             Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
 
-            string cc = rep.Email + ";" + getCC(comboBoxState.SelectedItem as Common.Region) + getCC(new Common.Region() { Area = "Grace"});
+            string rsr = rep.Email;
+            string cc = getCC(comboBoxState.SelectedItem as Common.Region) + getCC(new Common.Region() { Area = "Grace"});
+
+            if (cc.Contains(rsr))
+                cc.Replace(rsr, "");
+
+            cc = rsr + ";" + cc;
             string subject = (string)XMLFunctions.readSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
             string body = (string)XMLFunctions.readSetting("GracePeriodBody") + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
