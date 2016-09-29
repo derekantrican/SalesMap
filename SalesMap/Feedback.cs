@@ -17,6 +17,7 @@ namespace SalesMap
         bool feature = false;
         bool bug = false;
         RichTextBox textBox = new RichTextBox();
+        Button buttonOk = new Button();
 
         public Feedback()
         {
@@ -34,6 +35,7 @@ namespace SalesMap
         {
             bug = false;
             feature = true;
+            buttonOk.Text = "Submit Feature";
 
             showSubmissionForm();
         }
@@ -42,6 +44,7 @@ namespace SalesMap
         {
             feature = false;
             bug = true;
+            buttonOk.Text = "Submit Bug";
 
             showSubmissionForm();
         }
@@ -55,10 +58,8 @@ namespace SalesMap
                 textBox.Size = new Size(157, 75);
                 textBox.Location = new Point(12, 98);
                 this.Controls.Add(textBox);
-                Button buttonOk = new Button();
-                buttonOk.Size = new Size(50, 23);
-                buttonOk.Text = "Submit";
-                buttonOk.Location = new Point(127, 178);
+                buttonOk.Size = new Size(90, 23);
+                buttonOk.Location = new Point(87, 178);
                 this.Controls.Add(buttonOk);
                 buttonOk.Click += ButtonOk_Click;
                 textBox.Visible = true;
