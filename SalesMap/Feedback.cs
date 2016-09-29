@@ -21,6 +21,7 @@ namespace SalesMap
         public Feedback()
         {
             InitializeComponent();
+            textBox.Visible = false;
         }
 
         private void buttonFeedback_Click(object sender, EventArgs e)
@@ -31,29 +32,37 @@ namespace SalesMap
 
         private void buttonFeature_Click(object sender, EventArgs e)
         {
+            bug = false;
             feature = true;
+
             showSubmissionForm();
         }
 
         private void buttonBug_Click(object sender, EventArgs e)
         {
+            feature = false;
             bug = true;
+
             showSubmissionForm();
         }
 
         private void showSubmissionForm()
         {
-            this.Height += 100;
-            textBox.ScrollBars = RichTextBoxScrollBars.Vertical;
-            textBox.Size = new Size(157, 75);
-            textBox.Location = new Point(12, 98);
-            this.Controls.Add(textBox);
-            Button buttonOk = new Button();
-            buttonOk.Size = new Size(50, 23);
-            buttonOk.Text = "Submit";
-            buttonOk.Location = new Point(127, 178);
-            this.Controls.Add(buttonOk);
-            buttonOk.Click += ButtonOk_Click;
+            if (textBox.Visible == false)
+            {
+                this.Height += 100;
+                textBox.ScrollBars = RichTextBoxScrollBars.Vertical;
+                textBox.Size = new Size(157, 75);
+                textBox.Location = new Point(12, 98);
+                this.Controls.Add(textBox);
+                Button buttonOk = new Button();
+                buttonOk.Size = new Size(50, 23);
+                buttonOk.Text = "Submit";
+                buttonOk.Location = new Point(127, 178);
+                this.Controls.Add(buttonOk);
+                buttonOk.Click += ButtonOk_Click;
+                textBox.Visible = true;
+            }
         }
 
         private void ButtonOk_Click(object sender, EventArgs e)
