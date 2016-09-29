@@ -194,9 +194,6 @@
     <EmbeddedResource Include="OffSMR.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\offSMRPic.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="map.ico" />
     <None Include="Resources\preview.png" />
     <None Include="Resources\GoogleMaps.jpg" />
