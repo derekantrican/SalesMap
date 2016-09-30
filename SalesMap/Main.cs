@@ -15,100 +15,90 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Configuration;
+using System.Xml.Linq;
+using System.Linq.Expressions;
 
 namespace SalesMap
 {
     public partial class SalesMapSearch : Form
     {
-        List<String> RegionNames = new List<String>();
-        List<String> RegionParts = new List<String>();
-        List<String> RegionArea = new List<String>();
-
-        List<String> SalesRepNames = new List<String>();
-        List<String> SalesRepEmails = new List<String>();
-        List<String> SalesRepPhones = new List<String>();
-        List<String> SalesRepRegions = new List<String>();
-        List<String> SalesRepPosition = new List<String>();
-
         public SalesMapSearch()
         {
             InitializeComponent();
-            this.Text = this.Text + " (" + Properties.Settings.Default.Version + ")"; //Change the name of the window to include the current version
-            Log("------------ STARTING SALESMAP (" + Properties.Settings.Default.Version + ") ------------");
+
+            Common.CheckPaths();
+
+            if (File.Exists(Common.UserSettingsPath + "log.txt") && File.ReadLines(Common.UserSettingsPath + "log.txt").Count() > 10000)
+            {
+                File.WriteAllText(Common.UserSettingsPath + "log.txt", ""); //Clear the log
+                Common.Log("Cleared the log as it was longer than 10,000 lines");
+            }
+
+            this.Text = this.Text + " (" + Common.ThisVersion + ")"; //Change the name of the window to include the current version
+            Common.Log("------------ STARTING SALESMAP (" + Common.ThisVersion + ") ------------");
+            
+            if (!Common.IsOnline)
+            {
+                Common.Log("No internet connection");
+                MessageBox messageBox = new MessageBox("Not connected to the internet...", "You are not connected to the internet. SalesMap " + Common.ThisVersion + " requires an internet connection",
+                    "Cancel", Common.MessageBoxResult.Cancel, true, "Retry", Common.MessageBoxResult.Retry);
+                messageBox.ShowDialog();
+                
+                if (Common.DialogResult == Common.MessageBoxResult.Retry && !Common.IsOnline)
+                {
+                    MessageBox messageBox2 = new MessageBox("Not connected to the internet...", "...still can't find an internet connection. \n\nThe program will now exit.", "OK", Common.MessageBoxResult.OK);
+                    messageBox2.ShowDialog();
+                    Common.Log("Retried, but still no internet connection");
+                    Application.Exit();
+                }
+                else if (Common.DialogResult == Common.MessageBoxResult.Cancel)
+                {
+                    Application.Exit();
+                }
+            }
+
+            XMLFunctions.UpdateComboBoxes += populateComboBoxes;
 
             checkFirstRun();
             checkForUpdate();
             compareFiles();
 
-            //File.WriteAllText(@"C:\Users\" + Environment.UserName + @"\log.txt", ""); //Clear the log
-
-            readFiles();
+            if (!(bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
+            {
+                new Thread(() => XMLFunctions.parseRegions(false)).Start();
+                new Thread(() => XMLFunctions.parseReps(false)).Start();
+            }
+            else
+            {
+                new Thread(() => XMLFunctions.parseRegions(true)).Start();
+                new Thread(() => XMLFunctions.parseReps(true)).Start();
+            }
         }
 
         private void checkForUpdate()
         {
-            if (Properties.Settings.Default.AutoCheckUpdate)
+            if ((bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true))
             {
+                string GitVersionString = Common.checkGitHub();
+                double GitVersion = Convert.ToDouble(GitVersionString.Split('v').Last());
+                double thisVersion = Convert.ToDouble(Common.ThisVersion.Split('v').Last());
 
-                WebClient client = new WebClient();
-                string url = "https://github.com/derekantrican/SalesMap/tags";
-                string html = "";
-                try
+                if (GitVersion > thisVersion)
                 {
-                    html = client.DownloadString(url);
-                }
-                catch
-                {
-                    Log("Attempted to check for new version and failed to get html");
-                    return;
-                }
+                    Common.Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
 
-                string nextUrl = "";
-
-                List<string> versions = new List<string>();
-                string version = "";
-                while (html.IndexOf("<span class=\"disabled\">Next</span>") < 0)
-                {
-                    while (html.IndexOf("<span class=\"tag-name\">v") > -1)
+                    MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersionString + " and you are running " + Common.ThisVersion +
+                                        "\n\nDo you want to update to the new version?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
+                    messageBox.ShowDialog();
+                    if (Common.DialogResult == Common.MessageBoxResult.Yes)
                     {
-                        html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
-                        version = html.Split('<')[0];
-
-                        if (version != "" && version.IndexOf("beta") < 0)
-                            versions.Add(html.Split('<')[0]);
-                    }
-
-                    nextUrl = html.Substring(html.IndexOf("<span class=\"disabled\">Previous</span>") + 47).Split('\"')[0];
-                    html = client.DownloadString(nextUrl);
-                }
-
-                //Run this while loop again to get the last page
-                while (html.IndexOf("<span class=\"tag-name\">v") > -1)
-                {
-                    html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
-                    version = html.Split('<')[0];
-
-                    if (version != "" && version.IndexOf("beta") < 0)
-                        versions.Add(html.Split('<')[0]);
-                }
-
-                string GitVersion = versions.First();
-                string thisVersion = Properties.Settings.Default.Version;
-
-                if (GitVersion != thisVersion)
-                {
-                    Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
-
-                    if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
-                                        "\n\nDo you want to update to the new version?",
-                                        "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-                    {
-                        Log("User selected \"Yes\" for the new update");
-                        Update(GitVersion);
+                        Common.Log("User selected \"Yes\" for the new update");
+                        Update(GitVersionString);
                     }
                     else
                     {
-                        Log("User selected \"No\" for the new update");
+                        Common.Log("User selected \"No\" for the new update");
                     }
                 }
             }
@@ -116,22 +106,26 @@ namespace SalesMap
 
         private void SalesMapSearch_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Log("++++++++++++ CLOSING SALESMAP ++++++++++++");
+            XMLFunctions.saveSetting("MainWindowLocation", this.Location);
 
-            if (Properties.Settings.Default.SendLog)
+            Common.Log("++++++++++++ CLOSING SALESMAP ++++++++++++");
+
+            if ((bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true))
             {
-                SendStatistics();
+                this.Invoke((MethodInvoker)delegate
+                {
+                    SendStatistics();
+                });
 
                 string user = Environment.UserName;
-                string logPath = @"C:\Users\" + user + @"\log.txt";
-                string newLogPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + user + " log.txt";
+                string logPath = Common.UserSettingsPath + "log.txt";
 
                 if (File.Exists(logPath))
                 {
                     ProcessStartInfo Info = new ProcessStartInfo();
                     Info.UseShellExecute = false;
                     Info.RedirectStandardOutput = true;
-                    Info.Arguments = @"/C copy ""C:\Users\" + Environment.UserName + @"\log.txt"" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + Environment.UserName + " log.txt\" /y";
+                    Info.Arguments = @"/C copy ""C:\Users\" + Environment.UserName + @"\log.txt"" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Common.Log Files\" + Environment.UserName + " log.txt\" /y";
                     Info.WindowStyle = ProcessWindowStyle.Hidden;
                     Info.CreateNoWindow = true;
                     Info.FileName = "cmd.exe";
@@ -142,216 +136,64 @@ namespace SalesMap
 
         public void compareFiles()
         {
-            WebClient client = new WebClient();
-            string url = "https://github.com/derekantrican/SalesMap/wiki/Most-current-%22databases%22";
-            string html = "";
+            //"Local XML" functionality is partially introduced for version 6.0+, but will not be implemented unless deemed necessary
 
-            string regionTextOnline = "";
-            string salesTextOnline = "";
+            //XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions);
+            //XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps);
 
-            try
-            {
-                html = client.DownloadString(url);
+            //if (XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions) != null && 
+            //    XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions) < XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions))
+            //{
 
-                regionTextOnline = html.Substring(html.IndexOf("<pre><code>") + 11).Split('<')[0];
-                salesTextOnline = html.Substring(html.LastIndexOf("<pre><code>") + 11).Split('<')[0];
-            }
-            catch
-            {
-                Log("Attempted to get the online databases and failed to get html");
-                return;
-            }
+                //Common.Log("Updated Regions.xml from " + XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Regions).ToString() + " to " + XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Regions).ToString());
+            //}
 
-            //Remove the extra character that comes at the end of these strings and replace "&amp;" with "&"
-            regionTextOnline = regionTextOnline.TrimEnd(regionTextOnline[regionTextOnline.Length - 1]);
-            regionTextOnline = regionTextOnline.Replace("&amp;", "&");
-            salesTextOnline = salesTextOnline.TrimEnd(salesTextOnline[salesTextOnline.Length - 1]);
-            salesTextOnline = salesTextOnline.Replace("&amp;", "&");
+            //if (XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps) != null &&
+            //    XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps) < XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps))
+            //{
 
-            //Compare the raw text of files by checking files without special characters
-            if (removeSpecial(Properties.Settings.Default.Regions) != removeSpecial(regionTextOnline) && regionTextOnline != "")
-            {
-                Log("Internal Regions is not the same as online. Updating...");
-                Log("DIFF: " + diff(removeSpecial(Properties.Settings.Default.Regions), removeSpecial(regionTextOnline)), false);
-                Properties.Settings.Default.Regions = regionTextOnline;
-            }
-
-            if (removeSpecial(Properties.Settings.Default.SalesReps) != removeSpecial(salesTextOnline) && salesTextOnline != "")
-            {
-                Log("Internal SalesReps is not the same as online. Updating...");
-                Log("DIFF: " + diff(removeSpecial(Properties.Settings.Default.SalesReps), removeSpecial(salesTextOnline)), false);
-                Properties.Settings.Default.SalesReps = salesTextOnline;
-            }
-
-            url = "https://github.com/derekantrican/SalesMap/wiki/International-Databases";
-            html = "";
-
-            string internationalRegionTextOnline = "";
-            string internationalSalesTextOnline = "";
-
-            try
-            {
-                html = client.DownloadString(url);
-
-                internationalRegionTextOnline = html.Substring(html.IndexOf("<pre><code>") + 11).Split('<')[0];
-                internationalSalesTextOnline = html.Substring(html.LastIndexOf("<pre><code>") + 11).Split('<')[0];
-            }
-            catch
-            {
-                Log("Attempted to get the online databases and failed to get html");
-                return;
-            }
-
-            //Remove the extra character that comes at the end of these strings and replace "&amp;" with "&"
-            internationalRegionTextOnline = internationalRegionTextOnline.TrimEnd(internationalRegionTextOnline[internationalRegionTextOnline.Length - 1]);
-            internationalRegionTextOnline = internationalRegionTextOnline.Replace("&amp;", "&");
-            internationalSalesTextOnline = internationalSalesTextOnline.TrimEnd(internationalSalesTextOnline[internationalSalesTextOnline.Length - 1]);
-            internationalSalesTextOnline = internationalSalesTextOnline.Replace("&amp;", "&");
-
-            //Compare the raw text of files by checking files without special characters
-            if (removeSpecial(Properties.Settings.Default.InternationalRegions) != removeSpecial(internationalRegionTextOnline) && internationalRegionTextOnline != "")
-            {
-                Log("Internal InternationalRegions is not the same as online. Updating...");
-                Log("DIFF: " + diff(removeSpecial(Properties.Settings.Default.InternationalRegions), removeSpecial(internationalRegionTextOnline)), false);
-                Properties.Settings.Default.InternationalRegions = internationalRegionTextOnline;
-            }
-
-            if (removeSpecial(Properties.Settings.Default.InternationalReps) != removeSpecial(internationalSalesTextOnline) && internationalSalesTextOnline != "")
-            {
-                Log("Internal InternationalSalesReps is not the same as online. Updating...");
-                Log("DIFF: " + diff(removeSpecial(Properties.Settings.Default.InternationalReps), removeSpecial(internationalSalesTextOnline)), false);
-                Properties.Settings.Default.InternationalReps = internationalSalesTextOnline;
-            }
-
-            Properties.Settings.Default.Save();
+                //Common.Log("Updated SalesReps.xml from " + XMLFunctions.getLastXmlLocalUpdated(XMLFunctions.Database.Reps).ToString() + " to " + XMLFunctions.getLastXmlOnlineUpdated(XMLFunctions.Database.Reps).ToString());
+            //}
         }
 
-        public void readFiles()
+        public void populateComboBoxes()
         {
-            string regionsSource = "";
-            string repsSource = "";
-
-            if (Properties.Settings.Default.UseInternational)
-            {
-                regionsSource = Properties.Settings.Default.InternationalRegions;
-                repsSource = Properties.Settings.Default.InternationalReps;
-            }
-            else
-            {
-                regionsSource = Properties.Settings.Default.Regions;
-                repsSource = Properties.Settings.Default.SalesReps;
-            }
-
-            if (regionsSource == "" || repsSource == "")
-            {
-                Log("Error setting comboBox values (UseInternational: " + Properties.Settings.Default.UseInternational + ")");
-                Environment.Exit(1);
-            }
-
-            using (StringReader reader = new StringReader(regionsSource))
-            {
-                string line = reader.ReadLine();
-
-                while (line != null)
-                {
-                    string[] items = line.Split(',');
-
-                    try
-                    {
-                        RegionNames.Add(items[0]);
-                        RegionParts.Add(items[1]);
-                        RegionArea.Add(items[2]);
-                    }
-                    catch
-                    {
-                        Log("Failed to read from Regions.txt");
-                    }
-
-                    line = reader.ReadLine();
-                }
-            }
-
-            using (StringReader reader = new StringReader(repsSource))
-            {
-                string line = reader.ReadLine();
-
-                while (line != null)
-                {
-                    string[] items = line.Split(',');
-
-                    try
-                    {
-                        SalesRepNames.Add(items[0]);
-                        SalesRepEmails.Add(items[1]);
-                        SalesRepPhones.Add(items[2]);
-                        SalesRepRegions.Add(items[3]);
-                        SalesRepPosition.Add(items[4]);
-                    }
-                    catch
-                    {
-                        Log("Failed to read from SalesReps.txt");
-                    }
-
-                    line = reader.ReadLine();
-                }
-            }
-
             //Set the comboBoxes
-            comboBoxState.DataSource = RegionNames;
-            comboBoxState.Refresh();
-            comboBoxRepresentative.DataSource = SalesRepNames;
+            this.Invoke((MethodInvoker)delegate 
+            {
+                comboBoxState.DataSource = XMLFunctions.RegionList;
+                comboBoxState.DisplayMember = "DisplayName";
+                comboBoxRepresentative.DataSource = XMLFunctions.SalesRepList;
+                comboBoxRepresentative.DisplayMember = "DisplayName";
+            });
 
             //Clear the result labels on startup
-            labelPhoneResult.Text = "";
-            labelRepResult2.Text = "";
-            labelContactResult2.Text = "";
-            labelPhoneResult2.Text = "";
+            this.Invoke((MethodInvoker)delegate 
+            {
+                labelPhoneResult.Text = "";
+                labelRepResult2.Text = "";
+                labelContactResult2.Text = "";
+                labelPhoneResult2.Text = "";
+
+                comboBoxState.Enabled = true;
+                comboBoxRepresentative.Enabled = true;
+            });
         }
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxState.SelectedItem.ToString() != "")
+            if (!isNullOrEmpty(comboBoxState) && comboBoxRepresentative.Items.Count > 0)
             {
-                Log("Selecting state: " + comboBoxState.Text);
+                Common.Log("Selecting state: " + (comboBoxState.SelectedItem as Common.Region).DisplayName);
 
                 comboBoxRepresentative.SelectedIndex = 0;
                 labelRepResult.Text = "Sales Rep: ";
                 labelContactResult.Text = "Contact: ";
                 labelPhoneResult.Text = "";
 
-                labelRegionResult.Text = "Region: " + comboBoxState.SelectedItem.ToString();
+                labelRegionResult.Text = "Region: " + (comboBoxState.SelectedItem as Common.Region).Name;
             }
-            else if (comboBoxState.SelectedItem == null || comboBoxRepresentative.SelectedItem == null)
-            {
-                return;
-            }
-
-            ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources", Assembly.GetExecutingAssembly());
-            pictureBox1.Image = rm.GetObject(comboBoxState.SelectedItem.ToString().Replace(')', '_').Replace('(', '_').Replace(' ', '_')) as Image;
-
-            if (pictureBox1.Image == null && comboBoxState.SelectedIndex != 0)
-            {
-                labelNoImage.Text = "No Image Available";
-            }
-            else
-            {
-                labelNoImage.Text = "";
-            }
-
-            rm.ReleaseAllResources();
-
-            string[] SalesRegions = SalesRepRegions.ToArray();
-            string[] SalesNames = SalesRepNames.ToArray();
-            string[] SalesEmails = SalesRepEmails.ToArray();
-            string[] SalesPhones = SalesRepPhones.ToArray();
-            string[] RegionPart = RegionParts.ToArray();
-
-            int found = 0;
-
-            string search = comboBoxState.SelectedItem.ToString().Split('(').Last().Split(')').First();
-            Console.WriteLine("\"" + search + "\"");
-
-            if (search == "")
+            else if (isNullOrEmpty(comboBoxState) || isNullOrEmpty(comboBoxRepresentative))
             {
                 labelRepResult.Text = "Sales Rep: ";
                 labelContactResult.Text = "Contact: ";
@@ -359,28 +201,55 @@ namespace SalesMap
                 labelRepResult2.Text = "";
                 labelContactResult2.Text = "";
                 labelPhoneResult2.Text = "";
+                labelRegionResult.Text = "Region: ";
+                showPicture("");
+
                 return;
             }
 
-            for (int i = 0; i < SalesRegions.Length; i++)
+            string pictureLocation = (comboBoxState.SelectedItem as Common.Region).Picture;
+            new Thread(() => showPicture("Regions/" + pictureLocation)).Start();
+
+            int found = 0;
+
+            string search = (comboBoxState.SelectedItem as Common.Region).Name;
+            Console.WriteLine("\"" + search + "\"");
+
+            if (search == "")
+                return;
+
+            foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
             {
-                Console.WriteLine(SalesRegions[i]);
-                if (SalesRegions[i].IndexOf(search) >= 0)
+                if (rep.Responsibilities != null && rep.Responsibilities.Find(p => p.IndexOf(search) >= 0) != null)
                 {
                     found++;
-                    Console.WriteLine("found: " + found);
+
                     if (found == 1)
                     {
-                        labelRepResult.Text = "Sales Rep: " + SalesNames[i];
-                        labelContactResult.Text = "Contact: " + SalesEmails[i];
-                        labelPhoneResult.Text = SalesPhones[i];
+                        labelRepResult.Text = "Sales Rep: " + rep.DisplayName;
+                        labelContactResult.Text = "Contact: " + rep.Email;
+                        labelPhoneResult.Text = rep.Phone;
                     }
 
                     if (found > 1)
                     {
-                        labelRepResult2.Text = "2nd Sales Rep: " + SalesNames[i];
-                        labelContactResult2.Text = "Contact: " + SalesEmails[i];
-                        labelPhoneResult2.Text = SalesPhones[i];
+                        labelRepResult2.Text = "2nd Sales Rep: " + rep.DisplayName;
+                        labelContactResult2.Text = "Contact: " + rep.Email;
+                        labelPhoneResult2.Text = rep.Phone;
+                    }
+                }
+            }
+
+            if (found == 0)
+            {
+                foreach(Common.SalesRep rep in XMLFunctions.SalesRepList)
+                {
+                    if (rep.CC != null && rep.CC.Contains((comboBoxState.SelectedItem as Common.Region).Area))
+                    {
+                        labelRepResult.Text = "Sales Rep: " + rep.DisplayName + " (RSM)";
+                        labelContactResult.Text = "Contact: " + rep.Email;
+                        labelPhoneResult.Text = rep.Phone;
+                        break;
                     }
                 }
             }
@@ -395,38 +264,50 @@ namespace SalesMap
 
         private void comboBoxRepresentative_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxRepresentative.SelectedItem.ToString() != "")
+            if (!isNullOrEmpty(comboBoxRepresentative) && comboBoxRepresentative.Items.Count > 0)
             {
-                Log("Selecting rep: " + comboBoxRepresentative.Text);
+                Common.Log("Selecting rep: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName);
 
                 comboBoxState.SelectedIndex = 0;
                 labelRegionResult.Text = "Region: ";
             }
-            else if (comboBoxRepresentative.SelectedItem == null || comboBoxState.SelectedItem == null)
+            else if (isNullOrEmpty(comboBoxRepresentative) || isNullOrEmpty(comboBoxState))
             {
+                labelRepResult.Text = "Sales Rep: ";
+                labelContactResult.Text = "Contact: ";
+                labelPhoneResult.Text = "";
+                labelRepResult2.Text = "";
+                labelContactResult2.Text = "";
+                labelPhoneResult2.Text = "";
+                labelRegionResult.Text = "Region: ";
+                showPicture("");
+
                 return;
             }
 
-            ResourceManager rm = new ResourceManager("SalesMap.Properties.Resources", Assembly.GetExecutingAssembly());
-            pictureBox1.Image = rm.GetObject(comboBoxRepresentative.SelectedItem.ToString().Replace(' ', '_')) as Image;
+            string pictureLocation = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Picture;
+            new Thread(() => showPicture("SalesReps/" + pictureLocation)).Start();
 
-            if (pictureBox1.Image == null && comboBoxRepresentative.SelectedIndex != 0)
+            labelRepResult.Text = "Sales Rep: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName;
+            labelContactResult.Text = "Contact: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email;
+            labelPhoneResult.Text = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Phone;
+            labelRegionResult.Text = "Region: ";
+
+            if ((comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities != null)
             {
-                labelNoImage.Text = "No Image Available";
+                foreach (string region in (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities)
+                {
+                    Common.Region relatedRegion = XMLFunctions.RegionList.Where(p => p.Name == region).SingleOrDefault();
+
+                    string abbreviation = relatedRegion != null && relatedRegion.Abbreviation != null ? relatedRegion.Abbreviation : region;
+
+                    labelRegionResult.Text += abbreviation;
+
+                    if (region != (comboBoxRepresentative.SelectedItem as Common.SalesRep).Responsibilities.Last())
+                        labelRegionResult.Text += ", ";
+                }
             }
-            else
-            {
-                labelNoImage.Text = "";
-            }
 
-            rm.ReleaseAllResources();
-
-
-
-            labelRepResult.Text = "Sales Rep: " + comboBoxRepresentative.SelectedItem.ToString();
-            labelContactResult.Text = "Contact: " + SalesRepEmails[comboBoxRepresentative.SelectedIndex];
-            labelPhoneResult.Text = SalesRepPhones[comboBoxRepresentative.SelectedIndex];
-            labelRegionResult.Text = "Region: " + SalesRepRegions[comboBoxRepresentative.SelectedIndex].Replace(":", ", ");
 
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";
@@ -435,178 +316,284 @@ namespace SalesMap
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Log("Opening config");
+            Common.Log("Opening config");
             Settings config = new Settings();
-            config.Show();
+            config.ShowDialog();
         }
 
         private void pictureBoxMap_Click(object sender, EventArgs e)
         {
-            Log("Opening PDF map");
-            string path = Properties.Settings.Default.MapFileLocation;
+            Common.Log("Opening PDF map");
+            string path = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrcian\SalesMap.pdf");
 
-            try
+            if (Common.NetworkFileExists(new Uri(path), 250))
+                System.Diagnostics.Process.Start(path);
+            else
             {
-                System.Diagnostics.Process.Start(@path);
-            }
-            catch
-            {
-                MessageBox.Show("The path " + path + " is invalid.");
+                MessageBox messageBox = new MessageBox("Invalid Path", "The path " + path + " is invalid.", "OK", Common.MessageBoxResult.OK);
+                messageBox.ShowDialog();
             }
         }
 
         private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
         {
-            Log("Opening Google Maps");
+            Common.Log("Opening Google Maps");
 
-            if (comboBoxState.SelectedItem.ToString() == "")
+            if (isNullOrEmpty(comboBoxState) || (comboBoxState.SelectedItem as Common.Region).Name == "")
             {
                 System.Diagnostics.Process.Start("https://www.google.com/maps/@38.9165981,-96.6887,5z");
             }
             else
             {
-                string state = comboBoxState.SelectedItem.ToString().Split(')').Last().Replace(" ", "+");
+                string state = (comboBoxState.SelectedItem as Common.Region).Name;
                 System.Diagnostics.Process.Start("https://www.google.com/maps/place/" + state);
             }
         }
 
-        private void pictureBoxOffSMR_Click(object sender, EventArgs e)
+        private void sortRegions_Click(object sender, EventArgs e)
         {
-            Log("Composing an OffSMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+            MenuItem arrangeByDefault = new MenuItem();
+            arrangeByDefault.Text = "Default Sorting";
+            arrangeByDefault.Click += ArrangeRegionsByDefault;
 
-            string rep = "";
-            string cc = "";
-            string phone = "";
-            string subject = Properties.Settings.Default.OffSMRSubject;
-            string body = Properties.Settings.Default.OffSMRBody + Properties.Settings.Default.OffSMRSignature;
+            MenuItem arrangeByAbbrev = new MenuItem();
+            arrangeByAbbrev.Text = "Sort by Abbreviation";
+            arrangeByAbbrev.Click += ArrangeByAbbrev;
 
-            if (labelRepResult.Text == "Sales Rep: ")
+            MenuItem arrangeByName = new MenuItem();
+            arrangeByName.Text = "Sort by Name";
+            arrangeByName.Click += ArrangeByName;
+
+            ContextMenu contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(arrangeByDefault);
+            contextMenu.MenuItems.Add(arrangeByAbbrev);
+            contextMenu.MenuItems.Add(arrangeByName);
+            contextMenu.Show((sender as PictureBox), new Point(20, 20));
+        }
+
+        private void ArrangeRegionsByDefault(object sender, EventArgs e)
+        {
+            comboBoxState.DataSource = XMLFunctions.RegionList;
+        }
+
+        private void ArrangeByAbbrev(object sender, EventArgs e)
+        {
+            var result = XMLFunctions.RegionList.ToList();
+            result.RemoveAt(0);
+            result.RemoveAt(0);
+            result = result.OrderBy(p => p.Abbreviation).ToList();
+            result.Insert(0, XMLFunctions.RegionList[1]);
+            result.Insert(0, XMLFunctions.RegionList[0]);
+            comboBoxState.DataSource = result;
+        }
+
+        private void ArrangeByName(object sender, EventArgs e)
+        {
+            var result = XMLFunctions.RegionList.ToList();
+            result.RemoveAt(0);
+            result.RemoveAt(0);
+            result = result.OrderBy(p => p.Name).ToList();
+            result.Insert(0, XMLFunctions.RegionList[1]);
+            result.Insert(0, XMLFunctions.RegionList[0]);
+            comboBoxState.DataSource = result;
+        }
+
+        private void sortReps_Click(object sender, EventArgs e)
+        {
+            MenuItem arrangeByDefault = new MenuItem();
+            arrangeByDefault.Text = "Default Sorting";
+            arrangeByDefault.Click += ArrangeRepsByDefault;
+
+            MenuItem arrangeByFirst = new MenuItem();
+            arrangeByFirst.Text = "Sort by First Name";
+            arrangeByFirst.Click += ArrangeByFirstName;
+
+            MenuItem arrangeByLast = new MenuItem();
+            arrangeByLast.Text = "Sort by Last Name";
+            arrangeByLast.Click += ArrangeByLastName;
+
+            ContextMenu contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(arrangeByDefault);
+            contextMenu.MenuItems.Add(arrangeByFirst);
+            contextMenu.MenuItems.Add(arrangeByLast);
+            contextMenu.Show((sender as PictureBox), new Point(20,20));
+        }
+
+        private void ArrangeRepsByDefault(object sender, EventArgs e)
+        {
+            comboBoxRepresentative.DataSource = XMLFunctions.SalesRepList;
+        }
+
+        private void ArrangeByFirstName(object sender, EventArgs e)
+        {
+            var result = XMLFunctions.SalesRepList.ToList();
+            result.RemoveAt(0);
+            result = result.OrderBy(p => p.Name.First).ToList();
+            result.Insert(0, XMLFunctions.SalesRepList[0]);
+            comboBoxRepresentative.DataSource = result;
+        }
+
+        private void ArrangeByLastName(object sender, EventArgs e)
+        {
+            var result = XMLFunctions.SalesRepList.ToList();
+            result.RemoveAt(0);
+            result = result.OrderBy(p => p.Name.Last).ToList();
+            result.Insert(0, XMLFunctions.SalesRepList[0]);
+            comboBoxRepresentative.DataSource = result;
+        }
+
+        private void pictureBoxEmail_Click(object sender, EventArgs e)
+        {
+            if (isNullOrEmpty(comboBoxState) && isNullOrEmpty(comboBoxRepresentative))
             {
-                MessageBox.Show("Please choose a Region or Sales Rep from the dropdowns");
+                MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
+                messageBox.ShowDialog();
                 return;
             }
-            else if (labelRepResult.Text != "" && labelRepResult2.Text == "")
-            {
-                rep = labelRepResult.Text;
-                rep = rep.Substring(rep.IndexOf(": ") + 2);
-                cc = labelContactResult.Text.Split(' ').ElementAt(1);
-                phone = labelPhoneResult.Text;
-            }
-            else if (labelRepResult.Text != "" && labelRepResult2.Text != "")
-            {
-                //Choose a rep with the "North-South" dialog
-                DialogResult res = new DialogResult();
-                string firstRep = labelRepResult.Text.Split(':').Last();
-                string secondRep = labelRepResult2.Text.Split(':').Last();
 
-                North_South frm = new North_South(firstRep, secondRep);
-                res = frm.ShowDialog();
+            MenuItem offSMREmail = new MenuItem();
+            offSMREmail.Text = "Off SMR Email";
+            offSMREmail.Click += OffSMREmail_Click;
 
-                if (res == DialogResult.Yes) //"Yes" means "North rep"
-                {
-                    rep = labelRepResult.Text;
-                    rep = rep.Substring(rep.IndexOf(": ") + 2);
-                    cc = labelContactResult.Text.Split(' ').ElementAt(1);
-                    phone = labelPhoneResult.Text;
-                }
-                else if (res == DialogResult.No) //"No" means "South rep"
-                {
-                    rep = labelRepResult2.Text;
-                    rep = rep.Substring(rep.IndexOf(": ") + 2);
-                    cc = labelContactResult2.Text.Split(' ').ElementAt(1);
-                    phone = labelPhoneResult2.Text;
-                }
-                else //User closed out the dialog box
-                {
-                    return;
-                }
+            MenuItem gracePeriodEmail = new MenuItem();
+            gracePeriodEmail.Text = "Grace Period Email";
+            gracePeriodEmail.Click += GracePeriodEmail_Click;
+
+            MenuItem email = new MenuItem();
+            email.Text = "Blank Email";
+            email.Click += Email_Click;
+
+            ContextMenu contextMenu = new ContextMenu();
+
+            if (!isNullOrEmpty(comboBoxState))
+            {
+                contextMenu.MenuItems.Add(offSMREmail);
+                contextMenu.MenuItems.Add(gracePeriodEmail);
             }
 
-            cc = removeSpecial(cc); //Remove any extraneous characters
+            if (!isNullOrEmpty(comboBoxRepresentative))
+                contextMenu.MenuItems.Add(email);
 
-            string[] RegionNamesArray = RegionNames.ToArray();
-            string[] RegionAreaArray = RegionArea.ToArray();
-            string[] SalesRepNamesArray = SalesRepNames.ToArray();
-            string[] SalesRepEmailArray = SalesRepEmails.ToArray();
-            string[] SalesRepPositionArray = SalesRepPosition.ToArray();
-            string area = "";
-            string rsm = "";
+            contextMenu.Show((sender as PictureBox), new Point(20, 20));
+        }
 
-            //Find the RSM
-            if (comboBoxState.SelectedItem.ToString() != "")
+        private void OffSMREmail_Click(object sender, EventArgs e)
+        {
+            Common.Log("Composing an Off SMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+
+            Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
+
+            string rsr = rep.Email;
+            string cc = getCC(comboBoxState.SelectedItem as Common.Region);
+
+            if (cc.Contains(rsr))
+                cc = cc.Replace(rsr, "");
+
+            cc = rsr + ";" + cc;
+            string subject = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
+            string body = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string)) + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+
+            subject = replaceVariables(subject, rep.DisplayName, rep.Email, rep.Phone);
+            body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
+
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
+        }
+
+        private void GracePeriodEmail_Click(object sender, EventArgs e)
+        {
+            Common.Log("Composing a Grace Period email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+
+            Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
+
+            string rsr = rep.Email;
+            string cc = getCC(comboBoxState.SelectedItem as Common.Region) + getCC(new Common.Region() { Area = "Grace"});
+
+            if (cc.Contains(rsr))
+                cc.Replace(rsr, "");
+
+            cc = rsr + ";" + cc;
+            string subject = (string)XMLFunctions.readSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
+            string body = (string)XMLFunctions.readSetting("GracePeriodBody") + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+
+            subject = replaceVariables(subject, rep.DisplayName, rep.Email, rep.Phone);
+            body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
+
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
+        }
+
+        private void Email_Click(object sender, EventArgs e)
+        {
+            Common.Log("Composing a blank email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+            string to = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email;
+            string body = "<br><br>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { to, "", "", body });
+        }
+
+        private Common.SalesRep getRep(Common.Region region)
+        {
+            Common.SalesRep rep = null;
+            foreach (Common.SalesRep representative in XMLFunctions.SalesRepList)
             {
-                for (var i = 0; i < RegionNamesArray.Length; i++)
+                if (representative.Responsibilities != null && representative.Responsibilities.Contains(region.Name))
                 {
-                    if (RegionNamesArray[i] == comboBoxState.SelectedItem.ToString() && RegionAreaArray[i] != "")
+                    if (rep == null)
+                        rep = representative;
+                    else
                     {
-                        area = "RSM:" + RegionAreaArray[i];
-                        break;
+                        //Choose a rep with the "North-South" dialog
+                        DialogResult res = new DialogResult();
+                        North_South frm = new North_South(rep.DisplayName, representative.DisplayName);
+                        res = frm.ShowDialog();
+
+                        if (res == DialogResult.Yes) //"Yes" means "North rep"
+                            continue; //aka rep = rep;
+                        else if (res == DialogResult.No) //"No" means "South rep"
+                            rep = representative;
+                        else //User closed out the dialog box
+                            return null;
                     }
                 }
-
-                for (var i = 0; i < SalesRepPositionArray.Length; i++)
-                {
-                    if (SalesRepPositionArray[i].IndexOf(area) >= 0 && area != "")
-                    {
-                        rsm = SalesRepEmailArray[i];
-                        break;
-                    }
-                }
             }
-            else if (comboBoxRepresentative.SelectedItem.ToString() != "")
+
+            if (rep == null) //No reps, so look for an RSM
             {
-                for (var i = 0; i < SalesRepNamesArray.Length; i++)
+                foreach (Common.SalesRep rsm in XMLFunctions.SalesRepList)
                 {
-                    if (SalesRepNamesArray[i].IndexOf(comboBoxRepresentative.SelectedItem.ToString()) >= 0)
-                    {
-                        area = "RSM:" + SalesRepPositionArray[i].Split(':')[1];
-                        break;
-                    }
-                }
-
-                for (var i = 0; i < SalesRepPositionArray.Length; i++)
-                {
-                    if (SalesRepPositionArray[i].IndexOf(area) >= 0)
-                    {
-                        rsm = SalesRepEmailArray[i];
-                        break;
-                    }
+                    if (rsm.CC != null && rsm.CC.Contains(region.Area))
+                        rep = rsm;
                 }
             }
 
-            if (rsm == cc) //If the rsr IS the rsm
+            if (rep == null)
             {
-                cc = rsm;
-            }
-            else if (rsm != "") //If the rsr IS NOT the rsm
-            {
-                cc += ";" + rsm;
-            }
-            else if (rsm == "" && area != "") //If there is no rsm
-            {
-                if (comboBoxRepresentative.SelectedItem.ToString() != "")
-                {
-                    Log("Could not find an RSM for the selection: " + comboBoxRepresentative.Text);
-                }
-                else if(comboBoxState.SelectedItem.ToString() != "")
-                {
-                    Log("Could not find an RSM for the selection: " + comboBoxState.Text);
-                }
+                MessageBox messageBox = new MessageBox("No Reps or RSMs for selected Region", "The selected region has no representatives or RSMs", "OK", Common.MessageBoxResult.OK);
+                messageBox.ShowDialog();
             }
 
-            subject = replaceVariables(subject, rep, cc.Split(';')[0], phone);
-            body = replaceVariables(body, rep, cc.Split(';')[0], phone);
+            return rep;
+        }
 
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] {cc, subject, body});
+        private string getCC(Common.Region region)
+        {
+            string result = "";
+
+            foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
+            {
+                if (rep.CC != null && rep.CC.Contains(region.Area))
+                    result += rep.Email + ";";
+            }
+
+            return result;
         }
 
         private void composeOutlook(object parameters)
         {
             object[] array = parameters as object[];
 
-            string cc = Convert.ToString(array[0]);
-            string subject = Convert.ToString(array[1]);
-            string body = Convert.ToString(array[2]);
+            string to = Convert.ToString(array[0]);
+            string cc = Convert.ToString(array[1]);
+            string subject = Convert.ToString(array[2]);
+            string body = Convert.ToString(array[3]);
 
 
             try
@@ -614,6 +601,7 @@ namespace SalesMap
                 Outlook.Application outlookApp = new Outlook.Application();
                 Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
 
+                mailItem.To = to;
                 mailItem.CC = cc;
                 mailItem.Subject = subject;
                 mailItem.HTMLBody = body;
@@ -621,8 +609,9 @@ namespace SalesMap
             }
             catch (Exception eX)
             {
-                MessageBox.Show("Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again");
-                Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
+                MessageBox messageBox = new MessageBox("Email Failed", "Failed to create the email. (Exception: " + eX.Message + ")\n\n Please try again", "OK", Common.MessageBoxResult.OK);
+                messageBox.ShowDialog();
+                Common.Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
             }
         }
 
@@ -638,17 +627,17 @@ namespace SalesMap
         private void labelContactResult_Click(object sender, EventArgs e)
         {        
             string temp = labelContactResult.Text;
-            string copy = removeSpecial(temp.Substring(temp.IndexOf(": ") + 2));
+            string copy = Common.RemoveSpecial(temp.Substring(temp.IndexOf(": ") + 2));
 
             try
             {
                 Clipboard.SetText(copy);
                 labelContactResult.Text = "Contact: COPIED!";
-                Log("Clicked first Sales Rep email and set clipboard to \"" + copy + "\"");
+                Common.Log("Clicked first Sales Rep email and set clipboard to \"" + copy + "\"");
             }
-            catch
+            catch(Exception ex)
             {
-                Log("Attempted to set the clipboard text and failed");
+                Common.Log("Attempted to set the clipboard text and failed (Exception: " + ex.Message + ")");
                 labelContactResult.Text = "Contact: FAILED TO COPY...TRY AGAIN";
             }
 
@@ -660,17 +649,17 @@ namespace SalesMap
         private void labelPhoneResult_Click(object sender, EventArgs e)
         {
             string temp = labelPhoneResult.Text;
-            string copy = removeSpecial(temp);
+            string copy = Common.RemoveSpecial(temp);
 
             try
             {
                 Clipboard.SetText(copy);
                 labelPhoneResult.Text = "COPIED!";
-                Log("Clicked first Sales Rep phone and set clipboard to \"" + copy + "\"");
+                Common.Log("Clicked first Sales Rep phone and set clipboard to \"" + copy + "\"");
             }
-            catch
+            catch(Exception ex)
             {
-                Log("Attempted to set the clipboard text and failed");
+                Common.Log("Attempted to set the clipboard text and failed (Exception: " + ex.Message + ")");
                 labelPhoneResult.Text = "FAILED TO COPY...TRY AGAIN";
             }
 
@@ -682,17 +671,17 @@ namespace SalesMap
         private void labelContactResult2_Click(object sender, EventArgs e)
         {
             string temp = labelContactResult2.Text;
-            string copy = removeSpecial(temp.Substring(temp.IndexOf(": ") + 2));
+            string copy = Common.RemoveSpecial(temp.Substring(temp.IndexOf(": ") + 2));
 
             try
             {
                 Clipboard.SetText(copy);
                 labelContactResult2.Text = "Contact: COPIED!";
-                Log("Clicked second Sales Rep email and set clipboard to \"" + copy + "\"");
+                Common.Log("Clicked second Sales Rep email and set clipboard to \"" + copy + "\"");
             }
             catch
             {
-                Log("Attempted to set the clipboard text and failed");
+                Common.Log("Attempted to set the clipboard text and failed");
                 labelContactResult2.Text = "Contact: FAILED TO COPY...TRY AGAIN";
             }
 
@@ -703,18 +692,20 @@ namespace SalesMap
 
         private void labelPhoneResult2_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(sender.GetType() + " | " + sender.ToString());
+
             string temp = labelPhoneResult2.Text;
-            string copy = removeSpecial(temp);
+            string copy = Common.RemoveSpecial(temp);
 
             try
             {
                 Clipboard.SetText(copy);
                 labelPhoneResult2.Text = "COPIED!";
-                Log("Clicked second Sales Rep phone and set clipboard to \"" + copy + "\"");
+                Common.Log("Clicked second Sales Rep phone and set clipboard to \"" + copy + "\"");
             }
             catch
             {
-                Log("Attempted to set the clipboard text and failed");
+                Common.Log("Attempted to set the clipboard text and failed");
                 labelPhoneResult2.Text = "FAILED TO COPY...TRY AGAIN";
             }
 
@@ -723,44 +714,39 @@ namespace SalesMap
             labelPhoneResult2.Text = temp;
         }
 
-        private string diff(string s1, string s2)
+        private void showPicture(string name)
         {
-            if (s1 == s2)
-                return null;
-            
-            if (s1.Length > s2.Length)
+            string url = "http://info.sigmatek.net/downloads/SalesMap/" + name;
+            this.Invoke((MethodInvoker)delegate
             {
-                for (var i = 0; i < s1.Length; i++)
+                try
                 {
-                    if (s1[i] != s2[i])
-                    {
-                        if (i >= 10 && i + 10 < s1.Length)
-                            return s1.Substring(i - 10, 21) + " ||| " + s2.Substring(i - 10, 21);
-                        else if (i >= 10)
-                            return s1.Substring(i - 10, 11) + " ||| " + s2.Substring(i - 10, 11);
-                        else
-                            return s1.Substring(0, 10) + " ||| " + s2.Substring(0, 11);
-                    }
-                        
+                    labelNoImage.Hide();
+                    pictureBox1.Show();
+                    pictureBox1.Load(url);
                 }
-            }
-            else
-            {
-                for (var i = 0; i < s2.Length; i++)
+                catch
                 {
-                    if (s1[i] != s2[i])
-                    {
-                        if (i >= 10 && i + 10 < s2.Length)
-                            return s1.Substring(i - 10, 21) + " ||| " + s2.Substring(i - 10, 21);
-                        else if (i >= 10)
-                            return s1.Substring(i - 10, 11) + " ||| " + s2.Substring(i - 10, 11);
-                        else
-                            return s1.Substring(0, 10) + " ||| " + s2.Substring(0, 10);
-                    }
+                    pictureBox1.Hide();
+                    labelNoImage.Show();
+                }
+            });
+        }
 
-                }
-            }
-            return null;
+        private bool isNullOrEmpty(ComboBox comboBox)
+        {
+            bool result = false;
+
+            if (comboBox.SelectedItem == null)
+                result = true;
+            else if (comboBox.Text == "")
+                result = true;
+            else if (comboBox.SelectedItem is Common.SalesRep && string.IsNullOrEmpty((comboBox.SelectedItem as Common.SalesRep).DisplayName))
+                result = true;
+            else if (comboBox.SelectedItem is Common.Region && string.IsNullOrEmpty((comboBox.SelectedItem as Common.Region).DisplayName))
+                result = true;
+
+            return result;
         }
 
         private void Update(string version)
@@ -769,19 +755,12 @@ namespace SalesMap
             updater.ShowDialog();
         }
 
-        private string removeSpecial(string input)
-        {
-            input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
-
-            return input;
-        }
-
         private void SendStatistics()
         {
-            string statisticsPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\usage statistics.txt";
+            string statisticsPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Common.Log Files\usage statistics.txt";
             bool found = false;
 
-            if (File.Exists(statisticsPath))
+            if (Common.NetworkFileExists(new Uri(statisticsPath), 250))
             {
                 string[] contents = File.ReadAllLines(statisticsPath);
                 List<string> contentsList = contents.OfType<string>().ToList();
@@ -792,8 +771,8 @@ namespace SalesMap
 
                     if (s.Split(',').First() == Environment.UserName)
                     {
-                        contentsList[contentsList.IndexOf(s)] = Environment.UserName + "," + Properties.Settings.Default.Version + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time"));
-                        Log("Added this session's info to the stats table");
+                        contentsList[contentsList.IndexOf(s)] = Environment.UserName + "," + Common.ThisVersion + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time"));
+                        Common.Log("Added this session's info to the stats table");
                         found = true;
                         break;
                     }
@@ -801,32 +780,12 @@ namespace SalesMap
 
                 if (!found)
                 {
-                    contentsList.Add(Environment.UserName + "," + Properties.Settings.Default.Version + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time")));
-                    Log("Could not find a previous session in the stats table, so created one");
+                    contentsList.Add(Environment.UserName + "," + Common.ThisVersion + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time")));
+                    Common.Log("Could not find a previous session in the stats table, so created one");
                 }
 
                 File.WriteAllLines(statisticsPath, contentsList);
             }
-        }
-
-        private void Log(string itemToLog)
-        {
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
-            DateTime date = DateTime.UtcNow;
-            File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
-        }
-
-        private void Log(string itemToLog, bool addTimeStamp)
-        {
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
-
-            if (addTimeStamp)
-            {
-                DateTime date = DateTime.UtcNow;
-                File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
-            }
-            else
-                File.AppendAllText(logPath, itemToLog + Environment.NewLine);
         }
 
         private void checkFirstRun()
@@ -841,55 +800,38 @@ namespace SalesMap
 
                 if (key == null || key.GetValue("FirstRun") == null)
                 {
-                    Log("Key does not exist. Creating Key...");
+                    Common.Log("Key does not exist. Creating Key...");
                     try
                     {
                         key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
-                        key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                        key.SetValue("FirstRun", Common.ThisVersion);
                     }
                     catch
                     {
-                        Log("Could not create and set key (key does not exist).");
+                        Common.Log("Could not create and set key (key does not exist).");
                         return;
-                    }
-
-                    try
-                    {
-                        DirectoryInfo di = new DirectoryInfo(settingsPath);
-                        foreach (DirectoryInfo dir in di.GetDirectories())
-                            dir.Delete(true);
-
-                        Log("Cleared out the old settings and AppData folder");
-
-                        ProcessStartInfo Info = new ProcessStartInfo();
-                        Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
-                        Info.WindowStyle = ProcessWindowStyle.Hidden;
-                        Info.CreateNoWindow = true;
-                        Info.FileName = "cmd.exe";
-                        Process.Start(Info);
-                        Application.Exit();
-                    }
-                    catch
-                    {
-                        Log("Could not clear out old settings folder");
                     }
                 }
 
                 //Force the user to set up their signature
-                if (removeSpecial(Properties.Settings.Default.OffSMRSignature) == removeSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+                if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
                 {
-                    MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
+                    MessageBox messageBox = new MessageBox("Signature not set", "Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)",
+                                                            "OK", Common.MessageBoxResult.OK);
+                    messageBox.ShowDialog();
+                    //MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
 
-                    Log("Opening config so the user can set their signature");
+                    Common.Log("Opening config so the user can set their signature");
                     Settings config = new Settings();
                     config.ShowDialog();
                 }
 
-                if (key.GetValue("FirstRun").ToString() != Properties.Settings.Default.Version)
+                if (key.GetValue("FirstRun").ToString() != Common.ThisVersion)
                 {
-                    key.SetValue("FirstRun", Properties.Settings.Default.Version);
-                    Log("First time running version " + Properties.Settings.Default.Version + " of this program. Last version: " + key.GetValue("FirstRun").ToString());
-                    Log("This was the last time this will run");
+                    key.SetValue("FirstRun", Common.ThisVersion);
+                    About about = new About();
+                    about.ShowDialog();
+                    Common.Log("This was the last time this will run");
                 }
 
                 if (key.GetValue("Updating") != null && Convert.ToBoolean(key.GetValue("Updating")) == true)
@@ -897,52 +839,77 @@ namespace SalesMap
                     try
                     {
                         File.Delete(Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf("\\") + 1) + "SalesMap-old.exe");
-                        Log("Deleted the old executable");
+                        Common.Log("Deleted the old executable");
                     }
                     catch (Exception ex)
                     {
-                        Log("Could not delete the old executable: " + ex.Message);
+                        Common.Log("Could not delete the old executable: " + ex.Message);
                     }
 
                     key.SetValue("Updating", false);
-                    Log("Set \"Updating\" key to false");
+                    Common.Log("Set \"Updating\" key to false");
                 }
 
                 //Delete old files (if they exist)
 
+                XMLFunctions.ReadOldSettings();
+
                 if (File.Exists(offSMRPath))
                 {
                     File.Delete(offSMRPath);
-                    Log("Deleted OffSMR.txt from the last version of this program");
+                    Common.Log("Deleted OffSMR.txt from the last version of this program");
                 }
 
                 if (File.Exists(regionPath))
                 {
                     File.Delete(regionPath);
-                    Log("Deleted the Regions.txt from the last version of this program");
+                    Common.Log("Deleted the Regions.txt from the last version of this program");
                 }
 
                 if (File.Exists(salesPath))
                 {
                     File.Delete(salesPath);
-                    Log("Deleted the SalesReps.txt from the last version of this program");
+                    Common.Log("Deleted the SalesReps.txt from the last version of this program");
                 }
 
                 try
                 {
-                    key.SetValue("FirstRun", Properties.Settings.Default.Version);
+                    key.SetValue("FirstRun", Common.ThisVersion);
                 }
                 catch
                 {
-                    Log("Could not set value at end of checkFirstRun");
+                    Common.Log("Could not set value at end of checkFirstRun");
                 }
 
                 key.Close();
             }
             catch (Exception ex)
             {
-                Log("Problems with running checkFirstRun. Error: " + ex.Message);
+                Common.Log("Problems with running checkFirstRun. Error: " + ex.Message);
             }
+        }
+
+        private void SalesMapSearch_Load(object sender, EventArgs e)
+        {
+            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation", typeof(System.Drawing.Point), new Point(0,0));
+
+            if (!startupPoint.IsEmpty)
+            {
+                foreach (Screen s in Screen.AllScreens)
+                {
+                    if (s.Bounds.Contains(startupPoint))
+                    {
+                        this.Top = startupPoint.Y;
+                        this.Left = startupPoint.X;
+
+                        return;
+                    }
+                }
+            }
+
+            Screen screen = Screen.FromPoint(new Point(Cursor.Position.X, Cursor.Position.Y));
+            this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
+            this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
         }
     }
 }

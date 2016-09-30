@@ -22,18 +22,21 @@ namespace SalesMap
         {
             InitializeComponent();
 
-            textBoxEditSubject.Text = Properties.Settings.Default.OffSMRSubject;
-            textBoxMapLocation.Text = Properties.Settings.Default.MapFileLocation;
-            checkBoxInternational.Checked = Properties.Settings.Default.UseInternational;
-            checkBoxAutoUpdates.Checked = Properties.Settings.Default.AutoCheckUpdate;
-            checkBoxSendLog.Checked = Properties.Settings.Default.SendLog;
-            textBoxEdit.Text = Properties.Settings.Default.OffSMRBody;
-            richTextBoxSignature.Text = Properties.Settings.Default.OffSMRSignature;
+            textBoxMapLocation.Text = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap.pdf");
+            checkBoxInternational.Checked = (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false);
+            checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true);
+            checkBoxAboutOnStartup.Checked = (bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true);
+            checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true);
+            textBoxOffSMRBody.Text = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string));
+            textBoxOffSMRSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
+            textBoxGracePeriodBody.Text = (string)XMLFunctions.readSetting("GracePeriodBody", typeof(string));
+            textBoxGracePeriodSubject.Text = (string)XMLFunctions.readSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
+            richTextBoxSignature.Text = (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
             //If the user's Off SMR Signature is the same as the default, show them where to set up a new one
-            if (removeSpecial(Properties.Settings.Default.OffSMRSignature) == removeSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+            if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(bool), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
             {
-                tabControlOffSMREmail.SelectTab(1);
+                tabControlOffSMREmail.SelectTab(2);
                 richTextBoxSignature.BackColor = Color.LightCoral;
             }
             else
@@ -42,43 +45,56 @@ namespace SalesMap
             }
         }
 
-        private void linkLabelGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void pictureBoxAbout_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/derekantrican/SalesMap/wiki");
+            About about = new About();
+            about.ShowDialog();
+        }
+
+        private void linkLabelFeedback_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Feedback feedback = new Feedback();
+            feedback.ShowDialog();
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            Log("Saving settings");
+            Common.Log("Saving settings");
 
-            Properties.Settings.Default.OffSMRSubject = textBoxEditSubject.Text;
-            Properties.Settings.Default.MapFileLocation = textBoxMapLocation.Text;
-            Properties.Settings.Default.AutoCheckUpdate = checkBoxAutoUpdates.Checked;
-            Properties.Settings.Default.SendLog = checkBoxSendLog.Checked;
-            Properties.Settings.Default.OffSMRBody = textBoxEdit.Text;
-            Properties.Settings.Default.OffSMRSignature = richTextBoxSignature.Text;
+            XMLFunctions.saveSetting("MapFileLocation", textBoxMapLocation.Text);
+            XMLFunctions.saveSetting("AutoCheckForUpdates", checkBoxAutoUpdates.Checked);
+            XMLFunctions.saveSetting("ShowAboutOnStartup", checkBoxAboutOnStartup.Checked);
+            XMLFunctions.saveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);
+            XMLFunctions.saveSetting("OffSMRSubject", textBoxOffSMRSubject.Text);
+            XMLFunctions.saveSetting("OffSMRBody", textBoxOffSMRBody.Text);
+            XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
+            XMLFunctions.saveSetting("GracePeriodBody", textBoxGracePeriodBody.Text);
+            XMLFunctions.saveSetting("GracePeriodSubject", textBoxGracePeriodSubject.Text);
 
-            if (Properties.Settings.Default.UseInternational != checkBoxInternational.Checked)
+            if (checkBoxInternational.Checked != (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
             {
-                MessageBox.Show("The program will now restart...", "Restart Required", MessageBoxButtons.OK);
-                Properties.Settings.Default.UseInternational = checkBoxInternational.Checked;
-                Properties.Settings.Default.Save();
+                if (checkBoxInternational.Checked)
+                {
+                    XMLFunctions.parseRegions(true);
+                    XMLFunctions.parseReps(true);
+                }
+                else
+                {
+                    XMLFunctions.parseRegions(false);
+                    XMLFunctions.parseReps(false);
+                }
 
-                ProcessStartInfo Info = new ProcessStartInfo();
-                Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
-                Info.WindowStyle = ProcessWindowStyle.Hidden;
-                Info.CreateNoWindow = true;
-                Info.FileName = "cmd.exe";
-                Process.Start(Info);
-                Application.Exit();
+                XMLFunctions.saveSetting("UseInternational", checkBoxInternational.Checked);
             }
 
 
             if (Form.ModifierKeys == Keys.Control)
             {
-                if (MessageBox.Show("This will factory reset this program! \n\nAre you sure?", "Factory Reset",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                MessageBox messageBox = new MessageBox("Factory Reset", "This will factory reset this program! \n\nAre you sure?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
+                messageBox.ShowDialog();
+                if (Common.DialogResult == Common.MessageBoxResult.Yes)
                 {
-                    Log("Factory reset!");
+                    Common.Log("Factory reset!");
 
                     try
                     {
@@ -93,8 +109,9 @@ namespace SalesMap
                     }
                     catch (Exception ex)
                     {
-                        Log("Problems encountered during a factory reset: " + ex.Message);
-                        MessageBox.Show("Could not factory reset. Please contact the developer");
+                        Common.Log("Problems encountered during a factory reset: " + ex.Message);
+                        MessageBox messageBox2 = new MessageBox("Error during factory reset", "Could not factory reset. Please contact the developer", "OK", Common.MessageBoxResult.OK);
+                        messageBox2.ShowDialog();
                         return;
                     }
 
@@ -113,71 +130,31 @@ namespace SalesMap
 
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            WebClient client = new WebClient();
-            string url = "https://github.com/derekantrican/SalesMap/tags";
-            string html = "";
-            try
-            {
-                html = client.DownloadString(url);
-            }
-            catch
-            {
-                Log("Attempted to check for new version and failed to get html");
-                MessageBox.Show("Failed to check for a new update. Are you connected to the internet?");
-                return;
-            }
+            string GitVersionString = Common.checkGitHub();
+            double GitVersion = Convert.ToDouble(GitVersionString.Split('v').Last());
+            double thisVersion = Convert.ToDouble(Common.ThisVersion.Split('v').Last());
 
-            string nextUrl = "";
-
-            List<string> versions = new List<string>();
-            string version = "";
-            while (html.IndexOf("<span class=\"disabled\">Next</span>") < 0)
+            if (GitVersion > thisVersion)
             {
-                while (html.IndexOf("<span class=\"tag-name\">v") > -1)
+                Common.Log("Prompted for new update. Current: " + Common.ThisVersion + "  Online: " + GitVersion);
+
+                MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersionString + " and you are running " + Common.ThisVersion +
+                                    "\n\nDo you want to update to the new version?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
+                messageBox.ShowDialog();
+                if (Common.DialogResult == Common.MessageBoxResult.Yes)
                 {
-                    html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
-                    version = html.Split('<')[0];
-
-                    if (version != "" && version.IndexOf("beta") < 0)
-                        versions.Add(html.Split('<')[0]);
-                }
-
-                nextUrl = html.Substring(html.IndexOf("<span class=\"disabled\">Previous</span>") + 47).Split('\"')[0];
-                html = client.DownloadString(nextUrl);
-            }
-
-            //Run this while loop again to get the last page
-            while (html.IndexOf("<span class=\"tag-name\">v") > -1)
-            {
-                html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
-                version = html.Split('<')[0];
-
-                if (version != "" && version.IndexOf("beta") < 0)
-                    versions.Add(html.Split('<')[0]);
-            }
-
-            string GitVersion = versions.First();
-            string thisVersion = Properties.Settings.Default.Version;
-
-            if (GitVersion != thisVersion)
-            {
-                Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
-
-                if (MessageBox.Show("A new version is available!\n\nThe current version is " + GitVersion + " and you are running " + thisVersion +
-                                    "\n\nDo you want to update to the new version?",
-                                    "New Update Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-                {
-                    Log("User selected \"Yes\" for the new update");
-                    Update(GitVersion);
+                    Common.Log("User selected \"Yes\" for the new update");
+                    Update(GitVersionString);
                 }
                 else
                 {
-                    Log("User selected \"No\" for the new update");
+                    Common.Log("User selected \"No\" for the new update");
                 }
             }
             else
             {
-                MessageBox.Show("Congrats, you have the most current version! You are running version v5.5");
+                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version " + Common.ThisVersion, "OK", Common.MessageBoxResult.OK);
+                messageBox2.ShowDialog();
             }
         }
 
@@ -189,19 +166,27 @@ namespace SalesMap
 
         private void buttonVariables_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You can use the following variables when defining the Off SMR Email (which will get replaced with the appropriate information" +
-                            " when the email is composed):\n\n" +
-                            "   - \"{SALESREPNAME}\" ... which will get replaced with the rep's name\n" +
-                            "   - \"{SALESREPEMAIL}\" ... which will get replaced with the rep's email\n" +
-                            "   - \"{SALESREPPHONE}\" ... which will get replaced with the rep's phone #", "Off SMR EMail Variables");
+            MessageBox messageBox = new MessageBox("Off SMR EMail Variables", "You can use the following variables when defining the Off SMR Email:\n\n" +
+                                                    "   - \"{SALESREPNAME}\" ... the rep's name\n" +
+                                                    "   - \"{SALESREPEMAIL}\" ... the rep's email\n" +
+                                                    "   - \"{SALESREPPHONE}\" ... the rep's phone #", "OK", Common.MessageBoxResult.OK);
+            messageBox.ShowDialog();
         }
 
-        private void pictureBoxPreview_Click(object sender, EventArgs e)
+        private void OffSMRPreview_Click(object sender, EventArgs e)
         {
-            string subject = textBoxEditSubject.Text;
-            string body = replaceVariables(textBoxEdit.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
+            string subject = textBoxOffSMRSubject.Text;
+            string body = replaceVariables(textBoxOffSMRBody.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
 
             ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "mr.salesrep@sigmanest.com", subject, body });
+        }
+
+        private void GracePeriodPreview_Click(object sender, EventArgs e)
+        {
+            string subject = textBoxGracePeriodSubject.Text;
+            string body = replaceVariables(textBoxGracePeriodBody.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
+
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "bill.huffman@sigmanest.com;jandre.terreblanche@sigmanest.com;mr.salesrep@sigmanest.com", subject, body });
         }
 
         private void composeOutlook(object parameters)
@@ -225,8 +210,7 @@ namespace SalesMap
             }
             catch (Exception eX)
             {
-                MessageBox.Show("Failed to create the email. (Exception: " + eX.Message + "\n\n Please try again");
-                Log("Failed to create email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
+                Common.Log("Failed to create test email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
             }
         }
 
@@ -240,33 +224,27 @@ namespace SalesMap
             return rawReplaced;
         }
 
-        private string removeSpecial(string input)
+        private void Settings_Load(object sender, EventArgs e)
         {
-            input = input.Replace("\r", "").Replace("\n", "").Replace(" ", "").Replace("\t", "");
+            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation", typeof(System.Drawing.Point), new Point(0,0));
 
-            return input;
-        }
-
-        private void Log(string itemToLog)
-        {
-            //Add a check for a "on/off" for the log in settings?
-            DateTime date = DateTime.UtcNow;
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
-
-            File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
-        }
-
-        private void Log(string itemToLog, bool addTimeStamp)
-        {
-            string logPath = @"C:\Users\" + Environment.UserName + @"\log.txt";
-
-            if (addTimeStamp)
+            if (!startupPoint.IsEmpty)
             {
-                DateTime date = DateTime.UtcNow;
-                File.AppendAllText(logPath, "[" + date + " UTC] " + itemToLog + Environment.NewLine);
+                foreach (Screen s in Screen.AllScreens)
+                {
+                    if (s.Bounds.Contains(startupPoint))
+                    {
+                        this.Top = startupPoint.Y;
+                        this.Left = startupPoint.X;
+
+                        return;
+                    }
+                }
             }
-            else
-                File.AppendAllText(logPath, itemToLog + Environment.NewLine);
+
+            Screen screen = Screen.FromPoint(new Point(Cursor.Position.X, Cursor.Position.Y));
+            this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
+            this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
         }
     }
 }

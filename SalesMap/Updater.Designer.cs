@@ -46,7 +46,7 @@
             this.ClientSize = new System.Drawing.Size(498, 35);
             this.ControlBox = false;
             this.Controls.Add(this.progressBar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Updater";
             this.Text = "Updating...";
             this.ResumeLayout(false);
