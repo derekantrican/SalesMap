@@ -120,7 +120,7 @@
             // checkBoxAutoUpdates
             // 
             this.checkBoxAutoUpdates.AutoSize = true;
-            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(234, 221);
+            this.checkBoxAutoUpdates.Location = new System.Drawing.Point(224, 221);
             this.checkBoxAutoUpdates.Name = "checkBoxAutoUpdates";
             this.checkBoxAutoUpdates.Size = new System.Drawing.Size(169, 17);
             this.checkBoxAutoUpdates.TabIndex = 10;
@@ -148,7 +148,7 @@
             // checkBoxSendLog
             // 
             this.checkBoxSendLog.AutoSize = true;
-            this.checkBoxSendLog.Location = new System.Drawing.Point(234, 258);
+            this.checkBoxSendLog.Location = new System.Drawing.Point(224, 258);
             this.checkBoxSendLog.Name = "checkBoxSendLog";
             this.checkBoxSendLog.Size = new System.Drawing.Size(152, 17);
             this.checkBoxSendLog.TabIndex = 15;
@@ -183,11 +183,11 @@
             // checkBoxAboutOnStartup
             // 
             this.checkBoxAboutOnStartup.AutoSize = true;
-            this.checkBoxAboutOnStartup.Location = new System.Drawing.Point(234, 239);
+            this.checkBoxAboutOnStartup.Location = new System.Drawing.Point(224, 239);
             this.checkBoxAboutOnStartup.Name = "checkBoxAboutOnStartup";
-            this.checkBoxAboutOnStartup.Size = new System.Drawing.Size(175, 17);
+            this.checkBoxAboutOnStartup.Size = new System.Drawing.Size(207, 17);
             this.checkBoxAboutOnStartup.TabIndex = 19;
-            this.checkBoxAboutOnStartup.Text = "Show About screen on startup?";
+            this.checkBoxAboutOnStartup.Text = "Show About screen with new version?";
             this.toolTip1.SetToolTip(this.checkBoxAboutOnStartup, "Send log file to developer when program is closed");
             this.checkBoxAboutOnStartup.UseVisualStyleBackColor = true;
             // 
