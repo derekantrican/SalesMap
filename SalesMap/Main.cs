@@ -757,7 +757,7 @@ namespace SalesMap
 
         private void SendStatistics()
         {
-            string statisticsPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Common.Log Files\usage statistics.txt";
+            string statisticsPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\usage statistics.txt";
             bool found = false;
 
             if (Common.NetworkFileExists(new Uri(statisticsPath), 250))
