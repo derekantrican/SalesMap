@@ -25,10 +25,10 @@ namespace SalesMap
 
         public static object readSetting(string settingName, Type defaultType = null, object defaultValue = null)
         {
-            if (!File.Exists(UserSettingsPath + "Settings.xml"))
+            if (!File.Exists(Path.Combine(Common.UserSettingsPath, "Settings.xml")))
                 DownloadDefaultXml();
 
-            XDocument document = XDocument.Load(UserSettingsPath + "Settings.xml");
+            XDocument document = XDocument.Load(Path.Combine(Common.UserSettingsPath, "Settings.xml"));
             var setting = document.Descendants("Setting").Where(x => x.Attribute("name").Value.Equals(settingName)).SingleOrDefault();
 
             if (setting != null)
@@ -49,7 +49,7 @@ namespace SalesMap
                           defaultValue);
 
                 document.Element("Settings").Add(setting);
-                document.Save(UserSettingsPath + "Settings.xml");
+                document.Save(Path.Combine(Common.UserSettingsPath, "Settings.xml"));
                 return defaultValue;
 
             }
@@ -57,9 +57,9 @@ namespace SalesMap
 
         public static void saveSetting(string settingName, object value)
         {
-            if (!File.Exists(UserSettingsPath + "Settings.xml"))
+            if (!File.Exists(Path.Combine(Common.UserSettingsPath, "Settings.xml")))
                 DownloadDefaultXml();
-            XDocument document = XDocument.Load(UserSettingsPath + "Settings.xml");
+            XDocument document = XDocument.Load(Path.Combine(Common.UserSettingsPath, "Settings.xml"));
             var setting = document.Descendants("Setting").Where(x => x.Attribute("name").Value.Equals(settingName)).SingleOrDefault();
 
             if (setting == null)
@@ -82,13 +82,13 @@ namespace SalesMap
             }
 
             document.Element("Settings").Attribute("updated").Value = DateTime.Now.ToString("%M/%d/yyyy HH:mm");
-            document.Save(UserSettingsPath + "Settings.xml");
+            document.Save(Path.Combine(Common.UserSettingsPath, "Settings.xml"));
         }
 
         static void DownloadDefaultXml()
         {
             WebClient client = new WebClient();
-            client.DownloadFile(InfoSiteBase + "Settings.xml", UserSettingsPath + "Settings.xml");
+            client.DownloadFile(InfoSiteBase + "Settings.xml", Path.Combine(Common.UserSettingsPath, "Settings.xml"));
 
             Log("Downloaded the default Settings.xml from online");
         }
@@ -111,18 +111,18 @@ namespace SalesMap
         //{
         //    string desiredXml = database == Database.Reps ? "SalesReps.xml" : "Regions.xml";
 
-        //    if (database == Database.Regions && !File.Exists(UserSettingsPath + desiredXml))
+        //    if (database == Database.Regions && !File.Exists(Path.Combine(UserSettingsPath, desiredXml)))
         //    {
         //        DownloadXMLToDisk(database);
         //        return null;
         //    }
-        //    else if (database == Database.Reps && !File.Exists(UserSettingsPath + desiredXml))
+        //    else if (database == Database.Reps && !File.Exists(Path.Combine(UserSettingsPath, desiredXml)))
         //    {
         //        DownloadXMLToDisk(database);
         //        return null;
         //    }
 
-        //    XDocument document = XDocument.Load(UserSettingsPath + desiredXml);
+        //    XDocument document = XDocument.Load(Path.Combine(UserSettingsPath, desiredXml));
         //    DateTime updated;
         //    if (database == Database.Reps)
         //        updated = DateTime.Parse(document.Element("SalesReps").Attribute("updated").Value);
@@ -138,7 +138,7 @@ namespace SalesMap
         //    string downloadURL = InfoSiteBase + databaseSelection;
 
         //    WebClient webClient = new WebClient();
-        //    webClient.DownloadFileAsync(new Uri(downloadURL), UserSettingsPath + databaseSelection);
+        //    webClient.DownloadFileAsync(new Uri(downloadURL), Path.Combine(UserSettingsPath, databaseSelection));
         //}
 
         private static string downloadXML(Database database, bool useInternational)
@@ -275,7 +275,7 @@ namespace SalesMap
             if (!Directory.Exists(UserSettingsPath) && (new DirectoryInfo(UserSettingsPath)).GetDirectories().Count() > 0)
                 return;
 
-            if (!File.Exists(UserSettingsPath + "Settings.xml"))
+            if (!File.Exists(Path.Combine(Common.UserSettingsPath, "Settings.xml")))
                 DownloadDefaultXml();
 
             bool settingCopied = false;

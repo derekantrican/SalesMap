@@ -29,9 +29,9 @@ namespace SalesMap
 
             Common.CheckPaths();
 
-            if (File.Exists(Common.UserSettingsPath + "log.txt") && File.ReadLines(Common.UserSettingsPath + "log.txt").Count() > 10000)
+            if (File.Exists(Path.Combine(Common.UserSettingsPath, "log.txt")) && File.ReadLines(Path.Combine(Common.UserSettingsPath, "log.txt")).Count() > 10000)
             {
-                File.WriteAllText(Common.UserSettingsPath + "log.txt", ""); //Clear the log
+                File.WriteAllText(Path.Combine(Common.UserSettingsPath, "log.txt"), ""); //Clear the log
                 Common.Log("Cleared the log as it was longer than 10,000 lines");
             }
 
@@ -118,7 +118,7 @@ namespace SalesMap
                 });
 
                 string user = Environment.UserName;
-                string logPath = Common.UserSettingsPath + "log.txt";
+                string logPath = Path.Combine(Common.UserSettingsPath, "log.txt");
 
                 if (File.Exists(logPath))
                 {
