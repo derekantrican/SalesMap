@@ -217,7 +217,7 @@ namespace SalesMap
 
             foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
             {
-                if (rep.Responsibilities != null && rep.Responsibilities.Find(p => p.IndexOf(search) >= 0) != null)
+                if (rep.Responsibilities != null && rep.Responsibilities.Find(p => p == search) != null)
                 {
                     found++;
 
