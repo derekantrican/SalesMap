@@ -33,7 +33,7 @@ namespace SalesMap
                 try
                 {
                     WebClient client = new WebClient();
-                    Stream stream = client.OpenRead("http://www.google.com");
+                    Stream stream = client.OpenRead("http://www.github.com");
                     return true;
                 }
                 catch
