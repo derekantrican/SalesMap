@@ -120,7 +120,8 @@ namespace SalesMap
                         versions.Add(html.Split('<')[0]);
                 }
 
-                nextUrl = html.Substring(html.IndexOf("<span class=\"disabled\">Previous</span>") + 47).Split('\"')[0];
+                nextUrl = html.Substring(html.IndexOf("https://github.com/derekantrican/SalesMap/tags?after="));
+                nextUrl = nextUrl.Split('\"')[0];
                 html = client.DownloadString(nextUrl);
             }
 
@@ -133,6 +134,9 @@ namespace SalesMap
                 if (version != "" && version.IndexOf("beta") < 0)
                     versions.Add(html.Split('<')[0]);
             }
+
+            versions.Sort();
+            versions.Reverse();
 
             return versions.First();
         }
