@@ -188,7 +188,7 @@
             this.checkBoxAboutOnStartup.Size = new System.Drawing.Size(207, 17);
             this.checkBoxAboutOnStartup.TabIndex = 19;
             this.checkBoxAboutOnStartup.Text = "Show About screen with new version?";
-            this.toolTip1.SetToolTip(this.checkBoxAboutOnStartup, "Send log file to developer when program is closed");
+            this.toolTip1.SetToolTip(this.checkBoxAboutOnStartup, "Show about window when a new version is run for the first time");
             this.checkBoxAboutOnStartup.UseVisualStyleBackColor = true;
             // 
             // GracePeriodPreview
