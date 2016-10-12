@@ -630,6 +630,10 @@ namespace SalesMap
                 return;
             }
 
+            MenuItem beta = new MenuItem();
+            beta.Text = "[BETA]";
+            beta.Enabled = false;
+
             MenuItem messageRSR = new MenuItem();
             messageRSR.Text = "Message RSR(s)";
             messageRSR.Click += MessageRSR_Click;
@@ -643,6 +647,7 @@ namespace SalesMap
             messageSIMadmin.Click += MessageSIMadmin_Click;
 
             ContextMenu contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(beta);
             contextMenu.MenuItems.Add(messageRSR);
             contextMenu.MenuItems.Add(messageRSMs);
             contextMenu.MenuItems.Add(messageSIMadmin);
@@ -665,7 +670,18 @@ namespace SalesMap
 
         private void MessageRSMs_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            string result = "";
+            if (!isNullOrEmpty(comboBoxState))
+            {
+                Common.Region region = comboBoxState.SelectedItem as Common.Region;
+                foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
+                {
+                    if (rep.CC != null && rep.CC.Contains(region.Area) && !string.IsNullOrEmpty(rep.SkypeIdentity))
+                        result += "<sip:" + rep.SkypeIdentity + ">";
+                }
+
+                StartSkypeMessage(result);
+            }
         }
 
         private void MessageSIMadmin_Click(object sender, EventArgs e)
@@ -675,6 +691,8 @@ namespace SalesMap
 
         private void StartSkypeMessage(string arguments)
         {
+            Common.Log("Composing a Skype message to " + arguments);
+
             ProcessStartInfo Info = new ProcessStartInfo();
             Info.Arguments = "/C start im:\"" + arguments + "\"";
             Info.WindowStyle = ProcessWindowStyle.Hidden;

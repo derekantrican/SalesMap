@@ -77,6 +77,7 @@
             this.MinimizeBox = false;
             this.Name = "North_South";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Choose a Sales Rep";
             this.ResumeLayout(false);
             this.PerformLayout();
