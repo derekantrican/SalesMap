@@ -76,6 +76,7 @@ namespace SalesMap
             public string SkypeIdentity { get; set; }
             public List<string> Responsibilities { get; set; }
             public List<string> CC { get; set; }
+            public List<string> SIMS { get; set; }
             public string Picture { get; set; }
             public string DisplayName
             {

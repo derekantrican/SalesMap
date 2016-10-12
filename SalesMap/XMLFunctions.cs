@@ -16,6 +16,7 @@ namespace SalesMap
     {
         public static List<Region> RegionList = new List<Region>();
         public static List<SalesRep> SalesRepList = new List<SalesRep>();
+        public static List<SalesRep> SIMadmins = new List<SalesRep>();
 
         public enum Database
         {
@@ -234,11 +235,25 @@ namespace SalesMap
 
                     rep.CC = CC.Count > 0 ? CC : null;
 
+                    List<string> SIMS = new List<string>();
+                    foreach (XElement sims in element.Element("SIMS").Elements("Area"))
+                    {
+                        SIMS.Add(sims.Value);
+                    }
+
+                    rep.SIMS = SIMS.Count > 0 ? SIMS : null;
+
                     rep.Picture = element.Element("Picture").Value;
                 }
                 catch
                 {
                     Common.Log("Could not read rep " + rep.Name.First + " " + rep.Name.Last + " from xml");
+                }
+
+                if (rep.SIMS != null && rep.SIMS.Count > 0)
+                {
+                    SIMadmins.Add(rep);
+                    continue;
                 }
 
                 SalesRepList.Add(rep);

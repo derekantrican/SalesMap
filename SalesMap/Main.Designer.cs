@@ -53,6 +53,7 @@
             this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBackground = new System.Windows.Forms.PictureBox();
+            this.labelSIMadmin = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkype)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sortRegions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sortReps)).BeginInit();
@@ -232,10 +233,16 @@
             this.pictureBackground.Name = "pictureBackground";
             this.pictureBackground.TabStop = false;
             // 
+            // labelSIMadmin
+            // 
+            resources.ApplyResources(this.labelSIMadmin, "labelSIMadmin");
+            this.labelSIMadmin.Name = "labelSIMadmin";
+            // 
             // SalesMapSearch
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelSIMadmin);
             this.Controls.Add(this.pictureBoxSkype);
             this.Controls.Add(this.sortRegions);
             this.Controls.Add(this.sortReps);
@@ -301,6 +308,7 @@
         private System.Windows.Forms.PictureBox sortReps;
         private System.Windows.Forms.PictureBox sortRegions;
         private System.Windows.Forms.PictureBox pictureBoxSkype;
+        private System.Windows.Forms.Label labelSIMadmin;
     }
 }
 

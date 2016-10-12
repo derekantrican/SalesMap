@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelState.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="labelOR.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelOR.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="labelRepresentative.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -208,7 +208,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelRepresentative.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="comboBoxState.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -238,7 +238,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBoxState.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="comboBoxRepresentative.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -265,7 +265,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBoxRepresentative.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="labelRepResult.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -298,7 +298,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelRepResult.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="labelRegionResult.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -310,7 +310,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelRegionResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 236</value>
+    <value>12, 261</value>
   </data>
   <data name="labelRegionResult.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 16</value>
@@ -331,7 +331,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelRegionResult.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="labelContactResult.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -367,7 +367,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelContactResult.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="labelContactResult2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -403,7 +403,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelContactResult2.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="labelRepResult2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -436,7 +436,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelRepResult2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="labelNoImage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -445,7 +445,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelNoImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 386</value>
+    <value>125, 411</value>
   </data>
   <data name="labelNoImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 13</value>
@@ -466,7 +466,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelNoImage.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="labelPhoneResult.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -502,7 +502,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelPhoneResult.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="labelPhoneResult2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -538,7 +538,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelPhoneResult2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="pictureBoxSkype.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -568,7 +568,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBoxSkype.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="sortRegions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -598,7 +598,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;sortRegions.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="sortReps.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -628,7 +628,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;sortReps.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="pictureBoxEmail.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -658,7 +658,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBoxEmail.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="pictureBoxOnlineMaps.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -688,7 +688,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBoxOnlineMaps.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="pictureBoxMap.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -718,7 +718,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBoxMap.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="pictureBoxSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -748,13 +748,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBoxSettings.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 255</value>
+    <value>36, 280</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>275, 275</value>
@@ -775,7 +775,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="pictureBackground.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -799,7 +799,40 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBackground.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
+  </data>
+  <data name="labelSIMadmin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelSIMadmin.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="labelSIMadmin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelSIMadmin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 239</value>
+  </data>
+  <data name="labelSIMadmin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 16</value>
+  </data>
+  <data name="labelSIMadmin.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="labelSIMadmin.Text" xml:space="preserve">
+    <value>SIM admin: </value>
+  </data>
+  <data name="&gt;&gt;labelSIMadmin.Name" xml:space="preserve">
+    <value>labelSIMadmin</value>
+  </data>
+  <data name="&gt;&gt;labelSIMadmin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelSIMadmin.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelSIMadmin.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -808,7 +841,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>362, 538</value>
+    <value>362, 564</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
