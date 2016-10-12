@@ -215,8 +215,8 @@ namespace SalesMap
                     name.Last = element.Element("Name").Element("Last").Value;
                     rep.Name = name;
                     rep.Email = element.Element("Email").Value;
-                    rep.Phone = element.Element("Phone").Value;
-                    rep.SkypeIdentity = element.Element("SkypeIdentity").Value;
+                    rep.Phone = !string.IsNullOrEmpty(element.Element("Phone").Value) ? element.Element("Phone").Value : "";
+                    rep.SkypeIdentity = !string.IsNullOrEmpty(element.Element("SkypeIdentity").Value) ? element.Element("SkypeIdentity").Value : "";
                 
                     List<string> responsibilities = new List<string>();
                     foreach (XElement responsibility in element.Element("Responsibilities").Elements("Region"))
