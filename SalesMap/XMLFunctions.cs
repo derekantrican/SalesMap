@@ -236,12 +236,17 @@ namespace SalesMap
                     rep.CC = CC.Count > 0 ? CC : null;
 
                     List<string> SIMS = new List<string>();
-                    foreach (XElement sims in element.Element("SIMS").Elements("Area"))
+                    try
                     {
-                        SIMS.Add(sims.Value);
-                    }
+                        foreach (XElement sims in element.Element("SIMS").Elements("Area"))
+                            SIMS.Add(sims.Value);
 
-                    rep.SIMS = SIMS.Count > 0 ? SIMS : null;
+                        rep.SIMS = SIMS;
+                    }
+                    catch
+                    {
+                        rep.SIMS = null;
+                    }                    
 
                     rep.Picture = element.Element("Picture").Value;
                 }
