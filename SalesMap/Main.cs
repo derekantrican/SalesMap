@@ -257,6 +257,14 @@ namespace SalesMap
                 labelContactResult2.Text = "";
                 labelPhoneResult2.Text = "";
             }
+
+            //Get the SIM admin
+            labelSIMadmin.Text = "SIM admin: ";
+            foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
+            {
+                if (rep.SIMS != null && rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area))
+                    labelSIMadmin.Text += labelSIMadmin.Text == "SIM admin: " ? rep.DisplayName : ", " + rep.DisplayName;
+            }
         }
 
         private void comboBoxRepresentative_SelectedIndexChanged(object sender, EventArgs e)
