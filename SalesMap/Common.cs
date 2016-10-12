@@ -73,6 +73,7 @@ namespace SalesMap
             public Name Name { get; set; }
             public string Email { get; set; }
             public string Phone { get; set; }
+            public string SkypeIdentity { get; set; }
             public List<string> Responsibilities { get; set; }
             public List<string> CC { get; set; }
             public string Picture { get; set; }

@@ -657,7 +657,10 @@ namespace SalesMap
             else
                 rep = comboBoxRepresentative.SelectedItem as Common.SalesRep;
 
-            StartSkypeMessage("<sip:" + rep.Name.First + "." + rep.Name.Last + "@sigmatek.net>");
+            if (string.IsNullOrEmpty(rep.SkypeIdentity))
+                return;
+
+            StartSkypeMessage("<sip:" + rep.SkypeIdentity + ">");
         }
 
         private void MessageRSMs_Click(object sender, EventArgs e)

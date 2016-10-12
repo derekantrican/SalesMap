@@ -216,6 +216,7 @@ namespace SalesMap
                     rep.Name = name;
                     rep.Email = element.Element("Email").Value;
                     rep.Phone = element.Element("Phone").Value;
+                    rep.SkypeIdentity = element.Element("SkypeIdentity").Value;
                 
                     List<string> responsibilities = new List<string>();
                     foreach (XElement responsibility in element.Element("Responsibilities").Elements("Region"))
