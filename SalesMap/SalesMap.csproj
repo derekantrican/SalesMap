@@ -200,6 +200,7 @@
     <None Include="Resources\envelope_icon.jpg" />
     <None Include="Resources\sort.png" />
     <None Include="Resources\about.png" />
+    <None Include="Resources\Skype.ico" />
     <Content Include="SalesMap.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

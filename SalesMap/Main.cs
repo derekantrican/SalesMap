@@ -621,6 +621,64 @@ namespace SalesMap
             return rawReplaced;
         }
 
+        private void pictureBoxSkype_Click(object sender, EventArgs e)
+        {
+            if (isNullOrEmpty(comboBoxState) && isNullOrEmpty(comboBoxRepresentative))
+            {
+                MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
+                messageBox.ShowDialog();
+                return;
+            }
+
+            MenuItem messageRSR = new MenuItem();
+            messageRSR.Text = "Message RSR(s)";
+            messageRSR.Click += MessageRSR_Click;
+
+            MenuItem messageRSMs = new MenuItem();
+            messageRSMs.Text = "Message RSM(s)";
+            messageRSMs.Click += MessageRSMs_Click;
+
+            MenuItem messageSIMadmin = new MenuItem();
+            messageSIMadmin.Text = "Message SIM Admin";
+            messageSIMadmin.Click += MessageSIMadmin_Click;
+
+            ContextMenu contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add(messageRSR);
+            contextMenu.MenuItems.Add(messageRSMs);
+            contextMenu.MenuItems.Add(messageSIMadmin);
+            contextMenu.Show((sender as PictureBox), new Point(20, 20));
+        }
+
+        private void MessageRSR_Click(object sender, EventArgs e)
+        {
+            Common.SalesRep rep;
+            if (isNullOrEmpty(comboBoxRepresentative))
+                rep = getRep(comboBoxState.SelectedItem as Common.Region);
+            else
+                rep = comboBoxRepresentative.SelectedItem as Common.SalesRep;
+
+            StartSkypeMessage("<sip:" + rep.Name.First + "." + rep.Name.Last + "@sigmatek.net>");
+        }
+
+        private void MessageRSMs_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MessageSIMadmin_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void StartSkypeMessage(string arguments)
+        {
+            ProcessStartInfo Info = new ProcessStartInfo();
+            Info.Arguments = "/C start im:\"" + arguments + "\"";
+            Info.WindowStyle = ProcessWindowStyle.Hidden;
+            Info.FileName = "cmd.exe";
+            Process infoProcess = Process.Start(Info);
+        }
+
         private void labelContactResult_Click(object sender, EventArgs e)
         {        
             string temp = labelContactResult.Text;
