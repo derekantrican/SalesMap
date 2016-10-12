@@ -653,7 +653,7 @@ namespace SalesMap
             messageRSMs.Click += MessageRSMs_Click;
 
             MenuItem messageSIMadmin = new MenuItem();
-            messageSIMadmin.Text = "Message SIM Admin";
+            messageSIMadmin.Text = "Message SIM Admin(s)";
             messageSIMadmin.Click += MessageSIMadmin_Click;
 
             ContextMenu contextMenu = new ContextMenu();
@@ -696,7 +696,18 @@ namespace SalesMap
 
         private void MessageSIMadmin_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            string result = "";
+            if (!isNullOrEmpty(comboBoxState))
+            {
+                Common.Region region = comboBoxState.SelectedItem as Common.Region;
+                foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
+                {
+                    if (rep.SIMS != null && rep.SIMS.Contains(region.Area) && !string.IsNullOrEmpty(rep.SkypeIdentity))
+                        result += "<sip:" + rep.SkypeIdentity + ">";
+                }
+
+                StartSkypeMessage(result);
+            }
         }
 
         private void StartSkypeMessage(string arguments)
