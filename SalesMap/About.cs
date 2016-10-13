@@ -94,5 +94,16 @@ namespace SalesMap
         {
             Process.Start("mailto:derek.antrican@sigmanest.com&Subject=SalesMap%20Feedback");
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Common.Log("Composing a Skype message to developer");
+
+            ProcessStartInfo Info = new ProcessStartInfo();
+            Info.Arguments = "/C start im:\"<sip:derek.antrican@sigmatek.net>\"";
+            Info.WindowStyle = ProcessWindowStyle.Hidden;
+            Info.FileName = "cmd.exe";
+            Process infoProcess = Process.Start(Info);
+        }
     }
 }

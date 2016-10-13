@@ -37,6 +37,8 @@
             this.linkLabelEmail = new System.Windows.Forms.LinkLabel();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelWhatsNew = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // richTextBoxChangelog
@@ -134,11 +136,23 @@
             this.labelWhatsNew.TabIndex = 15;
             this.labelWhatsNew.Text = "What\'s New in this Version:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SalesMap.Properties.Resources.Skype;
+            this.pictureBox1.Location = new System.Drawing.Point(253, 53);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 267);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelWhatsNew);
             this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.linkLabelEmail);
@@ -152,6 +166,7 @@
             this.Name = "About";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,5 +183,6 @@
         private System.Windows.Forms.LinkLabel linkLabelEmail;
         private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.Label labelWhatsNew;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
