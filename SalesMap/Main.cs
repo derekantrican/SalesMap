@@ -262,7 +262,7 @@ namespace SalesMap
             labelSIMadmin.Text = "SIM admin: ";
             foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
             {
-                if (rep.SIMS != null && rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area))
+                if (rep.SIMS != null && (rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area) || rep.SIMS.Contains("ALL")))
                     labelSIMadmin.Text += labelSIMadmin.Text == "SIM admin: " ? rep.DisplayName : ", " + rep.DisplayName;
             }
         }
