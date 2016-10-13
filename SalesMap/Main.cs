@@ -656,58 +656,69 @@ namespace SalesMap
             messageSIMadmin.Text = "Message SIM Admin(s)";
             messageSIMadmin.Click += MessageSIMadmin_Click;
 
+            MenuItem message = new MenuItem();
+            message.Text = "Send Skype Message";
+            message.Click += Message_Click;
+
             ContextMenu contextMenu = new ContextMenu();
             contextMenu.MenuItems.Add(beta);
-            contextMenu.MenuItems.Add(messageRSR);
-            contextMenu.MenuItems.Add(messageRSMs);
-            contextMenu.MenuItems.Add(messageSIMadmin);
+
+            if (!isNullOrEmpty(comboBoxState))
+            {
+                contextMenu.MenuItems.Add(messageRSR);
+                contextMenu.MenuItems.Add(messageRSMs);
+                contextMenu.MenuItems.Add(messageSIMadmin);
+            }
+            else if (!isNullOrEmpty(comboBoxRepresentative))
+            {
+                contextMenu.MenuItems.Add(message);
+            }
+
             contextMenu.Show((sender as PictureBox), new Point(20, 20));
+        }
+
+        private void Message_Click(object sender, EventArgs e)
+        {
+            Common.SalesRep rep = comboBoxRepresentative.SelectedItem as Common.SalesRep;
+
+            if (!string.IsNullOrEmpty(rep.SkypeIdentity))
+                StartSkypeMessage("<sip:" + rep.SkypeIdentity + ">");
         }
 
         private void MessageRSR_Click(object sender, EventArgs e)
         {
-            Common.SalesRep rep;
-            if (isNullOrEmpty(comboBoxRepresentative))
-                rep = getRep(comboBoxState.SelectedItem as Common.Region);
-            else
-                rep = comboBoxRepresentative.SelectedItem as Common.SalesRep;
+            Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
 
-            if (string.IsNullOrEmpty(rep.SkypeIdentity))
-                return;
-
-            StartSkypeMessage("<sip:" + rep.SkypeIdentity + ">");
+            if (!string.IsNullOrEmpty(rep.SkypeIdentity))
+                StartSkypeMessage("<sip:" + rep.SkypeIdentity + ">");
         }
 
         private void MessageRSMs_Click(object sender, EventArgs e)
         {
             string result = "";
-            if (!isNullOrEmpty(comboBoxState))
+            Common.Region region = comboBoxState.SelectedItem as Common.Region;
+            foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
             {
-                Common.Region region = comboBoxState.SelectedItem as Common.Region;
-                foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
-                {
-                    if (rep.CC != null && rep.CC.Contains(region.Area) && !string.IsNullOrEmpty(rep.SkypeIdentity))
-                        result += "<sip:" + rep.SkypeIdentity + ">";
-                }
-
-                StartSkypeMessage(result);
+                if (rep.CC != null && rep.CC.Contains(region.Area) && !string.IsNullOrEmpty(rep.SkypeIdentity))
+                    result += "<sip:" + rep.SkypeIdentity + ">";
             }
+
+            if (!string.IsNullOrEmpty(result))
+                StartSkypeMessage(result);
         }
 
         private void MessageSIMadmin_Click(object sender, EventArgs e)
         {
             string result = "";
-            if (!isNullOrEmpty(comboBoxState))
+            Common.Region region = comboBoxState.SelectedItem as Common.Region;
+            foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
             {
-                Common.Region region = comboBoxState.SelectedItem as Common.Region;
-                foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
-                {
-                    if (rep.SIMS != null && (rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area) || rep.SIMS.Contains("ALL")) && !string.IsNullOrEmpty(rep.SkypeIdentity))
-                        result += "<sip:" + rep.SkypeIdentity + ">";
-                }
-
-                StartSkypeMessage(result);
+                if (rep.SIMS != null && (rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area) || rep.SIMS.Contains("ALL")) && !string.IsNullOrEmpty(rep.SkypeIdentity))
+                    result += "<sip:" + rep.SkypeIdentity + ">";
             }
+
+            if (!string.IsNullOrEmpty(result))
+                StartSkypeMessage(result);
         }
 
         private void StartSkypeMessage(string arguments)
