@@ -286,6 +286,7 @@ namespace SalesMap
                 labelRepResult2.Text = "";
                 labelContactResult2.Text = "";
                 labelPhoneResult2.Text = "";
+                labelSIMadmin.Text = "";
                 labelRegionResult.Text = "Region: ";
                 showPicture("");
 

@@ -236,6 +236,7 @@
             // labelSIMadmin
             // 
             resources.ApplyResources(this.labelSIMadmin, "labelSIMadmin");
+            this.labelSIMadmin.ForeColor = System.Drawing.Color.RoyalBlue;
             this.labelSIMadmin.Name = "labelSIMadmin";
             // 
             // SalesMapSearch
