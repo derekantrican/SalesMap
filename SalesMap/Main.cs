@@ -50,11 +50,11 @@ namespace SalesMap
                     MessageBox messageBox2 = new MessageBox("Not connected to the internet...", "...still can't find an internet connection. \n\nThe program will now exit.", "OK", Common.MessageBoxResult.OK);
                     messageBox2.ShowDialog();
                     Common.Log("Retried, but still no internet connection");
-                    Application.Exit();
+                    Environment.Exit(1);
                 }
                 else if (Common.DialogResult == Common.MessageBoxResult.Cancel)
                 {
-                    Application.Exit();
+                    Environment.Exit(1);
                 }
             }
 
