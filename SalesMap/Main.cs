@@ -679,6 +679,8 @@ namespace SalesMap
 
         private void Message_Click(object sender, EventArgs e)
         {
+            Common.Log("Composing Skype message");
+
             Common.SalesRep rep = comboBoxRepresentative.SelectedItem as Common.SalesRep;
 
             if (!string.IsNullOrEmpty(rep.SkypeIdentity))
@@ -687,6 +689,8 @@ namespace SalesMap
 
         private void MessageRSR_Click(object sender, EventArgs e)
         {
+            Common.Log("Composing Skype message to RSR(s)");
+
             Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
 
             if (!string.IsNullOrEmpty(rep.SkypeIdentity))
@@ -695,6 +699,8 @@ namespace SalesMap
 
         private void MessageRSMs_Click(object sender, EventArgs e)
         {
+            Common.Log("Composing Skype message to RSM(s)");
+
             string result = "";
             Common.Region region = comboBoxState.SelectedItem as Common.Region;
             foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
@@ -709,6 +715,8 @@ namespace SalesMap
 
         private void MessageSIMadmin_Click(object sender, EventArgs e)
         {
+            Common.Log("Composing Skype message to SIM admin");
+
             string result = "";
             Common.Region region = comboBoxState.SelectedItem as Common.Region;
             foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
