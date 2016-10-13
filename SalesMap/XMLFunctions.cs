@@ -249,19 +249,19 @@ namespace SalesMap
                     }                    
 
                     rep.Picture = element.Element("Picture").Value;
+
+                    if (rep.SIMS != null && rep.SIMS.Count > 0)
+                    {
+                        SIMadmins.Add(rep);
+                        continue;
+                    }
+
+                    SalesRepList.Add(rep);
                 }
                 catch
                 {
                     Common.Log("Could not read rep " + rep.Name.First + " " + rep.Name.Last + " from xml");
                 }
-
-                if (rep.SIMS != null && rep.SIMS.Count > 0)
-                {
-                    SIMadmins.Add(rep);
-                    continue;
-                }
-
-                SalesRepList.Add(rep);
             }
 
             UpdateComboBoxes.Invoke();
