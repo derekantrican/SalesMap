@@ -218,7 +218,7 @@
             this.pictureBoxSettings.Name = "pictureBoxSettings";
             this.pictureBoxSettings.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBoxSettings, resources.GetString("pictureBoxSettings.ToolTip"));
-            this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBoxSettings_Click);
             // 
             // pictureBox1
             // 

@@ -112,18 +112,22 @@ namespace SalesMap
 
             if ((bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true))
             {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    SendStatistics();
-                });
-
-                string user = Environment.UserName;
                 string logPath = Path.Combine(Common.UserSettingsPath, "log.txt");
+                string statisticsPath = Path.Combine(Common.UserSettingsPath, "stats.txt");
 
                 if (File.Exists(logPath))
                 {
                     ProcessStartInfo Info = new ProcessStartInfo();
                     Info.Arguments = "/C copy \"" + logPath + @""" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + Environment.UserName + " log.txt\" /y";
+                    Info.WindowStyle = ProcessWindowStyle.Hidden;
+                    Info.FileName = "cmd.exe";
+                    Process infoProcess = Process.Start(Info);
+                }
+
+                if (File.Exists(statisticsPath))
+                {
+                    ProcessStartInfo Info = new ProcessStartInfo();
+                    Info.Arguments = "/C copy \"" + statisticsPath + @""" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Statistics\" + Environment.UserName + ".txt\" /y";
                     Info.WindowStyle = ProcessWindowStyle.Hidden;
                     Info.FileName = "cmd.exe";
                     Process infoProcess = Process.Start(Info);
@@ -204,6 +208,8 @@ namespace SalesMap
 
                 return;
             }
+
+            Common.Stat();
 
             string pictureLocation = (comboBoxState.SelectedItem as Common.Region).Picture;
             new Thread(() => showPicture("Regions/" + pictureLocation)).Start();
@@ -294,6 +300,8 @@ namespace SalesMap
                 return;
             }
 
+            Common.Stat();
+
             string pictureLocation = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Picture;
             new Thread(() => showPicture("SalesReps/" + pictureLocation)).Start();
 
@@ -323,8 +331,10 @@ namespace SalesMap
             labelPhoneResult2.Text = "";
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pictureBoxSettings_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             Common.Log("Opening config");
             Settings config = new Settings();
             config.ShowDialog();
@@ -332,6 +342,8 @@ namespace SalesMap
 
         private void pictureBoxMap_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             Common.Log("Opening PDF map");
             string path = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrcian\SalesMap.pdf");
 
@@ -346,6 +358,8 @@ namespace SalesMap
 
         private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             Common.Log("Opening Google Maps");
 
             if (isNullOrEmpty(comboBoxState) || (comboBoxState.SelectedItem as Common.Region).Name == "")
@@ -361,6 +375,8 @@ namespace SalesMap
 
         private void sortRegions_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             MenuItem arrangeByDefault = new MenuItem();
             arrangeByDefault.Text = "Default Sorting";
             arrangeByDefault.Click += ArrangeRegionsByDefault;
@@ -409,6 +425,8 @@ namespace SalesMap
 
         private void sortReps_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             MenuItem arrangeByDefault = new MenuItem();
             arrangeByDefault.Text = "Default Sorting";
             arrangeByDefault.Click += ArrangeRepsByDefault;
@@ -453,6 +471,8 @@ namespace SalesMap
 
         private void pictureBoxEmail_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             if (isNullOrEmpty(comboBoxState) && isNullOrEmpty(comboBoxRepresentative))
             {
                 MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
@@ -468,9 +488,13 @@ namespace SalesMap
             gracePeriodEmail.Text = "Grace Period Email";
             gracePeriodEmail.Click += GracePeriodEmail_Click;
 
-            MenuItem email = new MenuItem();
-            email.Text = "Blank Email";
-            email.Click += Email_Click;
+            MenuItem repEmail = new MenuItem();
+            repEmail.Text = "Email to Rep";
+            repEmail.Click += repEmail_Click;
+
+            MenuItem SIMEmail = new MenuItem();
+            SIMEmail.Text = "Email to SIM admin";
+            SIMEmail.Click += SIMEmail_Click;
 
             ContextMenu contextMenu = new ContextMenu();
 
@@ -478,10 +502,11 @@ namespace SalesMap
             {
                 contextMenu.MenuItems.Add(offSMREmail);
                 contextMenu.MenuItems.Add(gracePeriodEmail);
+                contextMenu.MenuItems.Add(SIMEmail);
             }
 
             if (!isNullOrEmpty(comboBoxRepresentative))
-                contextMenu.MenuItems.Add(email);
+                contextMenu.MenuItems.Add(repEmail);
 
             contextMenu.Show((sender as PictureBox), new Point(20, 20));
         }
@@ -530,10 +555,28 @@ namespace SalesMap
             ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
         }
 
-        private void Email_Click(object sender, EventArgs e)
+        private void repEmail_Click(object sender, EventArgs e)
         {
-            Common.Log("Composing a blank email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+            Common.Log("Composing a blank email to rep with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
             string to = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email;
+            string body = "<br><br>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { to, "", "", body });
+        }
+
+        private void SIMEmail_Click(object sender, EventArgs e)
+        {
+            Common.Log("Composing a blank email to SIM admin with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+            string to = "";
+
+            foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
+            {
+                if (rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area))
+                    to += rep.Email + ";";
+            }
+
+            if (string.IsNullOrEmpty(to))
+                return;
+
             string body = "<br><br>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
             ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { to, "", "", body });
         }
@@ -635,6 +678,8 @@ namespace SalesMap
 
         private void pictureBoxSkype_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             if (isNullOrEmpty(comboBoxState) && isNullOrEmpty(comboBoxRepresentative))
             {
                 MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
@@ -743,7 +788,9 @@ namespace SalesMap
         }
 
         private void labelContactResult_Click(object sender, EventArgs e)
-        {        
+        {
+            Common.Stat();
+
             string temp = labelContactResult.Text;
             string copy = Common.RemoveSpecial(temp.Substring(temp.IndexOf(": ") + 2));
 
@@ -766,6 +813,8 @@ namespace SalesMap
 
         private void labelPhoneResult_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             string temp = labelPhoneResult.Text;
             string copy = Common.RemoveSpecial(temp);
 
@@ -788,6 +837,8 @@ namespace SalesMap
 
         private void labelContactResult2_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             string temp = labelContactResult2.Text;
             string copy = Common.RemoveSpecial(temp.Substring(temp.IndexOf(": ") + 2));
 
@@ -810,6 +861,8 @@ namespace SalesMap
 
         private void labelPhoneResult2_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             Console.WriteLine(sender.GetType() + " | " + sender.ToString());
 
             string temp = labelPhoneResult2.Text;
@@ -869,41 +922,10 @@ namespace SalesMap
 
         private void Update(string version)
         {
+            Common.Stat();
+
             Updater updater = new Updater(version);
             updater.ShowDialog();
-        }
-
-        private void SendStatistics()
-        {
-            string statisticsPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\usage statistics.txt";
-            bool found = false;
-
-            if (Common.NetworkFileExists(new Uri(statisticsPath), 250))
-            {
-                string[] contents = File.ReadAllLines(statisticsPath);
-                List<string> contentsList = contents.OfType<string>().ToList();
-
-                foreach (string s in contentsList)
-                {
-                    Console.WriteLine(s);
-
-                    if (s.Split(',').First() == Environment.UserName)
-                    {
-                        contentsList[contentsList.IndexOf(s)] = Environment.UserName + "," + Common.ThisVersion + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time"));
-                        Common.Log("Added this session's info to the stats table");
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found)
-                {
-                    contentsList.Add(Environment.UserName + "," + Common.ThisVersion + "," + TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time")));
-                    Common.Log("Could not find a previous session in the stats table, so created one");
-                }
-
-                File.WriteAllLines(statisticsPath, contentsList);
-            }
         }
 
         private void checkFirstRun()

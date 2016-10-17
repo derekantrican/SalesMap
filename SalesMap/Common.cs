@@ -173,6 +173,20 @@ namespace SalesMap
                 File.AppendAllText(logPath, itemToLog + Environment.NewLine);
         }
 
+        public static void Stat(string message = "", [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        {
+            string statisticsPath = Path.Combine(UserSettingsPath, "stats.txt");
+            string copyPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Statistics\" + Environment.UserName + ".txt";
+
+            if (!File.Exists(statisticsPath))
+            {
+                var statisticsFile = File.Create(statisticsPath);
+                statisticsFile.Close();
+            }
+
+            File.AppendAllText(statisticsPath, "<" + memberName + ">" + message + Environment.NewLine);
+        }
+
         public static bool NetworkFileExists(Uri uri, int timeout)
         {
             var task = new Task<bool>(() =>

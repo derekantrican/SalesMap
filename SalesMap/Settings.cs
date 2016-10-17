@@ -47,18 +47,24 @@ namespace SalesMap
 
         private void pictureBoxAbout_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             About about = new About();
             about.ShowDialog();
         }
 
         private void linkLabelFeedback_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            Common.Stat();
+
             Feedback feedback = new Feedback();
             feedback.ShowDialog();
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             Common.Log("Saving settings");
 
             XMLFunctions.saveSetting("MapFileLocation", textBoxMapLocation.Text);
@@ -130,6 +136,8 @@ namespace SalesMap
 
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            Common.Stat();
+
             string GitVersionString = Common.checkGitHub();
             double GitVersion = Convert.ToDouble(GitVersionString.Split('v').Last());
             double thisVersion = Convert.ToDouble(Common.ThisVersion.Split('v').Last());
@@ -160,12 +168,16 @@ namespace SalesMap
 
         private void Update(string version)
         {
+            Common.Stat();
+
             Updater updater = new Updater(version);
             updater.ShowDialog();
         }
 
         private void buttonVariables_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             MessageBox messageBox = new MessageBox("Off SMR EMail Variables", "You can use the following variables when defining the Off SMR Email:\n\n" +
                                                     "   - \"{SALESREPNAME}\" ... the rep's name\n" +
                                                     "   - \"{SALESREPEMAIL}\" ... the rep's email\n" +
@@ -175,6 +187,8 @@ namespace SalesMap
 
         private void OffSMRPreview_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             string subject = textBoxOffSMRSubject.Text;
             string body = replaceVariables(textBoxOffSMRBody.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
 
@@ -183,6 +197,8 @@ namespace SalesMap
 
         private void GracePeriodPreview_Click(object sender, EventArgs e)
         {
+            Common.Stat();
+
             string subject = textBoxGracePeriodSubject.Text;
             string body = replaceVariables(textBoxGracePeriodBody.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
 
