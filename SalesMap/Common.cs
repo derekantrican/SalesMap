@@ -90,7 +90,7 @@ namespace SalesMap
             }
         }
 
-        public static void GetLatestVersion(bool notifyIfIsCurrent = false)
+        public static void CheckForUpdate(bool notifyIfIsCurrent = false)
         {
             WebClient client = new WebClient();
             string url = "http://info.sigmatek.net/downloads/SalesMap/Update.txt";
@@ -123,7 +123,9 @@ namespace SalesMap
                 if (DialogResult == MessageBoxResult.Yes)
                 {
                     Log("User selected \"Yes\" for the new update");
-                    Update(GitVersionString);
+
+                    Updater updater = new Updater(updateURL);
+                    updater.ShowDialog();
                 }
                 else
                 {
@@ -135,59 +137,6 @@ namespace SalesMap
                 MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version " + ThisVersion, "OK", MessageBoxResult.OK);
                 messageBox2.ShowDialog();
             }
-        }
-
-        public static string checkGitHub()
-        {
-            WebClient client = new WebClient();
-            string url = "https://github.com/derekantrican/SalesMap/tags";
-            string html = "";
-            try
-            {
-                html = client.DownloadString(url);
-            }
-            catch
-            {
-                Common.Log("Attempted to check for new version and failed to get html");
-                MessageBox messageBox = new MessageBox("Check for Update failed", "Failed to check for a new update. Are you connected to the internet?", "OK", MessageBoxResult.OK);
-                messageBox.ShowDialog();
-                return null;
-            }
-
-            string nextUrl = "";
-
-            List<string> versions = new List<string>();
-            string version = "";
-            while (html.IndexOf("<span class=\"disabled\">Next</span>") < 0)
-            {
-                while (html.IndexOf("<span class=\"tag-name\">v") > -1)
-                {
-                    html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
-                    version = html.Split('<')[0];
-
-                    if (version != "" && version.IndexOf("beta") < 0)
-                        versions.Add(html.Split('<')[0]);
-                }
-
-                nextUrl = html.Substring(html.IndexOf("https://github.com/derekantrican/SalesMap/tags?after="));
-                nextUrl = nextUrl.Split('\"')[0];
-                html = client.DownloadString(nextUrl);
-            }
-
-            //Run this while loop again to get the last page
-            while (html.IndexOf("<span class=\"tag-name\">v") > -1)
-            {
-                html = html.Substring(html.IndexOf("<span class=\"tag-name\">v") + 23);
-                version = html.Split('<')[0];
-
-                if (version != "" && version.IndexOf("beta") < 0)
-                    versions.Add(html.Split('<')[0]);
-            }
-
-            versions.Sort();
-            versions.Reverse();
-
-            return versions.First();
         }
 
         public static string RemoveSpecial(string input)

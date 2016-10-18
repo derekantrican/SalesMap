@@ -16,11 +16,10 @@ namespace SalesMap
 {
     public partial class Updater : Form
     {
-        public Updater(string versionToDownload)
+        public Updater(string updateURL)
         {
             InitializeComponent();
 
-            string downloadURL = "https://github.com/derekantrican/SalesMap/releases/download/" + versionToDownload + "/SalesMap.exe";
             string progName = Application.ExecutablePath.Substring(Application.ExecutablePath.LastIndexOf("\\") + 1);
             string progLoc = Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf("\\") + 1);
             RegistryKey key = Registry.CurrentUser.OpenSubKey("SalesMap", true);
@@ -39,12 +38,12 @@ namespace SalesMap
                 Common.Log("[UPDATER] Problem renaming the old executable: " + ex.Message, false);
             }
 
-            Common.Log("[UPDATER] Downloading new version... (" + versionToDownload + ")", false);
+            Common.Log("[UPDATER] Downloading new version... (" + updateURL + ")", false);
 
             WebClient webClient = new WebClient();
             webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
             webClient.DownloadFileCompleted += WebClient_DownloadFileCompleted;
-            webClient.DownloadFileAsync(new Uri(downloadURL), progLoc + progName);
+            webClient.DownloadFileAsync(new Uri(updateURL), progLoc + progName);
         }
 
         private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

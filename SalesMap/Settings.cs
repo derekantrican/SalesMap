@@ -138,40 +138,7 @@ namespace SalesMap
         {
             Common.Stat();
 
-            string GitVersionString = Common.checkGitHub();
-            double GitVersion = Convert.ToDouble(GitVersionString.Split('v').Last());
-            double thisVersion = Convert.ToDouble(Common.ThisVersion.Split('v').Last());
-
-            if (GitVersion > thisVersion)
-            {
-                Common.Log("Prompted for new update. Current: " + Common.ThisVersion + "  Online: " + GitVersion);
-
-                MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersionString + " and you are running " + Common.ThisVersion +
-                                    "\n\nDo you want to update to the new version?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
-                messageBox.ShowDialog();
-                if (Common.DialogResult == Common.MessageBoxResult.Yes)
-                {
-                    Common.Log("User selected \"Yes\" for the new update");
-                    Update(GitVersionString);
-                }
-                else
-                {
-                    Common.Log("User selected \"No\" for the new update");
-                }
-            }
-            else
-            {
-                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version " + Common.ThisVersion, "OK", Common.MessageBoxResult.OK);
-                messageBox2.ShowDialog();
-            }
-        }
-
-        private void Update(string version)
-        {
-            Common.Stat();
-
-            Updater updater = new Updater(version);
-            updater.ShowDialog();
+            Common.CheckForUpdate(true);
         }
 
         private void buttonVariables_Click(object sender, EventArgs e)
@@ -201,8 +168,15 @@ namespace SalesMap
 
             string subject = textBoxGracePeriodSubject.Text;
             string body = replaceVariables(textBoxGracePeriodBody.Text + richTextBoxSignature.Text, "Mr. SalesRep", "mr.salesrep@sigmanest.com", "123-456-7890");
+            string cc = "";
 
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "bill.huffman@sigmanest.com;jandre.terreblanche@sigmanest.com;mr.salesrep@sigmanest.com", subject, body });
+            foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
+            {
+                if (rep.CC != null && rep.CC.Contains("Grace"))
+                    cc += rep.Email + ";";
+            }
+
+            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { cc, subject, body });
         }
 
         private void composeOutlook(object parameters)

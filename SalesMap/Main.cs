@@ -61,7 +61,7 @@ namespace SalesMap
             XMLFunctions.UpdateComboBoxes += populateComboBoxes;
 
             checkFirstRun();
-            checkForUpdate();
+            Common.CheckForUpdate();
             compareFiles();
 
             if (!(bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
@@ -73,36 +73,6 @@ namespace SalesMap
             {
                 new Thread(() => XMLFunctions.parseRegions(true)).Start();
                 new Thread(() => XMLFunctions.parseReps(true)).Start();
-            }
-        }
-
-        private void checkForUpdate()
-        {
-            Common.GetLatestVersion();
-
-            if ((bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true))
-            {
-                string GitVersionString = Common.checkGitHub();
-                double GitVersion = Convert.ToDouble(GitVersionString.Split('v').Last());
-                double thisVersion = Convert.ToDouble(Common.ThisVersion.Split('v').Last());
-
-                if (GitVersion > thisVersion)
-                {
-                    Common.Log("Prompted for new update. Current: " + thisVersion + "  Online: " + GitVersion);
-
-                    MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is " + GitVersionString + " and you are running " + Common.ThisVersion +
-                                        "\n\nDo you want to update to the new version?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
-                    messageBox.ShowDialog();
-                    if (Common.DialogResult == Common.MessageBoxResult.Yes)
-                    {
-                        Common.Log("User selected \"Yes\" for the new update");
-                        Update(GitVersionString);
-                    }
-                    else
-                    {
-                        Common.Log("User selected \"No\" for the new update");
-                    }
-                }
             }
         }
 
@@ -920,14 +890,6 @@ namespace SalesMap
                 result = true;
 
             return result;
-        }
-
-        private void Update(string version)
-        {
-            Common.Stat();
-
-            Updater updater = new Updater(version);
-            updater.ShowDialog();
         }
 
         private void checkFirstRun()
