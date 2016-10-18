@@ -78,6 +78,8 @@ namespace SalesMap
 
         private void checkForUpdate()
         {
+            Common.GetLatestVersion();
+
             if ((bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true))
             {
                 string GitVersionString = Common.checkGitHub();

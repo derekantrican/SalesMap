@@ -90,6 +90,53 @@ namespace SalesMap
             }
         }
 
+        public static void GetLatestVersion(bool notifyIfIsCurrent = false)
+        {
+            WebClient client = new WebClient();
+            string url = "http://info.sigmatek.net/downloads/SalesMap/Update.txt";
+            string html = "";
+            try
+            {
+                html = client.DownloadString(url);
+            }
+            catch
+            {
+                Log("Attempted to check for new version and failed to get html");
+                MessageBox messageBox = new MessageBox("Check for Update failed", "Failed to check for a new update. Are you connected to the internet?", "OK", MessageBoxResult.OK);
+                messageBox.ShowDialog();
+                return;
+            }
+
+            List<string> updateInfo = new List<string>(html.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
+
+            double latestVersion = updateInfo.Where(p => p.IndexOf("Current") >= 0).FirstOrDefault() != null ? Convert.ToDouble(updateInfo.Where(p => p.IndexOf("Current") >= 0).FirstOrDefault().Split(':')[1]) : double.NaN;
+            string updateURL = updateInfo.Where(p => p.IndexOf("Location") >= 0).FirstOrDefault() != null ? updateInfo.Where(p => p.IndexOf("Location") >= 0).FirstOrDefault().Split(':')[1] : string.Empty;
+
+            if (latestVersion > Convert.ToDouble(FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion))
+            {
+                Log("Prompted for new update. Current: " + ThisVersion + "  Online: v" + updateInfo);
+
+                MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is v" + latestVersion + " and you are running " + ThisVersion +
+                                    "\n\nDo you want to update to the new version?", "No", MessageBoxResult.No, true, "Yes", MessageBoxResult.Yes);
+                messageBox.ShowDialog();
+
+                if (DialogResult == MessageBoxResult.Yes)
+                {
+                    Log("User selected \"Yes\" for the new update");
+                    Update(GitVersionString);
+                }
+                else
+                {
+                    Log("User selected \"No\" for the new update");
+                }
+            }
+            else if (notifyIfIsCurrent)
+            {
+                MessageBox messageBox2 = new MessageBox("Most Current Version", "Congrats, you have the most current version! You are running version " + ThisVersion, "OK", MessageBoxResult.OK);
+                messageBox2.ShowDialog();
+            }
+        }
+
         public static string checkGitHub()
         {
             WebClient client = new WebClient();
