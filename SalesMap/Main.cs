@@ -85,7 +85,6 @@ namespace SalesMap
             if ((bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true))
             {
                 string logPath = Path.Combine(Common.UserSettingsPath, "log.txt");
-                string statisticsPath = Path.Combine(Common.UserSettingsPath, "stats.txt");
 
                 if (File.Exists(logPath))
                 {
@@ -95,6 +94,12 @@ namespace SalesMap
                     Info.FileName = "cmd.exe";
                     Process infoProcess = Process.Start(Info);
                 }
+
+            }
+
+            if ((bool)XMLFunctions.readSetting("SendStatisticsToDeveloper", typeof(bool), true))
+            {
+                string statisticsPath = Path.Combine(Common.UserSettingsPath, "stats.txt");
 
                 if (File.Exists(statisticsPath))
                 {

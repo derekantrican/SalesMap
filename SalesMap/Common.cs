@@ -171,6 +171,9 @@ namespace SalesMap
 
         public static void Stat(string message = "", [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
+            if (!(bool)XMLFunctions.readSetting("SendStatisticsToDeveloper", typeof(bool), true))
+                return;
+
             string statisticsPath = Path.Combine(UserSettingsPath, "stats.txt");
             string copyPath = @"\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Statistics\" + Environment.UserName + ".txt";
 

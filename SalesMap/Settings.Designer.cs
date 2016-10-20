@@ -57,6 +57,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBoxSignature = new System.Windows.Forms.RichTextBox();
             this.checkBoxInternational = new System.Windows.Forms.CheckBox();
+            this.checkBoxSendStats = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OffSMRPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GracePeriodPreview)).BeginInit();
@@ -86,7 +87,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(328, 293);
+            this.buttonSave.Location = new System.Drawing.Point(328, 305);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(88, 28);
             this.buttonSave.TabIndex = 5;
@@ -98,7 +99,7 @@
             // linkLabelFeedback
             // 
             this.linkLabelFeedback.AutoSize = true;
-            this.linkLabelFeedback.Location = new System.Drawing.Point(15, 285);
+            this.linkLabelFeedback.Location = new System.Drawing.Point(15, 297);
             this.linkLabelFeedback.Name = "linkLabelFeedback";
             this.linkLabelFeedback.Size = new System.Drawing.Size(173, 13);
             this.linkLabelFeedback.TabIndex = 6;
@@ -109,7 +110,7 @@
             // linkLabelUpdate
             // 
             this.linkLabelUpdate.AutoSize = true;
-            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 301);
+            this.linkLabelUpdate.Location = new System.Drawing.Point(15, 313);
             this.linkLabelUpdate.Name = "linkLabelUpdate";
             this.linkLabelUpdate.Size = new System.Drawing.Size(91, 13);
             this.linkLabelUpdate.TabIndex = 8;
@@ -346,11 +347,23 @@
             this.checkBoxInternational.Text = "Show international results?\r\n";
             this.checkBoxInternational.UseVisualStyleBackColor = true;
             // 
+            // checkBoxSendStats
+            // 
+            this.checkBoxSendStats.AutoSize = true;
+            this.checkBoxSendStats.Location = new System.Drawing.Point(224, 277);
+            this.checkBoxSendStats.Name = "checkBoxSendStats";
+            this.checkBoxSendStats.Size = new System.Drawing.Size(194, 17);
+            this.checkBoxSendStats.TabIndex = 20;
+            this.checkBoxSendStats.Text = "Send usage statistics to developer?";
+            this.toolTip1.SetToolTip(this.checkBoxSendStats, "Send usage statistics to developer when program is closed");
+            this.checkBoxSendStats.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 330);
+            this.ClientSize = new System.Drawing.Size(428, 344);
+            this.Controls.Add(this.checkBoxSendStats);
             this.Controls.Add(this.checkBoxAboutOnStartup);
             this.Controls.Add(this.pictureBoxAbout);
             this.Controls.Add(this.checkBoxInternational);
@@ -412,5 +425,6 @@
         private System.Windows.Forms.TextBox textBoxGracePeriodSubject;
         private System.Windows.Forms.PictureBox GracePeriodPreview;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkBoxSendStats;
     }
 }

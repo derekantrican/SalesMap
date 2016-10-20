@@ -27,6 +27,7 @@ namespace SalesMap
             checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true);
             checkBoxAboutOnStartup.Checked = (bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true);
             checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true);
+            checkBoxSendStats.Checked = (bool)XMLFunctions.readSetting("SendStatisticsToDeveloper", typeof(bool), true);
             textBoxOffSMRBody.Text = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string));
             textBoxOffSMRSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
             textBoxGracePeriodBody.Text = (string)XMLFunctions.readSetting("GracePeriodBody", typeof(string));
@@ -71,6 +72,7 @@ namespace SalesMap
             XMLFunctions.saveSetting("AutoCheckForUpdates", checkBoxAutoUpdates.Checked);
             XMLFunctions.saveSetting("ShowAboutOnStartup", checkBoxAboutOnStartup.Checked);
             XMLFunctions.saveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);
+            XMLFunctions.saveSetting("SendStatisticsToDeveloper", checkBoxSendLog.Checked);
             XMLFunctions.saveSetting("OffSMRSubject", textBoxOffSMRSubject.Text);
             XMLFunctions.saveSetting("OffSMRBody", textBoxOffSMRBody.Text);
             XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
