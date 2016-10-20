@@ -914,6 +914,12 @@ namespace SalesMap
                     {
                         key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
                         key.SetValue("FirstRun", Common.ThisVersion);
+
+                        if ((bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true))
+                        {
+                            About about = new About();
+                            about.ShowDialog();
+                        }
                     }
                     catch
                     {
@@ -938,8 +944,12 @@ namespace SalesMap
                 if (key.GetValue("FirstRun").ToString() != Common.ThisVersion)
                 {
                     key.SetValue("FirstRun", Common.ThisVersion);
-                    About about = new About();
-                    about.ShowDialog();
+                    if ((bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true))
+                    {
+                        About about = new About();
+                        about.ShowDialog();
+                    }
+
                     Common.Log("This was the last time this will run");
                 }
 
