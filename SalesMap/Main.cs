@@ -260,7 +260,7 @@ namespace SalesMap
                 comboBoxState.SelectedIndex = 0;
                 labelRegionResult.Text = "Region: ";
 
-                labelSIMadmin.Text = "SIM admin: ";
+                labelSIMadmin.Text = "";
             }
             else if (isNullOrEmpty(comboBoxRepresentative) || isNullOrEmpty(comboBoxState))
             {
