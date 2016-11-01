@@ -569,6 +569,7 @@ namespace SalesMap
                         rep = representative;
                     else
                     {
+                        Common.Log("Prompting to select a \"North-South\" Rep");
                         //Choose a rep with the "North-South" dialog
                         DialogResult res = new DialogResult();
                         North_South frm = new North_South(rep.DisplayName, representative.DisplayName);
@@ -580,6 +581,8 @@ namespace SalesMap
                             rep = representative;
                         else //User closed out the dialog box
                             return null;
+
+                        Common.Log("User selected " + rep.DisplayName);
                     }
                 }
             }
