@@ -946,6 +946,8 @@ namespace SalesMap
 
                 if (key.GetValue("FirstRun").ToString() != Common.ThisVersion)
                 {
+                    Common.Log("Key does not match current version. Key: " + key.GetValue("FirstRun").ToString() + " Version: " + Common.ThisVersion);
+                    
                     key.SetValue("FirstRun", Common.ThisVersion);
                     if ((bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true))
                     {
@@ -994,14 +996,7 @@ namespace SalesMap
                     Common.Log("Deleted the SalesReps.txt from the last version of this program");
                 }
 
-                try
-                {
-                    key.SetValue("FirstRun", Common.ThisVersion);
-                }
-                catch
-                {
-                    Common.Log("Could not set value at end of checkFirstRun");
-                }
+                key.SetValue("Exe location", Application.ExecutablePath);
 
                 key.Close();
             }
