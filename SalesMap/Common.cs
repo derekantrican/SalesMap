@@ -110,7 +110,12 @@ namespace SalesMap
             List<string> updateInfo = new List<string>(html.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
 
             double latestVersion = updateInfo.Where(p => p.IndexOf("Current") >= 0).FirstOrDefault() != null ? Convert.ToDouble(updateInfo.Where(p => p.IndexOf("Current") >= 0).FirstOrDefault().Split(':')[1]) : double.NaN;
-            string updateURL = updateInfo.Where(p => p.IndexOf("Location") >= 0).FirstOrDefault() != null ? updateInfo.Where(p => p.IndexOf("Location") >= 0).FirstOrDefault().Split(':')[1] : string.Empty;
+            string updateURL = ""; //= updateInfo.Where(p => p.IndexOf("Location") >= 0).FirstOrDefault() != null ? updateInfo.Where(p => p.IndexOf("Location") >= 0).FirstOrDefault().Split(':')[1] : string.Empty;
+            if (updateInfo.Where(p => p.IndexOf("Location") >= 0).FirstOrDefault() != null)
+            {
+                updateURL = updateInfo.Where(p => p.IndexOf("Location") >= 0).FirstOrDefault();
+                updateURL = updateURL.Substring(updateURL.IndexOf(':') + 1);
+            }
 
             if (latestVersion > Convert.ToDouble(FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion))
             {
@@ -122,10 +127,26 @@ namespace SalesMap
 
                 if (DialogResult == MessageBoxResult.Yes)
                 {
-                    Log("User selected \"Yes\" for the new update");
+                    try
+                    {
+                        Log("User selected \"Yes\" for the new update");
+                        Updater updater = new Updater(updateURL);
+                        updater.ShowDialog();
+                    }
+                    catch(Exception ex)
+                    {
+                        Log("Error getting the new update: " + ex.Message);
+                        Log("Attempted update URL: \"" + updateURL + "\"");
+                        MessageBox errorMessage = new MessageBox("Update Error", "There was a problem getting the new update. Please go to https://github.com/derekantrican/SalesMap/releases and download it manually",
+                                                    "Go to GitHub", MessageBoxResult.OK, true, "Continue with this version", MessageBoxResult.Cancel);
+                        errorMessage.ShowDialog();
 
-                    Updater updater = new Updater(updateURL);
-                    updater.ShowDialog();
+                        if (DialogResult == MessageBoxResult.OK)
+                        {
+                            Process.Start("https://github.com/derekantrican/SalesMap/releases");
+                            Environment.Exit(1);
+                        }
+                    }
                 }
                 else
                 {
