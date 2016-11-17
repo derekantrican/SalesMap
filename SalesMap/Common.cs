@@ -119,7 +119,7 @@ namespace SalesMap
 
             if (latestVersion > Convert.ToDouble(FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion))
             {
-                Log("Prompted for new update. Current: " + ThisVersion + "  Online: v" + updateInfo);
+                Log("Prompted for new update. Current: " + ThisVersion + "  Online: v" + latestVersion);
 
                 MessageBox messageBox = new MessageBox("New Update Available!", "A new version is available!\n\nThe current version is v" + latestVersion + " and you are running " + ThisVersion +
                                     "\n\nDo you want to update to the new version?", "No", MessageBoxResult.No, true, "Yes", MessageBoxResult.Yes);
