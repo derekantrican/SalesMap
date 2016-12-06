@@ -341,12 +341,32 @@ namespace SalesMap
 
             if (isNullOrEmpty(comboBoxState) || (comboBoxState.SelectedItem as Common.Region).Name == "")
             {
-                System.Diagnostics.Process.Start("https://www.google.com/maps/@38.9165981,-96.6887,5z");
+                Process.Start("https://www.google.com/maps/@38.9165981,-96.6887,5z");
             }
             else
             {
                 string state = (comboBoxState.SelectedItem as Common.Region).Name;
-                System.Diagnostics.Process.Start("https://www.google.com/maps/place/" + state);
+
+                switch (state)
+                {
+                    case "Alberta":
+                    case "British Columba":
+                    case "Manitoba":
+                    case "New Brunswick":
+                    case "Newfoundland and Labrador":
+                    case "Nova Scotia":
+                    case "Northwest Territories":
+                    case "Nunavut":
+                    case "Ontario":
+                    case "Prince Edward Island":
+                    case "Quebec":
+                    case "Saskatchewan":
+                    case "Yukon":
+                        state += ",Canada";
+                        break;
+                }
+
+                Process.Start("https://www.google.com/maps/place/" + state);
             }
         }
 
