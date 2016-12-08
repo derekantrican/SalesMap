@@ -17,6 +17,8 @@ namespace SalesMap
         public static string InfoSiteBase = "http://info.sigmatek.net/downloads/SalesMap/";
         public static string ThisVersion = "v" + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
         public static MessageBoxResult DialogResult = MessageBoxResult.Cancel;
+        public static object SelectedItem;
+
         public enum MessageBoxResult
         {
             Cancel,

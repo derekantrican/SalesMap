@@ -183,10 +183,14 @@ namespace SalesMap
                 labelRegionResult.Text = "Region: ";
                 showPicture("");
 
+                Common.SelectedItem = null;
+
                 return;
             }
 
             Common.Stat();
+
+            Common.SelectedItem = comboBoxState.SelectedItem as Common.Region;
 
             string pictureLocation = (comboBoxState.SelectedItem as Common.Region).Picture;
             new Thread(() => showPicture("Regions/" + pictureLocation)).Start();
@@ -274,10 +278,14 @@ namespace SalesMap
                 labelRegionResult.Text = "Region: ";
                 showPicture("");
 
+                Common.SelectedItem = null;
+
                 return;
             }
 
             Common.Stat();
+
+            Common.SelectedItem = comboBoxRepresentative.SelectedItem as Common.SalesRep;
 
             string pictureLocation = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Picture;
             new Thread(() => showPicture("SalesReps/" + pictureLocation)).Start();
@@ -470,7 +478,8 @@ namespace SalesMap
         {
             Common.Stat();
 
-            if (isNullOrEmpty(comboBoxState) && isNullOrEmpty(comboBoxRepresentative))
+
+            if (Common.SelectedItem == null)
             {
                 MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
@@ -495,14 +504,14 @@ namespace SalesMap
 
             ContextMenu contextMenu = new ContextMenu();
 
-            if (!isNullOrEmpty(comboBoxState))
+            if (Common.SelectedItem is Common.Region)
             {
                 contextMenu.MenuItems.Add(offSMREmail);
                 contextMenu.MenuItems.Add(gracePeriodEmail);
                 contextMenu.MenuItems.Add(SIMEmail);
             }
 
-            if (!isNullOrEmpty(comboBoxRepresentative))
+            if (Common.SelectedItem is Common.SalesRep)
                 contextMenu.MenuItems.Add(repEmail);
 
             contextMenu.Show((sender as PictureBox), new Point(20, 20));
@@ -680,7 +689,7 @@ namespace SalesMap
         {
             Common.Stat();
 
-            if (isNullOrEmpty(comboBoxState) && isNullOrEmpty(comboBoxRepresentative))
+            if (Common.SelectedItem == null)
             {
                 MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
                 messageBox.ShowDialog();
@@ -710,13 +719,13 @@ namespace SalesMap
             ContextMenu contextMenu = new ContextMenu();
             contextMenu.MenuItems.Add(beta);
 
-            if (!isNullOrEmpty(comboBoxState))
+            if (Common.SelectedItem is Common.Region)
             {
                 contextMenu.MenuItems.Add(messageRSR);
                 contextMenu.MenuItems.Add(messageRSMs);
                 contextMenu.MenuItems.Add(messageSIMadmin);
             }
-            else if (!isNullOrEmpty(comboBoxRepresentative))
+            else if (Common.SelectedItem is Common.SalesRep)
             {
                 contextMenu.MenuItems.Add(message);
             }
