@@ -61,7 +61,10 @@ namespace SalesMap
             XMLFunctions.UpdateComboBoxes += populateComboBoxes;
 
             checkFirstRun();
-            Common.CheckForUpdate();
+
+            if ((bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true))
+                Common.CheckForUpdate();
+
             compareFiles();
 
             if (!(bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
