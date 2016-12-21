@@ -101,11 +101,17 @@ namespace SalesMap
             {
                 html = client.DownloadString(url);
             }
-            catch
+            catch (Exception ex)
             {
                 Log("Attempted to check for new version and failed to get html");
-                MessageBox messageBox = new MessageBox("Check for Update failed", "Failed to check for a new update. Are you connected to the internet?", "OK", MessageBoxResult.OK);
-                messageBox.ShowDialog();
+
+                if (!IsOnline)
+                {
+                    MessageBox messageBox = new MessageBox("Check for Update failed", "Failed to check for a new update. Are you connected to the internet?", "OK", MessageBoxResult.OK);
+                    messageBox.ShowDialog();
+                }
+
+                Log("Exception: " + ex.Message);
                 return;
             }
 
