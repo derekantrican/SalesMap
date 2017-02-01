@@ -333,10 +333,10 @@ namespace SalesMap
             Common.Stat();
 
             Common.Log("Opening PDF map");
-            string path = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), @"\\sigmatek.net\Documents\Employees\Derek_Antrcian\SalesMap.pdf");
+            string path = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), "http://info.sigmatek.net/documents/Sales/US&CanadianTerritoriesMap_PDF.pdf");
 
             if (Common.NetworkFileExists(new Uri(path), 250))
-                System.Diagnostics.Process.Start(path);
+                Process.Start(path);
             else
             {
                 MessageBox messageBox = new MessageBox("Invalid Path", "The path " + path + " is invalid.", "OK", Common.MessageBoxResult.OK);
