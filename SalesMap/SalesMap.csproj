@@ -77,6 +77,12 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Common.cs" />
+    <Compile Include="CompanyPrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompanyPrompt.Designer.cs">
+      <DependentUpon>CompanyPrompt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Feedback.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     <Compile Include="XMLFunctions.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompanyPrompt.resx">
+      <DependentUpon>CompanyPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Feedback.resx">
       <DependentUpon>Feedback.cs</DependentUpon>

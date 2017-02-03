@@ -525,6 +525,15 @@ namespace SalesMap
             Common.Log("Composing an Off SMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
 
             Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
+            string companyName = "";
+
+            CompanyPrompt companyPrompt = new CompanyPrompt();
+            companyPrompt.CloseWindow += () =>
+            {
+                companyName = companyPrompt.CompanyName;
+                companyPrompt.Dispose();
+            };
+            companyPrompt.ShowDialog();
 
             string rsr = rep.Email;
             string cc = getCC(comboBoxState.SelectedItem as Common.Region);
@@ -539,6 +548,8 @@ namespace SalesMap
             subject = replaceVariables(subject, rep.DisplayName, rep.Email, rep.Phone);
             body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
 
+            subject += " | " + companyName; //Add the company name to the end of the subject
+
             ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
         }
 
@@ -547,6 +558,15 @@ namespace SalesMap
             Common.Log("Composing a Grace Period email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
 
             Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
+            string companyName = "";
+
+            CompanyPrompt companyPrompt = new CompanyPrompt();
+            companyPrompt.CloseWindow += () =>
+            {
+                companyName = companyPrompt.CompanyName;
+                companyPrompt.Dispose();
+            };
+            companyPrompt.ShowDialog();
 
             string rsr = rep.Email;
             string cc = getCC(comboBoxState.SelectedItem as Common.Region) + getCC(new Common.Region() { Area = "Grace"});
@@ -560,6 +580,8 @@ namespace SalesMap
 
             subject = replaceVariables(subject, rep.DisplayName, rep.Email, rep.Phone);
             body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
+
+            subject += " | " + companyName; //Add the company name to the end of the subject
 
             ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
         }
