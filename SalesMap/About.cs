@@ -74,5 +74,10 @@ namespace SalesMap
             Info.FileName = "cmd.exe";
             Process infoProcess = Process.Start(Info);
         }
+
+        private void linkLabelTrelloBoard_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://trello.com/b/mvRhnwaF/salesmap");
+        }
     }
 }

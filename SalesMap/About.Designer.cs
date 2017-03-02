@@ -38,6 +38,7 @@
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelWhatsNew = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.linkLabelTrelloBoard = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,14 +48,14 @@
             this.richTextBoxChangelog.Location = new System.Drawing.Point(13, 115);
             this.richTextBoxChangelog.Name = "richTextBoxChangelog";
             this.richTextBoxChangelog.ReadOnly = true;
-            this.richTextBoxChangelog.Size = new System.Drawing.Size(355, 116);
+            this.richTextBoxChangelog.Size = new System.Drawing.Size(355, 108);
             this.richTextBoxChangelog.TabIndex = 0;
             this.richTextBoxChangelog.Text = "";
             this.richTextBoxChangelog.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBoxChangelog_LinkClicked);
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(293, 238);
+            this.buttonClose.Location = new System.Drawing.Point(293, 252);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 1;
@@ -65,7 +66,7 @@
             // linkLabelUpdate
             // 
             this.linkLabelUpdate.AutoSize = true;
-            this.linkLabelUpdate.Location = new System.Drawing.Point(13, 250);
+            this.linkLabelUpdate.Location = new System.Drawing.Point(13, 264);
             this.linkLabelUpdate.Name = "linkLabelUpdate";
             this.linkLabelUpdate.Size = new System.Drawing.Size(91, 13);
             this.linkLabelUpdate.TabIndex = 10;
@@ -76,7 +77,7 @@
             // linkLabelFeedback
             // 
             this.linkLabelFeedback.AutoSize = true;
-            this.linkLabelFeedback.Location = new System.Drawing.Point(13, 234);
+            this.linkLabelFeedback.Location = new System.Drawing.Point(13, 248);
             this.linkLabelFeedback.Name = "linkLabelFeedback";
             this.linkLabelFeedback.Size = new System.Drawing.Size(173, 13);
             this.linkLabelFeedback.TabIndex = 9;
@@ -147,11 +148,23 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // linkLabelTrelloBoard
+            // 
+            this.linkLabelTrelloBoard.AutoSize = true;
+            this.linkLabelTrelloBoard.Location = new System.Drawing.Point(13, 230);
+            this.linkLabelTrelloBoard.Name = "linkLabelTrelloBoard";
+            this.linkLabelTrelloBoard.Size = new System.Drawing.Size(101, 13);
+            this.linkLabelTrelloBoard.TabIndex = 17;
+            this.linkLabelTrelloBoard.TabStop = true;
+            this.linkLabelTrelloBoard.Text = "Development Board";
+            this.linkLabelTrelloBoard.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelTrelloBoard_LinkClicked);
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 267);
+            this.ClientSize = new System.Drawing.Size(379, 289);
+            this.Controls.Add(this.linkLabelTrelloBoard);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelWhatsNew);
             this.Controls.Add(this.labelVersion);
@@ -184,5 +197,6 @@
         private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.Label labelWhatsNew;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.LinkLabel linkLabelTrelloBoard;
     }
 }
