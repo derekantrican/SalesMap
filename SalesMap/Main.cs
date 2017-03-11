@@ -524,6 +524,8 @@ namespace SalesMap
         {
             Common.Log("Composing an Off SMR email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
 
+            SignatureCheck();
+
             Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
             string companyName = "";
 
@@ -557,6 +559,8 @@ namespace SalesMap
         {
             Common.Log("Composing a Grace Period email with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
 
+            SignatureCheck();
+
             Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
             string companyName = "";
 
@@ -589,6 +593,9 @@ namespace SalesMap
         private void repEmail_Click(object sender, EventArgs e)
         {
             Common.Log("Composing a blank email to rep with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
+
+            SignatureCheck();
+
             string to = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email;
             string body = "<br><br>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
             ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { to, "", "", body });
@@ -598,6 +605,8 @@ namespace SalesMap
         {
             Common.Log("Composing a blank email to SIM admin with state: " + comboBoxState.Text + " & rep: " + comboBoxRepresentative.Text);
             string to = "";
+
+            SignatureCheck();
 
             foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
             {
@@ -954,6 +963,21 @@ namespace SalesMap
             return result;
         }
 
+        private void SignatureCheck()
+        {
+            //Force the user to set up their signature
+            if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+            {
+                MessageBox messageBox = new MessageBox("Signature not set", "Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)",
+                                                        "OK", Common.MessageBoxResult.OK);
+                messageBox.ShowDialog();
+
+                Common.Log("Opening config so the user can set their signature");
+                Settings config = new Settings();
+                config.ShowDialog();
+            }
+        }
+
         private void checkFirstRun()
         {
             try //ToDo: Eventually, remove this (if we're never hitting it)
@@ -983,19 +1007,6 @@ namespace SalesMap
                         Common.Log("Could not create and set key (key does not exist).");
                         return;
                     }
-                }
-
-                //Force the user to set up their signature
-                if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
-                {
-                    MessageBox messageBox = new MessageBox("Signature not set", "Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)",
-                                                            "OK", Common.MessageBoxResult.OK);
-                    messageBox.ShowDialog();
-                    //MessageBox.Show("Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)");
-
-                    Common.Log("Opening config so the user can set their signature");
-                    Settings config = new Settings();
-                    config.ShowDialog();
                 }
 
                 if (key.GetValue("FirstRun").ToString() != Common.ThisVersion)
