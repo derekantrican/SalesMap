@@ -144,6 +144,17 @@ namespace SalesMap
             {
                 comboBoxState.DataSource = XMLFunctions.RegionList;
                 comboBoxState.DisplayMember = "DisplayName";
+                comboBoxState.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBoxState.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+                var comboBoxStateAutoCompleteStrings = new AutoCompleteStringCollection();
+                foreach (Common.Region region in XMLFunctions.RegionList)
+                {
+                    if (region.DisplayName != null)
+                        comboBoxStateAutoCompleteStrings.Add(region.DisplayName);
+                }
+
+                comboBoxState.AutoCompleteCustomSource = comboBoxStateAutoCompleteStrings;
                 comboBoxRepresentative.DataSource = XMLFunctions.SalesRepList;
                 comboBoxRepresentative.DisplayMember = "DisplayName";
             });
