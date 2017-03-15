@@ -333,7 +333,7 @@ namespace SalesMap
             Common.Stat();
 
             Common.Log("Opening PDF map");
-            string path = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), "http://info.sigmatek.net/documents/Sales/US&CanadianTerritoriesMap_PDF.pdf");
+            string path = "http://info.sigmatek.net/documents/Sales/US&CanadianTerritoriesMap_PDF.pdf";
 
             if (Common.NetworkFileExists(new Uri(path), 250))
                 Process.Start(path);
