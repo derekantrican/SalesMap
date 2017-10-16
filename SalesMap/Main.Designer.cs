@@ -54,7 +54,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBackground = new System.Windows.Forms.PictureBox();
             this.labelSIMadmin = new System.Windows.Forms.Label();
-            this.suggestComboBox1 = new AutoCompleteComboBox.SuggestComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkype)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sortRegions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sortReps)).BeginInit();
@@ -240,21 +239,10 @@
             this.labelSIMadmin.ForeColor = System.Drawing.Color.RoyalBlue;
             this.labelSIMadmin.Name = "labelSIMadmin";
             // 
-            // suggestComboBox1
-            // 
-            this.suggestComboBox1.FilterRule = null;
-            this.suggestComboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.suggestComboBox1, "suggestComboBox1");
-            this.suggestComboBox1.Name = "suggestComboBox1";
-            this.suggestComboBox1.PropertySelector = null;
-            this.suggestComboBox1.SuggestBoxHeight = 96;
-            this.suggestComboBox1.SuggestListOrderRule = null;
-            // 
             // SalesMapSearch
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.suggestComboBox1);
             this.Controls.Add(this.labelSIMadmin);
             this.Controls.Add(this.pictureBoxSkype);
             this.Controls.Add(this.sortRegions);
@@ -322,7 +310,6 @@
         private System.Windows.Forms.PictureBox sortRegions;
         private System.Windows.Forms.PictureBox pictureBoxSkype;
         private System.Windows.Forms.Label labelSIMadmin;
-        private AutoCompleteComboBox.SuggestComboBox suggestComboBox1;
     }
 }
 
