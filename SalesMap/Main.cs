@@ -18,11 +18,13 @@ using System.Diagnostics;
 using System.Configuration;
 using System.Xml.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 
 namespace SalesMap
 {
     public partial class SalesMapSearch : Form
     {
+        public string CommandLineSelect { get; set; }
         public SalesMapSearch()
         {
             InitializeComponent();
@@ -77,6 +79,27 @@ namespace SalesMap
                 new Thread(() => XMLFunctions.parseRegions(true)).Start();
                 new Thread(() => XMLFunctions.parseReps(true)).Start();
             }
+        }
+
+        private void SelectRegionFromCommandLine(string region)
+        {
+            string modifiedQuery = Regex.Replace(region, "[^a-zA-Z]", "").ToLower();
+            //Common.Region foundRegion = null;
+            //List<Common.Region> copyOfRegionsList = XMLFunctions.RegionList.ToList();
+            //foreach (Common.Region r in copyOfRegionsList)
+            //{
+            //    if (r.Name != null && Regex.Replace(r.Name, "[^a-zA-Z]", "").ToLower() == modifiedQuery)
+            //    {
+            //        foundRegion = r;
+            //        break;
+            //    }
+            //}
+            Common.Region foundRegion = XMLFunctions.RegionList.Where(p => p.Name != null && Regex.Replace(p.Name, "[^a-zA-Z]", "").ToLower() == modifiedQuery).FirstOrDefault();
+
+
+
+            comboBoxState.SelectedItem = foundRegion;
+            comboBoxState_SelectedIndexChanged(null, null);
         }
 
         private void SalesMapSearch_FormClosing(object sender, FormClosingEventArgs e)
@@ -139,6 +162,9 @@ namespace SalesMap
 
         public void populateComboBoxes()
         {
+            if (!this.IsHandleCreated)
+                return;
+
             //Set the comboBoxes
             this.Invoke((MethodInvoker)delegate 
             {
@@ -159,6 +185,14 @@ namespace SalesMap
                 comboBoxState.Enabled = true;
                 comboBoxRepresentative.Enabled = true;
             });
+
+            if (!string.IsNullOrWhiteSpace(CommandLineSelect))
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    SelectRegionFromCommandLine(CommandLineSelect);
+                });
+            }
         }
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)

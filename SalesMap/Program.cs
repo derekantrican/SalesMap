@@ -13,14 +13,19 @@ namespace SalesMap
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             try
             {
-                Application.Run(new SalesMapSearch());
+                SalesMapSearch mainWindow = new SalesMapSearch();
+
+                if (args.Count() > 0)
+                    mainWindow.CommandLineSelect = args.First();
+
+                Application.Run(mainWindow);
             }
             catch (Exception ex)
             {
