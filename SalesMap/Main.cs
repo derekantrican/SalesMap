@@ -840,7 +840,7 @@ namespace SalesMap
             Common.Region region = comboBoxState.SelectedItem as Common.Region;
             foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
             {
-                if (rep.SIMS != null && (rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area) || rep.SIMS.Contains("ALL")) && !string.IsNullOrEmpty(rep.SkypeIdentity))
+                if (rep.SIMS != null && (rep.SIMS.Contains(region.Area) || rep.SIMS.Contains("ALL")) && !string.IsNullOrEmpty(rep.SkypeIdentity))
                     result += "<sip:" + rep.SkypeIdentity + ">";
             }
 
