@@ -764,10 +764,6 @@ namespace SalesMap
                 return;
             }
 
-            MenuItem beta = new MenuItem();
-            beta.Text = "[BETA]";
-            beta.Enabled = false;
-
             MenuItem messageRSR = new MenuItem();
             messageRSR.Text = "Message RSR(s)";
             messageRSR.Click += MessageRSR_Click;
@@ -785,7 +781,6 @@ namespace SalesMap
             message.Click += Message_Click;
 
             ContextMenu contextMenu = new ContextMenu();
-            contextMenu.MenuItems.Add(beta);
 
             if (Common.SelectedItem is Common.Region)
             {
