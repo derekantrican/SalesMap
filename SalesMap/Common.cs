@@ -35,12 +35,12 @@ namespace SalesMap
                 try
                 {
                     WebClient client = new WebClient();
-                    Stream stream = client.OpenRead("http://www.github.com");
+                    Stream stream = client.OpenRead(InfoSiteBase);
                     return true;
                 }
-                catch
+                catch (WebException ex)
                 {
-                    return false;
+                        return false;
                 }
             }
         }
