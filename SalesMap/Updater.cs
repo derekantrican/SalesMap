@@ -59,6 +59,9 @@ namespace SalesMap
             string progName = Application.ExecutablePath.Substring(Application.ExecutablePath.LastIndexOf("\\") + 1);
             string progLoc = Application.ExecutablePath.Substring(0, Application.ExecutablePath.LastIndexOf("\\") + 1);
 
+            if ((new FileInfo(Path.Combine(progLoc, progName))).Length == 0)
+                throw new Exception("Downloaded file is 0 bytes");
+
             Common.Log("[UPDATER] Download has completed....restarting", false);
 
             ProcessStartInfo Info = new ProcessStartInfo();

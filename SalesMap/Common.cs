@@ -144,6 +144,9 @@ namespace SalesMap
                     catch(Exception ex)
                     {
                         Log("Error getting the new update: " + ex.Message);
+                        if (ex.InnerException != null)
+                            Log("Inner exception: " + ex.InnerException?.Message);
+
                         Log("Attempted update URL: \"" + updateURL + "\"");
                         MessageBox errorMessage = new MessageBox("Update Error", "There was a problem getting the new update. Please go to https://github.com/derekantrican/SalesMap/releases and download it manually",
                                                     "Go to GitHub", MessageBoxResult.OK, true, "Continue with this version", MessageBoxResult.Cancel);
