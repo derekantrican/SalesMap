@@ -40,10 +40,12 @@ namespace SalesMap
 
             Common.Log("[UPDATER] Downloading new version... (" + updateURL + ")", false);
 
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
             WebClient webClient = new WebClient();
             webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
             webClient.DownloadFileCompleted += WebClient_DownloadFileCompleted;
-            webClient.DownloadFileAsync(new Uri(updateURL), progLoc + progName);
+            webClient.DownloadFileAsync(new Uri(updateURL), Path.Combine(progLoc, progName));
         }
 
         private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
