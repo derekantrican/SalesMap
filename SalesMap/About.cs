@@ -27,6 +27,7 @@ namespace SalesMap
             string html = "";
             try
             {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
                 html = client.DownloadString(url);
                 html = html.Substring(html.IndexOf("<div class=\"markdown-body\">") + ("< div class=\"markdown-body\">").Length);
                 html = html.Substring(0, html.IndexOf("</div>"));
@@ -34,7 +35,7 @@ namespace SalesMap
             }
             catch
             {
-                Common.Log("Attempted to get the changlog for version " + Common.ThisVersion + " and failed...");
+                Common.Log("Attempted to get the changelog for version " + Common.ThisVersion + " and failed...");
             }
         }
 
