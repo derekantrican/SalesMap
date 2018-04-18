@@ -69,16 +69,21 @@ namespace SalesMap
 
             compareFiles();
 
+            Task regionTask, repTask;
             if (!(bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
             {
-                new Thread(() => XMLFunctions.parseRegions(false)).Start();
-                new Thread(() => XMLFunctions.parseReps(false)).Start();
+                regionTask = new Task(() => XMLFunctions.parseRegions(false));
+                repTask = new Task(() => XMLFunctions.parseReps(false));
             }
             else
             {
-                new Thread(() => XMLFunctions.parseRegions(true)).Start();
-                new Thread(() => XMLFunctions.parseReps(true)).Start();
+                regionTask = new Task(() => XMLFunctions.parseRegions(true));
+                repTask = new Task(() => XMLFunctions.parseReps(true));
             }
+
+            regionTask.Start();
+            regionTask.Wait(); //This wait is necessary so that the reps get processed correctly (and there is no conflict with doing it while the regions are being processed)
+            repTask.Start();
         }
 
         private void SelectRegionFromCommandLine(string region)
