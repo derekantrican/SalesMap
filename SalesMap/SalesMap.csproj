@@ -122,6 +122,12 @@
       <DependentUpon>Updater.cs</DependentUpon>
     </Compile>
     <Compile Include="XMLFunctions.cs" />
+    <Compile Include="ZipcodeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZipcodeDialog.Designer.cs">
+      <DependentUpon>ZipcodeDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Updater.resx">
       <DependentUpon>Updater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZipcodeDialog.resx">
+      <DependentUpon>ZipcodeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -210,6 +219,7 @@
     <None Include="Resources\sort.png" />
     <None Include="Resources\about.png" />
     <None Include="Resources\Skype.ico" />
+    <None Include="Resources\ZIP.png" />
     <Content Include="SalesMap.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

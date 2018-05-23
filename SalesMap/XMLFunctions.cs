@@ -142,6 +142,17 @@ namespace SalesMap
         //    webClient.DownloadFileAsync(new Uri(downloadURL), Path.Combine(UserSettingsPath, databaseSelection));
         //}
 
+        public static string DownloadZipCSV()
+        {
+            string zipCodes = InfoSiteBase + "Settings/Zipcodes.csv";
+            string html = "";
+
+            WebClient client = new WebClient();
+            html = client.DownloadString(zipCodes);
+
+            return html;
+        }
+
         private static string downloadXML(Database database, bool useInternational)
         {
             string regionsURL = !useInternational ? InfoSiteBase + "Settings/Regions.xml" : InfoSiteBase + "Settings/Regions_International.xml";

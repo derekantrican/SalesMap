@@ -25,6 +25,7 @@ namespace SalesMap
     public partial class SalesMapSearch : Form
     {
         public string CommandLineSelect { get; set; }
+        private string selectedZipCodeRep = "";
         public SalesMapSearch()
         {
             InitializeComponent();
@@ -202,6 +203,8 @@ namespace SalesMap
 
         private void comboBoxState_SelectedIndexChanged(object sender, EventArgs e)
         {
+            selectedZipCodeRep = "";
+
             if (!isNullOrEmpty(comboBoxState) && comboBoxRepresentative.Items.Count > 0)
             {
                 Common.Log("Selecting state: " + (comboBoxState.SelectedItem as Common.Region).DisplayName);
@@ -297,8 +300,96 @@ namespace SalesMap
             }
         }
 
+        private void comboBoxState_SelectedByZipCode(object sender, EventArgs e)
+        {
+            if (!isNullOrEmpty(comboBoxState) && comboBoxRepresentative.Items.Count > 0)
+            {
+                Common.Log("Selecting state via zip code: " + (comboBoxState.SelectedItem as Common.Region).DisplayName);
+
+                comboBoxRepresentative.SelectedIndex = 0;
+                labelRepResult.Text = "Sales Rep: ";
+                labelContactResult.Text = "Contact: ";
+                labelPhoneResult.Text = "";
+
+                labelRegionResult.Text = "Region: " + (comboBoxState.SelectedItem as Common.Region).Name;
+            }
+            else if (isNullOrEmpty(comboBoxState) || isNullOrEmpty(comboBoxRepresentative))
+            {
+                labelRepResult.Text = "Sales Rep: ";
+                labelContactResult.Text = "Contact: ";
+                labelPhoneResult.Text = "";
+                labelRepResult2.Text = "";
+                labelContactResult2.Text = "";
+                labelPhoneResult2.Text = "";
+                labelSIMadmin.Text = "";
+                labelRegionResult.Text = "Region: ";
+                showPicture("");
+
+                Common.SelectedItem = null;
+
+                return;
+            }
+
+            Common.Stat();
+
+            Common.SelectedItem = comboBoxState.SelectedItem as Common.Region;
+
+            string pictureLocation = (comboBoxState.SelectedItem as Common.Region).Picture;
+            new Thread(() => showPicture("Regions/" + pictureLocation)).Start();
+
+            string search = (comboBoxState.SelectedItem as Common.Region).Name;
+            Console.WriteLine("\"" + search + "\"");
+
+            if (search == "")
+                return;
+
+            bool found = false;
+            foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
+            {
+                if (rep.Responsibilities != null && rep.Responsibilities.Find(p => p == search) != null)
+                {
+                    if (selectedZipCodeRep == rep.DisplayName)
+                    {
+                        found = true;
+
+                        labelRepResult.Text = "Sales Rep: " + rep.DisplayName;
+                        labelContactResult.Text = "Contact: " + rep.Email;
+                        labelPhoneResult.Text = rep.Phone;
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                foreach (Common.SalesRep rep in XMLFunctions.SalesRepList)
+                {
+                    if (rep.CC != null && rep.CC.Contains((comboBoxState.SelectedItem as Common.Region).Area))
+                    {
+                        labelRepResult.Text = "Sales Rep: " + rep.DisplayName + " (RSM)";
+                        labelContactResult.Text = "Contact: " + rep.Email;
+                        labelPhoneResult.Text = rep.Phone;
+                        break;
+                    }
+                }
+            }
+
+            labelRepResult2.Text = "";
+            labelContactResult2.Text = "";
+            labelPhoneResult2.Text = "";
+
+            //Get the SIM admin
+            labelSIMadmin.Text = "SIM admin: ";
+            foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
+            {
+                if (rep.SIMS != null && (rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area) || rep.SIMS.Contains("ALL")))
+                    labelSIMadmin.Text += labelSIMadmin.Text == "SIM admin: " ? rep.DisplayName : ", " + rep.DisplayName;
+            }
+        }
+
         private void comboBoxRepresentative_SelectedIndexChanged(object sender, EventArgs e)
         {
+            selectedZipCodeRep = "";
+
             if (!isNullOrEmpty(comboBoxRepresentative) && comboBoxRepresentative.Items.Count > 0)
             {
                 Common.Log("Selecting rep: " + (comboBoxRepresentative.SelectedItem as Common.SalesRep).DisplayName);
@@ -352,7 +443,6 @@ namespace SalesMap
                 }
             }
 
-
             labelRepResult2.Text = "";
             labelContactResult2.Text = "";
             labelPhoneResult2.Text = "";
@@ -367,20 +457,22 @@ namespace SalesMap
             config.ShowDialog();
         }
 
-        private void pictureBoxMap_Click(object sender, EventArgs e)
+        private void pictureBoxZip_Click(object sender, EventArgs e)
         {
-            Common.Stat();
-
-            Common.Log("Opening PDF map");
-            string path = "http://info.sigmatek.net/documents/Sales/US&CanadianTerritoriesMap_PDF.pdf";
-
-            if (Common.NetworkFileExists(new Uri(path), 250))
-                Process.Start(path);
-            else
+            ZipcodeDialog zipCodeSearch = new ZipcodeDialog();
+            zipCodeSearch.SalesRepSelect += (region, rep) => 
             {
-                MessageBox messageBox = new MessageBox("Invalid Path", "The path " + path + " is invalid.", "OK", Common.MessageBoxResult.OK);
-                messageBox.ShowDialog();
-            }
+                selectedZipCodeRep = rep;
+
+                //Temporarily change the triggered event so that we can better handle selection via zip code
+                comboBoxState.SelectedIndexChanged -= comboBoxState_SelectedIndexChanged;
+                comboBoxState.SelectedIndexChanged += comboBoxState_SelectedByZipCode;
+                comboBoxState.SelectedItem = XMLFunctions.RegionList.Find(p => p.Name == region);
+                comboBoxState.SelectedIndexChanged -= comboBoxState_SelectedByZipCode;
+                comboBoxState.SelectedIndexChanged += comboBoxState_SelectedIndexChanged;
+            };
+
+            zipCodeSearch.ShowDialog();
         }
 
         private void pictureBoxOnlineMaps_Click(object sender, EventArgs e)
@@ -565,7 +657,9 @@ namespace SalesMap
 
             SignatureCheck();
 
-            Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
+            Common.SalesRep rep = !string.IsNullOrEmpty(selectedZipCodeRep) ? XMLFunctions.SalesRepList.Find(p => p.DisplayName == selectedZipCodeRep)
+                                                                            : getRep(comboBoxState.SelectedItem as Common.Region);
+
             string companyName = "";
 
             CompanyPrompt companyPrompt = new CompanyPrompt();
@@ -600,7 +694,8 @@ namespace SalesMap
 
             SignatureCheck();
 
-            Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
+            Common.SalesRep rep = !string.IsNullOrEmpty(selectedZipCodeRep) ? XMLFunctions.SalesRepList.Find(p => p.DisplayName == selectedZipCodeRep)
+                                                                            : getRep(comboBoxState.SelectedItem as Common.Region);
             string companyName = "";
 
             CompanyPrompt companyPrompt = new CompanyPrompt();
@@ -815,7 +910,8 @@ namespace SalesMap
         {
             Common.Log("Composing Skype message to RSR(s)");
 
-            Common.SalesRep rep = getRep(comboBoxState.SelectedItem as Common.Region);
+            Common.SalesRep rep = !string.IsNullOrEmpty(selectedZipCodeRep) ? XMLFunctions.SalesRepList.Find(p => p.DisplayName == selectedZipCodeRep)
+                                                                            : getRep(comboBoxState.SelectedItem as Common.Region);
 
             if (!string.IsNullOrEmpty(rep.SkypeIdentity))
                 StartSkypeMessage("<sip:" + rep.SkypeIdentity + ">");

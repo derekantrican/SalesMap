@@ -44,22 +44,22 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.labelPhoneResult = new System.Windows.Forms.Label();
             this.labelPhoneResult2 = new System.Windows.Forms.Label();
+            this.labelSIMadmin = new System.Windows.Forms.Label();
             this.pictureBoxSkype = new System.Windows.Forms.PictureBox();
             this.sortRegions = new System.Windows.Forms.PictureBox();
             this.sortReps = new System.Windows.Forms.PictureBox();
             this.pictureBoxEmail = new System.Windows.Forms.PictureBox();
             this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
-            this.pictureBoxMap = new System.Windows.Forms.PictureBox();
+            this.pictureBoxZip = new System.Windows.Forms.PictureBox();
             this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBackground = new System.Windows.Forms.PictureBox();
-            this.labelSIMadmin = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkype)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sortRegions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sortReps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).BeginInit();
@@ -153,6 +153,12 @@
             this.toolTip1.SetToolTip(this.labelPhoneResult2, resources.GetString("labelPhoneResult2.ToolTip"));
             this.labelPhoneResult2.Click += new System.EventHandler(this.labelPhoneResult2_Click);
             // 
+            // labelSIMadmin
+            // 
+            resources.ApplyResources(this.labelSIMadmin, "labelSIMadmin");
+            this.labelSIMadmin.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labelSIMadmin.Name = "labelSIMadmin";
+            // 
             // pictureBoxSkype
             // 
             this.pictureBoxSkype.Image = global::SalesMap.Properties.Resources.Skype;
@@ -202,14 +208,14 @@
             this.toolTip1.SetToolTip(this.pictureBoxOnlineMaps, resources.GetString("pictureBoxOnlineMaps.ToolTip"));
             this.pictureBoxOnlineMaps.Click += new System.EventHandler(this.pictureBoxOnlineMaps_Click);
             // 
-            // pictureBoxMap
+            // pictureBoxZip
             // 
-            this.pictureBoxMap.Image = global::SalesMap.Properties.Resources.Map;
-            resources.ApplyResources(this.pictureBoxMap, "pictureBoxMap");
-            this.pictureBoxMap.Name = "pictureBoxMap";
-            this.pictureBoxMap.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBoxMap, resources.GetString("pictureBoxMap.ToolTip"));
-            this.pictureBoxMap.Click += new System.EventHandler(this.pictureBoxMap_Click);
+            this.pictureBoxZip.Image = global::SalesMap.Properties.Resources.ZIP;
+            resources.ApplyResources(this.pictureBoxZip, "pictureBoxZip");
+            this.pictureBoxZip.Name = "pictureBoxZip";
+            this.pictureBoxZip.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBoxZip, resources.GetString("pictureBoxZip.ToolTip"));
+            this.pictureBoxZip.Click += new System.EventHandler(this.pictureBoxZip_Click);
             // 
             // pictureBoxSettings
             // 
@@ -233,12 +239,6 @@
             this.pictureBackground.Name = "pictureBackground";
             this.pictureBackground.TabStop = false;
             // 
-            // labelSIMadmin
-            // 
-            resources.ApplyResources(this.labelSIMadmin, "labelSIMadmin");
-            this.labelSIMadmin.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.labelSIMadmin.Name = "labelSIMadmin";
-            // 
             // SalesMapSearch
             // 
             resources.ApplyResources(this, "$this");
@@ -254,7 +254,7 @@
             this.Controls.Add(this.labelNoImage);
             this.Controls.Add(this.labelContactResult2);
             this.Controls.Add(this.labelRepResult2);
-            this.Controls.Add(this.pictureBoxMap);
+            this.Controls.Add(this.pictureBoxZip);
             this.Controls.Add(this.labelContactResult);
             this.Controls.Add(this.labelRegionResult);
             this.Controls.Add(this.labelRepResult);
@@ -276,7 +276,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.sortReps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOnlineMaps)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBackground)).EndInit();
@@ -296,7 +296,7 @@
         private System.Windows.Forms.Label labelRepResult;
         private System.Windows.Forms.Label labelRegionResult;
         private System.Windows.Forms.Label labelContactResult;
-        private System.Windows.Forms.PictureBox pictureBoxMap;
+        private System.Windows.Forms.PictureBox pictureBoxZip;
         private System.Windows.Forms.Label labelContactResult2;
         private System.Windows.Forms.Label labelRepResult2;
         private System.Windows.Forms.Label labelNoImage;
