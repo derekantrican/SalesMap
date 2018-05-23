@@ -22,7 +22,6 @@ namespace SalesMap
         {
             InitializeComponent();
 
-            textBoxMapLocation.Text = (string)XMLFunctions.readSetting("MapFileLocation", typeof(string), "http://info.sigmatek.net/documents/Sales/US&CanadianTerritoriesMap_PDF.pdf");
             checkBoxInternational.Checked = (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false);
             checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true);
             checkBoxAboutOnStartup.Checked = (bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true);
@@ -68,7 +67,6 @@ namespace SalesMap
 
             Common.Log("Saving settings");
 
-            XMLFunctions.saveSetting("MapFileLocation", textBoxMapLocation.Text);
             XMLFunctions.saveSetting("AutoCheckForUpdates", checkBoxAutoUpdates.Checked);
             XMLFunctions.saveSetting("ShowAboutOnStartup", checkBoxAboutOnStartup.Checked);
             XMLFunctions.saveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);

@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
-            this.labelMapLocation = new System.Windows.Forms.Label();
-            this.textBoxMapLocation = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.linkLabelFeedback = new System.Windows.Forms.LinkLabel();
             this.linkLabelUpdate = new System.Windows.Forms.LinkLabel();
@@ -44,6 +42,7 @@
             this.checkBoxAboutOnStartup = new System.Windows.Forms.CheckBox();
             this.GracePeriodPreview = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.checkBoxSendStats = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControlOffSMREmail = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -57,7 +56,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBoxSignature = new System.Windows.Forms.RichTextBox();
             this.checkBoxInternational = new System.Windows.Forms.CheckBox();
-            this.checkBoxSendStats = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OffSMRPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GracePeriodPreview)).BeginInit();
@@ -67,23 +65,6 @@
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // labelMapLocation
-            // 
-            this.labelMapLocation.AutoSize = true;
-            this.labelMapLocation.Location = new System.Drawing.Point(13, 13);
-            this.labelMapLocation.Name = "labelMapLocation";
-            this.labelMapLocation.Size = new System.Drawing.Size(94, 13);
-            this.labelMapLocation.TabIndex = 1;
-            this.labelMapLocation.Text = "Map File Location:";
-            // 
-            // textBoxMapLocation
-            // 
-            this.textBoxMapLocation.Location = new System.Drawing.Point(113, 10);
-            this.textBoxMapLocation.Name = "textBoxMapLocation";
-            this.textBoxMapLocation.Size = new System.Drawing.Size(273, 20);
-            this.textBoxMapLocation.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.textBoxMapLocation, "Sales Map document location");
             // 
             // buttonSave
             // 
@@ -131,7 +112,7 @@
             // buttonVariables
             // 
             this.buttonVariables.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonVariables.Location = new System.Drawing.Point(9, 97);
+            this.buttonVariables.Location = new System.Drawing.Point(2, 110);
             this.buttonVariables.Name = "buttonVariables";
             this.buttonVariables.Size = new System.Drawing.Size(30, 30);
             this.buttonVariables.TabIndex = 12;
@@ -172,7 +153,7 @@
             // OffSMRPreview
             // 
             this.OffSMRPreview.Image = global::SalesMap.Properties.Resources.preview;
-            this.OffSMRPreview.Location = new System.Drawing.Point(45, 97);
+            this.OffSMRPreview.Location = new System.Drawing.Point(38, 110);
             this.OffSMRPreview.Name = "OffSMRPreview";
             this.OffSMRPreview.Size = new System.Drawing.Size(30, 30);
             this.OffSMRPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -216,12 +197,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.buttonVariables_Click);
             // 
+            // checkBoxSendStats
+            // 
+            this.checkBoxSendStats.AutoSize = true;
+            this.checkBoxSendStats.Location = new System.Drawing.Point(224, 277);
+            this.checkBoxSendStats.Name = "checkBoxSendStats";
+            this.checkBoxSendStats.Size = new System.Drawing.Size(194, 17);
+            this.checkBoxSendStats.TabIndex = 20;
+            this.checkBoxSendStats.Text = "Send usage statistics to developer?";
+            this.toolTip1.SetToolTip(this.checkBoxSendStats, "Send usage statistics to developer when program is closed");
+            this.checkBoxSendStats.UseVisualStyleBackColor = true;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tabControlOffSMREmail);
-            this.groupBox1.Location = new System.Drawing.Point(4, 33);
+            this.groupBox1.Location = new System.Drawing.Point(4, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 180);
+            this.groupBox1.Size = new System.Drawing.Size(412, 190);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit Off SMR Email (HTML)";
@@ -234,7 +226,7 @@
             this.tabControlOffSMREmail.Location = new System.Drawing.Point(6, 16);
             this.tabControlOffSMREmail.Name = "tabControlOffSMREmail";
             this.tabControlOffSMREmail.SelectedIndex = 0;
-            this.tabControlOffSMREmail.Size = new System.Drawing.Size(400, 159);
+            this.tabControlOffSMREmail.Size = new System.Drawing.Size(400, 168);
             this.tabControlOffSMREmail.TabIndex = 18;
             // 
             // tabPage1
@@ -247,7 +239,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(392, 133);
+            this.tabPage1.Size = new System.Drawing.Size(392, 142);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "\"Off SMR\" body";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -257,14 +249,14 @@
             this.textBoxOffSMRBody.Location = new System.Drawing.Point(3, 5);
             this.textBoxOffSMRBody.Name = "textBoxOffSMRBody";
             this.textBoxOffSMRBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.textBoxOffSMRBody.Size = new System.Drawing.Size(386, 88);
+            this.textBoxOffSMRBody.Size = new System.Drawing.Size(386, 99);
             this.textBoxOffSMRBody.TabIndex = 7;
             this.textBoxOffSMRBody.Text = "";
             // 
             // labelEditSubject
             // 
             this.labelEditSubject.AutoSize = true;
-            this.labelEditSubject.Location = new System.Drawing.Point(96, 106);
+            this.labelEditSubject.Location = new System.Drawing.Point(89, 119);
             this.labelEditSubject.Name = "labelEditSubject";
             this.labelEditSubject.Size = new System.Drawing.Size(46, 13);
             this.labelEditSubject.TabIndex = 15;
@@ -272,7 +264,7 @@
             // 
             // textBoxOffSMRSubject
             // 
-            this.textBoxOffSMRSubject.Location = new System.Drawing.Point(142, 103);
+            this.textBoxOffSMRSubject.Location = new System.Drawing.Point(135, 116);
             this.textBoxOffSMRSubject.Name = "textBoxOffSMRSubject";
             this.textBoxOffSMRSubject.Size = new System.Drawing.Size(244, 20);
             this.textBoxOffSMRSubject.TabIndex = 16;
@@ -347,17 +339,6 @@
             this.checkBoxInternational.Text = "Show international results?\r\n";
             this.checkBoxInternational.UseVisualStyleBackColor = true;
             // 
-            // checkBoxSendStats
-            // 
-            this.checkBoxSendStats.AutoSize = true;
-            this.checkBoxSendStats.Location = new System.Drawing.Point(224, 277);
-            this.checkBoxSendStats.Name = "checkBoxSendStats";
-            this.checkBoxSendStats.Size = new System.Drawing.Size(194, 17);
-            this.checkBoxSendStats.TabIndex = 20;
-            this.checkBoxSendStats.Text = "Send usage statistics to developer?";
-            this.toolTip1.SetToolTip(this.checkBoxSendStats, "Send usage statistics to developer when program is closed");
-            this.checkBoxSendStats.UseVisualStyleBackColor = true;
-            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -373,8 +354,6 @@
             this.Controls.Add(this.linkLabelUpdate);
             this.Controls.Add(this.linkLabelFeedback);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.textBoxMapLocation);
-            this.Controls.Add(this.labelMapLocation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -398,8 +377,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label labelMapLocation;
-        private System.Windows.Forms.TextBox textBoxMapLocation;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.LinkLabel linkLabelFeedback;
         private System.Windows.Forms.LinkLabel linkLabelUpdate;
