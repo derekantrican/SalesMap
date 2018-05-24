@@ -467,6 +467,10 @@ namespace SalesMap
                 //Temporarily change the triggered event so that we can better handle selection via zip code
                 comboBoxState.SelectedIndexChanged -= comboBoxState_SelectedIndexChanged;
                 comboBoxState.SelectedIndexChanged += comboBoxState_SelectedByZipCode;
+
+                if ((comboBoxState.SelectedItem as Common.Region).Name == region) //If that region is already selected, empty it out to "re-select" it
+                    comboBoxState.SelectedItem = XMLFunctions.RegionList.First();
+
                 comboBoxState.SelectedItem = XMLFunctions.RegionList.Find(p => p.Name == region);
                 comboBoxState.SelectedIndexChanged -= comboBoxState_SelectedByZipCode;
                 comboBoxState.SelectedIndexChanged += comboBoxState_SelectedIndexChanged;
