@@ -15,6 +15,7 @@ namespace SalesMap
         string zipCodes;
         public ZipcodeDialog()
         {
+            Common.Log("Opening Zipcode selector");
             InitializeComponent();
             zipCodes = XMLFunctions.DownloadZipCSV();
         }
@@ -30,12 +31,17 @@ namespace SalesMap
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            Common.Log("Searching with zipcode \"" + textBox1.Text + "\"");
+
             string[] result = GetRepNameForZip(textBox1.Text.Substring(0, 3));
             if (/*string.IsNullOrEmpty(result[0]) ||*/ string.IsNullOrEmpty(result[1]))
             {
+                Common.Log("No results for zipcode \"" + textBox1.Text + "\"");
                 labelError.Visible = true;
                 return;
             }
+
+            Common.Log("Found results: " + result[0] + " " + result[1]);
 
             SalesRepSelect?.Invoke(result[0], result[1]);
             this.DialogResult = DialogResult.OK;
