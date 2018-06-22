@@ -40,6 +40,7 @@ namespace SalesMap
 
             this.Text = this.Text + " (" + Common.ThisVersion + ")"; //Change the name of the window to include the current version
             Common.Log("------------ STARTING SALESMAP (" + Common.ThisVersion + ") ------------");
+            Common.Log("Launching from " + Assembly.GetExecutingAssembly().Location);
             
             if (!Common.IsOnline)
             {
