@@ -220,6 +220,7 @@
     <None Include="Resources\about.png" />
     <None Include="Resources\Skype.ico" />
     <None Include="Resources\ZIP.png" />
+    <None Include="Resources\Teams icon.png" />
     <Content Include="SalesMap.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

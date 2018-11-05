@@ -882,7 +882,7 @@ namespace SalesMap
             messageSIMadmin.Click += MessageSIMadmin_Click;
 
             MenuItem message = new MenuItem();
-            message.Text = "Send Skype Message";
+            message.Text = "Send Teams Message";
             message.Click += Message_Click;
 
             ContextMenu contextMenu = new ContextMenu();
@@ -903,7 +903,7 @@ namespace SalesMap
 
         private void Message_Click(object sender, EventArgs e)
         {
-            Common.Log("Composing Skype message");
+            Common.Log("Composing Teams message");
 
             Common.SalesRep rep = comboBoxRepresentative.SelectedItem as Common.SalesRep;
 
@@ -913,7 +913,7 @@ namespace SalesMap
 
         private void MessageRSR_Click(object sender, EventArgs e)
         {
-            Common.Log("Composing Skype message to RSR(s)");
+            Common.Log("Composing Teams message to RSR(s)");
 
             Common.SalesRep rep = !string.IsNullOrEmpty(selectedZipCodeRep) ? XMLFunctions.SalesRepList.Find(p => p.DisplayName == selectedZipCodeRep)
                                                                             : getRep(comboBoxState.SelectedItem as Common.Region);
@@ -924,7 +924,7 @@ namespace SalesMap
 
         private void MessageRSMs_Click(object sender, EventArgs e)
         {
-            Common.Log("Composing Skype message to RSM(s)");
+            Common.Log("Composing Teams message to RSM(s)");
 
             string result = "";
             Common.Region region = comboBoxState.SelectedItem as Common.Region;
@@ -940,7 +940,7 @@ namespace SalesMap
 
         private void MessageSIMadmin_Click(object sender, EventArgs e)
         {
-            Common.Log("Composing Skype message to SIM admin");
+            Common.Log("Composing Teams message to SIM admin");
 
             string result = "";
             Common.Region region = comboBoxState.SelectedItem as Common.Region;
@@ -956,7 +956,7 @@ namespace SalesMap
 
         private void StartSkypeMessage(string arguments)
         {
-            Common.Log("Composing a Skype message to " + arguments);
+            Common.Log("Composing a Teams message to " + arguments);
 
             ProcessStartInfo Info = new ProcessStartInfo();
             Info.Arguments = "/C start im:\"" + arguments + "\"";

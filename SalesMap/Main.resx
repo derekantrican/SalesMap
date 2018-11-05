@@ -210,9 +210,6 @@
   <data name="&gt;&gt;labelRepresentative.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="comboBoxState.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -225,6 +222,9 @@
   <data name="comboBoxState.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="comboBoxState.ToolTip" xml:space="preserve">
     <value>Select a region</value>
   </data>
@@ -468,9 +468,6 @@
   <data name="&gt;&gt;labelNoImage.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="labelPhoneResult.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -542,39 +539,6 @@
   </data>
   <data name="&gt;&gt;labelPhoneResult2.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="labelSIMadmin.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelSIMadmin.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9.75pt</value>
-  </data>
-  <data name="labelSIMadmin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelSIMadmin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 239</value>
-  </data>
-  <data name="labelSIMadmin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
-  <data name="labelSIMadmin.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="labelSIMadmin.Text" xml:space="preserve">
-    <value>SIM admin: </value>
-  </data>
-  <data name="&gt;&gt;labelSIMadmin.Name" xml:space="preserve">
-    <value>labelSIMadmin</value>
-  </data>
-  <data name="&gt;&gt;labelSIMadmin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelSIMadmin.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelSIMadmin.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="pictureBoxSkype.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -785,6 +749,39 @@
   </data>
   <data name="&gt;&gt;pictureBoxSettings.ZOrder" xml:space="preserve">
     <value>15</value>
+  </data>
+  <data name="labelSIMadmin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelSIMadmin.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="labelSIMadmin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelSIMadmin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 239</value>
+  </data>
+  <data name="labelSIMadmin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 16</value>
+  </data>
+  <data name="labelSIMadmin.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="labelSIMadmin.Text" xml:space="preserve">
+    <value>SIM admin: </value>
+  </data>
+  <data name="&gt;&gt;labelSIMadmin.Name" xml:space="preserve">
+    <value>labelSIMadmin</value>
+  </data>
+  <data name="&gt;&gt;labelSIMadmin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelSIMadmin.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelSIMadmin.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1101,9 +1098,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAA
         AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>SalesMap</value>

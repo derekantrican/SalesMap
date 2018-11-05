@@ -123,9 +123,9 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Skype {
+        internal static System.Drawing.Bitmap sort {
             get {
-                object obj = ResourceManager.GetObject("Skype", resourceCulture);
+                object obj = ResourceManager.GetObject("sort", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace SalesMap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sort {
+        internal static System.Drawing.Bitmap Teams_icon {
             get {
-                object obj = ResourceManager.GetObject("sort", resourceCulture);
+                object obj = ResourceManager.GetObject("Teams_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -139,7 +139,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SalesMap.Properties.Resources.Skype;
+            this.pictureBox1.Image = global::SalesMap.Properties.Resources.Teams_icon;
             this.pictureBox1.Location = new System.Drawing.Point(253, 53);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);

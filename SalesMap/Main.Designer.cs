@@ -44,7 +44,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.labelPhoneResult = new System.Windows.Forms.Label();
             this.labelPhoneResult2 = new System.Windows.Forms.Label();
-            this.labelSIMadmin = new System.Windows.Forms.Label();
             this.pictureBoxSkype = new System.Windows.Forms.PictureBox();
             this.sortRegions = new System.Windows.Forms.PictureBox();
             this.sortReps = new System.Windows.Forms.PictureBox();
@@ -52,6 +51,7 @@
             this.pictureBoxOnlineMaps = new System.Windows.Forms.PictureBox();
             this.pictureBoxZip = new System.Windows.Forms.PictureBox();
             this.pictureBoxSettings = new System.Windows.Forms.PictureBox();
+            this.labelSIMadmin = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBackground = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSkype)).BeginInit();
@@ -153,15 +153,9 @@
             this.toolTip1.SetToolTip(this.labelPhoneResult2, resources.GetString("labelPhoneResult2.ToolTip"));
             this.labelPhoneResult2.Click += new System.EventHandler(this.labelPhoneResult2_Click);
             // 
-            // labelSIMadmin
-            // 
-            resources.ApplyResources(this.labelSIMadmin, "labelSIMadmin");
-            this.labelSIMadmin.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.labelSIMadmin.Name = "labelSIMadmin";
-            // 
             // pictureBoxSkype
             // 
-            this.pictureBoxSkype.Image = global::SalesMap.Properties.Resources.Skype;
+            this.pictureBoxSkype.Image = global::SalesMap.Properties.Resources.Teams_icon;
             resources.ApplyResources(this.pictureBoxSkype, "pictureBoxSkype");
             this.pictureBoxSkype.Name = "pictureBoxSkype";
             this.pictureBoxSkype.TabStop = false;
@@ -225,6 +219,12 @@
             this.pictureBoxSettings.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBoxSettings, resources.GetString("pictureBoxSettings.ToolTip"));
             this.pictureBoxSettings.Click += new System.EventHandler(this.pictureBoxSettings_Click);
+            // 
+            // labelSIMadmin
+            // 
+            resources.ApplyResources(this.labelSIMadmin, "labelSIMadmin");
+            this.labelSIMadmin.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.labelSIMadmin.Name = "labelSIMadmin";
             // 
             // pictureBox1
             // 
