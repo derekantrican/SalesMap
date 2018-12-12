@@ -275,6 +275,13 @@ namespace SalesMap
                 }
             }
 
+            //Make list sorted by first name by default
+            var result = XMLFunctions.SalesRepList.ToList();
+            result.RemoveAt(0);
+            result = result.OrderBy(p => p.Name.First).ToList();
+            result.Insert(0, XMLFunctions.SalesRepList[0]);
+            SalesRepList = result;
+
             UpdateComboBoxes.Invoke();
         }
 
