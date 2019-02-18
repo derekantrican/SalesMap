@@ -1,17 +1,17 @@
 For bugs:
 =========
 
-######Expected Behavior:
+**Expected Behavior:** 
 
-######Actual Behavior:
+**Actual Behavior:** 
 
-######Repro Steps:
+**Repro Steps:** 
 
 For feature requests:
 ====================
 
-######Requested Feature:
+**Requested Feature:** 
 
-######Why it should be implemented:
+**Why it should be implemented:** 
 
-######Screenshot mockups of what it would look like (if applicable):
+**Screenshot mockups of what it would look like (if applicable):** 
