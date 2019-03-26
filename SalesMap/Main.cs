@@ -690,7 +690,24 @@ namespace SalesMap
 
             subject += " | " + companyName; //Add the company name to the end of the subject
 
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
+            bool useOutlookWeb = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
+            if (useOutlookWeb)
+            {
+                //NOTE: this method does not currently support the "cc" parameter, so we have to put all the emails in the "to" field
+
+                //Read the body without the signature (can't build an html signature via this url method)
+                body = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string));
+                body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
+
+                //We also have to strip out any html as it isn't supported in Outlook Web (at least via this url method)
+                body = Regex.Replace(body, "<.*?>", string.Empty);
+                body = body.Replace("&nbsp;", "");
+
+                string url = $"https://outlook.office.com/owa/?path=/mail/action/compose&to={cc}&subject={subject}&body={body}";
+                Process.Start(url);
+            }
+            else
+                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
         }
 
         private void GracePeriodEmail_Click(object sender, EventArgs e)
@@ -726,7 +743,24 @@ namespace SalesMap
 
             subject += " | " + companyName; //Add the company name to the end of the subject
 
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
+            bool useOutlookWeb = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
+            if (useOutlookWeb)
+            {
+                //NOTE: this method does not currently support the "cc" parameter, so we have to put all the emails in the "to" field
+
+                //Read the body without the signature (can't build an html signature via this url method)
+                body = (string)XMLFunctions.readSetting("GracePeriodBody", typeof(string));
+                body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
+
+                //We also have to strip out any html as it isn't supported in Outlook Web (at least via this url method)
+                body = Regex.Replace(body, "<.*?>", string.Empty);
+                body = body.Replace("&nbsp;", "");
+
+                string url = $"https://outlook.office.com/owa/?path=/mail/action/compose&to={cc}&subject={subject}&body={body}";
+                Process.Start(url);
+            }
+            else
+                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { "", cc, subject, body });
         }
 
         private void repEmail_Click(object sender, EventArgs e)
@@ -737,7 +771,16 @@ namespace SalesMap
 
             string to = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email;
             string body = "<br><br>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { to, "", "", body });
+
+            bool useOutlookWeb = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
+            if (useOutlookWeb)
+            {
+                body = Uri.EscapeUriString(body);
+                string url = $"https://outlook.office.com/owa/?path=/mail/action/compose&to={to}";
+                Process.Start(url);
+            }
+            else
+                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { to, "", "", body });
         }
 
         private void SIMEmail_Click(object sender, EventArgs e)
@@ -757,7 +800,16 @@ namespace SalesMap
                 return;
 
             string body = "<br><br>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
-            ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { to, "", "", body });
+
+            bool useOutlookWeb = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
+            if (useOutlookWeb)
+            {
+                body = Uri.EscapeUriString(body);
+                string url = $"https://outlook.office.com/owa/?path=/mail/action/compose&to={to}";
+                Process.Start(url);
+            }
+            else
+                ThreadPool.QueueUserWorkItem(composeOutlook, new object[] { to, "", "", body });
         }
 
         private Common.SalesRep getRep(Common.Region region)

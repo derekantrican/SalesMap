@@ -32,6 +32,7 @@ namespace SalesMap
             textBoxGracePeriodBody.Text = (string)XMLFunctions.readSetting("GracePeriodBody", typeof(string));
             textBoxGracePeriodSubject.Text = (string)XMLFunctions.readSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
             richTextBoxSignature.Text = (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+            checkBoxUseOutlookWeb.Checked = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
 
             //If the user's Off SMR Signature is the same as the default, show them where to set up a new one
             if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(bool), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
@@ -76,6 +77,7 @@ namespace SalesMap
             XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
             XMLFunctions.saveSetting("GracePeriodBody", textBoxGracePeriodBody.Text);
             XMLFunctions.saveSetting("GracePeriodSubject", textBoxGracePeriodSubject.Text);
+            XMLFunctions.saveSetting("UseOutlookWeb", checkBoxUseOutlookWeb.Checked);
 
             if (checkBoxInternational.Checked != (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
             {
@@ -235,6 +237,21 @@ namespace SalesMap
             Screen screen = Screen.FromPoint(new Point(Cursor.Position.X, Cursor.Position.Y));
             this.Top = screen.Bounds.Y + (screen.Bounds.Height / 10);
             this.Left = screen.Bounds.X + (screen.Bounds.Width / 10);
+        }
+
+        private void CheckBoxUseOutlookWeb_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (checkBoxUseOutlookWeb.Checked)
+            {
+                MessageBox messageBox = new MessageBox("Set up Outlook Web signature",
+                    "Make sure you have your signature set up in Outlook web as SalesMap can't add it to the message for you.\n\n" +
+                    "Set it up at https://outlook.office.com/owa/?path=/options/mailsignatures/mode/popup",
+                    "Ok", Common.MessageBoxResult.OK, true, "Take me there", Common.MessageBoxResult.Open);
+                messageBox.ShowDialog();
+
+                if (Common.DialogResult == Common.MessageBoxResult.Open)
+                    Process.Start("https://outlook.office.com/owa/?path=/options/mailsignatures/mode/popup");
+            }
         }
     }
 }

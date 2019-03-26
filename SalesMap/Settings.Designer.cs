@@ -56,6 +56,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBoxSignature = new System.Windows.Forms.RichTextBox();
             this.checkBoxInternational = new System.Windows.Forms.CheckBox();
+            this.checkBoxUseOutlookWeb = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OffSMRPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GracePeriodPreview)).BeginInit();
@@ -278,7 +279,7 @@
             this.tabPage3.Controls.Add(this.textBoxGracePeriodSubject);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(392, 133);
+            this.tabPage3.Size = new System.Drawing.Size(392, 142);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "\"Grace Period\" body";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -314,7 +315,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(392, 133);
+            this.tabPage2.Size = new System.Drawing.Size(392, 142);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Signature";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -339,11 +340,23 @@
             this.checkBoxInternational.Text = "Show international results?\r\n";
             this.checkBoxInternational.UseVisualStyleBackColor = true;
             // 
+            // checkBoxUseOutlookWeb
+            // 
+            this.checkBoxUseOutlookWeb.AutoSize = true;
+            this.checkBoxUseOutlookWeb.Location = new System.Drawing.Point(18, 239);
+            this.checkBoxUseOutlookWeb.Name = "checkBoxUseOutlookWeb";
+            this.checkBoxUseOutlookWeb.Size = new System.Drawing.Size(175, 17);
+            this.checkBoxUseOutlookWeb.TabIndex = 21;
+            this.checkBoxUseOutlookWeb.Text = "Open emails with Outlook web?";
+            this.checkBoxUseOutlookWeb.UseVisualStyleBackColor = true;
+            this.checkBoxUseOutlookWeb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CheckBoxUseOutlookWeb_MouseClick);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 344);
+            this.Controls.Add(this.checkBoxUseOutlookWeb);
             this.Controls.Add(this.checkBoxSendStats);
             this.Controls.Add(this.checkBoxAboutOnStartup);
             this.Controls.Add(this.pictureBoxAbout);
@@ -403,5 +416,6 @@
         private System.Windows.Forms.PictureBox GracePeriodPreview;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBoxSendStats;
+        private System.Windows.Forms.CheckBox checkBoxUseOutlookWeb;
     }
 }

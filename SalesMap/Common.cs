@@ -25,7 +25,8 @@ namespace SalesMap
             OK,
             Yes,
             No,
-            Retry
+            Retry,
+            Open
         }
 
         public static bool IsOnline
