@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Microsoft.Win32;
-using System.Net;
-using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -22,20 +15,20 @@ namespace SalesMap
         {
             InitializeComponent();
 
-            checkBoxInternational.Checked = (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false);
-            checkBoxAutoUpdates.Checked = (bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true);
-            checkBoxAboutOnStartup.Checked = (bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true);
-            checkBoxSendLog.Checked = (bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true);
-            checkBoxSendStats.Checked = (bool)XMLFunctions.readSetting("SendStatisticsToDeveloper", typeof(bool), true);
-            textBoxOffSMRBody.Text = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string));
-            textBoxOffSMRSubject.Text = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
-            textBoxGracePeriodBody.Text = (string)XMLFunctions.readSetting("GracePeriodBody", typeof(string));
-            textBoxGracePeriodSubject.Text = (string)XMLFunctions.readSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
-            richTextBoxSignature.Text = (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
-            checkBoxUseOutlookWeb.Checked = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
+            checkBoxInternational.Checked = (bool)XMLFunctions.ReadSetting("UseInternational", typeof(bool), false);
+            checkBoxAutoUpdates.Checked = (bool)XMLFunctions.ReadSetting("AutoCheckForUpdates", typeof(bool), true);
+            checkBoxAboutOnStartup.Checked = (bool)XMLFunctions.ReadSetting("ShowAboutOnStartup", typeof(bool), true);
+            checkBoxSendLog.Checked = (bool)XMLFunctions.ReadSetting("SendLogToDeveloper", typeof(bool), true);
+            checkBoxSendStats.Checked = (bool)XMLFunctions.ReadSetting("SendStatisticsToDeveloper", typeof(bool), true);
+            textBoxOffSMRBody.Text = (string)XMLFunctions.ReadSetting("OffSMRBody", typeof(string));
+            textBoxOffSMRSubject.Text = (string)XMLFunctions.ReadSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
+            textBoxGracePeriodBody.Text = (string)XMLFunctions.ReadSetting("GracePeriodBody", typeof(string));
+            textBoxGracePeriodSubject.Text = (string)XMLFunctions.ReadSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
+            richTextBoxSignature.Text = (string)XMLFunctions.ReadSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+            checkBoxUseOutlookWeb.Checked = (bool)XMLFunctions.ReadSetting("UseOutlookWeb", typeof(bool), false);
 
             //If the user's Off SMR Signature is the same as the default, show them where to set up a new one
-            if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(bool), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+            if (Common.RemoveSpecial((string)XMLFunctions.ReadSetting("OffSMRSignature", typeof(bool), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
             {
                 tabControlOffSMREmail.SelectTab(2);
                 richTextBoxSignature.BackColor = Color.LightCoral;
@@ -68,35 +61,35 @@ namespace SalesMap
 
             Common.Log("Saving settings");
 
-            XMLFunctions.saveSetting("AutoCheckForUpdates", checkBoxAutoUpdates.Checked);
-            XMLFunctions.saveSetting("ShowAboutOnStartup", checkBoxAboutOnStartup.Checked);
-            XMLFunctions.saveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);
-            XMLFunctions.saveSetting("SendStatisticsToDeveloper", checkBoxSendLog.Checked);
-            XMLFunctions.saveSetting("OffSMRSubject", textBoxOffSMRSubject.Text);
-            XMLFunctions.saveSetting("OffSMRBody", textBoxOffSMRBody.Text);
-            XMLFunctions.saveSetting("OffSMRSignature", richTextBoxSignature.Text);
-            XMLFunctions.saveSetting("GracePeriodBody", textBoxGracePeriodBody.Text);
-            XMLFunctions.saveSetting("GracePeriodSubject", textBoxGracePeriodSubject.Text);
-            XMLFunctions.saveSetting("UseOutlookWeb", checkBoxUseOutlookWeb.Checked);
+            XMLFunctions.SaveSetting("AutoCheckForUpdates", checkBoxAutoUpdates.Checked);
+            XMLFunctions.SaveSetting("ShowAboutOnStartup", checkBoxAboutOnStartup.Checked);
+            XMLFunctions.SaveSetting("SendLogToDeveloper", checkBoxSendLog.Checked);
+            XMLFunctions.SaveSetting("SendStatisticsToDeveloper", checkBoxSendLog.Checked);
+            XMLFunctions.SaveSetting("OffSMRSubject", textBoxOffSMRSubject.Text);
+            XMLFunctions.SaveSetting("OffSMRBody", textBoxOffSMRBody.Text);
+            XMLFunctions.SaveSetting("OffSMRSignature", richTextBoxSignature.Text);
+            XMLFunctions.SaveSetting("GracePeriodBody", textBoxGracePeriodBody.Text);
+            XMLFunctions.SaveSetting("GracePeriodSubject", textBoxGracePeriodSubject.Text);
+            XMLFunctions.SaveSetting("UseOutlookWeb", checkBoxUseOutlookWeb.Checked);
 
-            if (checkBoxInternational.Checked != (bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
+            if (checkBoxInternational.Checked != (bool)XMLFunctions.ReadSetting("UseInternational", typeof(bool), false))
             {
                 if (checkBoxInternational.Checked)
                 {
-                    XMLFunctions.parseRegions(true);
-                    XMLFunctions.parseReps(true);
+                    XMLFunctions.ParseRegions(true);
+                    XMLFunctions.ParseReps(true);
                 }
                 else
                 {
-                    XMLFunctions.parseRegions(false);
-                    XMLFunctions.parseReps(false);
+                    XMLFunctions.ParseRegions(false);
+                    XMLFunctions.ParseReps(false);
                 }
 
-                XMLFunctions.saveSetting("UseInternational", checkBoxInternational.Checked);
+                XMLFunctions.SaveSetting("UseInternational", checkBoxInternational.Checked);
             }
 
 
-            if (Form.ModifierKeys == Keys.Control)
+            if (ModifierKeys == Keys.Control)
             {
                 MessageBox messageBox = new MessageBox("Factory Reset", "This will factory reset this program! \n\nAre you sure?", "No", Common.MessageBoxResult.No, true, "Yes", Common.MessageBoxResult.Yes);
                 messageBox.ShowDialog();
@@ -123,12 +116,12 @@ namespace SalesMap
                         return;
                     }
 
-                    ProcessStartInfo Info = new ProcessStartInfo();
-                    Info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
-                    Info.WindowStyle = ProcessWindowStyle.Hidden;
-                    Info.CreateNoWindow = true;
-                    Info.FileName = "cmd.exe";
-                    Process.Start(Info);
+                    ProcessStartInfo info = new ProcessStartInfo();
+                    info.Arguments = "/C ping 127.0.0.1 -n 2 && \"" + Application.ExecutablePath + "\"";
+                    info.WindowStyle = ProcessWindowStyle.Hidden;
+                    info.CreateNoWindow = true;
+                    info.FileName = "cmd.exe";
+                    Process.Start(info);
                     Application.Exit();
                 }
             }
@@ -139,7 +132,6 @@ namespace SalesMap
         private void linkLabelUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Common.Stat();
-
             Common.CheckForUpdate(true);
         }
 
@@ -189,7 +181,6 @@ namespace SalesMap
             string subject = Convert.ToString(array[1]);
             string body = Convert.ToString(array[2]);
 
-
             try
             {
                 Outlook.Application outlookApp = new Outlook.Application();
@@ -200,9 +191,9 @@ namespace SalesMap
                 mailItem.HTMLBody = body;
                 mailItem.Display(true);
             }
-            catch (Exception eX)
+            catch (Exception ex)
             {
-                Common.Log("Failed to create test email with cc: " + cc + " & subject: " + subject + " & exception: " + eX.Message);
+                Common.Log("Failed to create test email with cc: " + cc + " & subject: " + subject + " & exception: " + ex.Message);
             }
         }
 
@@ -218,7 +209,7 @@ namespace SalesMap
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation", typeof(System.Drawing.Point), new Point(0,0));
+            Point startupPoint = (Point)XMLFunctions.ReadSetting("MainWindowLocation", typeof(Point), new Point(0,0));
 
             if (!startupPoint.IsEmpty)
             {

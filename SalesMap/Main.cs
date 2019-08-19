@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Microsoft.Win32;
-using System.Net;
 using System.Reflection;
-using System.Resources;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Configuration;
-using System.Xml.Linq;
-using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
 namespace SalesMap
@@ -66,21 +58,21 @@ namespace SalesMap
 
             checkFirstRun();
 
-            if ((bool)XMLFunctions.readSetting("AutoCheckForUpdates", typeof(bool), true))
+            if ((bool)XMLFunctions.ReadSetting("AutoCheckForUpdates", typeof(bool), true))
                 Common.CheckForUpdate();
 
             compareFiles();
 
             Task regionTask, repTask;
-            if (!(bool)XMLFunctions.readSetting("UseInternational", typeof(bool), false))
+            if (!(bool)XMLFunctions.ReadSetting("UseInternational", typeof(bool), false))
             {
-                regionTask = new Task(() => XMLFunctions.parseRegions(false));
-                repTask = new Task(() => XMLFunctions.parseReps(false));
+                regionTask = new Task(() => XMLFunctions.ParseRegions(false));
+                repTask = new Task(() => XMLFunctions.ParseReps(false));
             }
             else
             {
-                regionTask = new Task(() => XMLFunctions.parseRegions(true));
-                repTask = new Task(() => XMLFunctions.parseReps(true));
+                regionTask = new Task(() => XMLFunctions.ParseRegions(true));
+                repTask = new Task(() => XMLFunctions.ParseReps(true));
             }
 
             regionTask.Start();
@@ -91,19 +83,7 @@ namespace SalesMap
         private void SelectRegionFromCommandLine(string region)
         {
             string modifiedQuery = Regex.Replace(region, "[^a-zA-Z]", "").ToLower();
-            //Common.Region foundRegion = null;
-            //List<Common.Region> copyOfRegionsList = XMLFunctions.RegionList.ToList();
-            //foreach (Common.Region r in copyOfRegionsList)
-            //{
-            //    if (r.Name != null && Regex.Replace(r.Name, "[^a-zA-Z]", "").ToLower() == modifiedQuery)
-            //    {
-            //        foundRegion = r;
-            //        break;
-            //    }
-            //}
             Common.Region foundRegion = XMLFunctions.RegionList.Where(p => p.Name != null && Regex.Replace(p.Name, "[^a-zA-Z]", "").ToLower() == modifiedQuery).FirstOrDefault();
-
-
 
             comboBoxState.SelectedItem = foundRegion;
             comboBoxState_SelectedIndexChanged(null, null);
@@ -111,36 +91,36 @@ namespace SalesMap
 
         private void SalesMapSearch_FormClosing(object sender, FormClosingEventArgs e)
         {
-            XMLFunctions.saveSetting("MainWindowLocation", this.Location);
+            XMLFunctions.SaveSetting("MainWindowLocation", this.Location);
 
             Common.Log("++++++++++++ CLOSING SALESMAP ++++++++++++");
 
-            if ((bool)XMLFunctions.readSetting("SendLogToDeveloper", typeof(bool), true))
+            if ((bool)XMLFunctions.ReadSetting("SendLogToDeveloper", typeof(bool), true))
             {
                 string logPath = Path.Combine(Common.UserSettingsPath, "log.txt");
 
                 if (File.Exists(logPath))
                 {
-                    ProcessStartInfo Info = new ProcessStartInfo();
-                    Info.Arguments = "/C copy \"" + logPath + @""" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + Environment.UserName + " log.txt\" /y";
-                    Info.WindowStyle = ProcessWindowStyle.Hidden;
-                    Info.FileName = "cmd.exe";
-                    Process infoProcess = Process.Start(Info);
+                    ProcessStartInfo info = new ProcessStartInfo();
+                    info.Arguments = "/C copy \"" + logPath + @""" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + Environment.UserName + " log.txt\" /y";
+                    info.WindowStyle = ProcessWindowStyle.Hidden;
+                    info.FileName = "cmd.exe";
+                    Process.Start(info);
                 }
 
             }
 
-            if ((bool)XMLFunctions.readSetting("SendStatisticsToDeveloper", typeof(bool), true))
+            if ((bool)XMLFunctions.ReadSetting("SendStatisticsToDeveloper", typeof(bool), true))
             {
                 string statisticsPath = Path.Combine(Common.UserSettingsPath, "stats.txt");
 
                 if (File.Exists(statisticsPath))
                 {
-                    ProcessStartInfo Info = new ProcessStartInfo();
-                    Info.Arguments = "/C copy \"" + statisticsPath + @""" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Statistics\" + Environment.UserName + ".txt\" /y";
-                    Info.WindowStyle = ProcessWindowStyle.Hidden;
-                    Info.FileName = "cmd.exe";
-                    Process infoProcess = Process.Start(Info);
+                    ProcessStartInfo info = new ProcessStartInfo();
+                    info.Arguments = "/C copy \"" + statisticsPath + @""" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Statistics\" + Environment.UserName + ".txt\" /y";
+                    info.WindowStyle = ProcessWindowStyle.Hidden;
+                    info.FileName = "cmd.exe";
+                    Process.Start(info);
                 }
             }
         }
@@ -617,7 +597,6 @@ namespace SalesMap
         {
             Common.Stat();
 
-
             if (Common.SelectedItem == null)
             {
                 MessageBox messageBox = new MessageBox("No Rep/Region selected", "Please choose a Region or Sales Rep from the dropdowns", "OK", Common.MessageBoxResult.OK);
@@ -682,21 +661,21 @@ namespace SalesMap
                 cc = cc.Replace(rsr, "");
 
             cc = rsr + ";" + cc;
-            string subject = (string)XMLFunctions.readSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
-            string body = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string)) + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+            string subject = (string)XMLFunctions.ReadSetting("OffSMRSubject", typeof(string), "SigmaNEST Subscription Membership Renewal");
+            string body = (string)XMLFunctions.ReadSetting("OffSMRBody", typeof(string)) + (string)XMLFunctions.ReadSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
             subject = replaceVariables(subject, rep.DisplayName, rep.Email, rep.Phone);
             body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
 
             subject += " | " + companyName; //Add the company name to the end of the subject
 
-            bool useOutlookWeb = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
+            bool useOutlookWeb = (bool)XMLFunctions.ReadSetting("UseOutlookWeb", typeof(bool), false);
             if (useOutlookWeb)
             {
                 //NOTE: this method does not currently support the "cc" parameter, so we have to put all the emails in the "to" field
 
                 //Read the body without the signature (can't build an html signature via this url method)
-                body = (string)XMLFunctions.readSetting("OffSMRBody", typeof(string));
+                body = (string)XMLFunctions.ReadSetting("OffSMRBody", typeof(string));
                 body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
 
                 //We also have to strip out any html as it isn't supported in Outlook Web (at least via this url method)
@@ -735,21 +714,21 @@ namespace SalesMap
                 cc.Replace(rsr, "");
 
             cc = rsr + ";" + cc;
-            string subject = (string)XMLFunctions.readSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
-            string body = (string)XMLFunctions.readSetting("GracePeriodBody") + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+            string subject = (string)XMLFunctions.ReadSetting("GracePeriodSubject", typeof(string), "SigmaNEST Subscription Membership Expiring Soon");
+            string body = (string)XMLFunctions.ReadSetting("GracePeriodBody") + (string)XMLFunctions.ReadSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
             subject = replaceVariables(subject, rep.DisplayName, rep.Email, rep.Phone);
             body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
 
             subject += " | " + companyName; //Add the company name to the end of the subject
 
-            bool useOutlookWeb = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
+            bool useOutlookWeb = (bool)XMLFunctions.ReadSetting("UseOutlookWeb", typeof(bool), false);
             if (useOutlookWeb)
             {
                 //NOTE: this method does not currently support the "cc" parameter, so we have to put all the emails in the "to" field
 
                 //Read the body without the signature (can't build an html signature via this url method)
-                body = (string)XMLFunctions.readSetting("GracePeriodBody", typeof(string));
+                body = (string)XMLFunctions.ReadSetting("GracePeriodBody", typeof(string));
                 body = replaceVariables(body, rep.DisplayName, rep.Email, rep.Phone);
 
                 //We also have to strip out any html as it isn't supported in Outlook Web (at least via this url method)
@@ -770,9 +749,9 @@ namespace SalesMap
             SignatureCheck();
 
             string to = (comboBoxRepresentative.SelectedItem as Common.SalesRep).Email;
-            string body = "<br><br>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+            string body = "<br><br>" + (string)XMLFunctions.ReadSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
-            bool useOutlookWeb = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
+            bool useOutlookWeb = (bool)XMLFunctions.ReadSetting("UseOutlookWeb", typeof(bool), false);
             if (useOutlookWeb)
             {
                 body = Uri.EscapeUriString(body);
@@ -799,9 +778,9 @@ namespace SalesMap
             if (string.IsNullOrEmpty(to))
                 return;
 
-            string body = "<br><br>" + (string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
+            string body = "<br><br>" + (string)XMLFunctions.ReadSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault);
 
-            bool useOutlookWeb = (bool)XMLFunctions.readSetting("UseOutlookWeb", typeof(bool), false);
+            bool useOutlookWeb = (bool)XMLFunctions.ReadSetting("UseOutlookWeb", typeof(bool), false);
             if (useOutlookWeb)
             {
                 body = Uri.EscapeUriString(body);
@@ -880,7 +859,6 @@ namespace SalesMap
             string cc = Convert.ToString(array[1]);
             string subject = Convert.ToString(array[2]);
             string body = Convert.ToString(array[3]);
-
 
             try
             {
@@ -1010,11 +988,11 @@ namespace SalesMap
         {
             Common.Log("Composing a Teams message to " + arguments);
 
-            ProcessStartInfo Info = new ProcessStartInfo();
-            Info.Arguments = "/C start im:\"" + arguments + "\"";
-            Info.WindowStyle = ProcessWindowStyle.Hidden;
-            Info.FileName = "cmd.exe";
-            Process infoProcess = Process.Start(Info);
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.Arguments = "/C start im:\"" + arguments + "\"";
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+            info.FileName = "cmd.exe";
+            Process.Start(info);
         }
 
         private void labelContactResult_Click(object sender, EventArgs e)
@@ -1153,7 +1131,7 @@ namespace SalesMap
         private void SignatureCheck()
         {
             //Force the user to set up their signature
-            if (Common.RemoveSpecial((string)XMLFunctions.readSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
+            if (Common.RemoveSpecial((string)XMLFunctions.ReadSetting("OffSMRSignature", typeof(string), Properties.Settings.Default.OffSMRSignatureDefault)) == Common.RemoveSpecial(Properties.Settings.Default.OffSMRSignatureDefault))
             {
                 MessageBox messageBox = new MessageBox("Signature not set", "Please set up your signature in the settings!\n\n(Change \"YOUR_NAME\" and \"Application Engineer\" to be your name and title)",
                                                         "OK", Common.MessageBoxResult.OK);
@@ -1183,7 +1161,7 @@ namespace SalesMap
                         key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("SalesMap");
                         key.SetValue("FirstRun", Common.ThisVersion);
 
-                        if ((bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true))
+                        if ((bool)XMLFunctions.ReadSetting("ShowAboutOnStartup", typeof(bool), true))
                         {
                             About about = new About();
                             about.ShowDialog();
@@ -1201,7 +1179,7 @@ namespace SalesMap
                     Common.Log("Key does not match current version. Key: " + key.GetValue("FirstRun").ToString() + " Version: " + Common.ThisVersion);
                     
                     key.SetValue("FirstRun", Common.ThisVersion);
-                    if ((bool)XMLFunctions.readSetting("ShowAboutOnStartup", typeof(bool), true))
+                    if ((bool)XMLFunctions.ReadSetting("ShowAboutOnStartup", typeof(bool), true))
                     {
                         About about = new About();
                         about.ShowDialog();
@@ -1260,7 +1238,7 @@ namespace SalesMap
 
         private void SalesMapSearch_Load(object sender, EventArgs e)
         {
-            Point startupPoint = (System.Drawing.Point)XMLFunctions.readSetting("MainWindowLocation", typeof(System.Drawing.Point), new Point(0,0));
+            Point startupPoint = (Point)XMLFunctions.ReadSetting("MainWindowLocation", typeof(Point), new Point(0,0));
 
             if (!startupPoint.IsEmpty)
             {

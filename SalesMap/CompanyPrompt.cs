@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SalesMap
@@ -15,10 +9,9 @@ namespace SalesMap
         public CompanyPrompt()
         {
             InitializeComponent();
-
         }
 
-        public string CompanyName { get; set; }
+        public new string CompanyName { get; set; }
 
         private void CompanyPrompt_Load(object sender, EventArgs e)
         {

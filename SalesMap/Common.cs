@@ -5,9 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SalesMap
 {
@@ -39,17 +37,19 @@ namespace SalesMap
                     Stream stream = client.OpenRead(InfoSiteBase);
                     return true;
                 }
-                catch (WebException ex)
+                catch (WebException)
                 {
-                        return false;
+                    return false;
                 }
             }
         }
+
         public class Name
         {
             public string First { get; set; }
             public string Last { get; set; }
         }
+
         public class Region
         {
             public string Name { get; set; }
@@ -185,7 +185,7 @@ namespace SalesMap
             DateTime date = DateTime.Now;
             TimeZone zone = TimeZone.CurrentTimeZone;
 
-            File.AppendAllText(logPath, "[" + date + " " + abbreviate(zone.StandardName) + "] " + itemToLog + Environment.NewLine);
+            File.AppendAllText(logPath, "[" + date + " " + Abbreviate(zone.StandardName) + "] " + itemToLog + Environment.NewLine);
         }
 
         public static void Log(string itemToLog, bool addTimeStamp)
@@ -196,7 +196,7 @@ namespace SalesMap
             {
                 DateTime date = DateTime.Now;
                 TimeZone zone = TimeZone.CurrentTimeZone;
-                File.AppendAllText(logPath, "[" + date + " " + abbreviate(zone.StandardName) + "] " + itemToLog + Environment.NewLine);
+                File.AppendAllText(logPath, "[" + date + " " + Abbreviate(zone.StandardName) + "] " + itemToLog + Environment.NewLine);
             }
             else
                 File.AppendAllText(logPath, itemToLog + Environment.NewLine);
@@ -204,7 +204,7 @@ namespace SalesMap
 
         public static void Stat(string message = "", [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
-            if (!(bool)XMLFunctions.readSetting("SendStatisticsToDeveloper", typeof(bool), true))
+            if (!(bool)XMLFunctions.ReadSetting("SendStatisticsToDeveloper", typeof(bool), true))
                 return;
 
             string statisticsPath = Path.Combine(UserSettingsPath, "stats.txt");
@@ -236,7 +236,7 @@ namespace SalesMap
                 Directory.CreateDirectory(UserSettingsPath);
         }
 
-        private static string abbreviate(string longForm)
+        private static string Abbreviate(string longForm)
         {
             return new string(longForm.Where((c, i) => c != ' ' && (i == 0 || longForm[i - 1] == ' ')).ToArray());
         }

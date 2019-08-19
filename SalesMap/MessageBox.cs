@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SalesMap.Common;
 
@@ -13,8 +7,8 @@ namespace SalesMap
 {
     public partial class MessageBox : Form
     {
-        MessageBoxResult button1result;
-        MessageBoxResult button2result;
+        private MessageBoxResult button1result;
+        private MessageBoxResult button2result;
         public MessageBox(string title, string message, string button1text, MessageBoxResult button1result, bool showButton2 = false,
                             string button2text = "", MessageBoxResult button2result = MessageBoxResult.Cancel)
         {

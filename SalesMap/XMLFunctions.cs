@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 using static SalesMap.Common;
 
@@ -24,7 +21,7 @@ namespace SalesMap
             Regions
         }
 
-        public static object readSetting(string settingName, Type defaultType = null, object defaultValue = null)
+        public static object ReadSetting(string settingName, Type defaultType = null, object defaultValue = null)
         {
             if (!File.Exists(Path.Combine(Common.UserSettingsPath, "Settings.xml")))
                 DownloadDefaultXml();
@@ -56,7 +53,7 @@ namespace SalesMap
             }
         }
 
-        public static void saveSetting(string settingName, object value)
+        public static void SaveSetting(string settingName, object value)
         {
             if (!File.Exists(Path.Combine(Common.UserSettingsPath, "Settings.xml")))
                 DownloadDefaultXml();
@@ -94,9 +91,9 @@ namespace SalesMap
             Log("Downloaded the default Settings.xml from online");
         }
 
-        public static DateTime getLastXmlOnlineUpdated(Database database, bool useInternational = false)
+        public static DateTime GetLastXmlOnlineUpdated(Database database, bool useInternational = false)
         {
-            XDocument document = XDocument.Parse(downloadXML(database, useInternational));
+            XDocument document = XDocument.Parse(DownloadXML(database, useInternational));
             DateTime updated;
             if (database == Database.Reps)
                 updated = DateTime.Parse(document.Element("SalesReps").Attribute("updated").Value);
@@ -153,7 +150,7 @@ namespace SalesMap
             return html;
         }
 
-        private static string downloadXML(Database database, bool useInternational)
+        private static string DownloadXML(Database database, bool useInternational)
         {
             string regionsURL = !useInternational ? InfoSiteBase + "Settings/Regions.xml" : InfoSiteBase + "Settings/Regions_International.xml";
             string salesRepURL = !useInternational ? InfoSiteBase + "Settings/SalesReps.xml" : InfoSiteBase + "Settings/SalesReps_International.xml";
@@ -169,9 +166,9 @@ namespace SalesMap
             return html;
         }
 
-        public static void parseRegions(bool useInternational = false)
+        public static void ParseRegions(bool useInternational = false)
         {
-            XDocument document = XDocument.Parse(downloadXML(Database.Regions, useInternational));
+            XDocument document = XDocument.Parse(DownloadXML(Database.Regions, useInternational));
             XElement parent = document.Element("Regions");
 
             if (RegionList != new List<Region>())
@@ -202,9 +199,9 @@ namespace SalesMap
             UpdateComboBoxes.Invoke();
         }
 
-        public static void parseReps(bool useInternational = false)
+        public static void ParseReps(bool useInternational = false)
         {
-            XDocument document = XDocument.Parse(downloadXML(Database.Reps, useInternational));
+            XDocument document = XDocument.Parse(DownloadXML(Database.Reps, useInternational));
             XElement parent = document.Element("SalesReps");
 
             if (SalesRepList != new List<SalesRep>())
@@ -338,7 +335,7 @@ namespace SalesMap
             XElement OffSMRSignature = document.Descendants("setting").Where(x => x.Attribute("name").Value.Equals("OffSMRSignature")).SingleOrDefault();
             if (OffSMRSignature != null)
             {
-                saveSetting("OffSMRSignature", OffSMRSignature.Value);
+                SaveSetting("OffSMRSignature", OffSMRSignature.Value);
                 Log("Copied over OffSMRSignature from the old settings");
                 settingCopied = true;
             }
@@ -346,7 +343,7 @@ namespace SalesMap
             XElement OffSMRBody = document.Descendants("setting").Where(x => x.Attribute("name").Value.Equals("OffSMRBody")).SingleOrDefault();
             if (OffSMRBody != null)
             {
-                saveSetting("OffSMRBody", OffSMRBody.Value);
+                SaveSetting("OffSMRBody", OffSMRBody.Value);
                 Log("Copied over OffSMRBody from the old settings");
                 settingCopied = true;
             }
@@ -354,7 +351,7 @@ namespace SalesMap
             XElement OffSMRSubject = document.Descendants("setting").Where(x => x.Attribute("name").Value.Equals("OffSMRSubject")).SingleOrDefault();
             if (OffSMRSubject != null)
             {
-                saveSetting("OffSMRSubject", OffSMRSubject.Value);
+                SaveSetting("OffSMRSubject", OffSMRSubject.Value);
                 Log("Copied over OffSMRSubject from the old settings");
                 settingCopied = true;
             }
@@ -362,7 +359,7 @@ namespace SalesMap
             XElement MapFileLocation = document.Descendants("setting").Where(x => x.Attribute("name").Value.Equals("MapFileLocation")).SingleOrDefault();
             if (MapFileLocation != null)
             {
-                saveSetting("MapFileLocation", MapFileLocation.Value);
+                SaveSetting("MapFileLocation", MapFileLocation.Value);
                 Log("Copied over MapFileLocation from the old settings");
                 settingCopied = true;
             }
