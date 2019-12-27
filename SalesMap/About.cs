@@ -55,7 +55,7 @@ namespace SalesMap
 
         private void linkLabelEmail_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("mailto:derek.antrican@sigmanest.com&Subject=SalesMap%20Feedback");
+            Process.Start("mailto:Trent.Patterson@sigmanest.com&Subject=SalesMap%20Feedback");
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace SalesMap
             Common.Log("Composing a Skype message to developer");
 
             ProcessStartInfo Info = new ProcessStartInfo();
-            Info.Arguments = "/C start im:\"<sip:derek.antrican@sigmatek.net>\"";
+            Info.Arguments = "/C start im:\"<sip:Trent.Patterson@sigmatek.net>\"";
             Info.WindowStyle = ProcessWindowStyle.Hidden;
             Info.FileName = "cmd.exe";
             Process infoProcess = Process.Start(Info);

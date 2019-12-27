@@ -102,7 +102,7 @@ namespace SalesMap
                 if (File.Exists(logPath))
                 {
                     ProcessStartInfo info = new ProcessStartInfo();
-                    info.Arguments = "/C copy \"" + logPath + @""" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Log Files\" + Environment.UserName + " log.txt\" /y";
+                    info.Arguments = "/C copy \"" + logPath + @""" ""\\sigmatek.net\Documents\Employees\Trent_P\SalesMap-master\Log Files\" + Environment.UserName + " log.txt\" /y";
                     info.WindowStyle = ProcessWindowStyle.Hidden;
                     info.FileName = "cmd.exe";
                     Process.Start(info);
@@ -117,7 +117,7 @@ namespace SalesMap
                 if (File.Exists(statisticsPath))
                 {
                     ProcessStartInfo info = new ProcessStartInfo();
-                    info.Arguments = "/C copy \"" + statisticsPath + @""" ""\\sigmatek.net\Documents\Employees\Derek_Antrican\SalesMap\Statistics\" + Environment.UserName + ".txt\" /y";
+                    info.Arguments = "/C copy \"" + statisticsPath + @""" ""\\sigmatek.net\Documents\Employees\Trent_P\SalesMap-master\Statistics\" + Environment.UserName + ".txt\" /y";
                     info.WindowStyle = ProcessWindowStyle.Hidden;
                     info.FileName = "cmd.exe";
                     Process.Start(info);
@@ -273,11 +273,11 @@ namespace SalesMap
             }
 
             //Get the SIM admin
-            labelSIMadmin.Text = "SIM admin: ";
+            labelSIMadmin.Text = "Sales Manager ";
             foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
             {
                 if (rep.SIMS != null && (rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area) || rep.SIMS.Contains("ALL")))
-                    labelSIMadmin.Text += labelSIMadmin.Text == "SIM admin: " ? rep.DisplayName : ", " + rep.DisplayName;
+                    labelSIMadmin.Text += labelSIMadmin.Text == "Sales Manager: " ? rep.DisplayName : ", " + rep.DisplayName;
             }
         }
 
@@ -359,11 +359,11 @@ namespace SalesMap
             labelPhoneResult2.Text = "";
 
             //Get the SIM admin
-            labelSIMadmin.Text = "SIM admin: ";
+            labelSIMadmin.Text = "Sales Manager: ";
             foreach (Common.SalesRep rep in XMLFunctions.SIMadmins)
             {
                 if (rep.SIMS != null && (rep.SIMS.Contains((comboBoxState.SelectedItem as Common.Region).Area) || rep.SIMS.Contains("ALL")))
-                    labelSIMadmin.Text += labelSIMadmin.Text == "SIM admin: " ? rep.DisplayName : ", " + rep.DisplayName;
+                    labelSIMadmin.Text += labelSIMadmin.Text == "Sales Manager: " ? rep.DisplayName : ", " + rep.DisplayName;
             }
         }
 

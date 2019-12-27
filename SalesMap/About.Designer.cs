@@ -102,7 +102,7 @@
             this.labelDeveloper.Name = "labelDeveloper";
             this.labelDeveloper.Size = new System.Drawing.Size(133, 13);
             this.labelDeveloper.TabIndex = 12;
-            this.labelDeveloper.Text = "Developer: Derek Antrican";
+            this.labelDeveloper.Text = "Developer: Trent Patterson";
             this.labelDeveloper.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // linkLabelEmail
@@ -113,7 +113,7 @@
             this.linkLabelEmail.Size = new System.Drawing.Size(156, 13);
             this.linkLabelEmail.TabIndex = 13;
             this.linkLabelEmail.TabStop = true;
-            this.linkLabelEmail.Text = "derek.antrican@sigmanest.com";
+            this.linkLabelEmail.Text = "Trent.Patterson@sigmanest.com";
             this.linkLabelEmail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkLabelEmail.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelEmail_LinkClicked);
             // 

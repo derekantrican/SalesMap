@@ -21,7 +21,7 @@ namespace SalesMap
 
         private void buttonFeedback_Click(object sender, EventArgs e)
         {
-            Process.Start("mailto:derek.antrican@sigmanest.com&Subject=SalesMap%20Feedback");
+            Process.Start("mailto:Trent.Patterson@sigmanest.com&Subject=SalesMap%20Feedback");
             this.Close();
         }
 
