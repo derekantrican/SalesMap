@@ -38,7 +38,6 @@
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(498, 35);
             this.progressBar.TabIndex = 0;
-            this.progressBar.Click += new System.EventHandler(this.progressBar_Click);
             // 
             // Updater
             // 
